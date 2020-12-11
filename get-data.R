@@ -41,8 +41,8 @@ bohman <- f.bohman()
 
 f.giletto <- function(){
   
-  appendix_a <- read_excel("1-s2.0-S1161030120301210-mmc1.xlsx", sheet="Appendix A", col_names=F)
-  appendix_b <- read_excel("1-s2.0-S1161030120301210-mmc1.xlsx", sheet="Appendix B", col_names=F)
+  appendix_a <- read_excel("Giletto-2020.xlsx", sheet="Appendix A", col_names=F)
+  appendix_b <- read_excel("Giletto-2020.xlsx", sheet="Appendix B", col_names=F)
   
   # data = "appendix_a"
   # # #measure = "W_sh"
