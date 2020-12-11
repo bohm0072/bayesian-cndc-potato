@@ -10,7 +10,7 @@ library(rjags)
 
 ##### Import Data #####
 
-# This csv file contains both unpublished data from Rosen Lab and previously published data from Giletto et. al (2020), Appendix A - doi:10.1016/j.eja.2020.126114
+# This csv file contains both unpublished data from Rosen Lab and previously published data from Giletto et. al (2020), Appendix A and B - doi:10.1016/j.eja.2020.126114
 # The data is formatted to both 1) work with the framework from Makowski et al. (2020) - doi:10.1016/j.eja.2020.126076, and 2) provide necessary metadata to allow for parameterizing multiple models in the same workflow
 
 data <- read_csv("data.csv",col_types="cccdcdd") 
