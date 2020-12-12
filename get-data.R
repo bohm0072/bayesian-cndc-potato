@@ -11,7 +11,7 @@ library(stringr)
 
 f.bohman <- function(){
   
-  source("../Analysis/Scripts/Analysis/Analysis Ready Data.R")
+  source("Scripts/Analysis/Analysis Ready Data.R")
   ard <- f.ard()
   
   d <- ard %>%
@@ -24,11 +24,10 @@ f.bohman <- function(){
     group_by(owner,study,year,date,variety,rate_n_kgha) %>%
     summarize_at(vars(biomdry_Mgha,n_pct),~mean(.,na.rm=T)) %>%
     ungroup() %>%
-    mutate(study="Bohman") %>%
+    mutate(owner="Bohman") %>%
     mutate(variety=str_to_title(variety)) %>%
-    # mutate(variety="Russet Burbank") %>%
     mutate(location="Minnesota") %>%
-    select(study,location,variety,rate_n_kgha,Date=date,W=biomdry_Mgha,N=n_pct)
+    select(owner,study,year,location,variety,rate_n_kgha,date,W=biomdry_Mgha,N=n_pct)
   
   return(d)
   
@@ -324,6 +323,15 @@ f.giletto <- function(){
                     location = ..7,
                     study = ..8)) %>% bind_rows()
   
+  d <- d %>%
+    mutate(owner="Giletto") %>%
+    mutate(study=case_when(location == "Argentina" ~ "Giletto",
+                           location == "Canada" ~ "Belanger",
+                           T ~ NA_character_)) %>%
+    mutate(year=as.character(year(Date))) %>%
+    rename(date=Date) %>%
+    select(owner,study,year,location,variety,rate_n_kgha,date,W,N)
+  
 }
 
 giletto <- f.giletto()
@@ -335,8 +343,8 @@ data <- bind_rows(
   giletto
 )
 
-data <- data %>%
-  filter(W>=1.0)
+# data <- data %>%
+#   filter(W>=1.0)
 
 ##### Export Data #####
 

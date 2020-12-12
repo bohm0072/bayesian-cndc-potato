@@ -1,0 +1,243 @@
+owner,study,year,trt_n,date_applied,source_n,additive,rate_n_kgha
+rosen lab,esn-nni,2020,n.4,2020-04-21,esn,NA,156.918895143395
+rosen lab,esn-nni,2020,n.9,2020-04-22,manure,NA,20.1752865184365
+rosen lab,esn-nni,2020,n.10,2020-04-22,manure,NA,20.1752865184365
+rosen lab,esn-nni,2020,n.1,2020-04-24,dap,NA,44.83397004097
+rosen lab,esn-nni,2020,n.2,2020-04-24,dap,NA,44.83397004097
+rosen lab,esn-nni,2020,n.3,2020-04-24,dap,NA,44.83397004097
+rosen lab,esn-nni,2020,n.4,2020-04-24,dap,NA,44.83397004097
+rosen lab,esn-nni,2020,n.5,2020-04-24,dap,NA,44.83397004097
+rosen lab,esn-nni,2020,n.5,2020-04-24,esn,NA,156.918895143395
+rosen lab,esn-nni,2020,n.6,2020-04-24,dap,NA,44.83397004097
+rosen lab,esn-nni,2020,n.7,2020-04-24,dap,NA,44.83397004097
+rosen lab,esn-nni,2020,n.8,2020-04-24,dap,NA,44.83397004097
+rosen lab,esn-nni,2020,n.9,2020-04-24,dap,NA,44.83397004097
+rosen lab,esn-nni,2020,n.10,2020-04-24,dap,NA,44.83397004097
+rosen lab,esn-nni,2020,n.11,2020-04-24,dap,NA,44.83397004097
+rosen lab,esn-nni,2020,n.12,2020-04-24,dap,NA,44.83397004097
+rosen lab,esn-nni,2020,n.13,2020-04-24,dap,NA,44.83397004097
+rosen lab,esn-nni,2020,n.14,2020-04-24,dap,NA,44.83397004097
+rosen lab,esn-nni,2020,n.15,2020-04-24,dap,NA,44.83397004097
+rosen lab,esn-nni,2020,n.16,2020-04-24,dap,NA,44.83397004097
+rosen lab,esn-nni,2020,n.11.1,2020-04-24,dap,NA,44.83397004097
+rosen lab,esn-nni,2020,n.2,2020-05-19,urea,NA,156.918895143395
+rosen lab,esn-nni,2020,n.3,2020-05-19,urea,NA,201.752865184365
+rosen lab,esn-nni,2020,n.6,2020-05-19,esn,NA,156.918895143395
+rosen lab,esn-nni,2020,n.7,2020-05-19,esn,NA,156.918895143395
+rosen lab,esn-nni,2020,n.8,2020-05-19,esn,NA,201.752865184365
+rosen lab,esn-nni,2020,n.10,2020-05-19,esn,NA,181.577578665929
+rosen lab,esn-nni,2020,n.11,2020-05-19,esn,NA,112.084925102425
+rosen lab,esn-nni,2020,n.12,2020-05-19,esn,NA,201.752865184365
+rosen lab,esn-nni,2020,n.13,2020-05-19,esn,NA,156.918895143395
+rosen lab,esn-nni,2020,n.14,2020-05-19,esn,NA,156.918895143395
+rosen lab,esn-nni,2020,n.15,2020-05-19,esn,NA,156.918895143395
+rosen lab,esn-nni,2020,n.16,2020-05-19,esn,NA,156.918895143395
+rosen lab,esn-nni,2020,n.11.1,2020-05-19,esn,NA,112.084925102425
+rosen lab,esn-nni,2020,n.2,2020-06-22,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.4,2020-06-22,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.5,2020-06-22,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.6,2020-06-22,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.7,2020-06-22,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.12,2020-06-22,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.13,2020-06-22,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.14,2020-06-22,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.15,2020-06-22,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.16,2020-06-22,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.11.1,2020-06-22,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.1,2020-07-02,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.4,2020-07-02,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.5,2020-07-02,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.6,2020-07-02,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.7,2020-07-02,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.12,2020-07-02,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.13,2020-07-02,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.14,2020-07-02,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.15,2020-07-02,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.16,2020-07-02,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.2,2020-07-09,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.2,2020-07-13,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.4,2020-07-13,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.5,2020-07-13,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.6,2020-07-13,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.7,2020-07-13,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.12,2020-07-13,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.13,2020-07-13,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.14,2020-07-13,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.16,2020-07-13,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.15,2020-07-16,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.2,2020-07-23,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.4,2020-07-23,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.5,2020-07-23,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.6,2020-07-23,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.7,2020-07-23,uan,NA,11.2084925102425
+rosen lab,esn-nni,2020,n.12,2020-07-23,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.14,2020-07-23,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.15,2020-07-23,uan,NA,22.416985020485
+rosen lab,esn-nni,2020,n.16,2020-07-23,uan,NA,22.416985020485
+rosen lab,sanjay,2019,n.a,2019-05-06,dap,NA,44.83397004097
+rosen lab,sanjay,2019,n.b,2019-05-06,dap,NA,44.83397004097
+rosen lab,sanjay,2019,n.c,2019-05-06,dap,NA,44.83397004097
+rosen lab,sanjay,2019,n.a,2019-05-23,esn,NA,89.6679400819401
+rosen lab,sanjay,2019,n.b,2019-05-23,esn,NA,179.33588016388
+rosen lab,sanjay,2019,n.c,2019-05-23,esn,NA,269.00382024582
+rosen lab,sanjay,2019,n.b,2019-07-08,uan,NA,11.2084925102425
+rosen lab,sanjay,2019,n.c,2019-07-08,uan,NA,22.416985020485
+rosen lab,sanjay,2019,n.b,2019-07-15,uan,NA,11.2084925102425
+rosen lab,sanjay,2019,n.c,2019-07-15,uan,NA,22.416985020485
+rosen lab,sanjay,2019,n.b,2019-07-30,uan,NA,11.2084925102425
+rosen lab,sanjay,2019,n.c,2019-07-30,uan,NA,22.416985020485
+rosen lab,sanjay,2019,n.b,2019-08-05,uan,NA,11.2084925102425
+rosen lab,sanjay,2019,n.c,2019-08-05,uan,NA,22.416985020485
+rosen lab,nni,2019,n.1,2019-05-02,dap,NA,44.83397004097
+rosen lab,nni,2019,n.2,2019-05-02,dap,NA,44.83397004097
+rosen lab,nni,2019,n.3,2019-05-02,dap,NA,44.83397004097
+rosen lab,nni,2019,n.4,2019-05-02,dap,NA,44.83397004097
+rosen lab,nni,2019,n.5,2019-05-02,dap,NA,44.83397004097
+rosen lab,nni,2019,n.6,2019-05-02,dap,NA,44.83397004097
+rosen lab,nni,2019,n.7,2019-05-02,dap,NA,44.83397004097
+rosen lab,nni,2019,n.8,2019-05-02,dap,NA,44.83397004097
+rosen lab,nni,2019,n.2,2019-05-23,urea,NA,44.83397004097
+rosen lab,nni,2019,n.3,2019-05-23,urea,NA,112.084925102425
+rosen lab,nni,2019,n.4,2019-05-23,urea,NA,179.33588016388
+rosen lab,nni,2019,n.5,2019-05-23,urea,NA,112.084925102425
+rosen lab,nni,2019,n.6,2019-05-23,urea,NA,112.084925102425
+rosen lab,nni,2019,n.7,2019-05-23,urea,NA,112.084925102425
+rosen lab,nni,2019,n.8,2019-05-23,urea,NA,112.084925102425
+rosen lab,nni,2019,n.2,2019-07-03,uan,NA,11.2084925102425
+rosen lab,nni,2019,n.3,2019-07-03,uan,NA,22.416985020485
+rosen lab,nni,2019,n.4,2019-07-03,uan,NA,22.416985020485
+rosen lab,nni,2019,n.8,2019-07-03,uan,NA,22.416985020485
+rosen lab,nni,2019,n.2,2019-07-15,uan,NA,22.416985020485
+rosen lab,nni,2019,n.3,2019-07-15,uan,NA,22.416985020485
+rosen lab,nni,2019,n.4,2019-07-15,uan,NA,33.6254775307275
+rosen lab,nni,2019,n.8,2019-07-15,uan,NA,22.416985020485
+rosen lab,nni,2019,n.6,2019-07-22,uan,NA,22.416985020485
+rosen lab,nni,2019,n.7,2019-07-22,uan,NA,22.416985020485
+rosen lab,nni,2019,n.7,2019-07-25,uan,NA,22.416985020485
+rosen lab,nni,2019,n.8,2019-07-25,uan,NA,22.416985020485
+rosen lab,nni,2019,n.2,2019-07-30,uan,NA,22.416985020485
+rosen lab,nni,2019,n.3,2019-07-30,uan,NA,22.416985020485
+rosen lab,nni,2019,n.4,2019-07-30,uan,NA,33.6254775307275
+rosen lab,nni,2019,n.6,2019-07-30,uan,NA,22.416985020485
+rosen lab,nni,2019,n.7,2019-07-30,uan,NA,22.416985020485
+rosen lab,nni,2019,n.8,2019-07-30,uan,NA,22.416985020485
+rosen lab,nni,2019,n.7,2019-08-01,uan,NA,22.416985020485
+rosen lab,nni,2019,n.8,2019-08-01,uan,NA,22.416985020485
+rosen lab,nni,2019,n.2,2019-08-05,uan,NA,11.2084925102425
+rosen lab,nni,2019,n.3,2019-08-05,uan,NA,22.416985020485
+rosen lab,nni,2019,n.4,2019-08-05,uan,NA,22.416985020485
+rosen lab,nni,2019,n.6,2019-08-05,uan,NA,22.416985020485
+rosen lab,nni,2019,n.7,2019-08-05,uan,NA,22.416985020485
+rosen lab,nni,2019,n.8,2019-08-05,uan,NA,22.416985020485
+rosen lab,nni,2019,n.7,2019-08-07,uan,NA,22.416985020485
+rosen lab,nni,2019,n.6,2019-08-12,uan,NA,22.416985020485
+rosen lab,nni,2019,n.7,2019-08-12,uan,NA,22.416985020485
+rosen lab,nni,2019,n.7,2019-08-14,uan,NA,22.416985020485
+rosen lab,sanjay,2018,n.a,2018-05-14,dap,NA,44.83397004097
+rosen lab,sanjay,2018,n.b,2018-05-14,dap,NA,44.83397004097
+rosen lab,sanjay,2018,n.c,2018-05-14,dap,NA,44.83397004097
+rosen lab,sanjay,2018,n.a,2018-05-22,esn,NA,89.6679400819401
+rosen lab,sanjay,2018,n.b,2018-05-22,esn,NA,179.33588016388
+rosen lab,sanjay,2018,n.c,2018-05-22,esn,NA,269.00382024582
+rosen lab,sanjay,2018,n.b,2018-07-09,uan,NA,11.2084925102425
+rosen lab,sanjay,2018,n.c,2018-07-09,uan,NA,22.416985020485
+rosen lab,sanjay,2018,n.b,2018-07-16,uan,NA,11.2084925102425
+rosen lab,sanjay,2018,n.c,2018-07-16,uan,NA,22.416985020485
+rosen lab,sanjay,2018,n.b,2018-07-23,uan,NA,11.2084925102425
+rosen lab,sanjay,2018,n.c,2018-07-23,uan,NA,22.416985020485
+rosen lab,sanjay,2018,n.b,2018-07-30,uan,NA,11.2084925102425
+rosen lab,sanjay,2018,n.c,2018-07-30,uan,NA,22.416985020485
+rosen lab,chloro,2016,n.1,2016-05-16,dap,NA,44.83397004097
+rosen lab,chloro,2016,n.2,2016-05-16,dap,NA,44.83397004097
+rosen lab,chloro,2016,n.3,2016-05-16,dap,NA,44.83397004097
+rosen lab,chloro,2016,n.4,2016-05-16,dap,NA,44.83397004097
+rosen lab,chloro,2016,n.2,2016-06-01,esn,NA,134.50191012291
+rosen lab,chloro,2016,n.3,2016-06-01,esn,NA,291.420805266305
+rosen lab,chloro,2016,n.4,2016-06-01,esn,NA,134.50191012291
+rosen lab,chloro,2016,n.4,2016-07-14,uan,NA,22.416985020485
+rosen lab,chloro,2016,n.4,2016-07-27,uan,NA,22.416985020485
+rosen lab,chloro,2016,n.4,2016-08-01,uan,NA,22.416985020485
+rosen lab,vxn,2015,n.1,2015-04-18,esn,NA,100.876432592183
+rosen lab,vxn,2015,n.1,2015-04-21,map/ams,NA,33.6254775307275
+rosen lab,vxn,2015,n.2,2015-04-18,esn,NA,100.876432592183
+rosen lab,vxn,2015,n.2,2015-04-21,map/ams,NA,33.6254775307275
+rosen lab,vxn,2015,n.2,2015-05-21,esn,NA,67.250955061455
+rosen lab,vxn,2015,n.3,2015-04-18,esn,NA,100.876432592183
+rosen lab,vxn,2015,n.3,2015-04-21,map/ams,NA,33.6254775307275
+rosen lab,vxn,2015,n.3,2015-05-21,esn,NA,134.50191012291
+rosen lab,vxn,2015,n.4,2015-04-18,esn,NA,100.876432592183
+rosen lab,vxn,2015,n.4,2015-04-21,map/ams,NA,33.6254775307275
+rosen lab,vxn,2015,n.4,2015-05-21,esn,NA,201.752865184365
+rosen lab,vxn,2015,n.5,2015-04-18,esn,NA,100.876432592183
+rosen lab,vxn,2015,n.5,2015-04-21,map/ams,NA,33.6254775307275
+rosen lab,vxn,2015,n.5,2015-05-21,esn,NA,269.00382024582
+rosen lab,vxn,2015,n.x,2015-04-18,esn,NA,100.876432592183
+rosen lab,vxn,2015,n.x,2015-04-21,map/ams,NA,33.6254775307275
+rosen lab,vxn,2014,n.1,2014-05-05,esn,NA,100.876432592183
+rosen lab,vxn,2014,n.2,2014-05-05,esn,NA,100.876432592183
+rosen lab,vxn,2014,n.3,2014-05-05,esn,NA,100.876432592183
+rosen lab,vxn,2014,n.4,2014-05-05,esn,NA,100.876432592183
+rosen lab,vxn,2014,n.5,2014-05-05,esn,NA,100.876432592183
+rosen lab,vxn,2014,n.1,2014-05-06,map/ams,NA,33.6254775307275
+rosen lab,vxn,2014,n.2,2014-05-06,map/ams,NA,33.6254775307275
+rosen lab,vxn,2014,n.3,2014-05-06,map/ams,NA,33.6254775307275
+rosen lab,vxn,2014,n.4,2014-05-06,map/ams,NA,33.6254775307275
+rosen lab,vxn,2014,n.5,2014-05-06,map/ams,NA,33.6254775307275
+rosen lab,vxn,2014,n.2,2014-06-05,esn,NA,67.250955061455
+rosen lab,vxn,2014,n.3,2014-06-05,esn,NA,134.50191012291
+rosen lab,vxn,2014,n.4,2014-06-05,esn,NA,201.752865184365
+rosen lab,vxn,2014,n.5,2014-06-05,esn,NA,269.00382024582
+rosen lab,blcmr,1992,n.1,1992-04-27,NA,NA,0
+rosen lab,blcmr,1992,n.3,1992-04-27,ammonium nitrate,NA,44.83397004097
+rosen lab,blcmr,1992,n.4,1992-04-27,ammonium nitrate,NA,89.6679400819401
+rosen lab,blcmr,1992,n.5,1992-04-27,ammonium nitrate,NA,134.50191012291
+rosen lab,blcmr,1992,n.6,1992-04-27,ammonium nitrate,NA,89.6679400819401
+rosen lab,blcmr,1992,n.7,1992-04-27,nutralene,NA,89.6679400819401
+rosen lab,blcmr,1992,n.8,1992-04-27,ammonium nitrate,NA,44.83397004097
+rosen lab,blcmr,1992,n.9,1992-04-27,ammonium nitrate,NA,44.83397004097
+rosen lab,blcmr,1992,n.10,1992-04-27,urea,NA,89.6679400819401
+rosen lab,blcmr,1992,n.2,1992-05-28,ammonium nitrate,NA,134.50191012291
+rosen lab,blcmr,1992,n.3,1992-05-28,ammonium nitrate,NA,112.084925102425
+rosen lab,blcmr,1992,n.4,1992-05-28,ammonium nitrate,NA,89.6679400819401
+rosen lab,blcmr,1992,n.5,1992-05-28,ammonium nitrate,NA,67.250955061455
+rosen lab,blcmr,1992,n.6,1992-05-28,ammonium nitrate,NA,89.6679400819401
+rosen lab,blcmr,1992,n.7,1992-05-28,nutralene,NA,89.6679400819401
+rosen lab,blcmr,1992,n.8,1992-05-28,ammonium nitrate,NA,44.83397004097
+rosen lab,blcmr,1992,n.9,1992-05-28,ammonium nitrate,NA,44.83397004097
+rosen lab,blcmr,1992,n.10,1992-05-28,urea,NA,89.6679400819401
+rosen lab,blcmr,1992,n.2,1992-06-11,ammonium nitrate,NA,134.50191012291
+rosen lab,blcmr,1992,n.3,1992-06-11,ammonium nitrate,NA,112.084925102425
+rosen lab,blcmr,1992,n.4,1992-06-11,ammonium nitrate,NA,89.6679400819401
+rosen lab,blcmr,1992,n.5,1992-06-11,ammonium nitrate,NA,67.250955061455
+rosen lab,blcmr,1992,n.8,1992-06-11,ammonium nitrate,NA,44.83397004097
+rosen lab,blcmr,1992,n.9,1992-06-11,ammonium nitrate,NA,44.83397004097
+rosen lab,blcmr,1992,n.10,1992-06-11,urea,NA,89.6679400819401
+rosen lab,blcmr,1992,n.9,1992-06-25,ammonium nitrate,NA,44.83397004097
+rosen lab,blcmr,1992,n.9,1992-07-17,ammonium nitrate,NA,44.83397004097
+rosen lab,blcmr,1991,n.1,1991-05-03,NA,NA,0
+rosen lab,blcmr,1991,n.3,1991-05-03,ammonium nitrate,NA,44.83397004097
+rosen lab,blcmr,1991,n.4,1991-05-03,ammonium nitrate,NA,89.6679400819401
+rosen lab,blcmr,1991,n.5,1991-05-03,ammonium nitrate,NA,134.50191012291
+rosen lab,blcmr,1991,n.6,1991-05-03,ammonium nitrate,NA,89.6679400819401
+rosen lab,blcmr,1991,n.7,1991-05-03,nutralene,NA,89.6679400819401
+rosen lab,blcmr,1991,n.8,1991-05-03,ammonium nitrate,NA,44.83397004097
+rosen lab,blcmr,1991,n.9,1991-05-03,ammonium nitrate,NA,44.83397004097
+rosen lab,blcmr,1991,n.10,1991-05-03,urea,NA,89.6679400819401
+rosen lab,blcmr,1991,n.2,1991-05-31,ammonium nitrate,NA,134.50191012291
+rosen lab,blcmr,1991,n.3,1991-05-31,ammonium nitrate,NA,112.084925102425
+rosen lab,blcmr,1991,n.4,1991-05-31,ammonium nitrate,NA,89.6679400819401
+rosen lab,blcmr,1991,n.5,1991-05-31,ammonium nitrate,NA,67.250955061455
+rosen lab,blcmr,1991,n.6,1991-05-31,ammonium nitrate,NA,89.6679400819401
+rosen lab,blcmr,1991,n.7,1991-05-31,nutralene,NA,89.6679400819401
+rosen lab,blcmr,1991,n.8,1991-05-31,ammonium nitrate,NA,44.83397004097
+rosen lab,blcmr,1991,n.9,1991-05-31,ammonium nitrate,NA,44.83397004097
+rosen lab,blcmr,1991,n.10,1991-05-31,urea,NA,89.6679400819401
+rosen lab,blcmr,1991,n.2,1991-06-13,ammonium nitrate,NA,134.50191012291
+rosen lab,blcmr,1991,n.3,1991-06-13,ammonium nitrate,NA,112.084925102425
+rosen lab,blcmr,1991,n.4,1991-06-13,ammonium nitrate,NA,89.6679400819401
+rosen lab,blcmr,1991,n.5,1991-06-13,ammonium nitrate,NA,67.250955061455
+rosen lab,blcmr,1991,n.8,1991-06-13,ammonium nitrate,NA,44.83397004097
+rosen lab,blcmr,1991,n.9,1991-06-13,ammonium nitrate,NA,44.83397004097
+rosen lab,blcmr,1991,n.10,1991-06-13,urea,NA,89.6679400819401
+rosen lab,blcmr,1991,n.9,1991-06-21,ammonium nitrate,NA,44.83397004097
+rosen lab,blcmr,1991,n.9,1991-07-16,ammonium nitrate,NA,44.83397004097

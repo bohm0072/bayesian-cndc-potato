@@ -84,10 +84,10 @@ model{
 			}
 
 			#Weakly informative
-			Mu_Bmax~dnorm(6,0.1)
-			Mu_S~dnorm(0,0.1)
-			A1~dunif(2,6)
-			A2~dunif(0,0.5)
+			Mu_Bmax~dnorm(10,10)
+			Mu_S~dnorm(5,2)
+			A1~dunif(3,12)
+			A2~dunif(0.2,0.8)
 
 			Prec_Bmax~dgamma(0.001,0.001)
 			Prec_S~dgamma(0.001,0.001)
