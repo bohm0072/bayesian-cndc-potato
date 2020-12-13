@@ -11,6 +11,8 @@ m1.5 <- readRDS("Models/model-1_Bohman_Minnesota_Easton.rds")
 
 m2.0 <- readRDS("Models/model-2_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
 
+m3.0 <- readRDS("Models/model-3_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
+
 m2.0$fit
 m2.0
 
