@@ -72,6 +72,9 @@ brms_fit <- function(data,model,Owner,Location,Variety){
   
   if (model=="model-1"){
     
+    brm_iter = 5000
+    brm_warmup = 2000
+    
     formula <- bf(W ~ fmin(Bmax + Si * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
                   Bmax + Si ~ 1 + (1|date),
                   alpha1 + alpha2 ~ 1,
@@ -88,6 +91,9 @@ brms_fit <- function(data,model,Owner,Location,Variety){
     
   } else if (model=="model-2"){
     
+    brm_iter = 500
+    brm_warmup = 200
+    
     formula <- bf(W ~ fmin(Bmax + Si * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
                   Bmax + Si ~ 1 + (1 | variety/date),
                   alpha1 + alpha2 ~ (1 | variety),
@@ -99,7 +105,19 @@ brms_fit <- function(data,model,Owner,Location,Variety){
                 set_prior("normal(12,0.1)", nlpar = "Bmax", lb = 1), #"normal(12,0.3)" #"normal(12,0.6)" #"normal(12,4)"
                 set_prior("normal(4.5,0.2)", nlpar = "Si", lb = 0),  #"normal(4.5,0.5)" #"normal(6,2)"
                 set_prior("normal(3,0.1)", class = "sd", nlpar = "Bmax"), #"normal(3,0.3)"
-                set_prior("normal(3,0.1)", class = "sd", nlpar = "Si") #"normal(3,0.3)"
+                set_prior("normal(3,0.1)", class = "sd", nlpar = "Si"), #"normal(3,0.3)"
+                set_prior("student_t(3,0,1)", class = "sd", nlpar = "alpha1", group = "variety"),
+                set_prior("student_t(3,0,1)", class = "sd", nlpar = "alpha1", group = "variety", coef = "Intercept"),
+                set_prior("student_t(3,0,1)", class = "sd", nlpar = "alpha2", group = "variety"),
+                set_prior("student_t(3,0,1)", class = "sd", nlpar = "alpha2", group = "variety", coef = "Intercept"),
+                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Bmax", group = "variety"),
+                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Bmax", group = "variety", coef = "Intercept"),
+                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Bmax", group = "variety:date"),
+                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Bmax", group = "variety:date", coef = "Intercept"),
+                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Si", group = "variety"),
+                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Si", group = "variety", coef = "Intercept"),
+                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Si", group = "variety:date"),
+                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Si", group = "variety:date", coef = "Intercept")
                 )
     
   }
@@ -111,7 +129,7 @@ brms_fit <- function(data,model,Owner,Location,Variety){
   
   fit <- brm(formula, data = d, family = gaussian, prior = priors,
            cores = 4, #future = T, 
-           chains = 4, iter = 500, warmup = 200,
+           chains = 4, iter = brm_iter, warmup = brm_warmup, #iter = 5000, warmup = 2000,
            control = list(adapt_delta = 0.99, max_treedepth = 15),
            silent=F, 
            seed=52624,
@@ -128,29 +146,27 @@ brms_fit <- function(data,model,Owner,Location,Variety){
 
 run_fits <- function(){
   
-  m1 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank"))
-  m2 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Clearwater"))
-  m3 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Umatilla"))
-  m4 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Dakota Russet"))
-  m5 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Easton"))
-  m0 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
+  m1.1 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank"))
+  m1.2 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Clearwater"))
+  m1.3 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Umatilla"))
+  m1.4 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Dakota Russet"))
+  m1.5 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Easton"))
+  m1.0 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
   
-  m.v0 <- brms_fit(data,model="model-2",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
+  m2.0 <- brms_fit(data,model="model-2",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
   
-  out <- list(m0=m0,
-              m1=m1,
-              m2=m2,
-              m3=m3,
-              m4=m4,
-              m5=m5,
-              m.v0=m.v0)
+  out <- list(m1.0=m1.0,
+              m1.1=m1.1,
+              m1.2=m1.2,
+              m1.3=m1.3,
+              m1.4=m1.4,
+              m1.5=m1.5,
+              m2.0=m2.0)
   
   return(out)
   
 }
 
 fits %<-% run_fits()
-
-
 
 
