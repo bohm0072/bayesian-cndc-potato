@@ -14,9 +14,6 @@ data <- read_csv("data.csv",col_types="cccccdcdd")
 
 brms_fit <- function(data,model,Owner,Location,Variety){
   
-  str_replace(Variety," ","")
-  str_c(Variety)
-  
   Variety.str <- Variety %>% sort() %>% str_replace(" ","") %>% str_c(collapse="-")
   
   model.name <- paste(model,Owner,Location,Variety.str,sep="_")
@@ -69,7 +66,6 @@ brms_fit <- function(data,model,Owner,Location,Variety){
                      date_min=3,           # Required to properly fit linear-plateu model
                      sd_min=1.0)           # Required to properly fit linear-plateau model
   
-  
   if (model=="model-1"){
     
     brm_iter = 5000
@@ -99,26 +95,29 @@ brms_fit <- function(data,model,Owner,Location,Variety){
                   alpha1 + alpha2 ~ (1 | variety),
                   nl = T)
     
-    # get_prior(formula_2, family = gaussian, data = d)
+    # get_prior(formula, family = gaussian, data = d)
     priors <- c(set_prior("normal(4.5,0.5)", nlpar = "alpha1", lb = 0, ub = 10),
                 set_prior("normal(0.5,0.05)", nlpar = "alpha2", lb = 0, ub = 1),
                 set_prior("normal(12,0.1)", nlpar = "Bmax", lb = 1), #"normal(12,0.3)" #"normal(12,0.6)" #"normal(12,4)"
                 set_prior("normal(4.5,0.2)", nlpar = "Si", lb = 0),  #"normal(4.5,0.5)" #"normal(6,2)"
-                set_prior("normal(3,0.1)", class = "sd", nlpar = "Bmax"), #"normal(3,0.3)"
-                set_prior("normal(3,0.1)", class = "sd", nlpar = "Si"), #"normal(3,0.3)"
-                set_prior("student_t(3,0,1)", class = "sd", nlpar = "alpha1", group = "variety"),
-                set_prior("student_t(3,0,1)", class = "sd", nlpar = "alpha1", group = "variety", coef = "Intercept"),
-                set_prior("student_t(3,0,1)", class = "sd", nlpar = "alpha2", group = "variety"),
-                set_prior("student_t(3,0,1)", class = "sd", nlpar = "alpha2", group = "variety", coef = "Intercept"),
-                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Bmax", group = "variety"),
-                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Bmax", group = "variety", coef = "Intercept"),
-                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Bmax", group = "variety:date"),
-                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Bmax", group = "variety:date", coef = "Intercept"),
-                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Si", group = "variety"),
-                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Si", group = "variety", coef = "Intercept"),
-                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Si", group = "variety:date"),
-                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Si", group = "variety:date", coef = "Intercept")
+                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Bmax"), #"normal(3,0.3)"
+                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Si"), #"normal(3,0.3)"
+                set_prior("normal(3,0.1)", class = "sd", nlpar = "Si", group = "variety:date"),
+                set_prior("normal(3,0.1)", class = "sd", nlpar = "Bmax", group = "variety:date")
                 )
+                # set_prior("student_t(3,0,1)", class = "sd", nlpar = "alpha1", group = "variety"),
+                # set_prior("student_t(3,0,1)", class = "sd", nlpar = "alpha1", group = "variety", coef = "Intercept"),
+                # set_prior("student_t(3,0,1)", class = "sd", nlpar = "alpha2", group = "variety"),
+                # set_prior("student_t(3,0,1)", class = "sd", nlpar = "alpha2", group = "variety", coef = "Intercept"),
+                # set_prior("student_t(3,0,1)", class = "sd", nlpar = "Bmax", group = "variety"),
+                # set_prior("student_t(3,0,1)", class = "sd", nlpar = "Bmax", group = "variety", coef = "Intercept"),
+                # set_prior("student_t(3,0,1)", class = "sd", nlpar = "Bmax", group = "variety:date"),
+                # set_prior("student_t(3,0,1)", class = "sd", nlpar = "Bmax", group = "variety:date", coef = "Intercept"),
+                # set_prior("student_t(3,0,1)", class = "sd", nlpar = "Si", group = "variety"),
+                # set_prior("student_t(3,0,1)", class = "sd", nlpar = "Si", group = "variety", coef = "Intercept"),
+                # set_prior("student_t(3,0,1)", class = "sd", nlpar = "Si", group = "variety:date"),
+                # set_prior("student_t(3,0,1)", class = "sd", nlpar = "Si", group = "variety:date", coef = "Intercept")
+                # )
     
   }
   

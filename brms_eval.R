@@ -11,11 +11,9 @@ m1.5 <- readRDS("Models/model-1_Bohman_Minnesota_Easton.rds")
 
 m2.0 <- readRDS("Models/model-2_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
 
+m1.0$fit
 
-m1$fit
-
-
-m1
+m1.0
 
 # the fmin() function used in Stan isn't defined in R, so we need to create it so that when we try to use brms to make predictions, it knows what to do with the fmin()
 fmin <- function(x,y){
@@ -23,7 +21,7 @@ fmin <- function(x,y){
 }
 
 # now we can do cool stuff like take the orignal data, generate predicted outcomes, and plot those against the real values
-m1$data %>% 
+m1.0$data %>% 
   add_predicted_draws(m1) %>% 
   median_hdci() %>% 
   ggplot(aes(x = N, y = W)) +
@@ -32,14 +30,12 @@ m1$data %>%
 
 # or we can do a posterior check
 
-pp_check(m1, nsamples = 30)
+pp_check(m1.0, nsamples = 30)
 
 # looks pretty good!!
 
 
 # looking at group level draws --------------------------------------------
-
-
 
 get_variables(m1.0)
 
