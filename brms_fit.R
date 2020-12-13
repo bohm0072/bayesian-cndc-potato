@@ -94,10 +94,13 @@ brms_fit <- function(data,model,Owner,Location,Variety){
                   nl = T)
     
     # get_prior(formula_2, family = gaussian, data = d)
-    priors <- c(set_prior("normal(5,1)", nlpar = "alpha1", lb = 0, ub = 10),
-                set_prior("normal(0.5,0.1)", nlpar = "alpha2", lb = 0, ub = 1),
-                set_prior("normal(10,10)", nlpar = "Bmax", lb = 1, ub = 30),
-                set_prior("normal(6,1)", nlpar = "Si", lb = 0))
+    priors <- c(set_prior("normal(4.5,0.5)", nlpar = "alpha1", lb = 0, ub = 10),
+                set_prior("normal(0.5,0.05)", nlpar = "alpha2", lb = 0, ub = 1),
+                set_prior("normal(12,0.1)", nlpar = "Bmax", lb = 1), #"normal(12,0.3)" #"normal(12,0.6)" #"normal(12,4)"
+                set_prior("normal(4.5,0.2)", nlpar = "Si", lb = 0),  #"normal(4.5,0.5)" #"normal(6,2)"
+                set_prior("normal(3,0.1)", class = "sd", nlpar = "Bmax"), #"normal(3,0.3)"
+                set_prior("normal(3,0.1)", class = "sd", nlpar = "Si") #"normal(3,0.3)"
+                )
     
   }
   
@@ -108,7 +111,7 @@ brms_fit <- function(data,model,Owner,Location,Variety){
   
   fit <- brm(formula, data = d, family = gaussian, prior = priors,
            cores = 4, #future = T, 
-           chains = 4, iter = 5000, warmup = 2000,
+           chains = 4, iter = 500, warmup = 200,
            control = list(adapt_delta = 0.99, max_treedepth = 15),
            silent=F, 
            seed=52624,
@@ -132,12 +135,15 @@ run_fits <- function(){
   m5 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Easton"))
   m0 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
   
+  m.v0 <- brms_fit(data,model="model-2",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
+  
   out <- list(m0=m0,
               m1=m1,
               m2=m2,
               m3=m3,
               m4=m4,
-              m5=m5)
+              m5=m5,
+              m.v0=m.v0)
   
   return(out)
   
