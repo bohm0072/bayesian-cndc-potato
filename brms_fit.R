@@ -100,8 +100,10 @@ brms_fit <- function(data,model,Owner,Location,Variety){
                 set_prior("normal(0.5,0.05)", nlpar = "alpha2", lb = 0, ub = 1),
                 set_prior("normal(12,0.1)", nlpar = "Bmax", lb = 1), #"normal(12,0.3)" #"normal(12,0.6)" #"normal(12,4)"
                 set_prior("normal(4.5,0.2)", nlpar = "Si", lb = 0),  #"normal(4.5,0.5)" #"normal(6,2)"
-                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Bmax"), #"normal(3,0.3)"
-                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Si"), #"normal(3,0.3)"
+                set_prior("normal(0,0.01)", class = "sd", nlpar = "Bmax"),
+                set_prior("normal(0,0.01)", class = "sd", nlpar = "Si"),
+                set_prior("normal(0,0.1)", class = "sd", nlpar = "alpha1"),
+                set_prior("normal(0,0.01)", class = "sd", nlpar = "alpha2"),
                 set_prior("normal(3,0.1)", class = "sd", nlpar = "Si", group = "variety:date"),
                 set_prior("normal(3,0.1)", class = "sd", nlpar = "Bmax", group = "variety:date")
                 )
