@@ -1,5 +1,9 @@
 library(tidyverse)
 library(brms)
+library(tidybayes)
+
+
+# data prep ---------------------------------------------------------------
 
 data <- read_csv("data.csv",col_types="cccccdcdd") 
 
@@ -59,6 +63,9 @@ d.plot <- d %>%
   geom_point() +
   facet_wrap(vars(date))
 
+
+# model specification -----------------------------------------------------
+
 formula_1 <- bf(W ~ fmin(Bmax + Si * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
                 Bmax + Si ~ 1 + (1|Date), #(1|Date/year)
                 alpha1 + alpha2 ~ 1,
@@ -71,11 +78,30 @@ priors <- c(set_prior("normal(5,1)", nlpar = "alpha1", lb = 0, ub = 10),
             set_prior("normal(10,10)", nlpar = "Bmax", lb = 1, ub = 30),
             set_prior("normal(6,1)", nlpar = "Si", lb = 0))
 
+
+# model fitting -----------------------------------------------------------
+
 m1 <- brm(formula_1, data = d, family = gaussian, prior = priors,
           cores = 4, chains = 4, iter = 5000, warmup = 2000,
           control = list(adapt_delta = 0.99, max_treedepth = 15))
 
 m1
+
+
+# Estimating group-specific effects ---------------------------------------
+
+# this example is getting the Bmax estimate for each date. this isn't of interest, but the same pattern will apply when you start trying to do alpha values for each variety.
+
+get_variables(m1)
+
+m1 %>% 
+  spread_draws(b_Bmax_Intercept, r_date__Bmax[date,]) %>% 
+  mutate(date_Bmax = b_Bmax_Intercept + r_date__Bmax) %>% 
+  ggplot(aes(x = date_Bmax, y = date)) +
+  geom_halfeyeh()
+
+
+# model summaries ---------------------------------------------------------
 
 # plot(m1)
 # summary(m1)
