@@ -1,17 +1,16 @@
 library(tidyverse)
 library(brms)
-library(pushoverr)
 
 data <- read_csv("data.csv",col_types="cccccdcdd") 
 
 data
 
-f.data.filter <- function(Owner,Location,Variety,W_min,date_min,sd_min){
+f.data.filter <- function(owner,location,variety,W_min,date_min,sd_min){
   
   d <- data %>% 
-    filter(owner%in%Owner) %>% #"Bohman") %>% #=="Bohman") %>% #
-    filter(location%in%Location) %>% #"Minnesota") %>% #=="Minnesota") %>% #
-    filter(variety%in%Variety) #"Russet Burbank") #=="Russet Burbank") #
+    filter(owner%in%owner) %>% #"Bohman") %>% #=="Bohman") %>% #
+    filter(location%in%location) %>% #"Minnesota") %>% #=="Minnesota") %>% #
+    filter(variety%in%variety) #"Russet Burbank") #=="Russet Burbank") #
   
   d <- d %>%
     filter(W>=1) %>%
@@ -46,9 +45,9 @@ f.data.filter <- function(Owner,Location,Variety,W_min,date_min,sd_min){
   
 }
 
-d <- f.data.filter(Owner="Bohman",
-                   Location="Minnesota",
-                   Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"),
+d <- f.data.filter(owner="Bohman",
+                   location="Minnesota",
+                   variety="Russet Burbank",
                    W_min=1.0,  # Required to conform with convention that no critical points are defined for W <= 1.0
                    date_min=3, # Required to properly fit linear-plateu model
                    sd_min=1.0) # Required to properly fit linear-plateau model
@@ -61,53 +60,22 @@ d.plot <- d %>%
   facet_wrap(vars(date))
 
 formula_1 <- bf(W ~ fmin(Bmax + Si * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
-                Bmax + Si ~ 1 + (1|date), #(1|Date/year)
+                Bmax + Si ~ 1 + (1|Date), #(1|Date/year)
                 alpha1 + alpha2 ~ 1,
                 nl = T)
 
 get_prior(formula_1, family = gaussian, data = d)
 
-priors_1 <- c(set_prior("normal(5,1)", nlpar = "alpha1", lb = 0, ub = 10),
+priors <- c(set_prior("normal(5,1)", nlpar = "alpha1", lb = 0, ub = 10),
             set_prior("normal(0.5,0.1)", nlpar = "alpha2", lb = 0, ub = 1),
             set_prior("normal(10,10)", nlpar = "Bmax", lb = 1, ub = 30),
             set_prior("normal(6,1)", nlpar = "Si", lb = 0))
 
-m1 <- brm(formula_1, data = d, family = gaussian, prior = priors_1,
+m1 <- brm(formula_1, data = d, family = gaussian, prior = priors,
           cores = 4, chains = 4, iter = 5000, warmup = 2000,
-          control = list(adapt_delta = 0.99, max_treedepth = 15),
-          silent=F)
+          control = list(adapt_delta = 0.99, max_treedepth = 15))
 
 m1
-
-pushover(message=as.character(Sys.time()),
-         title="brms finished!",
-         app="aywd2zcms7exp9b1bzuu4k2kucvgw7",
-         user="us7sp3iysh1q843wedps638pcvepib")
-
-
-formula_2 <- bf(W ~ fmin(Bmax + Si * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
-                Bmax + Si ~ 1 + (1 | variety/date),
-                alpha1 + alpha2 ~ (1 | variety),
-                nl = T)
-
-get_prior(formula_2, family = gaussian, data = d)
-
-priors_2 <- c(set_prior("normal(5,1)", nlpar = "alpha1", lb = 0, ub = 10),
-              set_prior("normal(0.5,0.1)", nlpar = "alpha2", lb = 0, ub = 1),
-              set_prior("normal(10,10)", nlpar = "Bmax", lb = 1, ub = 30),
-              set_prior("normal(6,1)", nlpar = "Si", lb = 0))
-
-m2 <- brm(formula_2, data = d, family = gaussian, prior = priors_2,
-          cores = 4, chains = 4, iter = 5000, warmup = 2000,
-          control = list(adapt_delta = 0.99, max_treedepth = 15),
-          silent=F)
-
-m2
-
-pushover(message=as.character(Sys.time()),
-         title="brms finished!",
-         app="aywd2zcms7exp9b1bzuu4k2kucvgw7",
-         user="us7sp3iysh1q843wedps638pcvepib")
 
 # plot(m1)
 # summary(m1)
