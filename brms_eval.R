@@ -11,9 +11,10 @@ m1.5 <- readRDS("Models/model-1_Bohman_Minnesota_Easton.rds")
 
 m2.0 <- readRDS("Models/model-2_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
 
-m1.0$fit
+m3.0 <- readRDS("Models/model-3_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
 
-m1.0
+m3.0$fit
+m3.0
 
 # the fmin() function used in Stan isn't defined in R, so we need to create it so that when we try to use brms to make predictions, it knows what to do with the fmin()
 fmin <- function(x,y){
@@ -21,21 +22,54 @@ fmin <- function(x,y){
 }
 
 # now we can do cool stuff like take the orignal data, generate predicted outcomes, and plot those against the real values
-m1.0$data %>% 
-  add_predicted_draws(m1.0) %>% 
+
+m3.0$data %>% 
+  add_predicted_draws(m3.0) %>% 
   median_hdci() %>% 
-  ggplot(aes(x = N, y = W)) +
-  geom_pointinterval(aes(ymin = .lower, ymax = .upper, y = .prediction), alpha = 0.5) +
+  ggplot(aes(x = W, y = N)) +
+  geom_pointinterval(aes(xmin = .lower, xmax = .upper, x = .prediction), alpha = 0.5) +
   geom_point(color = "forestgreen")
 
 # or we can do a posterior check
 
-pp_check(m1.0, nsamples = 30)
+pp_check(m3.0, nsamples = 30)
 
 # looks pretty good!!
 
 
 # looking at group level draws --------------------------------------------
+
+# Model 3.0
+
+get_variables(m3.0)
+
+m3.0$prior
+
+m3.0 %>% 
+  spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
+  mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
+  ggplot(aes(x = variety_alpha1, y = variety)) +
+  geom_halfeyeh()
+
+m3.0 %>% 
+  spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
+  mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) %>% 
+  ggplot(aes(x = variety_alpha2, y = variety)) +
+  geom_halfeyeh()
+
+left_join(
+  m3.0 %>% 
+    spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
+    mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1),
+  m3.0 %>% 
+    spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
+    mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2),
+  by = c(".chain", ".iteration", ".draw", "variety")) %>% 
+  ggplot(aes(x = variety_alpha1, y = variety_alpha2, color=variety)) +
+  geom_point(alpha=0.1) +
+  scale_color_brewer(palette = "Set1")
+
+# Model 1.0
 
 get_variables(m1.0)
 
