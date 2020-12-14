@@ -162,9 +162,9 @@ run_fits <- function(){
   m1.5 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Easton"))
   m1.0 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
   
-  m3.0 <- brms_fit(data,model="model-3",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
-  
   m2.0 <- brms_fit(data,model="model-2",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
+  
+  m3.0 <- brms_fit(data,model="model-3",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
   
   out <- list(m1.0=m1.0,
               m1.1=m1.1,
