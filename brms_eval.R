@@ -13,8 +13,10 @@ m2.0 <- readRDS("Models/model-2_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-
 
 m3.0 <- readRDS("Models/model-3_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
 
-m3.0$fit
+# m3.0$fit
+# m3.0$prior
 m3.0
+pairs(m3.0)
 
 # the fmin() function used in Stan isn't defined in R, so we need to create it so that when we try to use brms to make predictions, it knows what to do with the fmin()
 fmin <- function(x,y){
@@ -41,7 +43,7 @@ m3.0$data %>%
 
 # or we can do a posterior check
 
-pp_check(m3.0, nsamples = 30)
+# pp_check(m3.0, nsamples = 30)
 
 # looks pretty good!!
 
@@ -50,9 +52,7 @@ pp_check(m3.0, nsamples = 30)
 
 # Model 3.0
 
-get_variables(m3.0)
-
-m3.0$prior
+#get_variables(m3.0)
 
 m3.0 %>% 
   spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
@@ -75,8 +75,27 @@ left_join(
     mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2),
   by = c(".chain", ".iteration", ".draw", "variety")) %>% 
   ggplot(aes(x = variety_alpha1, y = variety_alpha2, color=variety)) +
-  geom_point(alpha=0.1) +
+  geom_point(alpha=0.005) +
+  geom_smooth(formula="y~x",method="lm") +
+  theme_classic() +
   scale_color_brewer(palette = "Set1")
+
+# this is how you would go about calculating the difference between alpha values by variety. instead of Bmax, it would be one of the alpha values, and instead of date, it would be variety. the key here is spread_draws to get the global mean and offset for each group, then mutate to make it into the actual group-level estimate, then compare_levels to get every pairwise difference.
+m3.0 %>% 
+  spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
+  mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
+  # filter(str_detect(date, "^19")) %>% # this is just for the example since there are too many dates
+  compare_levels(variety_alpha1, by = variety) %>% 
+  ggplot(aes(x = variety_alpha1, y = variety)) +
+  geom_halfeyeh()
+
+m3.0 %>% 
+  spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
+  mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) %>% 
+  # filter(str_detect(date, "^19")) %>% # this is just for the example since there are too many dates
+  compare_levels(variety_alpha2, by = variety) %>% 
+  ggplot(aes(x = variety_alpha2, y = variety)) +
+  geom_halfeyeh()
 
 # Model 1.0
 
@@ -89,7 +108,6 @@ m1.0 %>%
   mutate(date_Bmax = b_Bmax_Intercept + r_date__Bmax) %>% 
   ggplot(aes(x = date_Bmax, y = date)) +
   geom_halfeyeh()
-
 
 # this is how you would go about calculating the difference between alpha values by variety. instead of Bmax, it would be one of the alpha values, and instead of date, it would be variety. the key here is spread_draws to get the global mean and offset for each group, then mutate to make it into the actual group-level estimate, then compare_levels to get every pairwise difference.
 m1.0 %>% 

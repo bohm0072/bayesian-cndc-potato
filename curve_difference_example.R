@@ -1,6 +1,7 @@
 library(tidyverse)
 
 d <- expand_grid(variety = c("A", "B"), biomass = 1:100, draw = 1:5)
+
 d <- d %>% 
   mutate(mu = case_when(
     variety == "A" ~ 4,
