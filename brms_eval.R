@@ -12,18 +12,19 @@ m1.5 <- readRDS("Models/model-1_Bohman_Minnesota_Easton.rds")
 
 m2.0 <- readRDS("Models/model-2_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
 
-m2.0.shiny <- as.shinystan(m2.0$fit)
-launch_shinystan(m2.0.shiny)
+# m2.0.shiny <- as.shinystan(m2.0$fit)
+# launch_shinystan(m2.0.shiny)
 
 m3.0 <- readRDS("Models/model-3_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
 
+m3.0
+
 # m3.0$fit
 # m3.0$prior
-m3.0
-pairs(m3.0)
 
-m3.0.shiny <- as.shinystan(m3.0$fit)
-launch_shinystan(m3.0.shiny)
+# pairs(m3.0)
+# m3.0.shiny <- as.shinystan(m3.0$fit)
+# launch_shinystan(m3.0.shiny)
 
 # the fmin() function used in Stan isn't defined in R, so we need to create it so that when we try to use brms to make predictions, it knows what to do with the fmin()
 fmin <- function(x,y){

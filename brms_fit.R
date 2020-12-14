@@ -116,7 +116,7 @@ brms_fit <- function(data,model,Owner,Location,Variety){
     
     brm_iter = 5000
     brm_warmup = 2000
-    brm_adapt_delta = 0.9999
+    brm_adapt_delta = 0.99
     
     formula <- bf(W ~ fmin(Bmax + Si * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
                   Bmax + Si ~ 1 + (1 | variety:date),
@@ -126,12 +126,12 @@ brms_fit <- function(data,model,Owner,Location,Variety){
     # get_prior(formula, family = gaussian, data = d)
     priors <- c(set_prior("student_t(3,3,0.01)", class = "sd", nlpar = "Si", group = "variety:date"),
                 set_prior("student_t(3,3,0.01)", class = "sd", nlpar = "Bmax", group = "variety:date"),
-                set_prior("student_t(3,1.0,0.5)", nlpar = "alpha1", class = "sd"), #"normal(0.12,0.005)"
-                set_prior("student_t(3,0.1,0.05)", nlpar = "alpha2", class = "sd"), #"normal(0.04,0.005)"
+                set_prior("normal(0.10,0.05)", nlpar = "alpha1", class = "sd"), #"normal(0.20,0.10)"
+                set_prior("normal(0.010,0.005)", nlpar = "alpha2", class = "sd"), #"normal(0.020,0.010)"
                 set_prior("normal(12.00,0.05)", nlpar = "Bmax", lb = 1),
                 set_prior("normal(4.50,0.10)", nlpar = "Si", lb = 0),
-                set_prior("normal(4.50,0.20)", nlpar = "alpha1", lb = 0), #"normal(4.50,0.01)"
-                set_prior("normal(0.50,0.02)", nlpar = "alpha2", lb = 0, ub = 1), #"normal(0.50,0.001)"
+                set_prior("normal(4.50,0.10)", nlpar = "alpha1", lb = 0), #"normal(4.50,0.20)"
+                set_prior("normal(0.50,0.01)", nlpar = "alpha2", lb = 0, ub = 1), #"normal(0.50,0.02)"
                 set_prior("student_t(3,1.3,0.4)", class = "sigma"))
     
   }
