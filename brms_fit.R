@@ -146,14 +146,14 @@ brms_fit <- function(data,model,Owner,Location,Variety){
                   nl = T)
     
     # get_prior(formula, family = gaussian, data = d)
-    priors <- c(set_prior("student_t(3,3,0.1)", class = "sd", nlpar = "Si", group = "date"),
-                set_prior("student_t(3,3,0.1)", class = "sd", nlpar = "Bmax", group = "date"),
-                set_prior("normal(0.10,0.05)", class = "sd", nlpar = "alpha1", group = "variety"),
-                set_prior("normal(0.05,0.02)", class = "sd", nlpar = "alpha2", group = "variety"),
+    priors <- c(set_prior("normal(3,0.1)", class = "sd", nlpar = "Si", group = "date"),
+                set_prior("normal(3,0.1)", class = "sd", nlpar = "Bmax", group = "date"),
+                set_prior("normal(0.12,0.04)", class = "sd", nlpar = "alpha1", group = "variety"),
+                set_prior("normal(0.06,0.02)", class = "sd", nlpar = "alpha2", group = "variety"),
                 set_prior("normal(12.00,0.05)", nlpar = "Bmax", lb = 1),
                 set_prior("normal(4.50,0.10)", nlpar = "Si", lb = 0),
-                set_prior("normal(4.50,0.10)", nlpar = "alpha1", lb = 0), 
-                set_prior("normal(0.50,0.01)", nlpar = "alpha2", lb = 0, ub = 1),
+                set_prior("normal(4.50,0.01)", nlpar = "alpha1", lb = 0), 
+                set_prior("normal(0.50,0.001)", nlpar = "alpha2", lb = 0, ub = 1),
                 set_prior("student_t(3,0,1)", class = "sigma"))
     
   }
