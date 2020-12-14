@@ -126,8 +126,8 @@ brms_fit <- function(data,model,Owner,Location,Variety){
     # get_prior(formula, family = gaussian, data = d)
     priors <- c(set_prior("normal(3,0.1)", class = "sd", nlpar = "Si", group = "variety:date"), #student_t(3,3,0.3)
                 set_prior("normal(3,0.1)", class = "sd", nlpar = "Bmax", group = "variety:date"), #student_t(3,3,0.3)
-                set_prior("normal(0.20,0.10)", nlpar = "alpha1", class = "sd"), #"normal(0.10,0.05)"
-                set_prior("normal(0.020,0.010)", nlpar = "alpha2", class = "sd"), #"normal(0.010,0.005)"
+                set_prior("normal(0.12,0.06)", nlpar = "alpha1", class = "sd"), #"normal(0.20,0.10)"
+                set_prior("normal(0.04,0.02)", nlpar = "alpha2", class = "sd"), #"normal(0.020,0.010)"
                 set_prior("normal(12.00,0.05)", nlpar = "Bmax", lb = 1),
                 set_prior("normal(4.50,0.10)", nlpar = "Si", lb = 0),
                 set_prior("normal(4.50,0.10)", nlpar = "alpha1", lb = 0), #"normal(4.50,0.10)"

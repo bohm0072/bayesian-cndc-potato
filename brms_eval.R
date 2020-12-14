@@ -3,14 +3,14 @@ library(brms)
 library(tidybayes)
 library(shinystan)
 
-m1.0 <- readRDS("Models/model-1_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
-m1.1 <- readRDS("Models/model-1_Bohman_Minnesota_RussetBurbank.rds")
-m1.2 <- readRDS("Models/model-1_Bohman_Minnesota_Clearwater.rds")
-m1.3 <- readRDS("Models/model-1_Bohman_Minnesota_Umatilla.rds")
-m1.4 <- readRDS("Models/model-1_Bohman_Minnesota_DakotaRusset.rds")
-m1.5 <- readRDS("Models/model-1_Bohman_Minnesota_Easton.rds")
-
-m2.0 <- readRDS("Models/model-2_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
+# m1.0 <- readRDS("Models/model-1_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
+# m1.1 <- readRDS("Models/model-1_Bohman_Minnesota_RussetBurbank.rds")
+# m1.2 <- readRDS("Models/model-1_Bohman_Minnesota_Clearwater.rds")
+# m1.3 <- readRDS("Models/model-1_Bohman_Minnesota_Umatilla.rds")
+# m1.4 <- readRDS("Models/model-1_Bohman_Minnesota_DakotaRusset.rds")
+# m1.5 <- readRDS("Models/model-1_Bohman_Minnesota_Easton.rds")
+# 
+# m2.0 <- readRDS("Models/model-2_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
 
 # m2.0.shiny <- as.shinystan(m2.0$fit)
 # launch_shinystan(m2.0.shiny)
