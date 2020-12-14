@@ -15,9 +15,11 @@ library(shinystan)
 # m2.0.shiny <- as.shinystan(m2.0$fit)
 # launch_shinystan(m2.0.shiny)
 
-m3.0 <- readRDS("Models/model-3_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
+# m3.0 <- readRDS("Models/model-3_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
 
-m3.0
+m4.0 <- readRDS("Models/model-4_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
+
+m4.0
 
 # m3.0$fit
 # m3.0$prior
@@ -58,27 +60,27 @@ fmin <- function(x,y){
 
 # looking at group level draws --------------------------------------------
 
-# Model 3.0
+# Model 4.0
 
-#get_variables(m3.0)
+#get_variables(m4.0)
 
-m3.0 %>% 
+m4.0 %>% 
   spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
   mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
   ggplot(aes(x = variety_alpha1, y = variety)) +
   geom_halfeyeh()
 
-m3.0 %>% 
+m4.0 %>% 
   spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
   mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) %>% 
   ggplot(aes(x = variety_alpha2, y = variety)) +
   geom_halfeyeh()
 
 left_join(
-  m3.0 %>% 
+  m4.0 %>% 
     spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
     mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1),
-  m3.0 %>% 
+  m4.0 %>% 
     spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
     mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2),
   by = c(".chain", ".iteration", ".draw", "variety")) %>% 
@@ -89,7 +91,7 @@ left_join(
   scale_color_brewer(palette = "Set1")
 
 # this is how you would go about calculating the difference between alpha values by variety. instead of Bmax, it would be one of the alpha values, and instead of date, it would be variety. the key here is spread_draws to get the global mean and offset for each group, then mutate to make it into the actual group-level estimate, then compare_levels to get every pairwise difference.
-m3.0 %>% 
+m4.0 %>% 
   spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
   mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
   # filter(str_detect(date, "^19")) %>% # this is just for the example since there are too many dates
@@ -97,7 +99,7 @@ m3.0 %>%
   ggplot(aes(x = variety_alpha1, y = variety)) +
   geom_halfeyeh()
 
-m3.0 %>% 
+m4.0 %>% 
   spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
   mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) %>% 
   # filter(str_detect(date, "^19")) %>% # this is just for the example since there are too many dates

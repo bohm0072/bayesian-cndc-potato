@@ -134,6 +134,28 @@ brms_fit <- function(data,model,Owner,Location,Variety){
                 set_prior("normal(0.50,0.01)", nlpar = "alpha2", lb = 0, ub = 1), #"normal(0.50,0.001)"
                 set_prior("student_t(3,0,1)", class = "sigma"))
     
+  } else if (model=="model-4"){
+    
+    brm_iter = 5000
+    brm_warmup = 2000
+    brm_adapt_delta = 0.99
+    
+    formula <- bf(W ~ fmin(Bmax + Si * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
+                  Bmax + Si ~ 1 + (1 | date),
+                  alpha1 + alpha2 ~ 1 + (1 | variety),
+                  nl = T)
+    
+    # get_prior(formula, family = gaussian, data = d)
+    priors <- c(set_prior("student_t(3,3,0.1)", class = "sd", nlpar = "Si", group = "date"),
+                set_prior("student_t(3,3,0.1)", class = "sd", nlpar = "Bmax", group = "date"),
+                set_prior("normal(0.10,0.05)", class = "sd", nlpar = "alpha1", group = "variety"),
+                set_prior("normal(0.05,0.02)", class = "sd", nlpar = "alpha2", group = "variety"),
+                set_prior("normal(12.00,0.05)", nlpar = "Bmax", lb = 1),
+                set_prior("normal(4.50,0.10)", nlpar = "Si", lb = 0),
+                set_prior("normal(4.50,0.10)", nlpar = "alpha1", lb = 0), 
+                set_prior("normal(0.50,0.01)", nlpar = "alpha2", lb = 0, ub = 1),
+                set_prior("student_t(3,0,1)", class = "sigma"))
+    
   }
   
   pushover(message=model.name,
@@ -170,7 +192,9 @@ run_fits <- function(){
   # 
   # m2.0 <- brms_fit(data,model="model-2",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
   # 
-  m3.0 <- brms_fit(data,model="model-3",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
+  # m3.0 <- brms_fit(data,model="model-3",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
+  # 
+  m4.0 <- brms_fit(data,model="model-4",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
   
   out <- list(# m1.0=m1.0,
               # m1.1=m1.1,
@@ -179,7 +203,8 @@ run_fits <- function(){
               # m1.4=m1.4,
               # m1.5=m1.5,
               # m2.0=m2.0,
-              m3.0=m3.0)
+              # m3.0=m3.0)
+              m4.0=m4.0)
   
   return(out)
   
