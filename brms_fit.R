@@ -124,15 +124,15 @@ brms_fit <- function(data,model,Owner,Location,Variety){
                   nl = T)
     
     # get_prior(formula, family = gaussian, data = d)
-    priors <- c(set_prior("normal(3,0.1)", class = "sd", nlpar = "Si", group = "variety:date"), #student_t(3,3,0.3)
-                set_prior("normal(3,0.1)", class = "sd", nlpar = "Bmax", group = "variety:date"), #student_t(3,3,0.3)
-                set_prior("normal(0.12,0.06)", nlpar = "alpha1", class = "sd"), #"normal(0.20,0.10)"
-                set_prior("normal(0.04,0.02)", nlpar = "alpha2", class = "sd"), #"normal(0.020,0.010)"
+    priors <- c(set_prior("student_t(3,3,0.01)", class = "sd", nlpar = "Si", group = "variety:date"),
+                set_prior("student_t(3,3,0.01)", class = "sd", nlpar = "Bmax", group = "variety:date"),
+                set_prior("student_t(3,1.0,0.5)", nlpar = "alpha1", class = "sd"), #"normal(0.12,0.005)"
+                set_prior("student_t(3,0.1,0.05)", nlpar = "alpha2", class = "sd"), #"normal(0.04,0.005)"
                 set_prior("normal(12.00,0.05)", nlpar = "Bmax", lb = 1),
                 set_prior("normal(4.50,0.10)", nlpar = "Si", lb = 0),
-                set_prior("normal(4.50,0.01)", nlpar = "alpha1", lb = 0), #"normal(4.50,0.10)"
-                set_prior("normal(0.50,0.001)", nlpar = "alpha2", lb = 0, ub = 1), #"normal(0.50,0.01)"
-                set_prior("student_t(3,0,1)", class = "sigma"))
+                set_prior("normal(4.50,0.20)", nlpar = "alpha1", lb = 0), #"normal(4.50,0.01)"
+                set_prior("normal(0.50,0.02)", nlpar = "alpha2", lb = 0, ub = 1), #"normal(0.50,0.001)"
+                set_prior("student_t(3,1.3,0.4)", class = "sigma"))
     
   }
   
@@ -145,7 +145,7 @@ brms_fit <- function(data,model,Owner,Location,Variety){
            cores = 4, #future = T, 
            chains = 4, iter = brm_iter, warmup = brm_warmup, #iter = 5000, warmup = 2000,
            control = list(adapt_delta = brm_adapt_delta, max_treedepth = 15),
-           sample_prior = "only",
+           # sample_prior = "only",
            silent=F, 
            seed=52624,
            file=paste("Models/",model.name,sep=""))
