@@ -167,7 +167,7 @@ a %>%
   geom_line() +
   theme_minimal() +
   labs(y = "Diff in Nc between Russet Burbank and Easton")
-  
+
 
 # Model 1.0
 
