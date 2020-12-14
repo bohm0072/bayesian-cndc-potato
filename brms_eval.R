@@ -13,8 +13,8 @@ m2.0 <- readRDS("Models/model-2_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-
 
 m3.0 <- readRDS("Models/model-3_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
 
-m2.0$fit
-m2.0
+m3.0$fit
+m3.0
 
 # the fmin() function used in Stan isn't defined in R, so we need to create it so that when we try to use brms to make predictions, it knows what to do with the fmin()
 fmin <- function(x,y){
@@ -22,8 +22,8 @@ fmin <- function(x,y){
 }
 
 # now we can do cool stuff like take the orignal data, generate predicted outcomes, and plot those against the real values
-m2.0$data %>% 
-  add_predicted_draws(m2.0) %>% 
+m3.0$data %>% 
+  add_predicted_draws(m3.0) %>% 
   median_hdci() %>% 
   ggplot(aes(x = W, y = N)) +
   geom_pointinterval(aes(xmin = .lower, xmax = .upper, x = .prediction), alpha = 0.5) +
@@ -31,36 +31,36 @@ m2.0$data %>%
 
 # or we can do a posterior check
 
-pp_check(m2.0, nsamples = 30)
+pp_check(m3.0, nsamples = 30)
 
 # looks pretty good!!
 
 
 # looking at group level draws --------------------------------------------
 
-# Model 2.0
+# Model 3.0
 
-get_variables(m2.0)
+get_variables(m3.0)
 
-m2.0$prior
+m3.0$prior
 
-m2.0 %>% 
+m3.0 %>% 
   spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
   mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
   ggplot(aes(x = variety_alpha1, y = variety)) +
   geom_halfeyeh()
 
-m2.0 %>% 
+m3.0 %>% 
   spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
   mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) %>% 
   ggplot(aes(x = variety_alpha2, y = variety)) +
   geom_halfeyeh()
 
 left_join(
-  m2.0 %>% 
+  m3.0 %>% 
     spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
     mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1),
-  m2.0 %>% 
+  m3.0 %>% 
     spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
     mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2),
   by = c(".chain", ".iteration", ".draw", "variety")) %>% 
