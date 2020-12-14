@@ -22,7 +22,7 @@ fmin <- function(x,y){
 
 # now we can do cool stuff like take the orignal data, generate predicted outcomes, and plot those against the real values
 m1.0$data %>% 
-  add_predicted_draws(m1) %>% 
+  add_predicted_draws(m1.0) %>% 
   median_hdci() %>% 
   ggplot(aes(x = N, y = W)) +
   geom_pointinterval(aes(ymin = .lower, ymax = .upper, y = .prediction), alpha = 0.5) +
@@ -47,11 +47,25 @@ m1.0 %>%
   ggplot(aes(x = date_Bmax, y = date)) +
   geom_halfeyeh()
 
+
+# this is how you would go about calculating the difference between alpha values by variety. instead of Bmax, it would be one of the alpha values, and instead of date, it would be variety. the key here is spread_draws to get the global mean and offset for each group, then mutate to make it into the actual group-level estimate, then compare_levels to get every pairwise difference.
+m1.0 %>% 
+  spread_draws(b_Bmax_Intercept, r_date__Bmax[date,]) %>% 
+  mutate(date_Bmax = b_Bmax_Intercept + r_date__Bmax) %>% 
+  filter(str_detect(date, "^19")) %>% # this is just for the example since there are too many dates
+  compare_levels(date_Bmax, by = date) %>% 
+  ggplot(aes(x = date_Bmax, y = date)) +
+  geom_halfeyeh()
+  
+  
+  
+
 m1.0 %>% 
   spread_draws(b_Si_Intercept, r_date__Si[date,]) %>% 
   mutate(date_Si = b_Si_Intercept + r_date__Si) %>% 
   ggplot(aes(x = date_Si, y = date)) +
   geom_halfeyeh()
+
 
 
 
