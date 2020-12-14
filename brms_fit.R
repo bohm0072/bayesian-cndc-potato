@@ -1,6 +1,7 @@
 library(tidyverse)
 library(brms)
 library(tidybayes)
+library(shinystan)
 
 library(future)
 plan(multisession)
@@ -123,15 +124,15 @@ brms_fit <- function(data,model,Owner,Location,Variety){
                   nl = T)
     
     # get_prior(formula, family = gaussian, data = d)
-    priors <- c(set_prior("normal(3,0.1)", class = "sd", nlpar = "Si", group = "variety:date"),
-                set_prior("normal(3,0.1)", class = "sd", nlpar = "Bmax", group = "variety:date"),
-                set_prior("normal(0.12,0.005)", nlpar = "alpha1", class = "sd"), #"normal(0.12,0.03)"
-                set_prior("normal(0.04,0.005)", nlpar = "alpha2", class = "sd"), #"normal(0.02,0.005)"
-                set_prior("normal(12,0.05)", nlpar = "Bmax", lb = 1),
-                set_prior("normal(4.5,0.1)", nlpar = "Si", lb = 0),
-                set_prior("normal(4.50,0.01)", nlpar = "alpha1", lb = 0, ub = 10), #"normal(4.5,0.2)"
-                set_prior("normal(0.50,0.001)", nlpar = "alpha2", lb = 0, ub = 1), #"normal(0.50,0.04)"
-                set_prior("student_t(3,1.3,0.2)", class = "sigma"))
+    priors <- c(set_prior("student_t(3,3,0.01)", class = "sd", nlpar = "Si", group = "variety:date"),
+                set_prior("student_t(3,3,0.01)", class = "sd", nlpar = "Bmax", group = "variety:date"),
+                set_prior("student_t(3,1.0,0.5)", nlpar = "alpha1", class = "sd"), #"normal(0.12,0.005)"
+                set_prior("student_t(3,0.1,0.05)", nlpar = "alpha2", class = "sd"), #"normal(0.04,0.005)"
+                set_prior("normal(12.00,0.05)", nlpar = "Bmax", lb = 1),
+                set_prior("normal(4.50,0.10)", nlpar = "Si", lb = 0),
+                set_prior("normal(4.50,0.20)", nlpar = "alpha1", lb = 0), #"normal(4.50,0.01)"
+                set_prior("normal(0.50,0.02)", nlpar = "alpha2", lb = 0, ub = 1), #"normal(0.50,0.001)"
+                set_prior("student_t(3,1.3,0.4)", class = "sigma"))
     
   }
   
@@ -144,6 +145,7 @@ brms_fit <- function(data,model,Owner,Location,Variety){
            cores = 4, #future = T, 
            chains = 4, iter = brm_iter, warmup = brm_warmup, #iter = 5000, warmup = 2000,
            control = list(adapt_delta = brm_adapt_delta, max_treedepth = 15),
+           sample_prior = "only",
            silent=F, 
            seed=52624,
            file=paste("Models/",model.name,sep=""))
@@ -159,24 +161,25 @@ brms_fit <- function(data,model,Owner,Location,Variety){
 
 run_fits <- function(){
   
-  m1.1 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank"))
-  m1.2 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Clearwater"))
-  m1.3 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Umatilla"))
-  m1.4 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Dakota Russet"))
-  m1.5 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Easton"))
-  m1.0 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
-  
-  m2.0 <- brms_fit(data,model="model-2",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
-  
+  # m1.1 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank"))
+  # m1.2 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Clearwater"))
+  # m1.3 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Umatilla"))
+  # m1.4 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Dakota Russet"))
+  # m1.5 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Easton"))
+  # m1.0 <- brms_fit(data,model="model-1",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
+  # 
+  # m2.0 <- brms_fit(data,model="model-2",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
+  # 
   m3.0 <- brms_fit(data,model="model-3",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
   
-  out <- list(m1.0=m1.0,
-              m1.1=m1.1,
-              m1.2=m1.2,
-              m1.3=m1.3,
-              m1.4=m1.4,
-              m1.5=m1.5,
-              m2.0=m2.0)
+  out <- list(# m1.0=m1.0,
+              # m1.1=m1.1,
+              # m1.2=m1.2,
+              # m1.3=m1.3,
+              # m1.4=m1.4,
+              # m1.5=m1.5,
+              # m2.0=m2.0,
+              m3.0=m3.0)
   
   return(out)
   
