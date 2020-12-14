@@ -32,21 +32,21 @@ fmin <- function(x,y){
 
 # now we can do cool stuff like take the orignal data, generate predicted outcomes, and plot those against the real values
 
-m3.0$data %>% 
-  add_predicted_draws(m3.0) %>% 
-  median_hdci() %>% 
-  rowid_to_column() %>% 
-  ggplot(aes(x = rowid, y = W)) +
-  geom_pointinterval(aes(ymin = .lower, ymax = .upper, y = .prediction), alpha = 0.5) +
-  geom_point(color = "forestgreen")
-
-m3.0$data %>% 
-  add_predicted_draws(m3.0) %>% 
-  median_hdci() %>% 
-  ggplot(aes(x = W, y = N)) +
-  geom_pointintervalh(aes(xmin = .lower, xmax = .upper, x = .prediction), alpha = 0.5) +
-  geom_point(color = "forestgreen") +
-  scale_y_log10()
+# m3.0$data %>% 
+#   add_predicted_draws(m3.0) %>% 
+#   median_hdci() %>% 
+#   rowid_to_column() %>% 
+#   ggplot(aes(x = rowid, y = W)) +
+#   geom_pointinterval(aes(ymin = .lower, ymax = .upper, y = .prediction), alpha = 0.5) +
+#   geom_point(color = "forestgreen")
+# 
+# m3.0$data %>% 
+#   add_predicted_draws(m3.0) %>% 
+#   median_hdci() %>% 
+#   ggplot(aes(x = W, y = N)) +
+#   geom_pointintervalh(aes(xmin = .lower, xmax = .upper, x = .prediction), alpha = 0.5) +
+#   geom_point(color = "forestgreen") +
+#   scale_y_log10()
 
 # or we can do a posterior check
 
