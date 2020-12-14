@@ -6,11 +6,14 @@ d <- d %>%
     variety == "A" ~ 4,
     TRUE ~ 2
   )) %>% 
+  mutate(beta = case_when(
+    variety == "A" ~ -0.1,
+    TRUE ~ -0.05
+  )) %>% 
   rowwise() %>% 
-  mutate(obs = rnorm(1, mean = mu-0.1*biomass))
+  mutate(obs = rnorm(1, mean = mu+beta*biomass))
 
-d %>% 
-  print(n=Inf)
+
 
 # just plotting the curves
 d %>% 
@@ -19,8 +22,9 @@ d %>%
 
 # plotting the differences
 d %>% 
-  select(-mu) %>% 
+  select(-mu, -beta) %>% 
   pivot_wider(names_from = variety, values_from = obs) %>% 
   mutate(diff = A - B) %>% 
   ggplot(aes(x = biomass, y = diff)) +
-  geom_line()
+  geom_line() +
+  geom_hline(yintercept = 0, color = "red")
