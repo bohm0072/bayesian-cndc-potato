@@ -25,6 +25,6 @@ d %>%
   select(-mu, -beta) %>% 
   pivot_wider(names_from = variety, values_from = obs) %>% 
   mutate(diff = A - B) %>% 
-  ggplot(aes(x = biomass, y = diff)) +
+  ggplot(aes(x = biomass, y = diff, group = draw)) +
   geom_line() +
   geom_hline(yintercept = 0, color = "red")
