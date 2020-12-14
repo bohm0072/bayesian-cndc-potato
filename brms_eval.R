@@ -26,9 +26,18 @@ fmin <- function(x,y){
 m3.0$data %>% 
   add_predicted_draws(m3.0) %>% 
   median_hdci() %>% 
-  ggplot(aes(x = W, y = N)) +
-  geom_pointinterval(aes(xmin = .lower, xmax = .upper, x = .prediction), alpha = 0.5) +
+  rowid_to_column() %>% 
+  ggplot(aes(x = rowid, y = W)) +
+  geom_pointinterval(aes(ymin = .lower, ymax = .upper, y = .prediction), alpha = 0.5) +
   geom_point(color = "forestgreen")
+
+m3.0$data %>% 
+  add_predicted_draws(m3.0) %>% 
+  median_hdci() %>% 
+  ggplot(aes(x = W, y = N)) +
+  geom_pointintervalh(aes(xmin = .lower, xmax = .upper, x = .prediction), alpha = 0.5) +
+  geom_point(color = "forestgreen") +
+  scale_y_log10()
 
 # or we can do a posterior check
 
@@ -90,16 +99,40 @@ m1.0 %>%
   compare_levels(date_Bmax, by = date) %>% 
   ggplot(aes(x = date_Bmax, y = date)) +
   geom_halfeyeh()
-  
-  
-  
 
-m1.0 %>% 
-  spread_draws(b_Si_Intercept, r_date__Si[date,]) %>% 
-  mutate(date_Si = b_Si_Intercept + r_date__Si) %>% 
-  ggplot(aes(x = date_Si, y = date)) +
+
+
+# actually comparing alpha1 and alpha2 across varieties -------------------
+
+
+m3.0 %>% 
+  spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
+  mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
+  compare_levels(variety_alpha1, by = variety) %>% 
+  ggplot(aes(x = variety_alpha1, y = variety)) +
   geom_halfeyeh()
 
+m3.0 %>% 
+  spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
+  mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) %>% 
+  compare_levels(variety_alpha2, by = variety) %>% 
+  ggplot(aes(x = variety_alpha2, y = variety)) +
+  geom_halfeyeh()
+
+# model 2
+m2.0 %>% 
+  spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
+  mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
+  compare_levels(variety_alpha1, by = variety) %>% 
+  ggplot(aes(x = variety_alpha1, y = variety)) +
+  geom_halfeyeh()
+
+m2.0 %>% 
+  spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
+  mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) %>% 
+  compare_levels(variety_alpha2, by = variety) %>% 
+  ggplot(aes(x = variety_alpha2, y = variety)) +
+  geom_halfeyeh()
 
 
 
