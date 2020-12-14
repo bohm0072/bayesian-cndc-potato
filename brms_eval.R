@@ -165,7 +165,8 @@ a %>%
   ggplot(aes(x = W, y = diff)) +
   geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.2, color = NA) +
   geom_line() +
-  theme_minimal()
+  theme_minimal() +
+  labs(y = "Diff in Nc between Russet Burbank and Easton")
   
 
 # Model 1.0
