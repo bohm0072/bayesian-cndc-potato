@@ -411,7 +411,8 @@ f.cndc <- function(data){
     rowwise() %>%
     mutate(cv=sd/mean) %>%
     ungroup() %>%
-    filter(cv>=0.10|sd>=1.0) %>%
+    filter(cv>=0.10) %>%
+    #filter(cv>=0.10|sd>=1.0) %>%
     select(-c(mean,sd,cv))
 
   data.2 <- left_join(data.2.list,

@@ -8,8 +8,8 @@ plan(multisession)
 
 library(pushoverr)
 
-data_cndc <- read_csv("data/analysis/data_cndc.csv",col_types="ccccccdcdd") 
-data_cndc_index <- read_csv("data/analysis/data_cndc_index.csv",col_types="cccccc") 
+data_cndc <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd") 
+data_cndc_index <- read_csv("data/analysis/data_cndc_index.csv",col_types="ccccccc") 
 
 brms_fit <- function(data,model.name,index.list,formula,priors="default",iter,warmup,adapt_delta){
   
@@ -40,33 +40,12 @@ brms_fit <- function(data,model.name,index.list,formula,priors="default",iter,wa
 
 run_fits <- function(){
   
-  m0001 <- brms_fit(data=data_cndc,
-                    model.name="m0001_Bohman_Minnesota_RussetBurbank",
-                    index=data_cndc_index %>%
-                      filter(owner=="Bohman") %>%
-                      filter(location=="Minnesota") %>%
-                      filter(variety=="Russet Burbank") %>%
-                      pull(index),
-                    formula=bf(W ~ fmin(Bmax + Si * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
-                               Bmax + Si ~ 1 + (1|index),
-                               alpha1 + alpha2 ~ 1,
-                               nl = T),
-                    priors=c(set_prior("normal(5.0,0.5)", nlpar = "alpha1", lb = 0),
-                             set_prior("normal(0.40,0.05)", nlpar = "alpha2", lb = 0, ub = 1),
-                             set_prior("normal(12.0,0.1)", nlpar = "Bmax", lb = 1),
-                             set_prior("normal(4.5,0.1)", nlpar = "Si", lb = 0),
-                             set_prior("normal(3.0,0.1)", class = "sd", nlpar = "Bmax"),
-                             set_prior("normal(3.0,0.1)", class = "sd", nlpar = "Si")),
-                    iter = 5000,
-                    warmup = 2000,
-                    adapt_delta = 0.99)
-
-  # m0002 <- brms_fit(data=data_cndc,
-  #                   model.name="m0002_Bohman_Minnesota_All",
+  # m0001 <- brms_fit(data=data_cndc,
+  #                   model.name="m0001_Bohman_Minnesota_RussetBurbank",
   #                   index=data_cndc_index %>%
   #                     filter(owner=="Bohman") %>%
   #                     filter(location=="Minnesota") %>%
-  #                     filter(variety%in%c("Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla")) %>%
+  #                     filter(variety=="Russet Burbank") %>%
   #                     pull(index),
   #                   formula=bf(W ~ fmin(Bmax + Si * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
   #                              Bmax + Si ~ 1 + (1|index),
@@ -81,6 +60,27 @@ run_fits <- function(){
   #                   iter = 5000,
   #                   warmup = 2000,
   #                   adapt_delta = 0.99)
+
+  m0002 <- brms_fit(data=data_cndc,
+                    model.name="m0002_Bohman_Minnesota_All",
+                    index=data_cndc_index %>%
+                      filter(owner=="Bohman") %>%
+                      filter(location=="Minnesota") %>%
+                      filter(variety%in%c("Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla")) %>%
+                      pull(index),
+                    formula=bf(W ~ fmin(Bmax + Si * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
+                               Bmax + Si ~ 1 + (1|index),
+                               alpha1 + alpha2 ~ 1,
+                               nl = T),
+                    priors=c(set_prior("normal(5.0,0.5)", nlpar = "alpha1", lb = 0),
+                             set_prior("normal(0.40,0.05)", nlpar = "alpha2", lb = 0, ub = 1),
+                             set_prior("normal(12.0,0.1)", nlpar = "Bmax", lb = 1),
+                             set_prior("normal(4.5,0.1)", nlpar = "Si", lb = 0),
+                             set_prior("normal(3.0,0.1)", class = "sd", nlpar = "Bmax"),
+                             set_prior("normal(3.0,0.1)", class = "sd", nlpar = "Si")),
+                    iter = 5000,
+                    warmup = 2000,
+                    adapt_delta = 0.99)
 
   # m0003 <- brms_fit(data=data_cndc,
   #                   model.name="m0003_Giletto_Canada_All",

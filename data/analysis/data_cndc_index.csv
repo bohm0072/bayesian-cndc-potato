@@ -13,47 +13,29 @@ index,group,owner,study,location,variety,date
 16,1,Bohman,chloro,Minnesota,Russet Burbank,2016-06-27
 21,1,Bohman,chloro,Minnesota,Russet Burbank,2016-09-13
 22,1,Bohman,esn-nni,Minnesota,Russet Burbank,2020-06-24
-25,1,Bohman,esn-nni,Minnesota,Russet Burbank,2020-08-04
 29,1,Bohman,nni,Minnesota,Russet Burbank,2019-08-06
-30,1,Bohman,nni,Minnesota,Russet Burbank,2019-08-21
-31,1,Bohman,nni,Minnesota,Russet Burbank,2019-09-16
 42,1,Bohman,sanjay,Minnesota,Russet Burbank,2018-06-26
 43,1,Bohman,sanjay,Minnesota,Russet Burbank,2018-07-10
 45,1,Bohman,sanjay,Minnesota,Russet Burbank,2018-08-01
-50,1,Bohman,sanjay,Minnesota,Russet Burbank,2019-08-07
 90,1,Bohman,vxn,Minnesota,Russet Burbank,2014-06-30
 91,1,Bohman,vxn,Minnesota,Russet Burbank,2014-07-15
 92,1,Bohman,vxn,Minnesota,Russet Burbank,2014-07-24
-94,1,Bohman,vxn,Minnesota,Russet Burbank,2014-08-26
-95,1,Bohman,vxn,Minnesota,Russet Burbank,2014-09-08
-96,1,Bohman,vxn,Minnesota,Russet Burbank,2014-09-15
 100,1,Bohman,vxn,Minnesota,Russet Burbank,2015-08-04
 101,1,Bohman,vxn,Minnesota,Russet Burbank,2015-08-17
-102,1,Bohman,vxn,Minnesota,Russet Burbank,2015-09-01
-103,1,Bohman,vxn,Minnesota,Russet Burbank,2015-09-16
 32,2,Bohman,sanjay,Minnesota,Clearwater,2018-06-26
 35,2,Bohman,sanjay,Minnesota,Clearwater,2018-08-01
-36,2,Bohman,sanjay,Minnesota,Clearwater,2018-09-13
 38,2,Bohman,sanjay,Minnesota,Clearwater,2019-07-11
 53,3,Bohman,sanjay,Minnesota,Umatilla,2018-07-10
 54,3,Bohman,sanjay,Minnesota,Umatilla,2018-07-18
 56,3,Bohman,sanjay,Minnesota,Umatilla,2018-09-13
-60,3,Bohman,sanjay,Minnesota,Umatilla,2019-08-07
 62,4,Bohman,vxn,Minnesota,Dakota Russet,2014-06-30
-66,4,Bohman,vxn,Minnesota,Dakota Russet,2014-08-26
 68,4,Bohman,vxn,Minnesota,Dakota Russet,2014-09-15
 74,4,Bohman,vxn,Minnesota,Dakota Russet,2015-09-01
 78,5,Bohman,vxn,Minnesota,Easton,2014-07-24
-79,5,Bohman,vxn,Minnesota,Easton,2014-08-11
-80,5,Bohman,vxn,Minnesota,Easton,2014-08-26
-81,5,Bohman,vxn,Minnesota,Easton,2014-09-08
-82,5,Bohman,vxn,Minnesota,Easton,2014-09-15
 84,5,Bohman,vxn,Minnesota,Easton,2015-07-07
 85,5,Bohman,vxn,Minnesota,Easton,2015-07-21
-86,5,Bohman,vxn,Minnesota,Easton,2015-08-04
 87,5,Bohman,vxn,Minnesota,Easton,2015-08-17
 88,5,Bohman,vxn,Minnesota,Easton,2015-09-01
-89,5,Bohman,vxn,Minnesota,Easton,2015-09-16
 106,6,Giletto,Drummond,Canada,Russet Burbank,1900-02-23
 107,6,Giletto,Drummond,Canada,Russet Burbank,1900-03-05
 108,6,Giletto,Drummond,Canada,Russet Burbank,1900-03-11
@@ -81,7 +63,6 @@ index,group,owner,study,location,variety,date
 118,7,Giletto,Drummond,Canada,Shepody,1900-03-11
 119,7,Giletto,Drummond,Canada,Shepody,1900-03-18
 120,7,Giletto,Drummond,Canada,Shepody,1900-03-25
-121,7,Giletto,Drummond,Canada,Shepody,1900-03-30
 122,7,Giletto,Drummond,Canada,Shepody,1900-04-06
 209,7,Giletto,Hartland,Canada,Shepody,1900-02-24
 211,7,Giletto,Hartland,Canada,Shepody,1900-03-11
@@ -131,7 +112,6 @@ index,group,owner,study,location,variety,date
 152,9,Giletto,Giletto,Argentina,Gem Russet,2006-02-28
 153,9,Giletto,Giletto,Argentina,Gem Russet,2006-03-16
 154,9,Giletto,Giletto,Argentina,Gem Russet,2006-04-06
-155,9,Giletto,Giletto,Argentina,Gem Russet,2006-04-27
 157,10,Giletto,Giletto,Argentina,Innovator,2003-03-02
 158,10,Giletto,Giletto,Argentina,Innovator,2003-03-17
 159,10,Giletto,Giletto,Argentina,Innovator,2003-04-01
@@ -147,8 +127,6 @@ index,group,owner,study,location,variety,date
 170,10,Giletto,Giletto,Argentina,Innovator,2006-02-15
 171,10,Giletto,Giletto,Argentina,Innovator,2006-02-28
 172,10,Giletto,Giletto,Argentina,Innovator,2006-03-16
-173,10,Giletto,Giletto,Argentina,Innovator,2006-04-06
-174,10,Giletto,Giletto,Argentina,Innovator,2006-04-27
 175,11,Giletto,Giletto,Argentina,Markies Russet,2004-02-25
 176,11,Giletto,Giletto,Argentina,Markies Russet,2004-03-02
 177,11,Giletto,Giletto,Argentina,Markies Russet,2004-03-24
