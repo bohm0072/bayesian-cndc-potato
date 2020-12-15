@@ -88,7 +88,8 @@ brms_fit <- function(data,model,Owner,Location,Variety){
                 set_prior("normal(3,0.1)", class = "sd", nlpar = "Si") #"normal(3,0.3)"
                 )
     
-  } else if (model=="model-2"){
+  } else 
+    if (model=="model-2"){
     
     brm_iter = 5000
     brm_warmup = 2000
@@ -112,7 +113,8 @@ brms_fit <- function(data,model,Owner,Location,Variety){
                 set_prior("normal(3,0.1)", class = "sd", nlpar = "Bmax", group = "variety:date")
                 )
     
-  } else if (model=="model-3"){
+  } else 
+    if (model=="model-3"){
     
     brm_iter = 5000
     brm_warmup = 2000
@@ -134,7 +136,8 @@ brms_fit <- function(data,model,Owner,Location,Variety){
                 set_prior("normal(0.50,0.01)", nlpar = "alpha2", lb = 0, ub = 1), #"normal(0.50,0.001)"
                 set_prior("student_t(3,0,1)", class = "sigma"))
     
-  } else if (model=="model-4"){
+  } else 
+    if (model=="model-4"){
     
     brm_iter = 5000
     brm_warmup = 2000
@@ -148,6 +151,31 @@ brms_fit <- function(data,model,Owner,Location,Variety){
     # get_prior(formula, family = gaussian, data = d)
     priors <- c(set_prior("normal(3,0.1)", class = "sd", nlpar = "Si", group = "date"),
                 set_prior("normal(3,0.1)", class = "sd", nlpar = "Bmax", group = "date"),
+                set_prior("normal(0.12,0.04)", class = "sd", nlpar = "alpha1", group = "variety"),
+                set_prior("normal(0.06,0.02)", class = "sd", nlpar = "alpha2", group = "variety"),
+                set_prior("normal(12.00,0.05)", nlpar = "Bmax", lb = 1),
+                set_prior("normal(4.50,0.10)", nlpar = "Si", lb = 0),
+                set_prior("normal(4.50,0.01)", nlpar = "alpha1", lb = 0), 
+                set_prior("normal(0.50,0.001)", nlpar = "alpha2", lb = 0, ub = 1),
+                set_prior("student_t(3,0,1)", class = "sigma"))
+    
+  } else 
+    if (model=="model-5"){
+    
+    brm_iter = 500
+    brm_warmup = 200
+    brm_adapt_delta = 0.99
+    
+    formula <- bf(W ~ fmin(Bmax + Si * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
+                  Bmax + Si ~ 1 + (1 | date/variety),
+                  alpha1 + alpha2 ~ 1 + (1 | variety),
+                  nl = T)
+    
+    # get_prior(formula, family = gaussian, data = d)
+    priors <- c(set_prior("student_t(3,0,1)", class = "sd", nlpar = "Si", group = "date"),
+                set_prior("student_t(3,0,1)", class = "sd", nlpar = "Bmax", group = "date"),
+                set_prior("normal(3,0.1)", class = "sd", nlpar = "Si", group = "date:variety"),
+                set_prior("normal(3,0.1)", class = "sd", nlpar = "Bmax", group = "date:variety"),
                 set_prior("normal(0.12,0.04)", class = "sd", nlpar = "alpha1", group = "variety"),
                 set_prior("normal(0.06,0.02)", class = "sd", nlpar = "alpha2", group = "variety"),
                 set_prior("normal(12.00,0.05)", nlpar = "Bmax", lb = 1),
@@ -194,7 +222,9 @@ run_fits <- function(){
   # 
   # m3.0 <- brms_fit(data,model="model-3",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
   # 
-  m4.0 <- brms_fit(data,model="model-4",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
+  # m4.0 <- brms_fit(data,model="model-4",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
+  # 
+  m5.0 <-  brms_fit(data,model="model-5",Owner=c("Bohman"),Location=c("Minnesota"),Variety=c("Russet Burbank","Clearwater","Umatilla","Dakota Russet","Easton"))
   
   out <- list(# m1.0=m1.0,
               # m1.1=m1.1,
@@ -204,7 +234,8 @@ run_fits <- function(){
               # m1.5=m1.5,
               # m2.0=m2.0,
               # m3.0=m3.0)
-              m4.0=m4.0)
+              # m4.0=m4.0)
+              m5.0)
   
   return(out)
   

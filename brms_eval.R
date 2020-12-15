@@ -17,9 +17,11 @@ library(shinystan)
 
 # m3.0 <- readRDS("Models/model-3_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
 
-m4.0 <- readRDS("Models/model-4_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
+# m4.0 <- readRDS("Models/model-4_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
 
-m4.0
+m5.0 <- readRDS("Models/model-5_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
+
+m5.0
 
 # m3.0$fit
 # m3.0$prior

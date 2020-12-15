@@ -16,12 +16,11 @@ f.bohman <- function(){
   
   d <- ard %>%
     filter(tissue=="wholeplant") %>%
-    # filter(trt_var=="russet burbank") %>%
     pivot_wider(names_from="measure",
                 values_from="value") %>%
     rename(rate_n_kgha=cum_rate_n_kgha) %>%
     rename(variety=trt_var) %>%
-    group_by(owner,study,year,date,variety,rate_n_kgha) %>%
+    group_by(owner,study,year,date,variety,trt_n,rate_n_kgha) %>%
     summarize_at(vars(biomdry_Mgha,n_pct),~mean(.,na.rm=T)) %>%
     ungroup() %>%
     mutate(owner="Bohman") %>%
@@ -287,8 +286,8 @@ f.giletto <- function(){
         dap = list(c(44,50,57,64,74,81,87,94,107,114),c(41,49,56,59,68,73,80,97,104,110),c(40,49,54,61,69,74,81,90,98),c(32,39,46,53,63,69,76,83,88,95)),
         year = list("1900"),
         variety = list("Shepody"),
-        location = list("Canada-Jacksonville","Canada-London","Canada-Hartland","Canada-Drummond"),
-        study = list("Giletto")
+        location = list("Canada"), #list("Canada-Jacksonville","Canada-London","Canada-Hartland","Canada-Drummond"),
+        study = list("Jacksonville","London","Hartland","Drummond") #list("Giletto")
       ),
       tibble(
         data = list("appendix_b"),
@@ -297,8 +296,8 @@ f.giletto <- function(){
         dap = list(c(44,50,57,64,74,81,87,94,107,114),c(41,49,56,59,68,73,80,81,97,104),c(40,49,54,61,69,74,81,90,98),c(39,46,53,63,69,76,83,88,95)),
         year = list("1900"),
         variety = list("Russet Burbank"),
-        location = list("Canada-Jacksonville","Canada-London","Canada-Hartland","Canada-Drummond"),
-        study = list("Giletto")
+        location = list("Canada"), #list("Canada-Jacksonville","Canada-London","Canada-Hartland","Canada-Drummond"),
+        study = list("Jacksonville","London","Hartland","Drummond") #list("Giletto")
       )
     )
     
@@ -325,9 +324,9 @@ f.giletto <- function(){
   
   d <- d %>%
     mutate(owner="Giletto") %>%
-    mutate(study=case_when(location == "Argentina" ~ "Giletto",
-                           location == "Canada" ~ "Belanger",
-                           T ~ NA_character_)) %>%
+    # mutate(study=case_when(location == "Argentina" ~ "Giletto",
+    #                        str_detect(location,"Canada")==T ~ "Belanger",
+    #                        T ~ NA_character_)) %>%
     mutate(year=as.character(year(Date))) %>%
     rename(date=Date) %>%
     select(owner,study,year,location,variety,rate_n_kgha,date,W,N)
@@ -336,18 +335,142 @@ f.giletto <- function(){
 
 giletto <- f.giletto()
 
-##### Combine and Format Data #####
+##### Combine Data #####
 
 data <- bind_rows(
   bohman,
   giletto
 )
 
-# data <- data %>%
-#   filter(W>=1.0)
+##### Filter Data for CNDC Fit #####
+
+f.cndc <- function(data){
+  
+  index <- data %>%
+    select(owner,study,location,variety,date) %>%
+    distinct() %>%
+    arrange(owner,study,location,variety,date) %>%
+    mutate(index=row_number()) %>%
+    relocate(index,.before="owner")
+  
+  data.0 <- data %>%
+    left_join(index,by=c("owner","study","location","variety","date"))  %>%
+    relocate(index,.before="owner")
+  
+  # Summarize number of dates
+  data.0.sum <- data.0 %>%
+    select(index,owner,study,location,variety,date) %>%
+    distinct() %>%
+    group_by(owner,study,location,variety) %>%
+    count() %>%
+    ungroup() %>%
+    rename(count_0=n)
+  
+  # Number of dates meeting screening criteria #1
+  # W >= 1.0 Mg/ha for >= 3 points
+  
+  data.1.list <- data.0 %>%
+    filter(W>=1) %>%
+    drop_na() %>%
+    group_by(index,owner,study,location,variety,date) %>%
+    count() %>%
+    ungroup() %>%
+    filter(n>=3) %>%
+    select(-n)
+  
+  data.1 <- left_join(data.1.list,
+                      data.0,
+                      by = c("index","owner","study","location","variety","date")) %>%
+    select(index,owner,study,year,location,variety,rate_n_kgha,date,W,N)
+  
+  data.1.sum <- data.1 %>%
+    select(index,owner,study,location,variety,date) %>%
+    distinct() %>%
+    group_by(owner,study,location,variety) %>%
+    count() %>%
+    ungroup() %>%
+    rename(count_1=n)
+  
+  
+  # Number of dates meeting screening criteria #2
+  # sd(W) >= 1.0 Mg/ha
+  
+  data.2.list <- data.1 %>% 
+    group_by(index,owner,study,location,variety,date) %>%
+    summarize_at(vars(W),lst(mean,sd)) %>%
+    rowwise() %>%
+    mutate(cv=sd/mean) %>%
+    ungroup() 
+  
+  screen.2 = "sd"
+  screen.2.value = 1.0 # Mg/ha
+  
+  if (screen.2=="cv"){
+    
+    data.2.list <- data.2.list %>%
+      filter(cv>=screen.2.value) %>%
+      select(-c(mean,sd,cv))
+    
+  } else 
+    if (screen.2=="sd"){
+    
+    data.2.list <- data.2.list %>%
+      filter(sd>=screen.2.value) %>%
+      select(-c(mean,sd))
+    
+  } else 
+    {
+    
+    data.2.list <- NULL
+    
+  }
+  
+  data.2 <- left_join(data.2.list,
+                      data.1,
+                      by = c("index","owner","study","location","variety","date")) %>%
+    select(index,owner,study,year,location,variety,rate_n_kgha,date,W,N)
+  
+  data.2.sum <- data.2 %>%
+    select(index,owner,study,location,variety,date) %>%
+    distinct() %>%
+    group_by(owner,study,location,variety) %>%
+    count() %>%
+    ungroup() %>%
+    rename(count_2=n)
+  
+  
+  # Combined summary
+  
+  data.sum <- data.0.sum %>%
+    left_join(data.1.sum, c("owner","study","location","variety")) %>%
+    left_join(data.2.sum, c("owner","study","location","variety")) %>%
+    arrange(owner,location,variety,study)
+  
+  data.cndc <- data.2
+  
+  index.cndc <- data.cndc %>%
+    select(index,owner,study,location,variety,date) %>%
+    distinct() %>%
+    arrange(owner,location,variety,study)
+  
+  out <- list(data=data,
+              data.sum=data.sum,
+              data.cndc=data.cndc,
+              index=index,
+              index.cndc=index.cndc)
+  
+  return(out)
+  
+}
+
+d <- f.cndc(data)
 
 ##### Export Data #####
 
-write_csv(data,"data.csv")
+write_csv(d$data, "data.csv")
+write_csv(d$data.sum, "data_sum.csv")
+write_csv(d$data.cndc, "data_cndc.csv")
+write_csv(d$index, "data_index.csv")
+write_csv(d$index.cndc, "data_index_cndc.csv")
 
 ##### END #####
