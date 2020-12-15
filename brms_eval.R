@@ -26,7 +26,7 @@ readRDS("Models/m0006_All.rds")
 
 # m3.0 <- readRDS("Models/model-3_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
 
-# m4.0 <- readRDS("Models/model-4_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
+#m4.0 <- readRDS("Models/model-4_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
 
 # m5.0 <- readRDS("Models/model-5_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
 # 
@@ -71,9 +71,53 @@ fmin <- function(x,y){
 
 # looking at group level draws --------------------------------------------
 
-# Model 4.0
+# Model 5.0
 
-#get_variables(m4.0)
+#get_variables(m5.0)
+
+
+m5.0 %>% 
+  spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
+  mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
+  ggplot(aes(x = variety_alpha1, y = variety)) +
+  geom_halfeyeh()
+
+m5.0 %>% 
+  spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
+  mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) %>% 
+  ggplot(aes(x = variety_alpha2, y = variety)) +
+  geom_halfeyeh()
+
+left_join(
+  m5.0 %>% 
+    spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
+    mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1),
+  m5.0 %>% 
+    spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
+    mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2),
+  by = c(".chain", ".iteration", ".draw", "variety")) %>% 
+  ggplot(aes(x = variety_alpha1, y = variety_alpha2, color=variety)) +
+  geom_point(alpha=0.005) +
+  geom_smooth(formula="y~x",method="lm") +
+  theme_classic() +
+  scale_color_brewer(palette = "Set1")
+
+# this is how you would go about calculating the difference between alpha values by variety. instead of Bmax, it would be one of the alpha values, and instead of date, it would be variety. the key here is spread_draws to get the global mean and offset for each group, then mutate to make it into the actual group-level estimate, then compare_levels to get every pairwise difference.
+m5.0 %>% 
+  spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
+  mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
+  # filter(str_detect(date, "^19")) %>% # this is just for the example since there are too many dates
+  compare_levels(variety_alpha1, by = variety) %>% 
+  ggplot(aes(x = variety_alpha1, y = variety)) +
+  geom_halfeyeh()
+
+m5.0 %>% 
+  spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
+  mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) %>% 
+  # filter(str_detect(date, "^19")) %>% # this is just for the example since there are too many dates
+  compare_levels(variety_alpha2, by = variety) %>% 
+  ggplot(aes(x = variety_alpha2, y = variety)) +
+  geom_halfeyeh()
 
 # m4.0 %>% 
 #   spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
@@ -120,6 +164,7 @@ fmin <- function(x,y){
 
 
 
+
 # trying to compare curves ------------------------------------------------
 
 #Nc=alpha1*(W^(-alpha2))
@@ -132,11 +177,11 @@ calc_nc <- function(W = seq(from = 1, to = 10, length.out = 100), alpha1, alpha2
 }
 
 # get alpha values for all varieties
-a <- m3.0 %>% 
+a <- m5.0 %>% 
   spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,], n = 100, seed = 1) %>% 
   mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
   left_join(
-    m3.0 %>% 
+    m5.0 %>% 
       spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,], n = 100, seed = 1) %>% 
       mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) 
   ) %>% 
@@ -169,9 +214,9 @@ a %>%
 # actually calculating the difference between two varieties and plotting that
 a %>% 
   select(.draw, variety, Nc, W) %>% 
-  filter(variety %in% c("Russet.Burbank", "Easton")) %>% 
+  filter(variety %in% c("Dakota.Russet", "Easton")) %>% 
   pivot_wider(names_from = variety, values_from = Nc) %>% 
-  mutate(diff = Russet.Burbank - Easton) %>% 
+  mutate(diff = Dakota.Russet - Easton) %>% 
   select(.draw, W, diff) %>% 
   group_by(W) %>% 
   median_hdci(diff) %>% 
@@ -179,7 +224,7 @@ a %>%
   geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.2, color = NA) +
   geom_line() +
   theme_minimal() +
-  labs(y = "Diff in Nc between Russet Burbank and Easton")
+  labs(y = "Diff in Nc between Dakota Russet and Easton")
 
 
 # Model 1.0

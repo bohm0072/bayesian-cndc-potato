@@ -1,0 +1,159 @@
+---
+title: "CNDC Bayesian Evaluation"
+author: "Brian Bohman"
+date: "12/15/2020"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Summary
+
+Previously, the focus of our CNDC-NNI manuscript had been on calculating a CNDC for potato in MN, calculating uncertaintiny in the CNDC and comparing to existing curves, developing individual Vine and Tuber CNDC, interpreting the wholeplant CNDC in light of separate Vine and Tuber CNDCs, exploring the relationship of NNI, NNI_Vine, NNI_Tuber over the duration of the growing season, and identifying optimal NNI values for relative yield and relative biomass response. However, a few developments have pushed us towards a new direction.  
+
+1. [Giletto et al. (2020)](https://doi.org/10.1016/j.eja.2020.126114) published a much more detailed and precise approach to calculating Vine and Tuber CNDC than we were initially planning to or are frankly able to based on our data and theoretical expertise. Now that the concept has been defined in the literature, we can simple reference it and just build upon it. Additionally, I'm not sure our data could be used to define a Vine CNDC due to the pronounced effect of senescence in affecting the shape of the CNDC - It's not clear to me how Giletto et. al (2020) got their Vine CNDC to fit the way that it did, but it's not that important...  
+
+2. [Makowski et al. (2020)](https://doi.org/10.1016/j.eja.2020.126076) published a novel method to calculate CNDCs directly from the raw data without requiring the separate steps of first identifying the critical points and then second of fitting the CNDC. The differences in methodology used between studies is a major barrier to interpreting differences. If one study used the [linear-plateau method](https://doi.org/10.1006/anbo.1994.1133), while another study used the [ANOVA protected multiple comparsion method](https://doi.org/10.1007/BF02884344), it wasn't really possible to compare these curve fits - essentially, the CNDC fit is confounded with the chosen statistical methods for the CNDC. Additionally, this study added a reasonable approach to calculate uncertainty in the CNDC parameters. This is all fundamentally tied together with the Bayesian approach defined in this paper, which is really quite innovative and will likely be adopted as the future preferred method to fit CNDCs based on the flexibility of this approach and ability to quantify uncertainty.
+
+3. Our Field Crops Research article tees up nicely the core concept that NUE (via NUtE) is defined based on the parameters of the CNDC. So investigating differences in the CNDC parameters is really the key to identifying differences in NUtE and NUE across genotype and environment.
+
+4. The [Special Issue of Plants](https://www.mdpi.com/journal/plants/special_issues/nitrogen_use) that we will be publishing in is focused on both NUE and CNDC/NNI.
+
+So in light of these developments, I suggest moving in the following direction with the manuscript..
+
+## Objectives
+
+1. Develop critical N dilution curve for potato in Minnesota using conventional statistical approach
+2. Compare our MN CNDC to other previously published CNDCs by building on the Bayesian approach for calculating and comparing CNDCs
+3. Interpret the effect of genotype x environment on NUE/NUtE using the fitted CNDC parameters and the critical NUtE framework
+
+## Preliminary Results
+
+### Section 1 - Developing CNDC using conventional methods
+
+**MN CNDC**  
+![](/Users/Brian/UMN Google Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/notes/notes_121520/images/CNDC.png){width=300px}
+
+**Giletto et al. (2020) CNDCs**  
+![](/Users/Brian/UMN Google Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/notes/notes_121520/images/Giletto-CNDC.png){width=500px}
+
+### Section 2 - CNDC comparison using Bayesian framework
+
+```{r, include=FALSE}
+
+library(tidyverse)
+library(brms)
+library(tidybayes)
+
+m0006 <- readRDS("brms/models/m0006_All.rds"); m0006
+
+f.eval <- function(model){
+  
+  p1 <- model %>%
+    spread_draws(b_alpha1_Intercept, `r_location:variety__alpha1`[`location:variety`,]) %>%
+    mutate(`location:variety_alpha1` = b_alpha1_Intercept + `r_location:variety__alpha1`) %>%
+    ggplot(aes(x = `location:variety_alpha1`, y = `location:variety`)) +
+    labs(y="Location x Variety", x="CNDC Paramter 'a'") +
+    stat_halfeye()
+
+  p2 <- model %>%
+    spread_draws(b_alpha2_Intercept, `r_location:variety__alpha2`[`location:variety`,]) %>%
+    mutate(`location:variety_alpha2` = b_alpha2_Intercept + `r_location:variety__alpha2`) %>%
+    ggplot(aes(x = `location:variety_alpha2`, y = `location:variety`)) +
+    labs(y="Location x Variety", x="CNDC Paramter 'b'") +
+    stat_halfeye()
+
+  p3 <- left_join(
+    model %>%
+      spread_draws(b_alpha1_Intercept, `r_location:variety__alpha1`[`location:variety`,]) %>%
+      mutate(`location:variety_alpha1` = b_alpha1_Intercept + `r_location:variety__alpha1`),
+    model %>%
+      spread_draws(b_alpha2_Intercept, `r_location:variety__alpha2`[`location:variety`,]) %>%
+      mutate(`location:variety_alpha2` = b_alpha2_Intercept + `r_location:variety__alpha2`),
+    by = c(".chain", ".iteration", ".draw", "location:variety")) %>%
+    ggplot(aes(x = `location:variety_alpha1`, y = `location:variety_alpha2`, color=`location:variety`)) +
+    geom_point(alpha=0.005) +
+    geom_smooth(formula="y~x",method="lm") +
+    theme_classic() +
+    labs(x="CNDC Paramter 'a'", y="CNDC Paramter 'b'", color="Location x Variety") +
+    scale_color_brewer(palette = "Set1")
+
+  # this is how you would go about calculating the difference between alpha values by variety.
+  p4 <- model %>%
+    spread_draws(b_alpha1_Intercept, `r_location:variety__alpha1`[`location:variety`,]) %>%
+    mutate(`location:variety_alpha1` = b_alpha1_Intercept + `r_location:variety__alpha1`) %>%
+    compare_levels(`location:variety_alpha1`, by = `location:variety`) %>%
+    ggplot(aes(x = `location:variety_alpha1`, y = `location:variety`)) +
+    stat_halfeye()
+
+  p5 <- model %>%
+    spread_draws(b_alpha2_Intercept, `r_location:variety__alpha2`[`location:variety`,]) %>%
+    mutate(`location:variety_alpha2` = b_alpha2_Intercept + `r_location:variety__alpha2`) %>%
+    compare_levels(`location:variety_alpha2`, by = `location:variety`) %>%
+    ggplot(aes(x = `location:variety_alpha2`, y = `location:variety`)) +
+    stat_halfeye()
+  
+  out <- list(p1,p2,p3,p4,p5)
+  return(out)
+  
+}
+
+eval.m0006 <- f.eval(m0006)
+
+```
+
+```{r, fig.width=4, fig.height=2}
+eval.m0006[[1]]
+eval.m0006[[2]]
+
+```
+
+```{r, fig.width=6, fig.height=3}
+eval.m0006[[3]]
+
+```
+
+### Section 3 - Interpret GxE effect on NUE/NUtE via CNDC parameters
+
+- *Key question*: Is there a variety or location that is has greater NUtE Critical?
+- Use CNDC parameters 'a' and 'b' to evaluate NUtE Critical for each Location x Variety
+- Look at the relationship between tuber partitioning and NUtE critical using 'k' coefficient method from Giletto et. al (2020) (i.e., Figure 1, Eq. 10)
+
+![](/Users/Brian/UMN Google Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/notes/notes_121520/images/Giletto-k.png){width=800px}
+
+## Additional Findings
+
+### Vine CNDCs
+
+#### Vine CNDC on basis of Vine biomass (per Giletto et al. (2020))
+**Minnesota CvNDC**  
+![](/Users/Brian/UMN Google Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/notes/notes_121520/images/CvNDC-180DAE.png){width=300px}
+![](/Users/Brian/UMN Google Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/notes/notes_121520/images/CvNDC-45DAE.png){width=300px}  
+  
+  
+**Giletto CvNDC**  
+![](/Users/Brian/UMN Google Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/notes/notes_121520/images/Giletto-CvNDC.png){width=300px}
+
+
+#### Vine CNDC on basis of wholeplant biomass (our original approach)
+
+![](/Users/Brian/UMN Google Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/notes/notes_121520/images/CvNDC-wholeplant.png){width=300px}
+  
+  
+### Tuber CNDCs
+
+#### Tuber CNDC on basis of Tuber biomass (per Giletto et al. (2020))
+**Minnesota CtNDC**  
+![](/Users/Brian/UMN Google Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/notes/notes_121520/images/CtNDC.png){width=300px}  
+
+**Giletto CvNDC**  
+![](/Users/Brian/UMN Google Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/notes/notes_121520/images/Giletto-CtNDC.png){width=300px}
+
+#### Tuber CNDC on basis of wholeplant biomass (our original approach)
+
+![](/Users/Brian/UMN Google Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/notes/notes_121520/images/CtNDC-wholeplant.png){width=300px}

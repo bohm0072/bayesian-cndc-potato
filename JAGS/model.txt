@@ -1,0 +1,30 @@
+
+model{
+
+	for (i in 1:Q)
+	{
+		W[i]~dnorm(mu[i],tau_b)	
+		N[i]~dnorm(Nc[Date[i]],tau_n)
+		mu[i]<-min(Bmax[Date[i]],Bmax[Date[i]]+S[Date[i]]*(N[i]-Nc[Date[i]]))
+	}
+
+	for (j in 1:K)
+	{
+		Nc[j]=A1*Bmax[j]^(-A2)
+		Bmax[j]~dnorm(Mu_Bmax,Prec_Bmax)T(0,)
+		S[j]~dnorm(Mu_S,Prec_S)T(0,)
+			}
+
+			#Weakly informative
+			Mu_Bmax~dnorm(10,10)
+			Mu_S~dnorm(5,2)
+			A1~dunif(3,12)
+			A2~dunif(0.2,0.8)
+
+			Prec_Bmax~dgamma(0.001,0.001)
+			Prec_S~dgamma(0.001,0.001)
+			tau_b~dgamma(0.001,0.001)
+			tau_n~dgamma(0.001,0.001)
+			
+}
+
