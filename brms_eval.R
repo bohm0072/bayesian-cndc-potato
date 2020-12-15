@@ -3,6 +3,13 @@ library(brms)
 library(tidybayes)
 library(shinystan)
 
+readRDS("Models/m0001_Bohman_Minnesota_RussetBurbank.rds")
+readRDS("Models/m0002_Bohman_Minnesota_All.rds")
+readRDS("Models/m0003_Giletto_Canada_All.rds")
+readRDS("Models/m0004_Giletto_Argentina_All.rds")
+
+
+
 # m1.0 <- readRDS("Models/model-1_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
 # m1.1 <- readRDS("Models/model-1_Bohman_Minnesota_RussetBurbank.rds")
 # m1.2 <- readRDS("Models/model-1_Bohman_Minnesota_Clearwater.rds")
@@ -19,9 +26,9 @@ library(shinystan)
 
 #m4.0 <- readRDS("Models/model-4_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
 
-m5.0 <- readRDS("Models/model-5_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
-
-m5.0
+# m5.0 <- readRDS("Models/model-5_Bohman_Minnesota_Clearwater-DakotaRusset-Easton-RussetBurbank-Umatilla.rds")
+# 
+# m5.0
 
 # m3.0$fit
 # m3.0$prior
@@ -66,6 +73,7 @@ fmin <- function(x,y){
 
 #get_variables(m5.0)
 
+
 m5.0 %>% 
   spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
   mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
@@ -108,6 +116,50 @@ m5.0 %>%
   compare_levels(variety_alpha2, by = variety) %>% 
   ggplot(aes(x = variety_alpha2, y = variety)) +
   geom_halfeyeh()
+
+# m4.0 %>% 
+#   spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
+#   mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
+#   ggplot(aes(x = variety_alpha1, y = variety)) +
+#   geom_halfeyeh()
+# 
+# m4.0 %>% 
+#   spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
+#   mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) %>% 
+#   ggplot(aes(x = variety_alpha2, y = variety)) +
+#   geom_halfeyeh()
+# 
+# left_join(
+#   m4.0 %>% 
+#     spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
+#     mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1),
+#   m4.0 %>% 
+#     spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
+#     mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2),
+#   by = c(".chain", ".iteration", ".draw", "variety")) %>% 
+#   ggplot(aes(x = variety_alpha1, y = variety_alpha2, color=variety)) +
+#   geom_point(alpha=0.005) +
+#   geom_smooth(formula="y~x",method="lm") +
+#   theme_classic() +
+#   scale_color_brewer(palette = "Set1")
+# 
+# # this is how you would go about calculating the difference between alpha values by variety. instead of Bmax, it would be one of the alpha values, and instead of date, it would be variety. the key here is spread_draws to get the global mean and offset for each group, then mutate to make it into the actual group-level estimate, then compare_levels to get every pairwise difference.
+# m4.0 %>% 
+#   spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
+#   mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
+#   # filter(str_detect(date, "^19")) %>% # this is just for the example since there are too many dates
+#   compare_levels(variety_alpha1, by = variety) %>% 
+#   ggplot(aes(x = variety_alpha1, y = variety)) +
+#   geom_halfeyeh()
+# 
+# m4.0 %>% 
+#   spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
+#   mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) %>% 
+#   # filter(str_detect(date, "^19")) %>% # this is just for the example since there are too many dates
+#   compare_levels(variety_alpha2, by = variety) %>% 
+#   ggplot(aes(x = variety_alpha2, y = variety)) +
+#   geom_halfeyeh()
+
 
 
 
