@@ -107,6 +107,70 @@ m4.0 %>%
   ggplot(aes(x = variety_alpha2, y = variety)) +
   geom_halfeyeh()
 
+
+
+# trying to compare curves ------------------------------------------------
+
+#Nc=alpha1*(W^(-alpha2))
+
+# function to calculate curves for a range of W values
+calc_nc <- function(W = seq(from = 1, to = 10, length.out = 100), alpha1, alpha2){
+  Nc <- alpha1*(W^(-alpha2))
+  d <- tibble(Nc = Nc, W = W)
+  return(d)
+}
+
+# get alpha values for all varieties
+a <- m3.0 %>% 
+  spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,], n = 100, seed = 1) %>% 
+  mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
+  left_join(
+    m3.0 %>% 
+      spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,], n = 100, seed = 1) %>% 
+      mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) 
+  ) %>% 
+  select(.draw, variety, variety_alpha1, variety_alpha2)
+
+# generate Nc estimates for every variety/alpha combination across all W values
+a <- a %>% 
+  rowwise() %>% 
+  mutate(values = list(calc_nc(W = seq(from = 1, to = 10, length.out = 1000), alpha1 = variety_alpha1, alpha2 = variety_alpha2))) %>% 
+  unnest(values)
+
+# plot one curve for each draw+variety combo
+a %>% 
+  ggplot(aes(x = W, y = Nc, color = variety, group = interaction(.draw, variety))) +
+  geom_line(alpha = 0.2) +
+  scale_color_viridis_d() +
+  theme_minimal()
+
+# same as above, but median and 95% credible intervals
+a %>% 
+  group_by(variety, W) %>% 
+  median_hdci(Nc) %>% 
+  ggplot(aes(x = W, y = Nc, color = variety, fill = variety)) +
+  geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.2, color = NA) +
+  geom_line() +
+  scale_color_viridis_d() +
+  scale_fill_viridis_d() +
+  theme_minimal()
+
+# actually calculating the difference between two varieties and plotting that
+a %>% 
+  select(.draw, variety, Nc, W) %>% 
+  filter(variety %in% c("Russet.Burbank", "Easton")) %>% 
+  pivot_wider(names_from = variety, values_from = Nc) %>% 
+  mutate(diff = Russet.Burbank - Easton) %>% 
+  select(.draw, W, diff) %>% 
+  group_by(W) %>% 
+  median_hdci(diff) %>% 
+  ggplot(aes(x = W, y = diff)) +
+  geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.2, color = NA) +
+  geom_line() +
+  theme_minimal() +
+  labs(y = "Diff in Nc between Russet Burbank and Easton")
+
+
 # Model 1.0
 
 get_variables(m1.0)
