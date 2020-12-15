@@ -82,26 +82,26 @@ run_fits <- function(){
   #                   warmup = 2000,
   #                   adapt_delta = 0.99)
 
-  m0003 <- brms_fit(data=data_cndc,
-                    model.name="m0003_Giletto_Canada_All",
-                    index=data_cndc_index %>%
-                      filter(owner=="Giletto") %>%
-                      filter(location=="Canada") %>%
-                      filter(variety%in%c("Russet Burbank","Shepody")) %>%
-                      pull(index),
-                    formula=bf(W ~ fmin(Bmax + Si * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
-                               Bmax + Si ~ 1 + (1|index),
-                               alpha1 + alpha2 ~ 1,
-                               nl = T),
-                    priors=c(set_prior("normal(5.0,0.5)", nlpar = "alpha1", lb = 0),
-                             set_prior("normal(0.40,0.05)", nlpar = "alpha2", lb = 0, ub = 1),
-                             set_prior("normal(12.0,0.1)", nlpar = "Bmax", lb = 1),
-                             set_prior("normal(4.5,0.1)", nlpar = "Si", lb = 0),
-                             set_prior("normal(3.0,0.1)", class = "sd", nlpar = "Bmax"),
-                             set_prior("normal(3.0,0.1)", class = "sd", nlpar = "Si")),
-                    iter = 5000,
-                    warmup = 2000,
-                    adapt_delta = 0.99)
+  # m0003 <- brms_fit(data=data_cndc,
+  #                   model.name="m0003_Giletto_Canada_All",
+  #                   index=data_cndc_index %>%
+  #                     filter(owner=="Giletto") %>%
+  #                     filter(location=="Canada") %>%
+  #                     filter(variety%in%c("Russet Burbank","Shepody")) %>%
+  #                     pull(index),
+  #                   formula=bf(W ~ fmin(Bmax + Si * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
+  #                              Bmax + Si ~ 1 + (1|index),
+  #                              alpha1 + alpha2 ~ 1,
+  #                              nl = T),
+  #                   priors=c(set_prior("normal(5.0,0.5)", nlpar = "alpha1", lb = 0),
+  #                            set_prior("normal(0.40,0.05)", nlpar = "alpha2", lb = 0, ub = 1),
+  #                            set_prior("normal(12.0,0.1)", nlpar = "Bmax", lb = 1),
+  #                            set_prior("normal(4.5,0.1)", nlpar = "Si", lb = 0),
+  #                            set_prior("normal(3.0,0.1)", class = "sd", nlpar = "Bmax"),
+  #                            set_prior("normal(3.0,0.1)", class = "sd", nlpar = "Si")),
+  #                   iter = 5000,
+  #                   warmup = 2000,
+  #                   adapt_delta = 0.99)
   
   # m0004 <- brms_fit(data=data_cndc,
   #                   model.name="m0004_Giletto_Argentina_All",
@@ -124,11 +124,55 @@ run_fits <- function(){
   #                   warmup = 2000,
   #                   adapt_delta = 0.99)
   
+  # m0005 <- brms_fit(data=data_cndc,
+  #                   model.name="m0005_All",
+  #                   index=data_cndc_index %>%
+  #                     pull(index),
+  #                   formula=bf(W ~ fmin(Bmax + Si * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
+  #                              Bmax + Si ~ 1 + (1|index),
+  #                              alpha1 + alpha2 ~ 1,
+  #                              nl = T),
+  #                   priors=c(set_prior("normal(4.5,0.5)", nlpar = "alpha1", lb = 0),
+  #                            set_prior("normal(0.40,0.05)", nlpar = "alpha2", lb = 0, ub = 1),
+  #                            set_prior("normal(10.0,0.1)", nlpar = "Bmax", lb = 1),
+  #                            set_prior("normal(4.5,0.1)", nlpar = "Si", lb = 0),
+  #                            set_prior("normal(4.5,0.1)", class = "sd", nlpar = "Bmax"),
+  #                            set_prior("normal(3.5,0.1)", class = "sd", nlpar = "Si")),
+  #                   iter = 500,
+  #                   warmup = 200,
+  #                   adapt_delta = 0.99)
+  
+  #get_prior(formula, family = gaussian, data = data_cndc)
+  
+  m0006 <- brms_fit(data=data_cndc,
+                    model.name="m0006_All",
+                    index=data_cndc_index %>%
+                      filter(
+                        !(owner=="Bohman"&location=="Minnesota"&variety%in%c("Easton","Russet Burbank"))
+                      ) %>%
+                      pull(index),
+                    formula=bf(W ~ fmin(Bmax + Si * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
+                               Bmax + Si ~ 1 + (1|index),
+                               alpha1 + alpha2 ~ 1 + (1|location:variety),
+                               nl = T),
+                    priors=c(set_prior("normal(4.5,0.1)", class = "sd", nlpar = "Bmax"),
+                             set_prior("normal(3.5,0.1)", class = "sd", nlpar = "Si"),
+                             set_prior("normal(0.12,0.01)", nlpar = "alpha1", class = "sd", group ="location:variety"),
+                             set_prior("normal(0.12,0.01)", nlpar = "alpha2", class = "sd", group ="location:variety"),
+                             set_prior("normal(4.5,0.1)", nlpar = "alpha1", lb = 0),
+                             set_prior("normal(0.40,0.01)", nlpar = "alpha2", lb = 0, ub = 1),
+                             set_prior("normal(10.0,0.1)", nlpar = "Bmax", lb = 1),
+                             set_prior("normal(4.5,0.1)", nlpar = "Si", lb = 0),
+                             set_prior("student_t(3,0,1)", nlpar = "sigma")),
+                    iter = 500,
+                    warmup = 200,
+                    adapt_delta = 0.99)
+  
 }
 
 fits %<-% run_fits()
 
-#test <- function(){
+junk <- function(){
   brm_iter = 5000
   brm_warmup = 2000
   brm_adapt_delta = 0.99

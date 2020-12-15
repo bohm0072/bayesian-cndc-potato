@@ -7,6 +7,8 @@ readRDS("Models/m0001_Bohman_Minnesota_RussetBurbank.rds")
 readRDS("Models/m0002_Bohman_Minnesota_All.rds")
 readRDS("Models/m0003_Giletto_Canada_All.rds")
 readRDS("Models/m0004_Giletto_Argentina_All.rds")
+readRDS("Models/m0005_All.rds")
+readRDS("Models/m0006_All.rds")
 
 
 
