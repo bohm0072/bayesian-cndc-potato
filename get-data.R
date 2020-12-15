@@ -471,6 +471,6 @@ write_csv(d$data, "data.csv")
 write_csv(d$data.sum, "data_sum.csv")
 write_csv(d$data.cndc, "data_cndc.csv")
 write_csv(d$index, "data_index.csv")
-write_csv(d$index.cndc, "data_index_cndc.csv")
+write_csv(d$index.cndc, "data_cndc_index.csv")
 
 ##### END #####
