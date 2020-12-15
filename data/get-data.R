@@ -11,7 +11,7 @@ library(stringr)
 
 f.bohman <- function(){
   
-  source("Scripts/Analysis/Analysis Ready Data.R")
+  source("data/source/Bohman/Analysis Ready Data.R")
   ard <- f.ard()
   
   d <- ard %>%
@@ -39,8 +39,8 @@ bohman <- f.bohman()
 
 f.giletto <- function(){
   
-  appendix_a <- read_excel("Giletto-2020.xlsx", sheet="Appendix A", col_names=F)
-  appendix_b <- read_excel("Giletto-2020.xlsx", sheet="Appendix B", col_names=F)
+  appendix_a <- read_excel("data/source/Giletto/Giletto-2020.xlsx", sheet="Appendix A", col_names=F)
+  appendix_b <- read_excel("data/source/Giletto/Giletto-2020.xlsx", sheet="Appendix B", col_names=F)
   
   # data = "appendix_a"
   # # #measure = "W_sh"
@@ -204,8 +204,8 @@ f.giletto <- function(){
                    f.get.N() %>% select(N_sh,N_t)) %>%
       mutate_at(vars(W_sh,W_t,N_sh,N_t),as.numeric) %>%
       rowwise() %>%
-      mutate(W=sum(W_sh,W_t,na.rm=T)) %>%
-      mutate(N=sum(W_sh*N_sh,W_t*N_t,na.rm=T)/W) %>%
+      mutate(W=sum(W_sh,W_t,na.rm=F)) %>%
+      mutate(N=sum(W_sh*N_sh,W_t*N_t,na.rm=F)/W) %>%
       ungroup() %>%
       mutate(N=round(N,1)) %>%
       rename(rate_n_kgha=n_rate) %>%
@@ -353,15 +353,25 @@ f.cndc <- function(data){
     mutate(index=row_number()) %>%
     relocate(index,.before="owner")
   
+  index <- left_join(
+    index,
+    index %>%
+      select(owner,location,variety) %>%
+      distinct() %>%
+      mutate(group=row_number()),
+    by=c("owner","location","variety")
+  )  %>%
+    relocate(group,.after="index")
+  
   data.0 <- data %>%
     left_join(index,by=c("owner","study","location","variety","date"))  %>%
-    relocate(index,.before="owner")
+    relocate(c(index,group),.before="owner")
   
-  # Summarize number of dates
+  # Summarize number of dates for each group
   data.0.sum <- data.0 %>%
-    select(index,owner,study,location,variety,date) %>%
+    select(group,date) %>%
     distinct() %>%
-    group_by(owner,study,location,variety) %>%
+    group_by(group) %>%
     count() %>%
     ungroup() %>%
     rename(count_0=n)
@@ -371,8 +381,9 @@ f.cndc <- function(data){
   
   data.1.list <- data.0 %>%
     filter(W>=1) %>%
+    filter(N>=0) %>%
     drop_na() %>%
-    group_by(index,owner,study,location,variety,date) %>%
+    group_by(index) %>%
     count() %>%
     ungroup() %>%
     filter(n>=3) %>%
@@ -380,13 +391,12 @@ f.cndc <- function(data){
   
   data.1 <- left_join(data.1.list,
                       data.0,
-                      by = c("index","owner","study","location","variety","date")) %>%
-    select(index,owner,study,year,location,variety,rate_n_kgha,date,W,N)
+                      by = c("index"))
   
   data.1.sum <- data.1 %>%
-    select(index,owner,study,location,variety,date) %>%
+    select(group,date) %>%
     distinct() %>%
-    group_by(owner,study,location,variety) %>%
+    group_by(group) %>%
     count() %>%
     ungroup() %>%
     rename(count_1=n)
@@ -396,44 +406,22 @@ f.cndc <- function(data){
   # sd(W) >= 1.0 Mg/ha
   
   data.2.list <- data.1 %>% 
-    group_by(index,owner,study,location,variety,date) %>%
-    summarize_at(vars(W),lst(mean,sd)) %>%
+    group_by(index) %>%
+    summarize_at(vars(W),list(~mean(.,na.rm=T),~sd(.,na.rm=T))) %>%
     rowwise() %>%
     mutate(cv=sd/mean) %>%
-    ungroup() 
-  
-  screen.2 = "sd"
-  screen.2.value = 1.0 # Mg/ha
-  
-  if (screen.2=="cv"){
-    
-    data.2.list <- data.2.list %>%
-      filter(cv>=screen.2.value) %>%
-      select(-c(mean,sd,cv))
-    
-  } else 
-    if (screen.2=="sd"){
-    
-    data.2.list <- data.2.list %>%
-      filter(sd>=screen.2.value) %>%
-      select(-c(mean,sd))
-    
-  } else 
-    {
-    
-    data.2.list <- NULL
-    
-  }
-  
+    ungroup() %>%
+    filter(cv>=0.10|sd>=1.0) %>%
+    select(-c(mean,sd,cv))
+
   data.2 <- left_join(data.2.list,
                       data.1,
-                      by = c("index","owner","study","location","variety","date")) %>%
-    select(index,owner,study,year,location,variety,rate_n_kgha,date,W,N)
+                      by = c("index"))
   
   data.2.sum <- data.2 %>%
-    select(index,owner,study,location,variety,date) %>%
+    select(group,date) %>%
     distinct() %>%
-    group_by(owner,study,location,variety) %>%
+    group_by(group) %>%
     count() %>%
     ungroup() %>%
     rename(count_2=n)
@@ -441,17 +429,19 @@ f.cndc <- function(data){
   
   # Combined summary
   
-  data.sum <- data.0.sum %>%
-    left_join(data.1.sum, c("owner","study","location","variety")) %>%
-    left_join(data.2.sum, c("owner","study","location","variety")) %>%
-    arrange(owner,location,variety,study)
+  data.sum <- index %>%
+    select(group,owner,location,variety) %>%
+    distinct() %>%
+    left_join(data.0.sum, c("group")) %>%
+    left_join(data.1.sum, c("group")) %>%
+    left_join(data.2.sum, c("group"))
   
   data.cndc <- data.2
   
   index.cndc <- data.cndc %>%
-    select(index,owner,study,location,variety,date) %>%
+    select(index,group,owner,study,location,variety,date) %>%
     distinct() %>%
-    arrange(owner,location,variety,study)
+    arrange(group,index)
   
   out <- list(data=data,
               data.sum=data.sum,
@@ -467,10 +457,10 @@ d <- f.cndc(data)
 
 ##### Export Data #####
 
-write_csv(d$data, "data.csv")
-write_csv(d$data.sum, "data_sum.csv")
-write_csv(d$data.cndc, "data_cndc.csv")
-write_csv(d$index, "data_index.csv")
-write_csv(d$index.cndc, "data_cndc_index.csv")
+write_csv(d$data, "data/analysis/data.csv")
+write_csv(d$data.sum, "data/analysis/data_sum.csv")
+write_csv(d$data.cndc, "data/analysis/data_cndc.csv")
+write_csv(d$index, "data/analysis/data_index.csv")
+write_csv(d$index.cndc, "data/analysis/data_cndc_index.csv")
 
 ##### END #####

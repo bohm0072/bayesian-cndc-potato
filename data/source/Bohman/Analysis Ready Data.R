@@ -8,12 +8,12 @@ f.ard <- function(){
   
   ##### Import Analysis Ready Data #####
   
-  metadata_dates <- read_csv("Data/Formatted/metadata_dates.csv", col_types="cccDDDD")
-  metadata_exp <- read_csv("Data/Formatted/metadata_exp.csv", col_types="cccccc")
-  metadata_trt <- read_csv("Data/Formatted/metadata_trt.csv", col_types="cccccc")
-  metadata_trt_n_cum <- read_csv("Data/Formatted/metadata_trt_n_cum.csv", col_types="ccccDd")
+  metadata_dates <- read_csv("data/source/Bohman/metadata_dates.csv", col_types="cccDDDD")
+  metadata_exp <- read_csv("data/source/Bohman/metadata_exp.csv", col_types="cccccc")
+  metadata_trt <- read_csv("data/source/Bohman/metadata_trt.csv", col_types="cccccc")
+  metadata_trt_n_cum <- read_csv("data/source/Bohman/metadata_trt_n_cum.csv", col_types="ccccDd")
   
-  obs_tissue <- read_csv("Data/Formatted/obs_tissue.csv", col_types="ccccDccd")
+  obs_tissue <- read_csv("data/source/Bohman/obs_tissue.csv", col_types="ccccDccd")
   
   ##### Join Data ####
   

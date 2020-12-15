@@ -5,12 +5,13 @@ library(tidybayes)
 
 # read in model fit results ------------------
 
+# readRDS("brms/models/m0000_Bohman_Minnesota_RussetBurbank.rds")
 # readRDS("brms/models/m0001_Bohman_Minnesota_RussetBurbank.rds")
 # readRDS("brms/models/m0002_Bohman_Minnesota_All.rds")
 # readRDS("brms/models/m0003_Giletto_Canada_All.rds")
 # readRDS("brms/models/m0004_Giletto_Argentina_All.rds")
 # readRDS("brms/models/m0005_All.rds")
-# m0006 <- readRDS("brms/models/m0006_All.rds"); m0006 #model = m0006
+m0006 <- readRDS("brms/models/m0006_All.rds"); m0006 #model = m0006
 
 # pairs(m0006)
 
