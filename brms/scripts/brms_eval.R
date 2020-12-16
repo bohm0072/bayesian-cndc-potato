@@ -3,6 +3,10 @@ library(brms)
 library(tidybayes)
 # library(shinystan)
 
+# read in data -------------------
+data_cndc <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd"); data = data_cndc
+data_cndc_index <- read_csv("data/analysis/data_cndc_index.csv",col_types="ccccccc"); data_index = data_cndc_index
+
 # read in model fit results ------------------
 
 # readRDS("brms/models/m0000_Bohman_Minnesota_RussetBurbank.rds")
@@ -11,7 +15,7 @@ library(tidybayes)
 # readRDS("brms/models/m0003_Giletto_Canada_All.rds")
 # readRDS("brms/models/m0004_Giletto_Argentina_All.rds")
 # readRDS("brms/models/m0005_All.rds")
-m0006 <- readRDS("brms/models/m0006_All.rds"); m0006 #model = m0006
+m0006 <- readRDS("brms/models/m0006_All.rds"); m0006; model = m0006
 
 # pairs(m0006)
 
@@ -22,29 +26,32 @@ fmin <- function(x,y){
   pmin(x,y)
 }
 
-f.eval <- function(model){
+f.eval <- function(model,data){
   
   p1 <- model %>%
-    spread_draws(b_alpha1_Intercept, `r_location:variety__alpha1`[`location:variety`,]) %>%
-    mutate(`location:variety_alpha1` = b_alpha1_Intercept + `r_location:variety__alpha1`) %>%
-    ggplot(aes(x = `location:variety_alpha1`, y = `location:variety`)) +
+    spread_draws(b_alpha1_Intercept, `r_group__alpha1`[`group`,]) %>%
+    mutate(`group_alpha1` = b_alpha1_Intercept + `r_group__alpha1`) %>%
+    mutate_at(vars(group),as.character) %>% 
+    ggplot(aes(x = `group_alpha1`, y = `group`)) +
     stat_halfeye()
 
   p2 <- model %>%
-    spread_draws(b_alpha2_Intercept, `r_location:variety__alpha2`[`location:variety`,]) %>%
-    mutate(`location:variety_alpha2` = b_alpha2_Intercept + `r_location:variety__alpha2`) %>%
-    ggplot(aes(x = `location:variety_alpha2`, y = `location:variety`)) +
+    spread_draws(b_alpha2_Intercept, `r_group__alpha2`[`group`,]) %>%
+    mutate(`group_alpha2` = b_alpha2_Intercept + `r_group__alpha2`) %>%
+    mutate_at(vars(group),as.character) %>% 
+    ggplot(aes(x = `group_alpha2`, y = `group`)) +
     stat_halfeye()
 
   p3 <- left_join(
     model %>%
-      spread_draws(b_alpha1_Intercept, `r_location:variety__alpha1`[`location:variety`,]) %>%
-      mutate(`location:variety_alpha1` = b_alpha1_Intercept + `r_location:variety__alpha1`),
+      spread_draws(b_alpha1_Intercept, `r_group__alpha1`[`group`,]) %>%
+      mutate(`group_alpha1` = b_alpha1_Intercept + `r_group__alpha1`),
     model %>%
-      spread_draws(b_alpha2_Intercept, `r_location:variety__alpha2`[`location:variety`,]) %>%
-      mutate(`location:variety_alpha2` = b_alpha2_Intercept + `r_location:variety__alpha2`),
-    by = c(".chain", ".iteration", ".draw", "location:variety")) %>%
-    ggplot(aes(x = `location:variety_alpha1`, y = `location:variety_alpha2`, color=`location:variety`)) +
+      spread_draws(b_alpha2_Intercept, `r_group__alpha2`[`group`,]) %>%
+      mutate(`group_alpha2` = b_alpha2_Intercept + `r_group__alpha2`),
+    by = c(".chain", ".iteration", ".draw", "group")) %>%
+    mutate_at(vars(group),as.character) %>% 
+    ggplot(aes(x = `group_alpha1`, y = `group_alpha2`, color=`group`)) +
     geom_point(alpha=0.005) +
     geom_smooth(formula="y~x",method="lm") +
     theme_classic() +
@@ -52,34 +59,78 @@ f.eval <- function(model){
 
   # this is how you would go about calculating the difference between alpha values by variety.
   p4 <- model %>%
-    spread_draws(b_alpha1_Intercept, `r_location:variety__alpha1`[`location:variety`,]) %>%
-    mutate(`location:variety_alpha1` = b_alpha1_Intercept + `r_location:variety__alpha1`) %>%
-    compare_levels(`location:variety_alpha1`, by = `location:variety`) %>%
-    ggplot(aes(x = `location:variety_alpha1`, y = `location:variety`)) +
+    spread_draws(b_alpha1_Intercept, `r_group__alpha1`[`group`,]) %>%
+    mutate(`group_alpha1` = b_alpha1_Intercept + `r_group__alpha1`) %>%
+    compare_levels(`group_alpha1`, by = `group`) %>%
+    ggplot(aes(x = `group_alpha1`, y = `group`)) +
     stat_halfeye()
 
   p5 <- model %>%
-    spread_draws(b_alpha2_Intercept, `r_location:variety__alpha2`[`location:variety`,]) %>%
-    mutate(`location:variety_alpha2` = b_alpha2_Intercept + `r_location:variety__alpha2`) %>%
-    compare_levels(`location:variety_alpha2`, by = `location:variety`) %>%
-    ggplot(aes(x = `location:variety_alpha2`, y = `location:variety`)) +
+    spread_draws(b_alpha2_Intercept, `r_group__alpha2`[`group`,]) %>%
+    mutate(`group_alpha2` = b_alpha2_Intercept + `r_group__alpha2`) %>%
+    compare_levels(`group_alpha2`, by = `group`) %>%
+    ggplot(aes(x = `group_alpha2`, y = `group`)) +
     stat_halfeye()
   
   out <- list(p1,p2,p3,p4,p5)
   return(out)
   
-  test <- left_join(
-    model %>%
-      spread_draws(b_Bmax_Intercept, r_index__Bmax[index,]) %>%
-      mutate(index_Bmax = b_Bmax_Intercept + r_index__Bmax),
-    model %>%
-      spread_draws(b_Si_Intercept, r_index__Si[index,]) %>%
-      mutate(index_Si = b_Si_Intercept + r_index__Si),
-    by = c(".chain", ".iteration", ".draw", "index")) %>%
-    select(.chain,.iteration,.draw,index,index_Bmax,index_Si) %>%
-    rowwise() %>%
-    mutate(Nc=index_Bmax/index_Si) %>%
-    ungroup()
+  eval1 <- data %>%
+    left_join(
+      left_join(
+        model %>%
+          spread_draws(b_Bmax_Intercept, r_index__Bmax[index,]) %>%
+          mutate(index_Bmax = b_Bmax_Intercept + r_index__Bmax),
+        model %>%
+          spread_draws(b_Si_Intercept, r_index__Si[index,]) %>%
+          mutate(index_Si = b_Si_Intercept + r_index__Si),
+        by = c(".chain", ".iteration", ".draw", "index")) %>%
+        select(.chain,.iteration,.draw,index,index_Bmax,index_Si) %>%
+        rename(Bmax=index_Bmax,Si=index_Si) %>%
+        mutate_at(vars(index),as.character),
+      by="index") %>% 
+    left_join(
+      left_join(
+        model %>%
+          spread_draws(b_alpha1_Intercept, r_group__alpha1[group,]) %>%
+          mutate(group_alpha1 = b_alpha1_Intercept + r_group__alpha1),
+        model %>%
+          spread_draws(b_alpha2_Intercept, r_group__alpha2[group,]) %>%
+          mutate(group_alpha2 = b_alpha2_Intercept + r_group__alpha2),
+        by = c(".chain", ".iteration", ".draw", "group")) %>%
+        select(.chain,.iteration,.draw,group,group_alpha1,group_alpha2) %>%
+        rename(alpha1=group_alpha1,alpha2=group_alpha2) %>%
+        mutate_at(vars(group),as.character),
+      by=c(".chain",".iteration",".draw","group")) %>%
+    mutate(Nc=alpha1*(Bmax^(-alpha2)))
+  
+  eval2 <- eval1 %>%
+    group_by(index) %>%
+    summarise_at(vars(Bmax,Si,Nc),mean) %>%
+    arrange(as.numeric(index))
+  
+  eval3 <- expand.grid(
+    index=eval2 %>% pull(index),
+    N=seq(0,7,0.1),stringsAsFactors=F
+  ) %>%
+    as_tibble() %>%
+    arrange(as.numeric(index)) %>%
+    left_join(
+      eval2,
+      by="index"
+    ) %>%
+    mutate(W=fmin(Bmax + Si * (N - Nc), Bmax)) 
+  
+  p6 <- eval3 %>%
+    ggplot() +
+    geom_line(aes(x=W,y=N,group=index),alpha=0.25) +
+    theme_classic() +
+    # scale_x_continuous(limits=c(0,50)) +
+    # scale_y_continuous(limits=c(0,6)) +
+    facet_wrap(vars(as.numeric(index))); p6
+  
+  p6 +
+    geom_point(data=data_cndc,aes(x=W,y=N,group=index))
     
   
 }
