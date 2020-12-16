@@ -1,25 +1,23 @@
+# initialization -----------------
+
 library(tidyverse)
 library(brms)
 library(tidybayes)
-# library(shinystan)
 
 # read in data -------------------
-data_cndc <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd"); data = data_cndc
-data_cndc_index <- read_csv("data/analysis/data_cndc_index.csv",col_types="ccccccc"); #data_index = data_cndc_index
+data <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd"); #data = data_cndc
+# data_cndc_index <- read_csv("data/analysis/data_cndc_index.csv",col_types="ccccccc"); #data_index = data_cndc_index
 
 # read in model fit results ------------------
 
-# m0006 <- readRDS("brms/models/m0006_All.rds"); m0006; model = m0006
-m0007 <- readRDS("brms/models/m0007_All.rds"); m0007; model = m0007
-
-# pairs(m0006)
-
-# looking at group level draws --------------------------------------------
+model <- readRDS("brms/models/m0007_All.rds"); model
 
 # the fmin() function used in Stan isn't defined in R, so we need to create it so that when we try to use brms to make predictions, it knows what to do with the fmin()
 fmin <- function(x,y){
   pmin(x,y)
 }
+
+# evaluating model fit  -------------------------------------------
 
 f.eval <- function(model,data){
   
@@ -148,17 +146,119 @@ f.eval <- function(model,data){
     facet_wrap(vars(as.numeric(group))) +
     scale_x_continuous(limits=c(0,NA))
   
-  out <- list(p1,p2,p3,p4,p5,p6,p7,p8,p9)
+  out <- list(p1,
+              p2,
+              # p3,
+              # p4,
+              p5,
+              p6,
+              p7,
+              p8,
+              p9)
   return(out)
     
   
 }
 
-f.eval(m0007,data_cndc)
+# f.eval(model,data_cndc)
 
-# eval[[3]]
+# trying to compare curves ------------------------------------------------
+
+#Nc=alpha1*(W^(-alpha2))
+
+# function to calculate curves for a range of W values
+calc_nc <- function(W = seq(from = 1, to = 10, length.out = 100), alpha1, alpha2){
+  Nc <- alpha1*(W^(-alpha2))
+  d <- tibble(Nc = Nc, W = W)
+  return(d)
+}
+
+# get alpha values for all group (variety x location)
+a <- model %>% 
+  spread_draws(b_alpha1_Intercept, r_group__alpha1[group,], n = 100, seed = 1) %>% 
+  mutate(group_alpha1 = b_alpha1_Intercept + r_group__alpha1) %>% 
+  left_join(
+    model %>% 
+      spread_draws(b_alpha2_Intercept, r_group__alpha2[group,], n = 100, seed = 1) %>% 
+      mutate(group_alpha2 = b_alpha2_Intercept + r_group__alpha2) 
+  ) %>% 
+  select(.draw, group, group_alpha1, group_alpha2)
+
+# generate Nc estimates for every variety/alpha combination across all W values
+a <- a %>% 
+  rowwise() %>% 
+  mutate(values = list(calc_nc(W = seq(from = 1, to = 30, length.out = 3000), alpha1 = group_alpha1, alpha2 = group_alpha2))) %>% 
+  unnest(values)
+
+# plot one curve for each draw+variety combo
+a %>% 
+  ggplot(aes(x = W, y = Nc, color = as.character(group), group = interaction(.draw, group))) +
+  geom_line(alpha = 0.2) +
+  scale_color_viridis_d() +
+  theme_minimal()
+
+# same as above, but median and 95% credible intervals
+a %>% 
+  group_by(group, W) %>% 
+  median_hdci(Nc) %>% 
+  ggplot(aes(x = W, y = Nc, color = as.character(group), fill = as.character(group))) +
+  geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.2, color = NA) +
+  geom_line() +
+  scale_color_viridis_d() +
+  scale_fill_viridis_d() +
+  theme_minimal()
+
+# actually calculating the difference between two varieties and plotting that
+# Group 1: MN Russet Burbank
+# Group 6: Canada Russet Burbank
+
+a %>% 
+  select(.draw, group, Nc, W) %>% 
+  filter(group %in% c("1", "6")) %>% 
+  pivot_wider(names_from = group, values_from = Nc) %>% 
+  mutate(diff = `1` - `6`) %>% 
+  select(.draw, W, diff) %>% 
+  group_by(W) %>% 
+  median_hdci(diff) %>% 
+  ggplot(aes(x = W, y = diff)) +
+  geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.2, color = NA) +
+  geom_line() +
+  theme_minimal() +
+  labs(y = "Diff in Nc between MN Russet Burbank and Canada Russet Burbank")
+
 
 # older stuff -------------------------------------
+
+# actually comparing alpha1 and alpha2 across varieties
+
+# m3.0 %>% 
+#   spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
+#   mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
+#   compare_levels(variety_alpha1, by = variety) %>% 
+#   ggplot(aes(x = variety_alpha1, y = variety)) +
+#   geom_halfeyeh()
+# 
+# m3.0 %>% 
+#   spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
+#   mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) %>% 
+#   compare_levels(variety_alpha2, by = variety) %>% 
+#   ggplot(aes(x = variety_alpha2, y = variety)) +
+#   geom_halfeyeh()
+# 
+# # model 2
+# m2.0 %>% 
+#   spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
+#   mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
+#   compare_levels(variety_alpha1, by = variety) %>% 
+#   ggplot(aes(x = variety_alpha1, y = variety)) +
+#   geom_halfeyeh()
+# 
+# m2.0 %>% 
+#   spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
+#   mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) %>% 
+#   compare_levels(variety_alpha2, by = variety) %>% 
+#   ggplot(aes(x = variety_alpha2, y = variety)) +
+#   geom_halfeyeh()
 
 # m2.0.shiny <- as.shinystan(m2.0$fit)
 # launch_shinystan(m2.0.shiny)
@@ -195,123 +295,27 @@ f.eval(m0007,data_cndc)
 # looks pretty good!!
 
 
-
-# trying to compare curves ------------------------------------------------
-
-#Nc=alpha1*(W^(-alpha2))
-
-# function to calculate curves for a range of W values
-calc_nc <- function(W = seq(from = 1, to = 10, length.out = 100), alpha1, alpha2){
-  Nc <- alpha1*(W^(-alpha2))
-  d <- tibble(Nc = Nc, W = W)
-  return(d)
-}
-
-# get alpha values for all varieties
-a <- m3.0 %>% 
-  spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,], n = 100, seed = 1) %>% 
-  mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
-  left_join(
-    m3.0 %>% 
-      spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,], n = 100, seed = 1) %>% 
-      mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) 
-  ) %>% 
-  select(.draw, variety, variety_alpha1, variety_alpha2)
-
-# generate Nc estimates for every variety/alpha combination across all W values
-a <- a %>% 
-  rowwise() %>% 
-  mutate(values = list(calc_nc(W = seq(from = 1, to = 10, length.out = 1000), alpha1 = variety_alpha1, alpha2 = variety_alpha2))) %>% 
-  unnest(values)
-
-# plot one curve for each draw+variety combo
-a %>% 
-  ggplot(aes(x = W, y = Nc, color = variety, group = interaction(.draw, variety))) +
-  geom_line(alpha = 0.2) +
-  scale_color_viridis_d() +
-  theme_minimal()
-
-# same as above, but median and 95% credible intervals
-a %>% 
-  group_by(variety, W) %>% 
-  median_hdci(Nc) %>% 
-  ggplot(aes(x = W, y = Nc, color = variety, fill = variety)) +
-  geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.2, color = NA) +
-  geom_line() +
-  scale_color_viridis_d() +
-  scale_fill_viridis_d() +
-  theme_minimal()
-
-# actually calculating the difference between two varieties and plotting that
-a %>% 
-  select(.draw, variety, Nc, W) %>% 
-  filter(variety %in% c("Russet.Burbank", "Easton")) %>% 
-  pivot_wider(names_from = variety, values_from = Nc) %>% 
-  mutate(diff = Russet.Burbank - Easton) %>% 
-  select(.draw, W, diff) %>% 
-  group_by(W) %>% 
-  median_hdci(diff) %>% 
-  ggplot(aes(x = W, y = diff)) +
-  geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.2, color = NA) +
-  geom_line() +
-  theme_minimal() +
-  labs(y = "Diff in Nc between Russet Burbank and Easton")
-
-
 # Model 1.0
 
-get_variables(m1.0)
-
-m1.0$prior
-
-m1.0 %>% 
-  spread_draws(b_Bmax_Intercept, r_date__Bmax[date,]) %>% 
-  mutate(date_Bmax = b_Bmax_Intercept + r_date__Bmax) %>% 
-  ggplot(aes(x = date_Bmax, y = date)) +
-  geom_halfeyeh()
-
-# this is how you would go about calculating the difference between alpha values by variety. instead of Bmax, it would be one of the alpha values, and instead of date, it would be variety. the key here is spread_draws to get the global mean and offset for each group, then mutate to make it into the actual group-level estimate, then compare_levels to get every pairwise difference.
-m1.0 %>% 
-  spread_draws(b_Bmax_Intercept, r_date__Bmax[date,]) %>% 
-  mutate(date_Bmax = b_Bmax_Intercept + r_date__Bmax) %>% 
-  filter(str_detect(date, "^19")) %>% # this is just for the example since there are too many dates
-  compare_levels(date_Bmax, by = date) %>% 
-  ggplot(aes(x = date_Bmax, y = date)) +
-  geom_halfeyeh()
-
-
-
-# actually comparing alpha1 and alpha2 across varieties -------------------
-
-
-m3.0 %>% 
-  spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
-  mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
-  compare_levels(variety_alpha1, by = variety) %>% 
-  ggplot(aes(x = variety_alpha1, y = variety)) +
-  geom_halfeyeh()
-
-m3.0 %>% 
-  spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
-  mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) %>% 
-  compare_levels(variety_alpha2, by = variety) %>% 
-  ggplot(aes(x = variety_alpha2, y = variety)) +
-  geom_halfeyeh()
-
-# model 2
-m2.0 %>% 
-  spread_draws(b_alpha1_Intercept, r_variety__alpha1[variety,]) %>% 
-  mutate(variety_alpha1 = b_alpha1_Intercept + r_variety__alpha1) %>% 
-  compare_levels(variety_alpha1, by = variety) %>% 
-  ggplot(aes(x = variety_alpha1, y = variety)) +
-  geom_halfeyeh()
-
-m2.0 %>% 
-  spread_draws(b_alpha2_Intercept, r_variety__alpha2[variety,]) %>% 
-  mutate(variety_alpha2 = b_alpha2_Intercept + r_variety__alpha2) %>% 
-  compare_levels(variety_alpha2, by = variety) %>% 
-  ggplot(aes(x = variety_alpha2, y = variety)) +
-  geom_halfeyeh()
+# get_variables(m1.0)
+# 
+# m1.0$prior
+# 
+# m1.0 %>% 
+#   spread_draws(b_Bmax_Intercept, r_date__Bmax[date,]) %>% 
+#   mutate(date_Bmax = b_Bmax_Intercept + r_date__Bmax) %>% 
+#   ggplot(aes(x = date_Bmax, y = date)) +
+#   geom_halfeyeh()
+# 
+# # this is how you would go about calculating the difference between alpha values by variety. instead of Bmax, it would be one of the alpha values, and instead of date, it would be variety. the key here is spread_draws to get the global mean and offset for each group, then mutate to make it into the actual group-level estimate, then compare_levels to get every pairwise difference.
+# m1.0 %>% 
+#   spread_draws(b_Bmax_Intercept, r_date__Bmax[date,]) %>% 
+#   mutate(date_Bmax = b_Bmax_Intercept + r_date__Bmax) %>% 
+#   filter(str_detect(date, "^19")) %>% # this is just for the example since there are too many dates
+#   compare_levels(date_Bmax, by = date) %>% 
+#   ggplot(aes(x = date_Bmax, y = date)) +
+#   geom_halfeyeh()
 
 
 
+##### END #####
