@@ -4,17 +4,11 @@ library(tidybayes)
 # library(shinystan)
 
 # read in data -------------------
-data_cndc <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd"); data = data_cndc
-data_cndc_index <- read_csv("data/analysis/data_cndc_index.csv",col_types="ccccccc"); data_index = data_cndc_index
+data_cndc <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd"); #data = data_cndc
+data_cndc_index <- read_csv("data/analysis/data_cndc_index.csv",col_types="ccccccc"); #data_index = data_cndc_index
 
 # read in model fit results ------------------
 
-# readRDS("brms/models/m0000_Bohman_Minnesota_RussetBurbank.rds")
-# readRDS("brms/models/m0001_Bohman_Minnesota_RussetBurbank.rds")
-# readRDS("brms/models/m0002_Bohman_Minnesota_All.rds")
-# readRDS("brms/models/m0003_Giletto_Canada_All.rds")
-# readRDS("brms/models/m0004_Giletto_Argentina_All.rds")
-# readRDS("brms/models/m0005_All.rds")
 m0006 <- readRDS("brms/models/m0006_All.rds"); m0006; model = m0006
 
 # pairs(m0006)
@@ -41,8 +35,22 @@ f.eval <- function(model,data){
     mutate_at(vars(group),as.character) %>% 
     ggplot(aes(x = `group_alpha2`, y = `group`)) +
     stat_halfeye()
-
-  p3 <- left_join(
+  
+  p3 <- model %>%
+    spread_draws(b_Bmax_Intercept, `r_index__Bmax`[`index`,]) %>%
+    mutate(`index_Bmax` = b_Bmax_Intercept + `r_index__Bmax`) %>%
+    mutate_at(vars(index),as.character) %>% 
+    ggplot(aes(x = `index_Bmax`, y = `index`)) +
+    stat_halfeye()
+  
+  p4 <- model %>%
+    spread_draws(b_Si_Intercept, `r_index__Si`[`index`,]) %>%
+    mutate(`index_Si` = b_Si_Intercept + `r_index__Si`) %>%
+    mutate_at(vars(index),as.character) %>% 
+    ggplot(aes(x = `index_Si`, y = `index`)) +
+    stat_halfeye()
+  
+  p5 <- left_join(
     model %>%
       spread_draws(b_alpha1_Intercept, `r_group__alpha1`[`group`,]) %>%
       mutate(`group_alpha1` = b_alpha1_Intercept + `r_group__alpha1`),
@@ -52,28 +60,25 @@ f.eval <- function(model,data){
     by = c(".chain", ".iteration", ".draw", "group")) %>%
     mutate_at(vars(group),as.character) %>% 
     ggplot(aes(x = `group_alpha1`, y = `group_alpha2`, color=`group`)) +
-    geom_point(alpha=0.005) +
+    geom_point(alpha=0.01) +
     geom_smooth(formula="y~x",method="lm") +
     theme_classic() +
     scale_color_brewer(palette = "Set1")
 
   # this is how you would go about calculating the difference between alpha values by variety.
-  p4 <- model %>%
+  p6 <- model %>%
     spread_draws(b_alpha1_Intercept, `r_group__alpha1`[`group`,]) %>%
     mutate(`group_alpha1` = b_alpha1_Intercept + `r_group__alpha1`) %>%
     compare_levels(`group_alpha1`, by = `group`) %>%
     ggplot(aes(x = `group_alpha1`, y = `group`)) +
     stat_halfeye()
 
-  p5 <- model %>%
+  p7 <- model %>%
     spread_draws(b_alpha2_Intercept, `r_group__alpha2`[`group`,]) %>%
     mutate(`group_alpha2` = b_alpha2_Intercept + `r_group__alpha2`) %>%
     compare_levels(`group_alpha2`, by = `group`) %>%
     ggplot(aes(x = `group_alpha2`, y = `group`)) +
     stat_halfeye()
-  
-  out <- list(p1,p2,p3,p4,p5)
-  return(out)
   
   eval1 <- data %>%
     left_join(
@@ -121,21 +126,22 @@ f.eval <- function(model,data){
     ) %>%
     mutate(W=fmin(Bmax + Si * (N - Nc), Bmax)) 
   
-  p6 <- eval3 %>%
+  p8 <- eval3 %>%
     ggplot() +
-    geom_line(aes(x=W,y=N,group=index),alpha=0.25) +
+    geom_line(aes(x=W,y=N,group=index),alpha=1.0) +
     theme_classic() +
     # scale_x_continuous(limits=c(0,50)) +
     # scale_y_continuous(limits=c(0,6)) +
-    facet_wrap(vars(as.numeric(index))); p6
+    facet_wrap(vars(as.numeric(index))) +
+    geom_point(data=data_cndc,aes(x=W,y=N,group=index),alpha=0.25)
   
-  p6 +
-    geom_point(data=data_cndc,aes(x=W,y=N,group=index))
+  out <- list(p1,p2,p3,p4,p5,p6,p7,p8)
+  return(out)
     
   
 }
 
-f.eval(m0006)
+eval <- f.eval(m0006,data_cndc)
 
 # older stuff -------------------------------------
 
