@@ -403,7 +403,7 @@ f.cndc <- function(data){
   
   
   # Number of dates meeting screening criteria #2
-  # sd(W) >= 1.0 Mg/ha
+  # Skipping this step to see if we can fit data without it...
   
   data.2.list <- data.1 %>% 
     group_by(index) %>%
@@ -411,7 +411,7 @@ f.cndc <- function(data){
     rowwise() %>%
     mutate(cv=sd/mean) %>%
     ungroup() %>%
-    filter(cv>=0.10) %>%
+    #filter(cv>=0.10) %>%
     #filter(cv>=0.10|sd>=1.0) %>%
     select(-c(mean,sd,cv))
 

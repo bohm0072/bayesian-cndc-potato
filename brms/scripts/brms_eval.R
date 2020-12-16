@@ -4,12 +4,13 @@ library(tidybayes)
 # library(shinystan)
 
 # read in data -------------------
-data_cndc <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd"); #data = data_cndc
+data_cndc <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd"); data = data_cndc
 data_cndc_index <- read_csv("data/analysis/data_cndc_index.csv",col_types="ccccccc"); #data_index = data_cndc_index
 
 # read in model fit results ------------------
 
-m0006 <- readRDS("brms/models/m0006_All.rds"); m0006; model = m0006
+# m0006 <- readRDS("brms/models/m0006_All.rds"); m0006; model = m0006
+m0007 <- readRDS("brms/models/m0007_All.rds"); m0007; model = m0007
 
 # pairs(m0006)
 
@@ -63,7 +64,7 @@ f.eval <- function(model,data){
     geom_point(alpha=0.01) +
     geom_smooth(formula="y~x",method="lm") +
     theme_classic() +
-    scale_color_brewer(palette = "Set1")
+    scale_color_brewer(palette = "Set3")
 
   # this is how you would go about calculating the difference between alpha values by variety.
   p6 <- model %>%
@@ -124,24 +125,38 @@ f.eval <- function(model,data){
       eval2,
       by="index"
     ) %>%
-    mutate(W=fmin(Bmax + Si * (N - Nc), Bmax)) 
+    mutate(W=fmin(Bmax + Si * (N - Nc), Bmax)) %>%
+    left_join(
+      data %>%
+        select(index,group) %>%
+        distinct,
+      by="index"
+      ) %>%
+    relocate(group,.before=index)
   
   p8 <- eval3 %>%
     ggplot() +
     geom_line(aes(x=W,y=N,group=index),alpha=1.0) +
     theme_classic() +
-    # scale_x_continuous(limits=c(0,50)) +
-    # scale_y_continuous(limits=c(0,6)) +
     facet_wrap(vars(as.numeric(index))) +
     geom_point(data=data_cndc,aes(x=W,y=N,group=index),alpha=0.25)
   
-  out <- list(p1,p2,p3,p4,p5,p6,p7,p8)
+  p9 <- eval3 %>%
+    ggplot() +
+    geom_line(aes(x=W,y=N,group=index),alpha=0.5) +
+    theme_classic() +
+    facet_wrap(vars(as.numeric(group))) +
+    scale_x_continuous(limits=c(0,NA))
+  
+  out <- list(p1,p2,p3,p4,p5,p6,p7,p8,p9)
   return(out)
     
   
 }
 
-eval <- f.eval(m0006,data_cndc)
+f.eval(m0007,data_cndc)
+
+# eval[[3]]
 
 # older stuff -------------------------------------
 

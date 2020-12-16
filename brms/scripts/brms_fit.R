@@ -40,26 +40,47 @@ run_fits <- function(){
     
   }
   
-  m0006 <- brms_fit(data=data_cndc,
-                    model.name="m0006_All",
+  # m0006 <- brms_fit(data=data_cndc,
+  #                   model.name="m0006_All",
+  #                   index=data_cndc_index %>%
+  #                     filter(
+  #                       !(owner=="Bohman"&location=="Minnesota"&variety%in%c("Clearwater","Dakota Russet","Umatilla","Easton"))
+  #                     ) %>%
+  #                     pull(index),
+  #                   formula=bf(W ~ fmin(Bmax + abs(Si) * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
+  #                              Bmax + Si ~ 1 + (1|index),
+  #                              alpha1 + alpha2 ~ 1 + (1|group),
+  #                              nl = T),
+  #                   priors=c(set_prior("normal(5.0,0.1)", class = "sd", nlpar = "Bmax", group = "index"),
+  #                            set_prior("normal(1.0,0.1)", class = "sd", nlpar = "Si", group = "index"),
+  #                            set_prior("normal(0.05,0.01)", nlpar = "alpha1", class = "sd", group ="group"),
+  #                            set_prior("normal(0.12,0.01)", nlpar = "alpha2", class = "sd", group ="group"),
+  #                            set_prior("normal(11.0,0.1)", nlpar = "Bmax", lb = 1),
+  #                            set_prior("normal(4.0,0.3)", nlpar = "Si", lb = 0),
+  #                            set_prior("normal(5.0,0.1)", nlpar = "alpha1", lb = 0),
+  #                            set_prior("normal(0.35,0.01)", nlpar = "alpha2", lb = 0, ub = 1),
+  #                            set_prior("student_t(3,1.5,0.1)", class = "sigma")),
+  #                   iter = 500,
+  #                   warmup = 200,
+  #                   adapt_delta = 0.99)
+  
+  m0007 <- brms_fit(data=data_cndc,
+                    model.name="m0007_All",
                     index=data_cndc_index %>%
-                      filter(
-                        !(owner=="Bohman"&location=="Minnesota"&variety%in%c("Clearwater","Dakota Russet","Umatilla","Easton"))
-                      ) %>%
                       pull(index),
                     formula=bf(W ~ fmin(Bmax + abs(Si) * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
                                Bmax + Si ~ 1 + (1|index),
                                alpha1 + alpha2 ~ 1 + (1|group),
                                nl = T),
-                    priors=c(set_prior("normal(5.0,0.1)", class = "sd", nlpar = "Bmax", group = "index"),
-                             set_prior("normal(1.0,0.1)", class = "sd", nlpar = "Si", group = "index"),
+                    priors=c(set_prior("normal(5.2,0.1)", class = "sd", nlpar = "Bmax", group = "index"),
+                             set_prior("normal(1.2,0.1)", class = "sd", nlpar = "Si", group = "index"),
                              set_prior("normal(0.05,0.01)", nlpar = "alpha1", class = "sd", group ="group"),
-                             set_prior("normal(0.12,0.01)", nlpar = "alpha2", class = "sd", group ="group"),
+                             set_prior("normal(0.13,0.01)", nlpar = "alpha2", class = "sd", group ="group"),
                              set_prior("normal(11.0,0.1)", nlpar = "Bmax", lb = 1),
-                             set_prior("normal(4.0,0.3)", nlpar = "Si", lb = 0),
+                             set_prior("normal(5.0,0.3)", nlpar = "Si", lb = 0),
                              set_prior("normal(5.0,0.1)", nlpar = "alpha1", lb = 0),
                              set_prior("normal(0.35,0.01)", nlpar = "alpha2", lb = 0, ub = 1),
-                             set_prior("student_t(3,1.5,0.1)", class = "sigma")),
+                             set_prior("student_t(3,1.3,0.1)", class = "sigma")),
                     iter = 500,
                     warmup = 200,
                     adapt_delta = 0.99)
