@@ -27,6 +27,8 @@ chains = 4, cores = 4)
 
 m8
 
+# write_rds(m8, "brms/models/m8_no_abs_all.rds")
+
 m8 %>%
   spread_draws(b_Si_Intercept, r_index__Si[index,]) %>%
   mutate(index_Si = b_Si_Intercept + r_index__Si) %>%
