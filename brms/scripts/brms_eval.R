@@ -10,7 +10,8 @@ data <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd"); #data =
 
 # read in model fit results ------------------
 
-model <- readRDS("brms/models/m0007_All.rds"); model
+model7 <- readRDS("brms/models/m0007.rds"); model7
+model8 <- readRDS("brms/models/m0008.rds"); model8
 
 # the fmin() function used in Stan isn't defined in R, so we need to create it so that when we try to use brms to make predictions, it knows what to do with the fmin()
 fmin <- function(x,y){
@@ -155,12 +156,13 @@ f.eval <- function(model,data){
               p7,
               p8,
               p9)
+  
   return(out)
     
   
 }
 
-# f.eval(model,data_cndc)
+f.eval(model,data_cndc)
 
 # trying to compare curves ------------------------------------------------
 

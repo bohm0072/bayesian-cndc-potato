@@ -331,15 +331,44 @@ f.giletto <- function(){
     rename(date=Date) %>%
     select(owner,study,year,location,variety,rate_n_kgha,date,W,N)
   
+  return(d)
+  
 }
 
 giletto <- f.giletto()
+
+##### Ben Abdallah Data #####
+# Data from Ben Abdallah et. al (2016), Table 2 and Unpublished - doi:10.1007/s11540-016-9331-y
+
+f.ben_abdallah <- function(){
+  
+  d <- read_xlsx("data/source/Ben Abdallah/Ben Abdallah-2016.xlsx", sheet=2, col_names=T) %>%
+    mutate(owner="Ben Abdallah",
+           location="Belgium") %>%
+    rename(year=Year,
+           date=Date,
+           variety=Cultivar,
+           study=Site,
+           rate_n_kgha=`Applied N (kg/ha)`,
+           W=`Total Biomass        (t DM/ha)`,
+           N=`N%`) %>%
+    mutate_at(vars(date), as_date) %>%
+    mutate_at(vars(owner,study,year,location,variety), as.character) %>%
+    mutate_at(vars(rate_n_kgha,W,N), as.numeric) %>%
+    select(owner,study,year,location,variety,rate_n_kgha,date,W,N)
+  
+  return(d)
+  
+}
+
+ben_abdallah <- f.ben_abdallah()
 
 ##### Combine Data #####
 
 data <- bind_rows(
   bohman,
-  giletto
+  giletto,
+  ben_abdallah
 )
 
 ##### Filter Data for CNDC Fit #####
@@ -377,7 +406,7 @@ f.cndc <- function(data){
     rename(count_0=n)
   
   # Number of dates meeting screening criteria #1
-  # W >= 1.0 Mg/ha for >= 3 points
+  #   W >= 1.0 Mg/ha for >= 3 points
   
   data.1.list <- data.0 %>%
     filter(W>=1) %>%
@@ -403,7 +432,8 @@ f.cndc <- function(data){
   
   
   # Number of dates meeting screening criteria #2
-  # Skipping this step to see if we can fit data without it...
+  #   Skipping this step to see if we can fit data without it...
+  #   Previously, cv or sd threshold for W on a given date
   
   data.2.list <- data.1 %>% 
     group_by(index) %>%
@@ -426,7 +456,6 @@ f.cndc <- function(data){
     count() %>%
     ungroup() %>%
     rename(count_2=n)
-  
   
   # Combined summary
   
