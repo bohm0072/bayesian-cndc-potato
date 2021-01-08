@@ -5,7 +5,7 @@ library(brms)
 library(tidybayes)
 
 # read in data -------------------
-data <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd"); #data = data_cndc
+data <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd"); data_cndc = data
 # data_cndc_index <- read_csv("data/analysis/data_cndc_index.csv",col_types="ccccccc"); #data_index = data_cndc_index
 
 # read in model fit results ------------------
@@ -43,11 +43,25 @@ f.eval <- function(model,data){
     ggplot(aes(x = `index_Bmax`, y = `index`)) +
     stat_halfeye()
   
+  p3.1 <- model %>%
+    spread_draws(b_Bmax_Intercept, `r_index__Bmax`[`index`,]) %>%
+    mutate(`index_Bmax` = b_Bmax_Intercept + `r_index__Bmax`) %>%
+    mutate_at(vars(index),as.character) %>% 
+    ggplot(aes(x = `index_Bmax`)) +
+    stat_halfeye()
+    
   p4 <- model %>%
     spread_draws(b_Si_Intercept, `r_index__Si`[`index`,]) %>%
     mutate(`index_Si` = b_Si_Intercept + `r_index__Si`) %>%
     mutate_at(vars(index),as.character) %>% 
     ggplot(aes(x = `index_Si`, y = `index`)) +
+    stat_halfeye()
+  
+  p4.1 <- model %>%
+    spread_draws(b_Si_Intercept, `r_index__Si`[`index`,]) %>%
+    mutate(`index_Si` = b_Si_Intercept + `r_index__Si`) %>%
+    mutate_at(vars(index),as.character) %>% 
+    ggplot(aes(x = `index_Si`)) +
     stat_halfeye()
   
   p5 <- left_join(
@@ -149,8 +163,10 @@ f.eval <- function(model,data){
   
   out <- list(p1,
               p2,
-              # p3,
-              # p4,
+              p3,
+              p3.1,
+              p4,
+              p4.1,
               p5,
               p6,
               p7,
@@ -162,7 +178,7 @@ f.eval <- function(model,data){
   
 }
 
-f.eval(model,data_cndc)
+eval8 <- f.eval(model8,data_cndc)
 
 # trying to compare curves ------------------------------------------------
 
