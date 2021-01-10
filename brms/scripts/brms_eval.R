@@ -258,13 +258,19 @@ f.eval2 <- function(model,data){
   
   p5 <- left_join(
     model %>%
-      spread_draws(b_alpha1_Intercept, `r_group__alpha1`[`group`,]) %>%
-      mutate(`group_alpha1` = b_alpha1_Intercept + `r_group__alpha1`),
+      spread_draws(b_alpha1_Intercept, `r_location__alpha1`[`location`,], `r_location:variety__alpha1`[`location:variety`,]) %>%
+      rowwise() %>%
+      filter(is.na(str_match(`location:variety`,location))==F) %>%
+      ungroup() %>%
+      mutate(`group_alpha1` = b_alpha1_Intercept + `r_location__alpha1`),
     model %>%
-      spread_draws(b_alpha2_Intercept, `r_group__alpha2`[`group`,]) %>%
-      mutate(`group_alpha2` = b_alpha2_Intercept + `r_group__alpha2`),
-    by = c(".chain", ".iteration", ".draw", "group")) %>%
-    mutate_at(vars(group),as.character) %>% 
+      spread_draws(b_alpha2_Intercept, `r_location__alpha2`[`location`,], `r_location:variety__alpha2`[`location:variety`,]) %>%
+      rowwise() %>%
+      filter(is.na(str_match(`location:variety`,location))==F) %>%
+      ungroup() %>%
+      mutate(`group_alpha2` = b_alpha2_Intercept + `r_location__alpha2`),
+    by = c(".chain", ".iteration", ".draw", "location", "location:variety")) %>%
+    mutate_at(vars(location,`location:variety`),as.character) %>% 
     ggplot(aes(x = `group_alpha1`, y = `group_alpha2`, color=`group`)) +
     geom_point(alpha=0.01) +
     geom_smooth(formula="y~x",method="lm") +
