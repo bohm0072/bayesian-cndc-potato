@@ -271,7 +271,7 @@ f.eval2 <- function(model,data){
       mutate(`group_alpha2` = b_alpha2_Intercept + `r_location__alpha2`),
     by = c(".chain", ".iteration", ".draw", "location", "location:variety")) %>%
     mutate_at(vars(location,`location:variety`),as.character) %>% 
-    ggplot(aes(x = `group_alpha1`, y = `group_alpha2`, color=`group`)) +
+    ggplot(aes(x = `group_alpha1`, y = `group_alpha2`, color=`location:variety`)) +
     geom_point(alpha=0.01) +
     geom_smooth(formula="y~x",method="lm") +
     theme_classic() +
