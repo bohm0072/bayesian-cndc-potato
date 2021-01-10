@@ -228,28 +228,28 @@ f.eval2 <- function(model,data){
     ggplot(aes(x = `group_alpha2`, y = `location`)) +
     stat_halfeye()
   
-  p3 <- model %>%
+  p3.1 <- model %>%
     spread_draws(b_Bmax_Intercept, `r_index__Bmax`[`index`,]) %>%
     mutate(`index_Bmax` = b_Bmax_Intercept + `r_index__Bmax`) %>%
     mutate_at(vars(index),as.character) %>% 
     ggplot(aes(x = `index_Bmax`, y = `index`)) +
     stat_halfeye()
   
-  p3.1 <- model %>%
+  p3.2 <- model %>%
     spread_draws(b_Bmax_Intercept, `r_index__Bmax`[`index`,]) %>%
     mutate(`index_Bmax` = b_Bmax_Intercept + `r_index__Bmax`) %>%
     mutate_at(vars(index),as.character) %>% 
     ggplot(aes(x = `index_Bmax`)) +
     stat_halfeye()
   
-  p4 <- model %>%
+  p4.1 <- model %>%
     spread_draws(b_Si_Intercept, `r_index__Si`[`index`,]) %>%
     mutate(`index_Si` = b_Si_Intercept + `r_index__Si`) %>%
     mutate_at(vars(index),as.character) %>% 
     ggplot(aes(x = `index_Si`, y = `index`)) +
     stat_halfeye()
   
-  p4.1 <- model %>%
+  p4.2 <- model %>%
     spread_draws(b_Si_Intercept, `r_index__Si`[`index`,]) %>%
     mutate(`index_Si` = b_Si_Intercept + `r_index__Si`) %>%
     mutate_at(vars(index),as.character) %>% 
