@@ -12,8 +12,9 @@ data <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd"); data_cn
 
 # model7 <- readRDS("brms/models/m0007.rds"); model7
 # model8 <- readRDS("brms/models/m0008.rds"); model8
-model9 <- readRDS("brms/models/m0009.rds"); model9
+# model9 <- readRDS("brms/models/m0009.rds"); model9
 model10 <- readRDS("brms/models/m0010.rds"); model10
+# model11 <- readRDS("brms/models/m0011.rds"); model11
 
 # the fmin() function used in Stan isn't defined in R, so we need to create it so that when we try to use brms to make predictions, it knows what to do with the fmin()
 fmin <- function(x,y){
@@ -274,8 +275,8 @@ f.eval2 <- function(model,data){
     ggplot(aes(x = `group_alpha1`, y = `group_alpha2`, color=`location:variety`)) +
     geom_point(alpha=0.01) +
     geom_smooth(formula="y~x",method="lm") +
-    theme_classic() +
-    scale_color_brewer(palette = "Set3")
+    theme_classic() #+
+    # scale_color_brewer(palette = "Set3")
   
   # this is how you would go about calculating the difference between alpha values by variety.
   p6 <- model %>%
