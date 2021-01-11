@@ -14,7 +14,7 @@ data <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd"); data_cn
 # model8 <- readRDS("brms/models/m0008.rds"); model8
 # model9 <- readRDS("brms/models/m0009.rds"); model9
 model10 <- readRDS("brms/models/m0010.rds"); model10
-# model10_old2 <- readRDS("brms/models/m0010_old2.rds"); model10_old2
+# model10_old <- readRDS("brms/models/m0010_old.rds"); model10_old
 # model11 <- readRDS("brms/models/m0011.rds"); model11
 
 # the fmin() function used in Stan isn't defined in R, so we need to create it so that when we try to use brms to make predictions, it knows what to do with the fmin()
@@ -26,6 +26,7 @@ fmin <- function(x,y){
 
 # model=model9
 # model=model10
+# model=model10_old
 
 f.eval <- function(model,data){
   
