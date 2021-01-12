@@ -270,16 +270,6 @@ f.giletto <- function(){
         study = list("Giletto")
       ),
       tibble(
-        data = list("appendix_a"),
-        rows = list(c(4:8),c(9:12),c(13:17),c(18:22)),
-        n_rate = list(c("0","80","150","250")),
-        dap = list(c(45,60,75,90,110),c(55,61,83,110),c(47,62,75,91,105),c(45,58,74,95,116)),
-        year = list("2003-04","2004-05","2005-06","2006-07"),
-        variety = list("Innovator"),
-        location = list("Argentina"),
-        study = list("Giletto")
-      ),
-      tibble(
         data = list("appendix_b"),
         rows = list(c(4:13),c(14:23),c(24:32),c(33:42)),
         n_rate = list(c("0","50","100","250")),

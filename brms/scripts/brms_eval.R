@@ -15,9 +15,9 @@ data <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd"); data_cn
 # model9 <- readRDS("brms/models/m0009.rds"); model9
 # model10 <- readRDS("brms/models/m0010.rds"); model10
 # model10_old <- readRDS("brms/models/m0010_old.rds"); model10_old
-model11 <- readRDS("brms/models/m0011_old.rds"); model11
-model12 <- readRDS("brms/models/m0012.rds"); model12
-model13 <- readRDS("brms/models/m0013.rds"); model13
+model11 <- readRDS("brms/models/m0011_old.rds"); model11  
+# model12 <- readRDS("brms/models/m0012.rds"); model12
+# model13 <- readRDS("brms/models/m0013.rds"); model13
 
 # the fmin() function used in Stan isn't defined in R, so we need to create it so that when we try to use brms to make predictions, it knows what to do with the fmin()
 fmin <- function(x,y){
@@ -29,7 +29,7 @@ fmin <- function(x,y){
 # model=model9
 # model=model10
 # model=model10_old
-# model=model11
+model=model11
 # model=model12
 # model=model13
 
@@ -300,7 +300,7 @@ f.eval2 <- function(model,data){
     ggplot(aes(x = `group_alpha2`, y = `group`)) +
     stat_halfeye()
   
-  eval1 <- data %>%
+  eval0 <- data %>%
     left_join(
       left_join(
         model %>%
@@ -313,20 +313,32 @@ f.eval2 <- function(model,data){
         select(.chain,.iteration,.draw,index,index_Bmax,index_Si) %>%
         rename(Bmax=index_Bmax,Si=index_Si) %>%
         mutate_at(vars(index),as.character),
-      by="index") %>% 
+      by="index")
+  
+  eval0$variety.name=str_replace(eval0$variety," ",".")
+  eval0$`location:variety`=paste(eval0$location,"_",eval0$variety.name,sep="")
+  eval0$variety.name <- NULL
+
+  eval1 <- eval0 %>% 
     left_join(
       left_join(
         model %>%
-          spread_draws(b_alpha1_Intercept, r_group__alpha1[group,]) %>%
-          mutate(group_alpha1 = b_alpha1_Intercept + r_group__alpha1),
+          spread_draws(b_alpha1_Intercept, `r_location__alpha1`[`location`,], `r_location:variety__alpha1`[`location:variety`,]) %>%
+          rowwise() %>%
+          filter(is.na(str_match(`location:variety`,location))==F) %>%
+          ungroup() %>%
+          mutate(`location:variety_alpha1` = b_alpha1_Intercept + r_location__alpha1 + `r_location:variety__alpha1`),
         model %>%
-          spread_draws(b_alpha2_Intercept, r_group__alpha2[group,]) %>%
-          mutate(group_alpha2 = b_alpha2_Intercept + r_group__alpha2),
-        by = c(".chain", ".iteration", ".draw", "group")) %>%
-        select(.chain,.iteration,.draw,group,group_alpha1,group_alpha2) %>%
-        rename(alpha1=group_alpha1,alpha2=group_alpha2) %>%
-        mutate_at(vars(group),as.character),
-      by=c(".chain",".iteration",".draw","group")) %>%
+          spread_draws(b_alpha2_Intercept, `r_location__alpha2`[`location`,], `r_location:variety__alpha2`[`location:variety`,]) %>%
+          rowwise() %>%
+          filter(is.na(str_match(`location:variety`,location))==F) %>%
+          ungroup() %>%
+          mutate(`location:variety_alpha2` = b_alpha2_Intercept + r_location__alpha2 + `r_location:variety__alpha2`),
+        by = c(".chain", ".iteration", ".draw", "location", "location:variety"="location:variety")) %>%
+        select(.chain,.iteration,.draw,location,`location:variety`,`location:variety_alpha1`,`location:variety_alpha2`) %>%
+        rename(alpha1=`location:variety_alpha1`,alpha2=`location:variety_alpha2`) %>%
+        mutate_at(vars(`location:variety`),as.character),
+      by=c(".chain", ".iteration", ".draw", "location", "location:variety"="location:variety")) %>%
     mutate(Nc=alpha1*(Bmax^(-alpha2)))
   
   eval2 <- eval1 %>%
@@ -362,7 +374,8 @@ f.eval2 <- function(model,data){
   
   p9 <- eval3 %>%
     ggplot() +
-    geom_line(aes(x=W,y=N,group=index),alpha=0.5) +
+    geom_line(aes(x=W,y=N,group=index),alpha=0.1) +
+    geom_point(data=data_cndc,aes(x=W,y=N,group=index),alpha=0.1) +
     theme_classic() +
     facet_wrap(vars(as.numeric(group))) +
     scale_x_continuous(limits=c(0,NA))
