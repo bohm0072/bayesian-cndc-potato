@@ -40,8 +40,8 @@ run_fits <- function(){
     
   }
   
-  m0011 <- brms_fit(data=data_cndc,
-                    model.name="m0011",
+  model <- brms_fit(data=data_cndc,
+                    model.name="model",
                     index=data_cndc_index %>%
                       pull(index),
                     formula=bf(W ~ fmin(Bmax + Si * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
