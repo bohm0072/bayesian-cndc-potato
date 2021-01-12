@@ -48,7 +48,7 @@ run_fits <- function(){
                                Bmax + Si ~ 1 + (1|index),
                                alpha1 + alpha2 ~ 1 + (1|location/variety),
                                nl = T),
-                    priors=c(set_prior("normal(6.8,0.1)", class = "sd", nlpar = "Bmax", group = "index"),
+                    priors=c(set_prior("normal(7.0,1.0)", class = "sd", nlpar = "Bmax", group = "index"),
                              set_prior("normal(1.0,0.1)", class = "sd", nlpar = "Si", group = "index"),
                              set_prior("normal(0.10,0.02)", nlpar = "alpha1", class = "sd", group ="location"),
                              set_prior("normal(0.05,0.02)", nlpar = "alpha2", class = "sd", group ="location"),
