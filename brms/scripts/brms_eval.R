@@ -5,13 +5,12 @@ library(brms)
 library(tidybayes)
 
 # read in data -------------------
-data <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd"); #data = data_cndc
+data <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd"); data_cndc = data
 # data_cndc_index <- read_csv("data/analysis/data_cndc_index.csv",col_types="ccccccc"); #data_index = data_cndc_index
 
 # read in model fit results ------------------
 
-model7 <- readRDS("brms/models/m0007.rds"); model7
-model8 <- readRDS("brms/models/m0008.rds"); model8
+model <- readRDS("brms/models/model_old.rds"); model
 
 # the fmin() function used in Stan isn't defined in R, so we need to create it so that when we try to use brms to make predictions, it knows what to do with the fmin()
 fmin <- function(x,y){
@@ -22,49 +21,95 @@ fmin <- function(x,y){
 
 f.eval <- function(model,data){
   
-  p1 <- model %>%
-    spread_draws(b_alpha1_Intercept, `r_group__alpha1`[`group`,]) %>%
-    mutate(`group_alpha1` = b_alpha1_Intercept + `r_group__alpha1`) %>%
-    mutate_at(vars(group),as.character) %>% 
-    ggplot(aes(x = `group_alpha1`, y = `group`)) +
-    stat_halfeye()
-
-  p2 <- model %>%
-    spread_draws(b_alpha2_Intercept, `r_group__alpha2`[`group`,]) %>%
-    mutate(`group_alpha2` = b_alpha2_Intercept + `r_group__alpha2`) %>%
-    mutate_at(vars(group),as.character) %>% 
-    ggplot(aes(x = `group_alpha2`, y = `group`)) +
+  p1.1 <- model %>%
+    spread_draws(b_alpha1_Intercept, `r_location__alpha1`[`location`,], `r_location:variety__alpha1`[`location:variety`,]) %>%
+    rowwise() %>%
+    filter(is.na(str_match(`location:variety`,location))==F) %>%
+    ungroup() %>%
+    mutate(`group_alpha1` = b_alpha1_Intercept + `r_location__alpha1` + `r_location:variety__alpha1`) %>%
+    mutate_at(vars(`location:variety`),as.character) %>%
+    ggplot(aes(x = `group_alpha1`, y = `location:variety`)) +
     stat_halfeye()
   
-  p3 <- model %>%
+  p1.2 <- model %>%
+    spread_draws(b_alpha1_Intercept, `r_location__alpha1`[`location`,], `r_location:variety__alpha1`[`location:variety`,]) %>%
+    rowwise() %>%
+    filter(is.na(str_match(`location:variety`,location))==F) %>%
+    ungroup() %>%
+    mutate(`group_alpha1` = b_alpha1_Intercept + `r_location__alpha1`) %>%
+    mutate_at(vars(location),as.character) %>%
+    ggplot(aes(x = `group_alpha1`, y = `location`)) +
+    stat_halfeye()
+  
+  p2.1 <- model %>%
+    spread_draws(b_alpha2_Intercept, `r_location__alpha2`[`location`,], `r_location:variety__alpha2`[`location:variety`,]) %>%
+    rowwise() %>%
+    filter(is.na(str_match(`location:variety`,location))==F) %>%
+    ungroup() %>%
+    mutate(`group_alpha2` = b_alpha2_Intercept + `r_location__alpha2` + `r_location:variety__alpha2`) %>%
+    mutate_at(vars(`location:variety`),as.character) %>%
+    ggplot(aes(x = `group_alpha2`, y = `location:variety`)) +
+    stat_halfeye()
+  
+  p2.2 <- model %>%
+    spread_draws(b_alpha2_Intercept, `r_location__alpha2`[`location`,], `r_location:variety__alpha2`[`location:variety`,]) %>%
+    rowwise() %>%
+    filter(is.na(str_match(`location:variety`,location))==F) %>%
+    ungroup() %>%
+    mutate(`group_alpha2` = b_alpha2_Intercept + `r_location__alpha2`) %>%
+    mutate_at(vars(location),as.character) %>%
+    ggplot(aes(x = `group_alpha2`, y = `location`)) +
+    stat_halfeye()
+  
+  p3.1 <- model %>%
     spread_draws(b_Bmax_Intercept, `r_index__Bmax`[`index`,]) %>%
     mutate(`index_Bmax` = b_Bmax_Intercept + `r_index__Bmax`) %>%
     mutate_at(vars(index),as.character) %>% 
     ggplot(aes(x = `index_Bmax`, y = `index`)) +
     stat_halfeye()
   
-  p4 <- model %>%
+  p3.2 <- model %>%
+    spread_draws(b_Bmax_Intercept, `r_index__Bmax`[`index`,]) %>%
+    mutate(`index_Bmax` = b_Bmax_Intercept + `r_index__Bmax`) %>%
+    mutate_at(vars(index),as.character) %>% 
+    ggplot(aes(x = `index_Bmax`)) +
+    stat_halfeye()
+  
+  p4.1 <- model %>%
     spread_draws(b_Si_Intercept, `r_index__Si`[`index`,]) %>%
     mutate(`index_Si` = b_Si_Intercept + `r_index__Si`) %>%
     mutate_at(vars(index),as.character) %>% 
     ggplot(aes(x = `index_Si`, y = `index`)) +
     stat_halfeye()
   
+  p4.2 <- model %>%
+    spread_draws(b_Si_Intercept, `r_index__Si`[`index`,]) %>%
+    mutate(`index_Si` = b_Si_Intercept + `r_index__Si`) %>%
+    mutate_at(vars(index),as.character) %>% 
+    ggplot(aes(x = `index_Si`)) +
+    stat_halfeye()
+  
   p5 <- left_join(
     model %>%
-      spread_draws(b_alpha1_Intercept, `r_group__alpha1`[`group`,]) %>%
-      mutate(`group_alpha1` = b_alpha1_Intercept + `r_group__alpha1`),
+      spread_draws(b_alpha1_Intercept, `r_location__alpha1`[`location`,], `r_location:variety__alpha1`[`location:variety`,]) %>%
+      rowwise() %>%
+      filter(is.na(str_match(`location:variety`,location))==F) %>%
+      ungroup() %>%
+      mutate(`group_alpha1` = b_alpha1_Intercept + `r_location__alpha1`),
     model %>%
-      spread_draws(b_alpha2_Intercept, `r_group__alpha2`[`group`,]) %>%
-      mutate(`group_alpha2` = b_alpha2_Intercept + `r_group__alpha2`),
-    by = c(".chain", ".iteration", ".draw", "group")) %>%
-    mutate_at(vars(group),as.character) %>% 
-    ggplot(aes(x = `group_alpha1`, y = `group_alpha2`, color=`group`)) +
+      spread_draws(b_alpha2_Intercept, `r_location__alpha2`[`location`,], `r_location:variety__alpha2`[`location:variety`,]) %>%
+      rowwise() %>%
+      filter(is.na(str_match(`location:variety`,location))==F) %>%
+      ungroup() %>%
+      mutate(`group_alpha2` = b_alpha2_Intercept + `r_location__alpha2`),
+    by = c(".chain", ".iteration", ".draw", "location", "location:variety")) %>%
+    mutate_at(vars(location,`location:variety`),as.character) %>% 
+    ggplot(aes(x = `group_alpha1`, y = `group_alpha2`, color=`location:variety`)) +
     geom_point(alpha=0.01) +
     geom_smooth(formula="y~x",method="lm") +
-    theme_classic() +
-    scale_color_brewer(palette = "Set3")
-
+    theme_classic() #+
+    # scale_color_brewer(palette = "Set3")
+  
   # this is how you would go about calculating the difference between alpha values by variety.
   p6 <- model %>%
     spread_draws(b_alpha1_Intercept, `r_group__alpha1`[`group`,]) %>%
@@ -72,7 +117,7 @@ f.eval <- function(model,data){
     compare_levels(`group_alpha1`, by = `group`) %>%
     ggplot(aes(x = `group_alpha1`, y = `group`)) +
     stat_halfeye()
-
+  
   p7 <- model %>%
     spread_draws(b_alpha2_Intercept, `r_group__alpha2`[`group`,]) %>%
     mutate(`group_alpha2` = b_alpha2_Intercept + `r_group__alpha2`) %>%
@@ -80,7 +125,7 @@ f.eval <- function(model,data){
     ggplot(aes(x = `group_alpha2`, y = `group`)) +
     stat_halfeye()
   
-  eval1 <- data %>%
+  eval0 <- data %>%
     left_join(
       left_join(
         model %>%
@@ -93,20 +138,32 @@ f.eval <- function(model,data){
         select(.chain,.iteration,.draw,index,index_Bmax,index_Si) %>%
         rename(Bmax=index_Bmax,Si=index_Si) %>%
         mutate_at(vars(index),as.character),
-      by="index") %>% 
+      by="index")
+  
+  eval0$variety.name=str_replace(eval0$variety," ",".")
+  eval0$`location:variety`=paste(eval0$location,"_",eval0$variety.name,sep="")
+  eval0$variety.name <- NULL
+
+  eval1 <- eval0 %>% 
     left_join(
       left_join(
         model %>%
-          spread_draws(b_alpha1_Intercept, r_group__alpha1[group,]) %>%
-          mutate(group_alpha1 = b_alpha1_Intercept + r_group__alpha1),
+          spread_draws(b_alpha1_Intercept, `r_location__alpha1`[`location`,], `r_location:variety__alpha1`[`location:variety`,]) %>%
+          rowwise() %>%
+          filter(is.na(str_match(`location:variety`,location))==F) %>%
+          ungroup() %>%
+          mutate(`location:variety_alpha1` = b_alpha1_Intercept + r_location__alpha1 + `r_location:variety__alpha1`),
         model %>%
-          spread_draws(b_alpha2_Intercept, r_group__alpha2[group,]) %>%
-          mutate(group_alpha2 = b_alpha2_Intercept + r_group__alpha2),
-        by = c(".chain", ".iteration", ".draw", "group")) %>%
-        select(.chain,.iteration,.draw,group,group_alpha1,group_alpha2) %>%
-        rename(alpha1=group_alpha1,alpha2=group_alpha2) %>%
-        mutate_at(vars(group),as.character),
-      by=c(".chain",".iteration",".draw","group")) %>%
+          spread_draws(b_alpha2_Intercept, `r_location__alpha2`[`location`,], `r_location:variety__alpha2`[`location:variety`,]) %>%
+          rowwise() %>%
+          filter(is.na(str_match(`location:variety`,location))==F) %>%
+          ungroup() %>%
+          mutate(`location:variety_alpha2` = b_alpha2_Intercept + r_location__alpha2 + `r_location:variety__alpha2`),
+        by = c(".chain", ".iteration", ".draw", "location", "location:variety"="location:variety")) %>%
+        select(.chain,.iteration,.draw,location,`location:variety`,`location:variety_alpha1`,`location:variety_alpha2`) %>%
+        rename(alpha1=`location:variety_alpha1`,alpha2=`location:variety_alpha2`) %>%
+        mutate_at(vars(`location:variety`),as.character),
+      by=c(".chain", ".iteration", ".draw", "location", "location:variety"="location:variety")) %>%
     mutate(Nc=alpha1*(Bmax^(-alpha2)))
   
   eval2 <- eval1 %>%
@@ -130,7 +187,7 @@ f.eval <- function(model,data){
         select(index,group) %>%
         distinct,
       by="index"
-      ) %>%
+    ) %>%
     relocate(group,.before=index)
   
   p8 <- eval3 %>%
@@ -142,15 +199,18 @@ f.eval <- function(model,data){
   
   p9 <- eval3 %>%
     ggplot() +
-    geom_line(aes(x=W,y=N,group=index),alpha=0.5) +
+    geom_line(aes(x=W,y=N,group=index),alpha=0.1) +
+    geom_point(data=data_cndc,aes(x=W,y=N,group=index),alpha=0.1) +
     theme_classic() +
     facet_wrap(vars(as.numeric(group))) +
     scale_x_continuous(limits=c(0,NA))
   
   out <- list(p1,
               p2,
-              # p3,
-              # p4,
+              p3,
+              p3.1,
+              p4,
+              p4.1,
               p5,
               p6,
               p7,
@@ -158,11 +218,11 @@ f.eval <- function(model,data){
               p9)
   
   return(out)
-    
+  
   
 }
 
-f.eval(model,data_cndc)
+eval10 <- f.eval2(model9,data_cndc)
 
 # trying to compare curves ------------------------------------------------
 
