@@ -7,6 +7,9 @@ library(gtable)
 library(grid)
 library(gridExtra)
 library(egg)
+library(ggExtra)
+library(ggpubr)
+
 
 # read in data -------------------
 data <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd")#; data_cndc = data
@@ -171,31 +174,68 @@ cndc.fit.sum <- f.cndc.fit.sum(cndc.fit)
 
 f.plateau.fit.sum <- function(plateau.fit){
   
-  plateau.fit.sum <- bind_rows(
-    plateau.fit %>%
-      mutate(W=Bmax,
-             N=Nc) %>%
-      group_by(location,variety,`location:variety`,index) %>%
-      summarize_at(vars(W,N),~quantile(.,c(0.50)), prob = c(0.50), .groups="drop"),
-    plateau.fit %>%
-      mutate(W=Bmax,
-             N=7.0) %>%
-      group_by(location,variety,`location:variety`,index) %>%
-      summarize_at(vars(W,N),~quantile(.,c(0.50)), prob = c(0.50), .groups="drop"),
-    plateau.fit %>%
-      mutate(W=Bmax + Si * (0-Nc),
-             N=0) %>%
-      group_by(location,variety,`location:variety`,index) %>%
-      summarize_at(vars(W,N),~quantile(.,c(0.50)), prob = c(0.50), .groups="drop")
-  ) %>%
-    ungroup() %>%
-    mutate_at(vars(W,N),as.numeric) %>%
-    rename(W_0.5=W,N_0.5=N) %>%
-    arrange(location,variety) %>%
-    mutate_at(vars(variety,location,`location:variety`), ~as_factor(.)) %>%
-    mutate_at(vars(variety,location,`location:variety`), ~fct_inorder(.))
+  f.plateau.fit.quantile <- function(q){
+    
+    var1 <- paste("W",q,sep="_")
+    var2 <- paste("N",q,sep="_")
+    
+    bind_rows(
+      plateau.fit %>%
+        mutate(W=Bmax,
+               N=Nc) %>%
+        group_by(location,variety,`location:variety`,index) %>%
+        summarize_at(vars(W,N),~quantile(.,c(q)), prob = c(q), .groups="drop"),
+        # summarize_at(vars(W,N),~quantile(.,c(0.50)), prob = c(0.50), .groups="drop"),
+      plateau.fit %>%
+        mutate(W=Bmax,
+               N=7.0) %>%
+        group_by(location,variety,`location:variety`,index) %>%
+        summarize_at(vars(W,N),~quantile(.,c(q)), prob = c(q), .groups="drop"),
+      plateau.fit %>%
+        mutate(W=Bmax + Si * (0-Nc),
+               N=0) %>%
+        group_by(location,variety,`location:variety`,index) %>%
+        summarize_at(vars(W,N),~quantile(.,c(q)), prob = c(q), .groups="drop")
+    ) %>%
+      ungroup() %>%
+      mutate_at(vars(W,N),as.numeric) %>%
+      rename(!!sym(var1):=W,!!sym(var2):=N) %>%
+      # rename(W_0.5=W,N_0.5=N) %>%
+      arrange(location,variety) %>%
+      mutate_at(vars(variety,location,`location:variety`), ~as_factor(.)) %>%
+      mutate_at(vars(variety,location,`location:variety`), ~fct_inorder(.))
+    
+  }
+  
+  plateau.fit.sum <- f.plateau.fit.quantile(0.5) %>%
+    left_join(f.plateau.fit.quantile(0.05), c("location", "variety", "location:variety", "index")) %>%
+    left_join(f.plateau.fit.quantile(0.95), c("location", "variety", "location:variety", "index"))
   
   return(plateau.fit.sum)
+  
+  # plateau.fit.sum <- bind_rows(
+  #   plateau.fit %>%
+  #     mutate(W=Bmax,
+  #            N=Nc) %>%
+  #     group_by(location,variety,`location:variety`,index) %>%
+  #     summarize_at(vars(W,N),~quantile(.,c(0.50)), prob = c(0.50), .groups="drop"),
+  #   plateau.fit %>%
+  #     mutate(W=Bmax,
+  #            N=7.0) %>%
+  #     group_by(location,variety,`location:variety`,index) %>%
+  #     summarize_at(vars(W,N),~quantile(.,c(0.50)), prob = c(0.50), .groups="drop"),
+  #   plateau.fit %>%
+  #     mutate(W=Bmax + Si * (0-Nc),
+  #            N=0) %>%
+  #     group_by(location,variety,`location:variety`,index) %>%
+  #     summarize_at(vars(W,N),~quantile(.,c(0.50)), prob = c(0.50), .groups="drop")
+  # ) %>%
+  #   ungroup() %>%
+  #   mutate_at(vars(W,N),as.numeric) %>%
+  #   rename(W_0.5=W,N_0.5=N) %>%
+  #   arrange(location,variety) %>%
+  #   mutate_at(vars(variety,location,`location:variety`), ~as_factor(.)) %>%
+  #   mutate_at(vars(variety,location,`location:variety`), ~fct_inorder(.))
   
 }
 plateau.fit.sum <- f.plateau.fit.sum(plateau.fit)
@@ -345,18 +385,90 @@ fig2 <- f.fig2(plot.data)
 
 # figure 3 - distribution of alpha parameters for each parameters simultaneously ----------------
 
-f.fig3 <- function(cndc.fit){
+# .location = "Minnesota"
+# .variety = "Russet Burbank"
+# .color = "#e41a1c"
+
+f.fig3 <- function(cndc.fit,.location,.variety,.color){
+  
+  var1 <- expression(paste("parameter ", italic("a"), sep=" "))
+  var2 <- expression(paste("parameter ", italic("b"), sep=" "))
+  var3 <- paste(.location,.variety,sep=" - ")
   
   d <- cndc.fit %>%
-    select(-`location:variety`)
+    # select(-`location:variety`)
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety)
   
-  p1 <- ggplot() +
-    geom_point(data = d, aes(x=`location:variety_alpha1`, y=`location:variety_alpha2`), alpha=0.01, color="grey") +
-    geom_point(data = cndc.fit, aes(x=`location:variety_alpha1`, y=`location:variety_alpha2`, color=`location:variety`), alpha=0.01) +
-    facet_wrap(vars(`location:variety`)) +
-    theme_classic()
+  p1 <- ggplot(data = d, aes(x=`location:variety_alpha1`, y=`location:variety_alpha2`, color=`location:variety`)) +
+    geom_point(alpha=0.01) +
+    # geom_smooth(method="lm",formula=y~x) +
+    geom_smooth(method="lm",formula=y~x,color="black",size=0.5) + #,color="black",linetype=2
+    stat_regline_equation(color="black",size=2) +
+    theme_classic() +
+    scale_color_manual(values = .color) +
+    # scale_color_brewer(palette = "Set1") +
+    scale_x_continuous(limits=c(4.0,5.5)) + 
+    scale_y_continuous(limits=c(0.01,0.7)) +
+    guides(color="none") +
+    labs(x=var1,
+         y=var2,
+         title=var3)
+  
+    # geom_point(data = d, aes(x=`location:variety_alpha1`, y=`location:variety_alpha2`), alpha=0.01, color="grey") +
+    # facet_wrap(vars(`location:variety`)) +
+    # scale_color_manual(values=c("#E41A1C","#377EB8","#4DAF4A","#984EA3","#FF7F00","#FFFF33","#A65628","#F781BF","#999999","#1B9E77","#D95F02","#7570B3","#E7298A","#66A61E","#E6AB02","#A6761D","#666666")) # +
+    # coord_cartesian(xlim=c(4.0,5.5),ylim=c(0.1,0.7))
+  
+  p2 <- ggMarginal(p1, type="density", data = cndc.fit, groupColour = T)
+  
+  return(p2)
   
 }
+fig3_a <- f.fig3(cndc.fit,.location=c("Argentina"),.variety=c("Bannock Russet"),.color="#e41a1c")
+ggsave(filename="manuscript/images/figure3_a.pdf",plot=fig3_a,height=1.5,width=1.5,units="in",scale=2.5)
+
+fig3_b <- f.fig3(cndc.fit,.location=c("Argentina"),.variety=c("Gem Russet"),.color="#377eb8")
+ggsave(filename="manuscript/images/figure3_b.pdf",plot=fig3_b,height=1.5,width=1.5,units="in",scale=2.5)
+
+appx1_b <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Gem Russet"))
+ggsave(filename="manuscript/images/appendix1_b.pdf",plot=appx1_b,height=5*(3.4/7),width=6,units="in",scale=1.5)
+
+appx1_c <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Innovator"))
+ggsave(filename="manuscript/images/appendix1_c.pdf",plot=appx1_c,height=5*(3.4/7),width=6,units="in",scale=1.5)
+
+appx1_d <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Markies Russet"))
+ggsave(filename="manuscript/images/appendix1_d.pdf",plot=appx1_d,height=5*(2.5/7),width=6,units="in",scale=1.5)
+
+appx1_e <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Umatilla Russet"))
+ggsave(filename="manuscript/images/appendix1_e.pdf",plot=appx1_e,height=5*(2.5/7),width=6,units="in",scale=1.5)
+
+appx1_f <- f.appx1(plot.data,.location=c("Belgium"),.variety=c("Bintje"))
+ggsave(filename="manuscript/images/appendix1_f.pdf",plot=appx1_f,height=5*(7/7),width=6,units="in",scale=1.5)
+
+appx1_g <- f.appx1(plot.data,.location=c("Belgium"),.variety=c("Charlotte"))
+ggsave(filename="manuscript/images/appendix1_g.pdf",plot=appx1_g,height=5*(3.4/7),width=6,units="in",scale=1.5)
+
+appx1_h <- f.appx1(plot.data,.location=c("Canada"),.variety=c("Russet Burbank"))
+ggsave(filename="manuscript/images/appendix1_h.pdf",plot=appx1_h,height=5*(4.3/7),width=6,units="in",scale=1.5)
+
+appx1_i <- f.appx1(plot.data,.location=c("Canada"),.variety=c("Shepody"))
+ggsave(filename="manuscript/images/appendix1_i.pdf",plot=appx1_i,height=5*(4.3/7),width=6,units="in",scale=1.5)
+
+appx1_j <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Clearwater"))
+ggsave(filename="manuscript/images/appendix1_j.pdf",plot=appx1_j,height=5*(2.5/7),width=6,units="in",scale=1.5)
+
+appx1_k <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Dakota Russet"))
+ggsave(filename="manuscript/images/appendix1_k.pdf",plot=appx1_k,height=5*(2.5/7),width=6,units="in",scale=1.5)
+
+appx1_l <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Easton"))
+ggsave(filename="manuscript/images/appendix1_l.pdf",plot=appx1_l,height=5*(2.5/7),width=6,units="in",scale=1.5)
+
+appx1_m <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Russet Burbank"))
+ggsave(filename="manuscript/images/appendix1_m.pdf",plot=appx1_m,height=5*(7/7),width=6,units="in",scale=1.5)
+
+appx1_n <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Umatilla"))
+ggsave(filename="manuscript/images/appendix1_n.pdf",plot=appx1_n,height=5*(2.5/7),width=6,units="in",scale=1.5)
 
 # appendix 1 - plateau model fit with point data for each date shown for each variety x location ------------------
 
@@ -385,6 +497,8 @@ f.appx1 <- function(plot.data,.location,.variety){
     # geom_line(data=c,aes(x=W,y=N_0.05),linetype=2,alpha=0.5) +
     # geom_line(data=c,aes(x=W,y=N_0.95),linetype=2,alpha=0.5) +
     geom_line(data=p,aes(x=W_0.5,y=N_0.5,group=index),linetype=1,alpha=0.5) +
+    # geom_line(data=p,aes(x=W_0.05,y=N_0.05,group=index),linetype=2,alpha=0.3) +
+    # geom_line(data=p,aes(x=W_0.95,y=N_0.95,group=index),linetype=2,alpha=0.3) +
     geom_point(data=d,aes(x=W,y=N),alpha=0.33) +
     # facet_wrap(vars(`location:variety`,index)) +
     facet_wrap(vars(as.numeric(index)),ncol=8) +
