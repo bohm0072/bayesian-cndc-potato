@@ -257,9 +257,6 @@ plot.data <- f.plot.data(data,cndc.fit.sum,plateau.fit.sum,Bmax.sum)
 
 f.fig1 <- function(cndc.fit,parm){
   
-  # var1 <- paste("b_",parm,"_Intercept",sep="")
-  # var2 <- paste("r_location__",parm,sep="")
-  # var3 <- paste("r_location:variety__",parm,sep="")
   var4 <- paste("location_",parm,sep="")
   var5 <- paste("location:variety_",parm,sep="")
   
@@ -272,30 +269,6 @@ f.fig1 <- function(cndc.fit,parm){
     parm == "alpha1" ~ expression(paste("parameter ", italic("a"), sep=" ")),
     parm == "alpha2" ~ expression(paste("parameter ", italic("b"), sep=" "))
   )
-  
-  # d <- model %>%
-  #   spread_draws(
-  #     !!sym(var1),
-  #     (!!sym(var2))[!!sym("location"),],
-  #     (!!sym(var3))[!!sym("location:variety"),]
-  #     ) %>%
-  #   rowwise() %>%
-  #   filter(is.na(str_match(`location:variety`,location))==F) %>%
-  #   ungroup() %>%
-  #   mutate(!!sym(var4) := !!sym(var1) + !!sym(var2)) %>%
-  #   mutate(!!sym(var5) := !!sym(var1) + !!sym(var2) + !!sym(var3)) %>%
-  #   mutate_at(vars(location,`location:variety`),as.character) 
-  # 
-  # d <- d %>%
-  #   mutate(variety=str_split(d$`location:variety`,"_",simplify=T)[,2]) %>% 
-  #   rowwise() %>%
-  #   mutate_at(vars(variety),~str_replace(.,"[.]"," ")) %>%
-  #   ungroup()
-  # 
-  # d <- d %>%
-  #   arrange(location,variety) %>%
-  #   mutate_at(vars(variety,location), ~as_factor(.)) %>%
-  #   mutate_at(vars(variety,location), ~fct_inorder(.))
   
   p1 <- cndc.fit %>%
     ggplot(aes(x = !!sym(var5), y = reorder(variety, desc(variety)))) +
@@ -371,6 +344,19 @@ f.fig2 <- function(plot.data){
 fig2 <- f.fig2(plot.data)
 
 # figure 3 - distribution of alpha parameters for each parameters simultaneously ----------------
+
+f.fig3 <- function(cndc.fit){
+  
+  d <- cndc.fit %>%
+    select(-`location:variety`)
+  
+  p1 <- ggplot() +
+    geom_point(data = d, aes(x=`location:variety_alpha1`, y=`location:variety_alpha2`), alpha=0.01, color="grey") +
+    geom_point(data = cndc.fit, aes(x=`location:variety_alpha1`, y=`location:variety_alpha2`, color=`location:variety`), alpha=0.01) +
+    facet_wrap(vars(`location:variety`)) +
+    theme_classic()
+  
+}
 
 # appendix 1 - plateau model fit with point data for each date shown for each variety x location ------------------
 
