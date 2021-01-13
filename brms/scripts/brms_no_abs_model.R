@@ -2,15 +2,14 @@ library(tidyverse)
 library(brms)
 library(tidybayes)
 
-m7 <- read_rds("brms/models/m0007_All.rds")
-
+data_cndc <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd")
 
 
 m8 <- brm(formula=bf(W ~ fmin(Bmax + Si * (N - (alpha1*(Bmax^(-alpha2)))), Bmax),
            Bmax + Si ~ 1 + (1|index),
            alpha1 + alpha2 ~ 1 + (1|group),
            nl = T), 
-          data = m7$data,
+          data = data_cndc,
 prior=c(set_prior("normal(5.2,0.1)", class = "sd", nlpar = "Bmax", group = "index"),
          set_prior("normal(1.2,0.1)", class = "sd", nlpar = "Si", group = "index"),
          set_prior("normal(0.05,0.01)", nlpar = "alpha1", class = "sd", group ="group"),
