@@ -608,10 +608,10 @@ f.fig4 <- function(plot.data,parm.fit.sum,.location,.variety,.color){
   ggplot() +
     geom_ribbon(data=c,aes(ymin=N_0.05,ymax=N_0.95,x=W,group=`location:variety`,fill=`location:variety`),alpha=0.66) + #,fill="#737373"
     geom_line(data=c,aes(x=W,y=N_0.5,group=`location:variety`),linetype=1,alpha=1.0) +
-    geom_line(data=c,aes(x=W,y=N_0.05_nls,group=`location:variety`),linetype=3,alpha=1.0,size=0.5) +
-    geom_line(data=c,aes(x=W,y=N_0.95_nls,group=`location:variety`),linetype=3,alpha=1.0,size=0.5) +
-    geom_line(data=c,aes(x=W,y=N_0.05_est,group=`location:variety`),linetype=2,alpha=1.0,size=0.5) +
-    geom_line(data=c,aes(x=W,y=N_0.95_est,group=`location:variety`),linetype=2,alpha=1.0,size=0.5) +
+    geom_line(data=c,aes(x=W,y=N_0.05_nls,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
+    geom_line(data=c,aes(x=W,y=N_0.95_nls,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
+    geom_line(data=c,aes(x=W,y=N_0.05_est,group=`location:variety`),linetype=2,alpha=1.0,size=0.2) +
+    geom_line(data=c,aes(x=W,y=N_0.95_est,group=`location:variety`),linetype=2,alpha=1.0,size=0.2) +
     # facet_wrap(vars(`location:variety`)) +
     labs(x=var1,
          y=var2,
