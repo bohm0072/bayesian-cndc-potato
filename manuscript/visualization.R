@@ -291,6 +291,10 @@ f.plot.data <- function(data,cndc.fit.sum,plateau.fit.sum,Bmax.sum){
 }
 plot.data <- f.plot.data(data,cndc.fit.sum,plateau.fit.sum,Bmax.sum)
 
+# set color scale -----------------
+
+plot.colors <- c("#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#e6ab02","#f781bf","#66c2a5","#fb8072","#d95f02","#7570b3","#e7298a","#666666","#a6761d")
+
 # figure 1 - distribution of alpha parameter values for each parameter independently ------------------
 
 # parm = "alpha1"
@@ -364,7 +368,7 @@ f.fig2 <- function(plot.data){
   
   ggplot() +
     geom_ribbon(data=c,aes(ymin=N_0.05,ymax=N_0.95,x=W,group=`location:variety`),fill="#737373",alpha=0.66) + #color=NA,
-    geom_point(data=d,aes(x=W,y=N),alpha=0.2,color="#FB9A99")+ #"#A6CEE3") +
+    geom_point(data=d,aes(x=W,y=N,color=`location:variety`),alpha=0.2)+ #,color="#FB9A99")+ #"#A6CEE3") +
     geom_line(data=c,aes(x=W,y=N_0.5,group=`location:variety`),linetype=1,alpha=1.0) +
     # geom_line(data=c,aes(x=W,y=N_0.05),linetype=1,color="#333333",size=0.01) +
     # geom_line(data=c,aes(x=W,y=N_0.95),linetype=1,color="#333333",size=0.01) +
@@ -377,7 +381,8 @@ f.fig2 <- function(plot.data){
          y = "%N") +#,
          #title = paste(.location,.variety,sep=" - ")) + 
     coord_cartesian(xlim=c(0,NA),ylim=c(0,6.0)) +
-    theme_classic() #+
+    theme_classic() +
+    scale_color_manual(values=.color)
     # scale_color_manual(values=c("#A6CEE3","#1F78B4","#B2DF8A","#33A02C","#FB9A99","#E31A1C","#FDBF6F","#FF7F00","#CAB2D6","#6A3D9A","#000000","#000000","#000000","#000000"))
   
 }
@@ -401,19 +406,20 @@ f.fig3 <- function(cndc.fit,.location,.variety,.color){
     filter(location %in% .location) %>%
     filter(variety %in% .variety)
   
-  # l <- lm(`location:variety_alpha2`~`location:variety_alpha1`,d)
-  # summary(l)
-  
   p1 <- ggplot(data = d, aes(x=`location:variety_alpha1`, y=`location:variety_alpha2`, color=`location:variety`)) +
     geom_point(alpha=0.01) +
     # geom_smooth(method="lm",formula=y~x) +
     # geom_smooth(method="lm",formula=y~x,color="black",size=0.5) + #,color="black",linetype=2
-    stat_smooth(method="lm",formula=y~x,color="black",size=0.5) +
-    stat_regline_equation(color="black",size=2,
-                          aes(label =  paste(..eq.label.., ..adj.rr.label.., sep = "~~~~")),
-                          formula = y~x) +
+    # stat_smooth(method="lm",formula=y~x,color="black",size=0.5) +
+    stat_cor(color="black",size=2,
+             aes(label = ..r.label..),
+             r.accuracy = 0.01) + 
+    # stat_regline_equation(color="black",size=2,
+    #                       aes(label =  paste(..eq.label.., ..adj.rr.label.., sep = "~~~~")),
+    #                       formula = y~x) +
     theme_classic() +
-    theme(text=element_text(size=8)) + 
+    theme(text=element_text(size=8),
+          plot.title=element_text(size=8)) + 
     scale_color_manual(values = .color) +
     # scale_color_brewer(palette = "Set1") +
     scale_x_continuous(limits=c(4.0,5.5)) + 
@@ -477,7 +483,7 @@ fig3_n <- f.fig3(cndc.fit,.location=c("Minnesota"),.variety=c("Umatilla"),.color
 # ggsave(filename="manuscript/images/figure3_n.pdf",plot=fig3_n,height=1.5,width=1.5,units="in",scale=2.5)
 
 g.layout <- rbind(c(1,2,3,4,5),
-                  c(6,7,8,9,NA),
+                  c(6,7,NA,8,9),
                   c(10,11,12,13,14))
 
 fig3 <- grid.arrange(fig3_a,fig3_b,fig3_c,fig3_d,fig3_e,
@@ -486,7 +492,7 @@ fig3 <- grid.arrange(fig3_a,fig3_b,fig3_c,fig3_d,fig3_e,
              # ncol=5,
              layout_matrix=g.layout)
 
-ggsave(filename="manuscript/images/figure3.pdf",plot=fig3,height=5,width=8,scale=1.5,limitsize=F)
+ggsave(filename="manuscript/images/figure3.pdf",plot=fig3,height=5*2/3,width=8*2/3,scale=1.5,limitsize=F)
 
 
 # appendix 1 - plateau model fit with point data for each date shown for each variety x location ------------------
