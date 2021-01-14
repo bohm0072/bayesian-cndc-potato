@@ -181,6 +181,37 @@ f.cndc.fit.sum <- function(cndc.fit){
 }
 cndc.fit.sum <- f.cndc.fit.sum(cndc.fit)
 
+f.parm.fit.sum <- function(cndc.fit){
+  
+  parm.fit.sum <- left_join(
+    cndc.fit %>%
+      group_by(location,variety,`location:variety`) %>%
+      summarize(qs = quantile(`location:variety_alpha1`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
+      pivot_wider(names_from=prob,
+                  names_prefix="alpha1_",
+                  values_from=qs) %>%
+      mutate_at(vars(alpha1_0.05,alpha1_0.5,alpha1_0.95),as.numeric),
+    cndc.fit %>%
+      group_by(location,variety,`location:variety`) %>%
+      summarize(qs = quantile(`location:variety_alpha2`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
+      pivot_wider(names_from=prob,
+                  names_prefix="alpha2_",
+                  values_from=qs)%>%
+      mutate_at(vars(alpha2_0.05,alpha2_0.5,alpha2_0.95),as.numeric),
+    by = c("location","variety","location:variety")
+  ) %>%
+    arrange(variety,location) %>%
+    mutate_at(vars(variety), ~as_factor(.)) %>%
+    mutate_at(vars(variety), ~fct_inorder(.)) %>%
+    arrange(location,variety) %>%
+    mutate_at(vars(location,`location:variety`), ~as_factor(.)) %>%
+    mutate_at(vars(location,`location:variety`), ~fct_inorder(.))
+  
+  return(parm.fit.sum)
+  
+}
+parm.fit.sum <- f.parm.fit.sum(cndc.fit)
+
 f.plateau.fit.sum <- function(plateau.fit){
   
   f.plateau.fit.quantile <- function(q){
@@ -288,7 +319,7 @@ plot.data <- f.plot.data(data,cndc.fit.sum,plateau.fit.sum,Bmax.sum)
 # set color scale -----------------
 
 # plot.colors <- c("#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#e6ab02","#f781bf","#66c2a5","#fb8072","#d95f02","#7570b3","#e7298a","#666666","#a6761d")
-plot.colors.1 <- c("#5B2025","#931012","#CA1619","#C55962","#F5A3A5","#33a02c","#b2df8a","#ff7f00","#fdbf6f","#183B4E","#15527A","#1F78B4","#73B9E7","#A6CEE3")
+plot.colors.1 <- c("#490809","#931012","#CA1619","#C55962","#E74B5E","#2C652A","#33a02c","#CC6600","#ff7f00","#15527A","#0177A2","#1F78B4","#01B3F4","#62B0E4")
 plot.colors.2 <- c("#CA1619","#33a02c","#ff7f00","#1F78B4")
 
 # figure 1 - distribution of alpha parameter values for each parameter independently ------------------
@@ -362,29 +393,71 @@ ggsave(filename="manuscript/images/figure1_b.pdf",plot=fig1_b,height=4,width=3,u
 
 # figure 2 - curve fits for each variety x location  ------------------
 
-f.fig2 <- function(plot.data,.color){
+# .location = "Argentina"
+# .variety = "Innovator"
+# .color = "#e41a1c"
+
+f.fig2 <- function(plot.data,.location,.variety,.color){
   
-  c <- plot.data$c
+  var1 <- "W"
+  var2 <- "%N"
+  var3 <- paste(.location,.variety,sep=" - ")
   
-  d <- plot.data$d
+  c <- plot.data$c %>%
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety)
   
-  p <- plot.data$p
+  d <- plot.data$d %>%
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety)
+  
+  p <- plot.data$p %>%
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety)
   
   ggplot() +
+    geom_line(data=p,aes(x=W_0.5,y=N_0.5,group=index),color="grey",linetype=1,alpha=0.20) + #,color=`location:variety`
     geom_point(data=d,aes(x=W,y=N,color=`location:variety`),alpha=0.20) + 
     geom_ribbon(data=c,aes(ymin=N_0.05,ymax=N_0.95,x=W,group=`location:variety`),fill="#737373",alpha=0.66) +
     geom_line(data=c,aes(x=W,y=N_0.5,group=`location:variety`),linetype=1,alpha=1.0) +
-    facet_wrap(vars(`location:variety`)) + #,scale="free_x") +
-    labs(x = "W",
-         y = "%N") +
+    # facet_wrap(vars(`location:variety`)) +
+    labs(x=var1,
+         y=var2,
+         title=var3) +
     coord_cartesian(xlim=c(0,NA),ylim=c(0,6.0)) +
     theme_classic() +
+    # theme_bw() +
+    theme(text=element_text(size=8),
+          plot.title=element_text(size=8)) + 
     guides(color="none") +
     scale_color_manual(values=.color)
    
 }
-fig2 <- f.fig2(plot.data,plot.colors.1)
-ggsave(filename="manuscript/images/figure2.pdf",plot=fig2,height=3,width=4,units="in",scale=2.0)
+
+fig2.list <- list(
+  location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
+  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla"),
+  color=plot.colors.1
+)
+
+fig2.sub <- pmap(fig2.list,~f.fig2(plot.data,
+                                   .location=..1,
+                                   .variety=..2,
+                                   .color=..3))
+
+fig2.layout <- rbind(c(1,2,3,4,5),
+                     c(6,7,NA,8,9),
+                     c(10,11,12,13,14))
+
+fig2 <- grid.arrange(fig2.sub[[1]],fig2.sub[[2]],fig2.sub[[3]],fig2.sub[[4]],fig2.sub[[5]],
+                     fig2.sub[[6]],fig2.sub[[7]],fig2.sub[[8]],fig2.sub[[9]],
+                     fig2.sub[[10]],fig2.sub[[11]],fig2.sub[[12]],fig2.sub[[13]],fig2.sub[[14]],
+                     layout_matrix=fig2.layout)
+
+# ggsave(filename="manuscript/images/figure3.pdf",plot=fig3,height=5*2/3,width=8*2/3,scale=1.5,limitsize=F)
+# fig2 <- f.fig2(plot.data,plot.colors.1)
+
+ggsave(filename="manuscript/images/figure2.pdf",plot=fig2,height=5*2/3,width=8*2/3,units="in",scale=1.5)
 
 # figure 3 - distribution of alpha parameters for each parameters simultaneously ----------------
 
@@ -405,20 +478,14 @@ f.fig3 <- function(cndc.fit,.location,.variety,.color){
   
   p1 <- ggplot(data = d, aes(x=`location:variety_alpha1`, y=`location:variety_alpha2`, color=`location:variety`)) +
     geom_point(alpha=0.02) +
-    # geom_smooth(method="lm",formula=y~x) +
-    # geom_smooth(method="lm",formula=y~x,color="black",size=0.5) + #,color="black",linetype=2
-    # stat_smooth(method="lm",formula=y~x,color="black",size=0.5) +
     stat_cor(color="black",size=2,
              aes(label = ..r.label..),
              r.accuracy = 0.01) + 
-    # stat_regline_equation(color="black",size=2,
-    #                       aes(label =  paste(..eq.label.., ..adj.rr.label.., sep = "~~~~")),
-    #                       formula = y~x) +
     theme_classic() +
+    # theme_bw() +
     theme(text=element_text(size=8),
           plot.title=element_text(size=8)) + 
     scale_color_manual(values = .color) +
-    # scale_color_brewer(palette = "Set1") +
     scale_x_continuous(limits=c(4.0,5.5)) + 
     scale_y_continuous(limits=c(0.01,0.79)) +
     guides(color="none") +
@@ -439,7 +506,7 @@ f.fig3 <- function(cndc.fit,.location,.variety,.color){
 
 fig3.list <- list(
   location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
-  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Russet Burbank","Clearwater","Dakota Russet","Easton","Umatilla"),
+  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla"),
   color=plot.colors.1
 )
 
@@ -459,6 +526,134 @@ fig3 <- grid.arrange(fig3.sub[[1]],fig3.sub[[2]],fig3.sub[[3]],fig3.sub[[4]],fig
 
 ggsave(filename="manuscript/images/figure3.pdf",plot=fig3,height=5*2/3,width=8*2/3,scale=1.5,limitsize=F)
 
+
+# figure 4 - evaluation of methods to express curve uncertainty -----------------
+
+# .location = "Argentina"
+# .variety = "Innovator"
+# .color = "#e41a1c"
+
+f.fig4 <- function(plot.data,parm.fit.sum,.location,.variety,.color){
+  
+  var1 <- "W"
+  var2 <- "%N"
+  var3 <- paste(.location,.variety,sep=" - ")
+  
+  c <- plot.data$c %>%
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety)
+  
+  d <- plot.data$d %>%
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety)
+  
+  p <- plot.data$p %>%
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety)
+  
+  parm <- parm.fit.sum %>%
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety)
+  
+  nls_0.95 <- nls(data=c,
+                  formula=N_0.95~alpha1*W^(-alpha2),
+                  start=list(alpha1=4.94,
+                             alpha2=0.40))
+  
+  nls_0.5 <- nls(data=c,
+                 formula=N_0.5~alpha1*W^(-alpha2),
+                 start=list(alpha1=4.94,
+                            alpha2=0.40))
+  
+  nls_0.05 <- nls(data=c,
+                  formula=N_0.05~alpha1*W^(-alpha2),
+                  start=list(alpha1=4.94,
+                             alpha2=0.40))
+  
+  nls_alpha1_0.05 <- summary(nls_0.05)$parameters[1,1]
+  nls_alpha2_0.05 <- summary(nls_0.05)$parameters[2,1]
+  nls_alpha1_0.5 <- summary(nls_0.5)$parameters[1,1]
+  nls_alpha2_0.5 <- summary(nls_0.5)$parameters[2,1]
+  nls_alpha1_0.95 <- summary(nls_0.95)$parameters[1,1]
+  nls_alpha2_0.95 <- summary(nls_0.95)$parameters[2,1]
+  
+  c <- c %>%
+    rowwise() %>%
+    mutate(N_0.05_nls = nls_alpha1_0.05*W^(-nls_alpha2_0.05),
+           N_0.5_nls = nls_alpha1_0.5*W^(-nls_alpha2_0.5),
+           N_0.95_nls = nls_alpha1_0.95*W^(-nls_alpha2_0.95)) %>%
+    ungroup()
+  
+  c <- c %>%
+    left_join(parm, by = c("location","variety","location:variety")) %>%
+    rowwise() %>%
+    mutate(N_0.05_est = alpha1_0.95*W^(-alpha2_0.05),
+           N_0.5_est = alpha1_0.5*W^(-alpha2_0.5),
+           N_0.95_est = alpha1_0.05*W^(-alpha2_0.95)) %>%
+    ungroup() %>%
+    select(-c(alpha1_0.05,alpha1_0.5,alpha1_0.95,alpha2_0.05,alpha2_0.5,alpha2_0.95))
+    
+  # ggplot() +
+  #   geom_point(data=c,aes(N_0.05,N_0.05_nls),alpha=0.1,color="red") +
+  #   geom_point(data=c,aes(N_0.05,N_0.05_est),alpha=0.1,color="blue") +
+  #   geom_abline(intercept=0,slope=1) +
+  #   theme_classic()
+  # 
+  # ggplot() +
+  #   geom_point(data=c,aes(N_0.95,N_0.95_nls),alpha=0.1,color="red") +
+  #   geom_point(data=c,aes(N_0.95,N_0.95_est),alpha=0.1,color="blue") +
+  #   geom_abline(intercept=0,slope=1) +
+  #   theme_classic()
+  
+  ggplot() +
+    geom_ribbon(data=c,aes(ymin=N_0.05,ymax=N_0.95,x=W,group=`location:variety`,fill=`location:variety`),alpha=0.66) + #,fill="#737373"
+    geom_line(data=c,aes(x=W,y=N_0.5,group=`location:variety`),linetype=1,alpha=1.0) +
+    geom_line(data=c,aes(x=W,y=N_0.05_nls,group=`location:variety`),linetype=3,alpha=1.0,size=0.5) +
+    geom_line(data=c,aes(x=W,y=N_0.95_nls,group=`location:variety`),linetype=3,alpha=1.0,size=0.5) +
+    geom_line(data=c,aes(x=W,y=N_0.05_est,group=`location:variety`),linetype=2,alpha=1.0,size=0.5) +
+    geom_line(data=c,aes(x=W,y=N_0.95_est,group=`location:variety`),linetype=2,alpha=1.0,size=0.5) +
+    # facet_wrap(vars(`location:variety`)) +
+    labs(x=var1,
+         y=var2,
+         title=var3) +
+    coord_cartesian(xlim=c(0,NA),ylim=c(0,6.0)) +
+    theme_classic() +
+    # theme_bw() +
+    theme(text=element_text(size=8),
+          plot.title=element_text(size=8)) + 
+    guides(fill="none") +
+    scale_fill_manual(values=.color)
+  
+}
+
+fig4.list <- list(
+  location=c("Argentina","Minnesota"),
+  variety=c("Bannock Russet","Russet Burbank"),
+  color="black"
+)
+
+# fig4.list <- list(
+#   location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
+#   variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla"),
+#   color=plot.colors.1
+# )
+
+fig4.sub <- pmap(fig4.list,~f.fig4(plot.data,
+                                   parm.fit.sum,
+                                   .location=..1,
+                                   .variety=..2,
+                                   .color=..3))
+
+fig4.layout <- rbind(c(1,2))
+
+# fig4.layout <- rbind(c(1,2,3,4,5),
+#                      c(6,7,NA,8,9),
+#                      c(10,11,12,13,14))
+
+fig4 <- grid.arrange(fig4.sub[[1]],fig4.sub[[2]],
+                     layout_matrix=fig4.layout)
+
+ggsave(filename="manuscript/images/figure4.pdf",plot=fig4,height=1.5,width=3,scale=1.5,limitsize=F)
 
 # appendix 1 - plateau model fit with point data for each date shown for each variety x location ------------------
 
