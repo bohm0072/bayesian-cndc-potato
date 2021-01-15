@@ -387,21 +387,140 @@ f.fig1 <- function(cndc.fit,parm,.colors1,.colors2){
 }
 
 fig1_a <- f.fig1(cndc.fit,"alpha1",plot.colors.1,plot.colors.2)
-ggsave(filename="manuscript/images/figure1_a.pdf",plot=fig1_a,height=4,width=3,units="in",scale=1.5)
+ggsave(filename="manuscript/images/figure1_a.pdf",plot=fig1_a,height=4.5,width=3,units="in",scale=1.3)
 fig1_b <- f.fig1(cndc.fit,"alpha2",plot.colors.1,plot.colors.2)
-ggsave(filename="manuscript/images/figure1_b.pdf",plot=fig1_b,height=4,width=3,units="in",scale=1.5)
+ggsave(filename="manuscript/images/figure1_b.pdf",plot=fig1_b,height=4.5,width=3,units="in",scale=1.3)
 
-# figure 2 - curve fits for each variety x location  ------------------
+# figure 2 - distribution of alpha parameters for each parameters simultaneously ----------------
 
 # .location = "Argentina"
 # .variety = "Innovator"
 # .color = "#e41a1c"
 
-f.fig2 <- function(plot.data,.location,.variety,.color){
+f.fig2 <- function(cndc.fit,.location,.variety,.color){
+  
+  var1 <- expression(paste("parameter ", italic("a"), sep=" "))
+  var2 <- expression(paste("parameter ", italic("b"), sep=" "))
+  var3 <- paste("       ",.variety,sep="")
+  # var3 <- paste(.location,.variety,sep=" - ")
+  
+  d <- cndc.fit %>%
+    # select(-`location:variety`)
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety)
+  
+  p1 <- ggplot(data = d, aes(x=`location:variety_alpha1`, y=`location:variety_alpha2`, color=`location:variety`)) +
+    geom_point(alpha=0.02) +
+    stat_cor(color="black",size=2,
+             aes(label = ..r.label..),
+             r.accuracy = 0.01) + 
+    theme_classic() +
+    theme(text=element_text(size=8),
+          plot.title=element_text(size=8),
+          axis.title=element_blank(),
+          plot.caption = element_text(hjust=0,size=7), 
+          plot.title.position = "plot", 
+          plot.caption.position =  "plot") +
+    scale_color_manual(values = .color) +
+    scale_x_continuous(limits=c(4.0,5.5)) + 
+    scale_y_continuous(limits=c(0.01,0.79)) +
+    guides(color="none") +
+    labs(x=var1,
+         y=var2,
+         # title=var3)
+         caption=var3)
+  
+  # geom_point(data = d, aes(x=`location:variety_alpha1`, y=`location:variety_alpha2`), alpha=0.01, color="grey") +
+  # facet_wrap(vars(`location:variety`)) +
+  # scale_color_manual(values=c("#E41A1C","#377EB8","#4DAF4A","#984EA3","#FF7F00","#FFFF33","#A65628","#F781BF","#999999","#1B9E77","#D95F02","#7570B3","#E7298A","#66A61E","#E6AB02","#A6761D","#666666")) # +
+  # coord_cartesian(xlim=c(4.0,5.5),ylim=c(0.1,0.7))
+  
+  p2 <- ggMarginal(p1, type="density", data = cndc.fit, groupColour = T)
+  
+  return(p2)
+  
+}
+
+fig2.list <- list(
+  location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
+  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla"),
+  color=plot.colors.1
+)
+
+fig2.sub <- pmap(fig2.list,~f.fig2(cndc.fit,
+                                   .location=..1,
+                                   .variety=..2,
+                                   .color=..3))
+
+f.fig2.lab.facet <- function(.location){
+  
+  ggplot() +
+    geom_text(aes(x=0,y=0,label=.location),angle=90,size=2.5) +
+    theme_classic() +
+    # theme_grey() +
+    theme(axis.line = element_blank(),
+          axis.text = element_blank(),
+          axis.title = element_blank(),
+          axis.ticks = element_blank(),
+          panel.background = element_rect(fill="#d2d2d2",color="black"))
+  
+}
+f.fig2.lab.axis.y <- function(){
+  
+  ggplot() +
+    geom_text(aes(x=0,y=0),label=expression(paste("parameter ", italic("b"), sep=" ")),parse=T,angle=90,size=3) +
+    theme_classic() +
+    theme(axis.line = element_blank(),
+          axis.text = element_blank(),
+          axis.title = element_blank(),
+          axis.ticks = element_blank())
+  
+}
+f.fig2.lab.axis.x <- function(){
+  
+  ggplot() +
+    geom_text(aes(x=0,y=0),label=expression(paste("parameter ", italic("a"), sep=" ")),parse=T,angle=0,size=3) +
+    theme_classic() +
+    theme(axis.line = element_blank(),
+          axis.text = element_blank(),
+          axis.title = element_blank(),
+          axis.ticks = element_blank())
+  
+}
+
+fig2.layout <- rbind(c(19,15,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5),
+                     c(19,15,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5),
+                     c(19,15,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5),
+                     c(19,16,6,6,6,7,7,7,NA,NA,17,8,8,8,9,9,9),
+                     c(19,16,6,6,6,7,7,7,NA,NA,17,8,8,8,9,9,9),
+                     c(19,16,6,6,6,7,7,7,NA,NA,17,8,8,8,9,9,9),
+                     c(19,18,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14),
+                     c(19,18,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14),
+                     c(19,18,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14),
+                     c(20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20))
+
+fig2 <- grid.arrange(fig2.sub[[1]],fig2.sub[[2]],fig2.sub[[3]],fig2.sub[[4]],fig2.sub[[5]],
+                     fig2.sub[[6]],fig2.sub[[7]],fig2.sub[[8]],fig2.sub[[9]],
+                     fig2.sub[[10]],fig2.sub[[11]],fig2.sub[[12]],fig2.sub[[13]],fig2.sub[[14]],
+                     f.fig2.lab.facet("Argentina"),f.fig2.lab.facet("Belgium"),f.fig2.lab.facet("Canada"),f.fig2.lab.facet("Minnesota"),
+                     f.fig2.lab.axis.y(),f.fig2.lab.axis.x(),
+                     layout_matrix=fig2.layout)
+
+ggsave(filename="manuscript/images/figure2.pdf",plot=fig2,height=4,width=6,units="in",scale=1)
+
+
+# figure 3 - curve fits for each variety x location  ------------------
+
+# .location = "Argentina"
+# .variety = "Innovator"
+# .color = "#e41a1c"
+
+f.fig3 <- function(plot.data,.location,.variety,.color){
   
   var1 <- "W"
   var2 <- "%N"
-  var3 <- paste(.location,.variety,sep=" - ")
+  # var3 <- paste(.location,.variety,sep=" - ")
+  var3 <- paste("     ",.variety,sep="")
   
   c <- plot.data$c %>%
     filter(location %in% .location) %>%
@@ -423,85 +542,19 @@ f.fig2 <- function(plot.data,.location,.variety,.color){
     # facet_wrap(vars(`location:variety`)) +
     labs(x=var1,
          y=var2,
-         title=var3) +
+         # title=var3) +
+         caption=var3) +
     coord_cartesian(xlim=c(0,NA),ylim=c(0,6.0)) +
     theme_classic() +
-    # theme_bw() +
     theme(text=element_text(size=8),
-          plot.title=element_text(size=8)) + 
+          plot.title=element_text(size=8),
+          axis.title=element_blank(),
+          plot.caption = element_text(hjust=0,size=7), 
+          plot.title.position = "plot", 
+          plot.caption.position =  "plot") +
     guides(color="none") +
     scale_color_manual(values=.color)
    
-}
-
-fig2.list <- list(
-  location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
-  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla"),
-  color=plot.colors.1
-)
-
-fig2.sub <- pmap(fig2.list,~f.fig2(plot.data,
-                                   .location=..1,
-                                   .variety=..2,
-                                   .color=..3))
-
-fig2.layout <- rbind(c(1,2,3,4,5),
-                     c(6,7,NA,8,9),
-                     c(10,11,12,13,14))
-
-fig2 <- grid.arrange(fig2.sub[[1]],fig2.sub[[2]],fig2.sub[[3]],fig2.sub[[4]],fig2.sub[[5]],
-                     fig2.sub[[6]],fig2.sub[[7]],fig2.sub[[8]],fig2.sub[[9]],
-                     fig2.sub[[10]],fig2.sub[[11]],fig2.sub[[12]],fig2.sub[[13]],fig2.sub[[14]],
-                     layout_matrix=fig2.layout)
-
-# ggsave(filename="manuscript/images/figure3.pdf",plot=fig3,height=5*2/3,width=8*2/3,scale=1.5,limitsize=F)
-# fig2 <- f.fig2(plot.data,plot.colors.1)
-
-ggsave(filename="manuscript/images/figure2.pdf",plot=fig2,height=5*2/3,width=8*2/3,units="in",scale=1.5)
-
-# figure 3 - distribution of alpha parameters for each parameters simultaneously ----------------
-
-# .location = "Argentina"
-# .variety = "Innovator"
-# .color = "#e41a1c"
-
-f.fig3 <- function(cndc.fit,.location,.variety,.color){
-  
-  var1 <- expression(paste("parameter ", italic("a"), sep=" "))
-  var2 <- expression(paste("parameter ", italic("b"), sep=" "))
-  var3 <- paste(.location,.variety,sep=" - ")
-  
-  d <- cndc.fit %>%
-    # select(-`location:variety`)
-    filter(location %in% .location) %>%
-    filter(variety %in% .variety)
-  
-  p1 <- ggplot(data = d, aes(x=`location:variety_alpha1`, y=`location:variety_alpha2`, color=`location:variety`)) +
-    geom_point(alpha=0.02) +
-    stat_cor(color="black",size=2,
-             aes(label = ..r.label..),
-             r.accuracy = 0.01) + 
-    theme_classic() +
-    # theme_bw() +
-    theme(text=element_text(size=8),
-          plot.title=element_text(size=8)) + 
-    scale_color_manual(values = .color) +
-    scale_x_continuous(limits=c(4.0,5.5)) + 
-    scale_y_continuous(limits=c(0.01,0.79)) +
-    guides(color="none") +
-    labs(x=var1,
-         y=var2,
-         title=var3)
-  
-    # geom_point(data = d, aes(x=`location:variety_alpha1`, y=`location:variety_alpha2`), alpha=0.01, color="grey") +
-    # facet_wrap(vars(`location:variety`)) +
-    # scale_color_manual(values=c("#E41A1C","#377EB8","#4DAF4A","#984EA3","#FF7F00","#FFFF33","#A65628","#F781BF","#999999","#1B9E77","#D95F02","#7570B3","#E7298A","#66A61E","#E6AB02","#A6761D","#666666")) # +
-    # coord_cartesian(xlim=c(4.0,5.5),ylim=c(0.1,0.7))
-  
-  p2 <- ggMarginal(p1, type="density", data = cndc.fit, groupColour = T)
-  
-  return(p2)
-  
 }
 
 fig3.list <- list(
@@ -510,22 +563,69 @@ fig3.list <- list(
   color=plot.colors.1
 )
 
-fig3.sub <- pmap(fig3.list,~f.fig3(cndc.fit,
+fig3.sub <- pmap(fig3.list,~f.fig3(plot.data,
                                    .location=..1,
                                    .variety=..2,
                                    .color=..3))
 
-fig3.layout <- rbind(c(1,2,3,4,5),
-                  c(6,7,NA,8,9),
-                  c(10,11,12,13,14))
+f.fig3.lab.facet <- function(.location){
+  
+  ggplot() +
+    geom_text(aes(x=0,y=0,label=.location),angle=90,size=2.5) +
+    theme_classic() +
+    # theme_grey() +
+    theme(axis.line = element_blank(),
+          axis.text = element_blank(),
+          axis.title = element_blank(),
+          axis.ticks = element_blank(),
+          panel.background = element_rect(fill="#d2d2d2",color="black"))
+  
+}
+f.fig3.lab.axis.y <- function(){
+  
+  ggplot() +
+    geom_text(aes(x=0,y=0,label="%N [g N 100 g-1]"),angle=90,size=3) +
+    theme_classic() +
+    theme(axis.line = element_blank(),
+          axis.text = element_blank(),
+          axis.title = element_blank(),
+          axis.ticks = element_blank())
+  
+}
+f.fig3.lab.axis.x <- function(){
+  
+  ggplot() +
+    geom_text(aes(x=0,y=0,label="Biomass [Mg ha-1]"),angle=0,size=3) +
+    theme_classic() +
+    theme(axis.line = element_blank(),
+          axis.text = element_blank(),
+          axis.title = element_blank(),
+          axis.ticks = element_blank())
+  
+}
+
+fig3.layout <- rbind(c(19,15,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5),
+                     c(19,15,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5),
+                     c(19,15,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5),
+                     c(19,16,6,6,6,7,7,7,NA,NA,17,8,8,8,9,9,9),
+                     c(19,16,6,6,6,7,7,7,NA,NA,17,8,8,8,9,9,9),
+                     c(19,16,6,6,6,7,7,7,NA,NA,17,8,8,8,9,9,9),
+                     c(19,18,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14),
+                     c(19,18,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14),
+                     c(19,18,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14),
+                     c(20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20))
 
 fig3 <- grid.arrange(fig3.sub[[1]],fig3.sub[[2]],fig3.sub[[3]],fig3.sub[[4]],fig3.sub[[5]],
                      fig3.sub[[6]],fig3.sub[[7]],fig3.sub[[8]],fig3.sub[[9]],
                      fig3.sub[[10]],fig3.sub[[11]],fig3.sub[[12]],fig3.sub[[13]],fig3.sub[[14]],
+                     f.fig3.lab.facet("Argentina"),f.fig3.lab.facet("Belgium"),f.fig3.lab.facet("Canada"),f.fig3.lab.facet("Minnesota"),
+                     f.fig3.lab.axis.y(),f.fig3.lab.axis.x(),
                      layout_matrix=fig3.layout)
 
-ggsave(filename="manuscript/images/figure3.pdf",plot=fig3,height=5*2/3,width=8*2/3,scale=1.5,limitsize=F)
+# ggsave(filename="manuscript/images/figure3.pdf",plot=fig3,height=5*2/3,width=8*2/3,scale=1.5,limitsize=F)
+# fig2 <- f.fig2(plot.data,plot.colors.1)
 
+ggsave(filename="manuscript/images/figure3.pdf",plot=fig3,height=4,width=6,units="in",scale=1.0)
 
 # figure 4 - evaluation of methods to express curve uncertainty -----------------
 
