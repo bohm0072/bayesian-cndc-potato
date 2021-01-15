@@ -391,6 +391,10 @@ ggsave(filename="manuscript/images/figure1_a.pdf",plot=fig1_a,height=4.5,width=3
 fig1_b <- f.fig1(cndc.fit,"alpha2",plot.colors.1,plot.colors.2)
 ggsave(filename="manuscript/images/figure1_b.pdf",plot=fig1_b,height=4.5,width=3,units="in",scale=1.3)
 
+# table 1 - distribution of alpha parameter values for each parameter independently #####
+
+
+
 # figure 2 - distribution of alpha parameters for each parameters simultaneously ----------------
 
 # .location = "Argentina"
@@ -507,6 +511,7 @@ fig2 <- grid.arrange(fig2.sub[[1]],fig2.sub[[2]],fig2.sub[[3]],fig2.sub[[4]],fig
                      layout_matrix=fig2.layout)
 
 ggsave(filename="manuscript/images/figure2.pdf",plot=fig2,height=4,width=6,units="in",scale=1)
+ggsave(filename="manuscript/images/figure2.png",plot=fig2,height=4,width=6,units="in",scale=1,dpi=1000)
 
 
 # figure 3 - curve fits for each variety x location  ------------------
