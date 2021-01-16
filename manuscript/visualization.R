@@ -852,8 +852,8 @@ ggsave(filename="manuscript/images/figure4_2.pdf",plot=fig4_2,height=4.5,width=3
 
 # .location_ref = "Minnesota"
 # .variety_ref = "Russet Burbank"
-# .location_comp = "Canada"
-# .variety_comp = "Russet Burbank"
+# # .location_comp = "Canada"
+# # .variety_comp = "Russet Burbank"
 # `.location:variety_comp` = c("Canada_Russet.Burbank","Belgium_Bintje")
 
 f.fig5 <- function(plot.data,parm.fit.sum,.location_ref,.variety_ref,`.location:variety_comp`){
@@ -861,7 +861,6 @@ f.fig5 <- function(plot.data,parm.fit.sum,.location_ref,.variety_ref,`.location:
   var1 <- "W"
   var2 <- "%N - Diff"
   var3 <- paste(.location_ref,.variety_ref,sep=" - ")
-  # var4 <- paste(.location_ref,str_replace(.variety_ref," ","."),sep="_")
   
   c_ref <- plot.data$c %>%
     filter(location %in% .location_ref) %>%
@@ -878,10 +877,7 @@ f.fig5 <- function(plot.data,parm.fit.sum,.location_ref,.variety_ref,`.location:
     filter(variety %in% .variety_ref)
   
   c_comp <- plot.data$c %>%
-    # filter(!`location:variety` %in% var4) %>%
     filter(`location:variety` %in% `.location:variety_comp`) %>%
-    # filter(location %in% .location_comp) %>%
-    # filter(variety %in% .variety_comp) %>%
     select(-c(N_0.05,N_0.95)) %>%
     rename(N_comp_0.5=N_0.5) %>%
     rename(location_comp=location,
@@ -933,29 +929,25 @@ f.fig5 <- function(plot.data,parm.fit.sum,.location_ref,.variety_ref,`.location:
          y=var2,
          title=var3) +
     guides(color="none") +
-    scale_color_manual(values=c("#ca0020","#0571b0"))
+    scale_color_manual(values=c("#ca0020","#0571b0")) +
+    scale_y_continuous(limits=c(-0.3,0.3)) +
+    scale_x_continuous(limits=c(0,NA),breaks=c(0,5,10,15,20,25,30))
   
 }
 
 fig5.list <- list(
-  location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
-  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla")
+  location_ref=c("Minnesota"),
+  variety_ref=c("Russet Burbank"),
+  `location:variety_comp`=list(c("Canada_Russet.Burbank","Belgium_Bintje"))
 )
 
 fig5_sub <- pmap(fig5.list,~f.fig5(plot.data,
                                parm.fit.sum,
-                               .location=..1,
-                               .variety=..2))
+                               .location_ref=..1,
+                               .variety_ref=..2,
+                               `.location:variety_comp`=..3))
 
-fig5.layout <- rbind(1,2,3,4,5,6,7,8,9,10,11,12,13,14)
-
-fig5 <- grid.arrange(fig5_sub[[1]],fig5_sub[[2]],fig5_sub[[3]],fig5_sub[[4]],fig5_sub[[5]],
-                     fig5_sub[[6]],fig5_sub[[7]],fig5_sub[[8]],fig5_sub[[9]],fig5_sub[[10]],
-                     fig5_sub[[11]],fig5_sub[[12]],fig5_sub[[13]],fig5_sub[[14]],
-                     layout_matrix=fig5.layout)
-# fg$widths <- unit.pmax(fg.appx1_a$widths, fg.appx1_b$widths, fg.appx1_c$widths, fg.appx1_d$widths, fg.appx1_e$widths, fg.appx1_f$widths, fg.appx1_g$widths, fg.appx1_h$widths, fg.appx1_i$widths, fg.appx1_j$widths, fg.appx1_k$widths, fg.appx1_l$widths, fg.appx1_m$widths, fg.appx1_n$widths)
-
-ggsave(filename="manuscript/images/figure5.pdf",plot=fig5,scale=1.5,height=60,width=6,limitsize=F) #
+ggsave(filename="manuscript/images/figure5.pdf",plot=fig5_sub[[1]],scale=1.0,height=3,width=6)
 
 # appendix 2 - full alternative evaluation of methods to express curve uncertainty -----------------
 
@@ -985,8 +977,6 @@ f.appx2 <- function(plot.data,parm.fit.sum,.location,.variety){
   
   c_comp <- plot.data$c %>%
     filter(!`location:variety` %in% var4) %>%
-    # filter(location %in% .location_comp) %>%
-    # filter(variety %in% .variety_comp) %>%
     select(-c(N_0.05,N_0.95)) %>%
     rename(N_comp_0.5=N_0.5) %>%
     rename(location_comp=location,
@@ -1034,17 +1024,16 @@ f.appx2 <- function(plot.data,parm.fit.sum,.location,.variety){
     geom_line(data=c,aes(x=W,y=N_ref_norm,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.2) +
     geom_line(data=c,aes(x=W,y=N_ref_lo,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.1) +
     geom_line(data=c,aes(x=W,y=N_ref_up,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.1) +
-    # geom_text(data=c_range,aes(x=0,y=0,label=paste(range_min,range_max,sep=",")),size=3,hjust=1) +
-    # geom_text(data=c_range,aes(x=range_max,y=1.0,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward") +
     geom_text(data=c_range,aes(x=2,y=0.5,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward") +
     theme_classic() +
-    facet_wrap(vars(`location:variety_comp`),scales="free_x") + 
+    facet_wrap(vars(`location:variety_comp`),scales="free_x",ncol=5) + 
     labs(x=var1,
          y=var2,
          title=var3) +
     guides(color="none") +
     scale_color_manual(values=c("#ca0020","#0571b0")) +
-    scale_y_continuous(n.breaks=4)
+    scale_y_continuous(n.breaks=4) +
+    scale_x_continuous(limits=c(0,NA),breaks=c(0,5,10,15,20,25,30))
   
 }
 
@@ -1065,7 +1054,7 @@ appx2 <- grid.arrange(appx2_sub[[1]],appx2_sub[[2]],appx2_sub[[3]],appx2_sub[[4]
                       appx2_sub[[11]],appx2_sub[[12]],appx2_sub[[13]],appx2_sub[[14]],
                       layout_matrix=appx2.layout)
 
-ggsave(filename="manuscript/images/appendix2.pdf",plot=appx2,scale=1.5,height=60,width=6,limitsize=F) #
+ggsave(filename="manuscript/images/appendix2.pdf",plot=appx2,scale=1.5,height=50,width=6,limitsize=F)
 
 # appendix 1 - plateau model fit with point data for each date shown for each variety x location ------------------
 
