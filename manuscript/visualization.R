@@ -850,19 +850,24 @@ ggsave(filename="manuscript/images/figure4_2.pdf",plot=fig4_2,height=4.5,width=3
 
 # figure 5 - alternative evaluation of methods to express curve uncertainty -----------------
 
-# .location = "Argentina"
-# .variety = "Umatilla Russet"
+# .location_ref = "Minnesota"
+# .variety_ref = "Russet Burbank"
+# .location_comp = "Canada"
+# .variety_comp = "Russet Burbank"
+# `.location:variety_comp` = c("Canada_Russet.Burbank","Belgium_Bintje")
 
-f.fig5 <- function(plot.data,parm.fit.sum,tab2,.location,.variety){
+f.fig5 <- function(plot.data,parm.fit.sum,
+                   .location_ref,.variety_ref,
+                   `.location:variety_comp`){
   
   var1 <- "W"
   var2 <- "%N - Diff"
-  var3 <- paste(.location,.variety,sep=" - ")
-  var4 <- paste(.location,str_replace(.variety," ","."),sep="_")
+  var3 <- paste(.location_ref,.variety_ref,sep=" - ")
+  # var4 <- paste(.location_ref,str_replace(.variety_ref," ","."),sep="_")
   
   c_ref <- plot.data$c %>%
-    filter(location %in% .location) %>%
-    filter(variety %in% .variety) %>%
+    filter(location %in% .location_ref) %>%
+    filter(variety %in% .variety_ref) %>%
     rename(N_ref_0.05=N_0.05,
            N_ref_0.5=N_0.5,
            N_ref_0.95=N_0.95) %>%
@@ -871,11 +876,14 @@ f.fig5 <- function(plot.data,parm.fit.sum,tab2,.location,.variety){
            `location:variety_ref`=`location:variety`)
   
   parm_ref <- parm.fit.sum %>%
-    filter(location %in% .location) %>%
-    filter(variety %in% .variety)
+    filter(location %in% .location_ref) %>%
+    filter(variety %in% .variety_ref)
   
   c_comp <- plot.data$c %>%
-    filter(!`location:variety` %in% var4) %>%
+    # filter(!`location:variety` %in% var4) %>%
+    filter(`location:variety` %in% `.location:variety_comp`) %>%
+    # filter(location %in% .location_comp) %>%
+    # filter(variety %in% .variety_comp) %>%
     select(-c(N_0.05,N_0.95)) %>%
     rename(N_comp_0.5=N_0.5) %>%
     rename(location_comp=location,
@@ -919,38 +927,20 @@ f.fig5 <- function(plot.data,parm.fit.sum,tab2,.location,.variety){
   
   ggplot() +
     geom_ribbon(data=c,aes(x=W,ymin=N_ref_lo,ymax=N_ref_up),alpha=0.20) + #,fill="#737373"
-    geom_point(data=c,aes(x=W,y=N_comp_norm,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.1) + #linetype=1,
-    geom_line(data=c,aes(x=W,y=N_ref_lo,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.2) +
-    geom_line(data=c,aes(x=W,y=N_ref_up,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.2) +
+    geom_point(data=c,aes(x=W,y=N_comp_norm,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.5) + #linetype=1,
+    geom_line(data=c,aes(x=W,y=N_ref_norm,group=`location:variety_comp`),linetype=1,alpha=1.0,size=1.0) +
+    # geom_line(data=c,aes(x=W,y=N_ref_lo,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.2) +
+    # geom_line(data=c,aes(x=W,y=N_ref_up,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.2) +
     # geom_text(data=c_range,aes(x=0,y=0,label=paste(range_min,range_max,sep=",")),size=3,hjust=1) +
     # geom_text(data=c_range,aes(x=range_max,y=1.0,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward") +
-    geom_text(data=c_range,aes(x=2,y=0.5,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward") +
+    # geom_text(data=c_range,aes(x=2,y=0.5,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward") +
     theme_classic() +
     facet_wrap(vars(`location:variety_comp`),scales="free_x") + 
     labs(x=var1,
          y=var2,
          title=var3) +
     guides(color="none") +
-    scale_color_manual(values=c("#ca0020","#0571b0")) #+
-    # scale_x_continuous(limits=c(0,NA))
-    
-    # geom_line(data=c,aes(x=W,y=N_0.05_nls,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
-    # geom_line(data=c,aes(x=W,y=N_0.95_nls,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
-    # geom_line(data=c,aes(x=W,y=N_0.05_est,group=`location:variety`),linetype=2,alpha=1.0,size=0.2) +
-    # geom_line(data=c,aes(x=W,y=N_0.95_est,group=`location:variety`),linetype=2,alpha=1.0,size=0.2) +
-    # # facet_wrap(vars(`location:variety`)) +
-    # labs(x=var1,
-    #      y=var2,
-    #      title=var3) +
-    # # coord_cartesian(xlim=c(0,NA),ylim=c(0,6.0)) +
-    # theme_classic() +
-    # # theme_bw() +
-    # theme(text=element_text(size=8),
-    #       plot.title=element_text(size=8)) + 
-    # guides(fill="none") +
-    # scale_fill_manual(values=.color) +
-    # scale_x_log10(limits=c(1,40)) +
-    # scale_y_continuous(limits=c(0,6.0))
+    scale_color_manual(values=c("#ca0020","#0571b0"))
   
 }
 
