@@ -848,7 +848,7 @@ fig4_2 <- rbind(fg.fig4_2a,fg.fig4_2b,size = "first")
 fig4_2$widths <- unit.pmax(fg.fig4_2a$widths,fg.fig4_2b$widths)
 ggsave(filename="manuscript/images/figure4_2.pdf",plot=fig4_2,height=4.5,width=3,scale=0.66)
 
-# figure 5 - alternative evaluation of methods to express curve uncertainty -----------------
+# figure 5 - sample of alternative evaluation of methods to express curve uncertainty -----------------
 
 # .location_ref = "Minnesota"
 # .variety_ref = "Russet Burbank"
@@ -856,9 +856,7 @@ ggsave(filename="manuscript/images/figure4_2.pdf",plot=fig4_2,height=4.5,width=3
 # .variety_comp = "Russet Burbank"
 # `.location:variety_comp` = c("Canada_Russet.Burbank","Belgium_Bintje")
 
-f.fig5 <- function(plot.data,parm.fit.sum,
-                   .location_ref,.variety_ref,
-                   `.location:variety_comp`){
+f.fig5 <- function(plot.data,parm.fit.sum,.location_ref,.variety_ref,`.location:variety_comp`){
   
   var1 <- "W"
   var2 <- "%N - Diff"
@@ -929,11 +927,6 @@ f.fig5 <- function(plot.data,parm.fit.sum,
     geom_ribbon(data=c,aes(x=W,ymin=N_ref_lo,ymax=N_ref_up),alpha=0.20) + #,fill="#737373"
     geom_point(data=c,aes(x=W,y=N_comp_norm,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.5) + #linetype=1,
     geom_line(data=c,aes(x=W,y=N_ref_norm,group=`location:variety_comp`),linetype=1,alpha=1.0,size=1.0) +
-    # geom_line(data=c,aes(x=W,y=N_ref_lo,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.2) +
-    # geom_line(data=c,aes(x=W,y=N_ref_up,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.2) +
-    # geom_text(data=c_range,aes(x=0,y=0,label=paste(range_min,range_max,sep=",")),size=3,hjust=1) +
-    # geom_text(data=c_range,aes(x=range_max,y=1.0,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward") +
-    # geom_text(data=c_range,aes(x=2,y=0.5,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward") +
     theme_classic() +
     facet_wrap(vars(`location:variety_comp`),scales="free_x") + 
     labs(x=var1,
@@ -963,6 +956,116 @@ fig5 <- grid.arrange(fig5_sub[[1]],fig5_sub[[2]],fig5_sub[[3]],fig5_sub[[4]],fig
 # fg$widths <- unit.pmax(fg.appx1_a$widths, fg.appx1_b$widths, fg.appx1_c$widths, fg.appx1_d$widths, fg.appx1_e$widths, fg.appx1_f$widths, fg.appx1_g$widths, fg.appx1_h$widths, fg.appx1_i$widths, fg.appx1_j$widths, fg.appx1_k$widths, fg.appx1_l$widths, fg.appx1_m$widths, fg.appx1_n$widths)
 
 ggsave(filename="manuscript/images/figure5.pdf",plot=fig5,scale=1.5,height=60,width=6,limitsize=F) #
+
+# appendix 2 - full alternative evaluation of methods to express curve uncertainty -----------------
+
+# .location = "Minnesota"
+# .variety = "Russet Burbank"
+
+f.appx2 <- function(plot.data,parm.fit.sum,.location,.variety){
+  
+  var1 <- "W"
+  var2 <- "%N - Diff"
+  var3 <- paste(.location,.variety,sep=" - ")
+  var4 <- paste(.location,str_replace(.variety," ","."),sep="_")
+  
+  c_ref <- plot.data$c %>%
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety) %>%
+    rename(N_ref_0.05=N_0.05,
+           N_ref_0.5=N_0.5,
+           N_ref_0.95=N_0.95) %>%
+    rename(location_ref=location,
+           variety_ref=variety,
+           `location:variety_ref`=`location:variety`)
+  
+  parm_ref <- parm.fit.sum %>%
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety)
+  
+  c_comp <- plot.data$c %>%
+    filter(!`location:variety` %in% var4) %>%
+    # filter(location %in% .location_comp) %>%
+    # filter(variety %in% .variety_comp) %>%
+    select(-c(N_0.05,N_0.95)) %>%
+    rename(N_comp_0.5=N_0.5) %>%
+    rename(location_comp=location,
+           variety_comp=variety,
+           `location:variety_comp`=`location:variety`)
+  
+  c <- left_join(
+    c_ref,
+    c_comp,
+    by="W"
+  ) %>% 
+    mutate(N_ref_norm=0,
+           N_ref_up=N_ref_0.95-N_ref_0.5,
+           N_ref_lo=N_ref_0.05-N_ref_0.5,
+           N_comp_norm=N_comp_0.5-N_ref_0.5) %>%
+    mutate(N_class=case_when(
+      (N_comp_norm <= N_ref_up) & (N_comp_norm >= N_ref_lo) ~ T,
+      (N_comp_norm > N_ref_up) ~ F,
+      (N_comp_norm < N_ref_lo) ~ F,
+      TRUE ~ NA)) %>%
+    na.omit()
+  
+  c_test <- c %>%
+    select(location_comp,variety_comp,`location:variety_comp`,N_class) %>%
+    mutate_at(vars(location_comp,variety_comp,`location:variety_comp`,N_class),as.character) %>%
+    group_by(location_comp,variety_comp,`location:variety_comp`,N_class) %>%
+    summarize(n=n(),.groups="drop")
+  
+  c_test <- left_join(
+    c_test,
+    c_test %>%
+      group_by(location_comp,variety_comp,`location:variety_comp`) %>%
+      summarize(n_total=sum(n),.groups="drop"),
+    by = c("location_comp","variety_comp","location:variety_comp")
+  )
+  
+  c_range <- c %>%
+    filter(N_class==TRUE) %>%
+    group_by(location_comp,variety_comp,`location:variety_comp`) %>%
+    summarize(range_min=min(W),range_max=max(W),.groups="drop")
+  
+  ggplot() +
+    geom_ribbon(data=c,aes(x=W,ymin=N_ref_lo,ymax=N_ref_up),alpha=0.20) + #,fill="#737373"
+    geom_point(data=c,aes(x=W,y=N_comp_norm,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.1) + #linetype=1,
+    geom_line(data=c,aes(x=W,y=N_ref_norm,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.2) +
+    geom_line(data=c,aes(x=W,y=N_ref_lo,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.1) +
+    geom_line(data=c,aes(x=W,y=N_ref_up,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.1) +
+    # geom_text(data=c_range,aes(x=0,y=0,label=paste(range_min,range_max,sep=",")),size=3,hjust=1) +
+    # geom_text(data=c_range,aes(x=range_max,y=1.0,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward") +
+    geom_text(data=c_range,aes(x=2,y=0.5,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward") +
+    theme_classic() +
+    facet_wrap(vars(`location:variety_comp`),scales="free_x") + 
+    labs(x=var1,
+         y=var2,
+         title=var3) +
+    guides(color="none") +
+    scale_color_manual(values=c("#ca0020","#0571b0")) +
+    scale_y_continuous(n.breaks=4)
+  
+}
+
+appx2.list <- list(
+  location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
+  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla")
+)
+
+appx2_sub <- pmap(appx2.list,~f.appx2(plot.data,
+                                      parm.fit.sum,
+                                      .location=..1,
+                                      .variety=..2))
+
+appx2.layout <- rbind(1,2,3,4,5,6,7,8,9,10,11,12,13,14)
+
+appx2 <- grid.arrange(appx2_sub[[1]],appx2_sub[[2]],appx2_sub[[3]],appx2_sub[[4]],appx2_sub[[5]],
+                      appx2_sub[[6]],appx2_sub[[7]],appx2_sub[[8]],appx2_sub[[9]],appx2_sub[[10]],
+                      appx2_sub[[11]],appx2_sub[[12]],appx2_sub[[13]],appx2_sub[[14]],
+                      layout_matrix=appx2.layout)
+
+ggsave(filename="manuscript/images/appendix2.pdf",plot=appx2,scale=1.5,height=60,width=6,limitsize=F) #
 
 # appendix 1 - plateau model fit with point data for each date shown for each variety x location ------------------
 
