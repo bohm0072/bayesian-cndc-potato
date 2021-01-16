@@ -729,23 +729,15 @@ write_csv(tab2,"manuscript/tables/table2.csv")
 
 # .location = "Minnesota"
 # .variety = "Russet Burbank"
-# .color = "black"
 
-f.fig4_a <- function(plot.data,parm.fit.sum,.location,.variety){
+f.fig4 <- function(plot.data,parm.fit.sum,.location,.variety){
   
   var1 <- "W"
   var2 <- "%N"
   var3 <- paste(.location,.variety,sep=" - ")
+  var4 <- "%N Difference"
   
   c <- plot.data$c %>%
-    filter(location %in% .location) %>%
-    filter(variety %in% .variety)
-  
-  d <- plot.data$d %>%
-    filter(location %in% .location) %>%
-    filter(variety %in% .variety)
-  
-  p <- plot.data$p %>%
     filter(location %in% .location) %>%
     filter(variety %in% .variety)
   
@@ -791,37 +783,80 @@ f.fig4_a <- function(plot.data,parm.fit.sum,.location,.variety){
     ungroup() %>%
     select(-c(alpha1_0.05,alpha1_0.5,alpha1_0.95,alpha2_0.05,alpha2_0.5,alpha2_0.95))
   
-  ggplot() +
-    geom_ribbon(data=c,aes(ymin=N_0.05,ymax=N_0.95,x=W,group=`location:variety`,fill=`location:variety`),alpha=0.66) + #,fill="#737373"
+  c <- c %>%
+    mutate(N_cred_lo=N_0.05-N_0.5,
+           N_cred_up=N_0.95-N_0.5,
+           N_cred_nls_lo=N_0.05_nls-N_0.5,
+           N_cred_nls_up=N_0.95_nls-N_0.5,
+           N_cred_est_lo=N_0.05_est-N_0.5,
+           N_cred_est_up=N_0.95_est-N_0.5)
+  
+  g1 <- ggplot() +
+    geom_ribbon(data=c,aes(x=W,ymin=N_0.05,ymax=N_0.95),fill="black",alpha=0.20) + #,fill="#737373"
     geom_line(data=c,aes(x=W,y=N_0.5,group=`location:variety`),linetype=1,alpha=1.0) +
     geom_line(data=c,aes(x=W,y=N_0.05_nls,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
     geom_line(data=c,aes(x=W,y=N_0.95_nls,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
     geom_line(data=c,aes(x=W,y=N_0.05_est,group=`location:variety`),linetype=2,alpha=1.0,size=0.2) +
     geom_line(data=c,aes(x=W,y=N_0.95_est,group=`location:variety`),linetype=2,alpha=1.0,size=0.2) +
-    # facet_wrap(vars(`location:variety`)) +
     labs(x=var1,
          y=var2,
          title=var3) +
-    # coord_cartesian(xlim=c(0,NA),ylim=c(0,6.0)) +
     theme_classic() +
-    # theme_bw() +
     theme(text=element_text(size=8),
-          plot.title=element_text(size=8)) + 
-    guides(fill="none") +
-    scale_fill_manual(values=.color) +
-    # scale_x_log10(limits=c(1,40)) +
+          plot.title=element_text(size=8),
+          axis.title.x = element_blank()) + 
     scale_y_continuous(limits=c(0,6.0))
+
+  g2 <- ggplot() +
+    geom_ribbon(data=c,aes(x=W,ymin=N_cred_lo,ymax=N_cred_up),alpha=0.20) + #,fill="#737373"
+    geom_line(data=c,aes(x=W,y=0,group=`location:variety`),linetype=1,alpha=1.0) +
+    geom_line(data=c,aes(x=W,y=N_cred_nls_lo,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
+    geom_line(data=c,aes(x=W,y=N_cred_nls_up,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
+    geom_line(data=c,aes(x=W,y=N_cred_est_lo,group=`location:variety`),linetype=2,alpha=1.0,size=0.2) +
+    geom_line(data=c,aes(x=W,y=N_cred_est_up,group=`location:variety`),linetype=2,alpha=1.0,size=0.2) +
+    theme_classic() +
+    theme(text=element_text(size=8),
+          # plot.title=element_text(size=8),
+          plot.title=element_blank()) + 
+    labs(x=var1,
+         y=var2,
+         title=var4) +
+    scale_y_continuous(limits=c(-0.5,0.5))
+  
+  out <- list(a=g1,
+              b=g2)
   
 }
 
-f.fig4_b <- function(plot.data,parm.fit.sum,tab2,.location,.variety){
+fig4_1 <- f.fig4(plot.data,parm.fit.sum,.location=c("Argentina"),.variety=c("Innovator"))
+g.fig4_1a <- ggplotGrob(fig4_1$a)
+g.fig4_1b <- ggplotGrob(fig4_1$b)
+fg.fig4_1a <- gtable_frame(g.fig4_1a, height = unit(3, "null"), width = unit(3, "null"))
+fg.fig4_1b <- gtable_frame(g.fig4_1b, height = unit(3, "null"), width = unit(3, "null"))
+
+fig4_1 <- rbind(fg.fig4_1a,fg.fig4_1b,size = "first")
+fig4_1$widths <- unit.pmax(fg.fig4_1a$widths,fg.fig4_1b$widths)
+ggsave(filename="manuscript/images/figure4_1.pdf",plot=fig4_1,height=6,width=3,scale=0.66)
+
+fig4_2 <- f.fig4(plot.data,parm.fit.sum,.location=c("Minnesota"),.variety=c("Russet Burbank"))
+g.fig4_2a <- ggplotGrob(fig4_2$a)
+g.fig4_2b <- ggplotGrob(fig4_2$b)
+fg.fig4_2a <- gtable_frame(g.fig4_2a, height = unit(3, "null"), width = unit(3, "null"))
+fg.fig4_2b <- gtable_frame(g.fig4_2b, height = unit(3, "null"), width = unit(3, "null"))
+
+fig4_2 <- rbind(fg.fig4_2a,fg.fig4_2b,size = "first")
+fig4_2$widths <- unit.pmax(fg.fig4_2a$widths,fg.fig4_2b$widths)
+ggsave(filename="manuscript/images/figure4_2.pdf",plot=fig4_2,height=6,width=3,scale=0.66)
+
+
+f.fig4_b <- function(plot.data,parm.fit.sum,.location,.variety){
   
   var1 <- "W"
   var2 <- "%N - Diff"
   var3 <- paste(.location,.variety,sep=" - ")
   var4 <- paste(.location,str_replace(.variety," ","."),sep="_")
   
-  c_ref <- plot.data$c %>%
+  c <- plot.data$c %>%
     filter(location %in% .location) %>%
     filter(variety %in% .variety) %>%
     rename(N_ref_0.05=N_0.05,
@@ -835,111 +870,83 @@ f.fig4_b <- function(plot.data,parm.fit.sum,tab2,.location,.variety){
     filter(location %in% .location) %>%
     filter(variety %in% .variety)
   
-  c_comp <- plot.data$c %>%
-    filter(!`location:variety` %in% var4) %>%
-    select(-c(N_0.05,N_0.95)) %>%
-    rename(N_comp_0.5=N_0.5) %>%
-    rename(location_comp=location,
-           variety_comp=variety,
-           `location:variety_comp`=`location:variety`)
-  
-  c <- left_join(
-    c_ref,
-    c_comp,
-    by="W"
-  ) %>% 
-    mutate(N_ref_norm=0,
-           N_ref_up=N_ref_0.95-N_ref_0.5,
-           N_ref_lo=N_ref_0.05-N_ref_0.5,
-           N_comp_norm=N_comp_0.5-N_ref_0.5) %>%
-    mutate(N_class=case_when(
-      (N_comp_norm <= N_ref_up) & (N_comp_norm >= N_ref_lo) ~ T,
-      (N_comp_norm > N_ref_up) ~ F,
-      (N_comp_norm < N_ref_lo) ~ F,
-      TRUE ~ NA)) %>%
-    na.omit()
-  
-  c_test <- c %>%
-    select(location_comp,variety_comp,`location:variety_comp`,N_class) %>%
-    mutate_at(vars(location_comp,variety_comp,`location:variety_comp`,N_class),as.character) %>%
-    group_by(location_comp,variety_comp,`location:variety_comp`,N_class) %>%
-    summarize(n=n(),.groups="drop")
-  
-  c_test <- left_join(
-    c_test,
-    c_test %>%
-      group_by(location_comp,variety_comp,`location:variety_comp`) %>%
-      summarize(n_total=sum(n),.groups="drop"),
-    by = c("location_comp","variety_comp","location:variety_comp")
-  )
-  
-  c_range <- c %>%
-    filter(N_class==TRUE) %>%
-    group_by(location_comp,variety_comp,`location:variety_comp`) %>%
-    summarize(range_min=min(W),range_max=max(W),.groups="drop")
-  
   ggplot() +
     geom_ribbon(data=c,aes(x=W,ymin=N_ref_lo,ymax=N_ref_up),alpha=0.20) + #,fill="#737373"
-    # geom_point(data=c,aes(x=W,y=N_comp_norm,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.1) + #linetype=1,
     geom_line(data=c,aes(x=W,y=N_ref_lo,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.2) +
     geom_line(data=c,aes(x=W,y=N_ref_up,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.2) +
-    # geom_text(data=c_range,aes(x=2,y=0.5,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward") +
     theme_classic() +
     theme(text=element_text(size=8),
           plot.title=element_text(size=8)) + 
-    # facet_wrap(vars(`location:variety_comp`),scales="free_x") + 
     labs(x=var1,
          y=var2,
          title=var3) +
-    guides(color="none") +
-    scale_color_manual(values=c("#ca0020","#0571b0")) +
     scale_y_continuous(limits=c(-0.4,0.4))
-  # scale_x_continuous(limits=c(0,NA))
+  
+  # c_comp <- plot.data$c %>%
+  #   filter(!`location:variety` %in% var4) %>%
+  #   select(-c(N_0.05,N_0.95)) %>%
+  #   rename(N_comp_0.5=N_0.5) %>%
+  #   rename(location_comp=location,
+  #          variety_comp=variety,
+  #          `location:variety_comp`=`location:variety`)
+  # 
+  # c <- left_join(
+  #   c_ref,
+  #   c_comp,
+  #   by="W"
+  # ) %>% 
+  #   mutate(N_ref_norm=0,
+  #          N_ref_up=N_ref_0.95-N_ref_0.5,
+  #          N_ref_lo=N_ref_0.05-N_ref_0.5,
+  #          N_comp_norm=N_comp_0.5-N_ref_0.5) %>%
+  #   mutate(N_class=case_when(
+  #     (N_comp_norm <= N_ref_up) & (N_comp_norm >= N_ref_lo) ~ T,
+  #     (N_comp_norm > N_ref_up) ~ F,
+  #     (N_comp_norm < N_ref_lo) ~ F,
+  #     TRUE ~ NA)) %>%
+  #   na.omit()
+  # 
+  # c_test <- c %>%
+  #   select(location_comp,variety_comp,`location:variety_comp`,N_class) %>%
+  #   mutate_at(vars(location_comp,variety_comp,`location:variety_comp`,N_class),as.character) %>%
+  #   group_by(location_comp,variety_comp,`location:variety_comp`,N_class) %>%
+  #   summarize(n=n(),.groups="drop")
+  # 
+  # c_test <- left_join(
+  #   c_test,
+  #   c_test %>%
+  #     group_by(location_comp,variety_comp,`location:variety_comp`) %>%
+  #     summarize(n_total=sum(n),.groups="drop"),
+  #   by = c("location_comp","variety_comp","location:variety_comp")
+  # )
+  # 
+  # c_range <- c %>%
+  #   filter(N_class==TRUE) %>%
+  #   group_by(location_comp,variety_comp,`location:variety_comp`) %>%
+  #   summarize(range_min=min(W),range_max=max(W),.groups="drop")
   
 }
 
-# fig4.list <- list(
-#   location=c("Argentina","Minnesota","Canada","Belgium"),
-#   variety=c("Innovator","Russet Burbank","Russet Burbank","Bintje")
-# )
+# fig4_a1 <- f.fig4_a(plot.data,parm.fit.sum,.location=c("Argentina"),.variety=c("Innovator"))
+# g.fig4_a1 <- ggplotGrob(fig4_a1)
+# fg.fig4_a1 <- gtable_frame(g.fig4_a1, height = unit(3, "null"), width = unit(3, "null"))
 # 
-# fig4_a.sub <- pmap(fig4.list,~f.fig4_a(plot.data,
-#                                    parm.fit.sum,
-#                                    .location=..1,
-#                                    .variety=..2))
+# fig4_a2 <- f.fig4_a(plot.data,parm.fit.sum,.location=c("Minnesota"),.variety=c("Russet Burbank"))
+# g.fig4_a2 <- ggplotGrob(fig4_a2)
+# fg.fig4_a2 <- gtable_frame(g.fig4_a2, height = unit(3, "null"), width = unit(3, "null"))
 # 
-# fig4_b.sub <- pmap(fig4.list,~f.fig4_b(plot.data,
-#                                        parm.fit.sum,
-#                                        .location=..1,
-#                                        .variety=..2))
+# fig4_b1 <- f.fig4_b(plot.data,parm.fit.sum,.location=c("Argentina"),.variety=c("Innovator"))
+# g.fig4_b1 <- ggplotGrob(fig4_b1)
+# fg.fig4_b1 <- gtable_frame(g.fig4_b1, height = unit(3, "null"), width = unit(3, "null"))
 # 
-# fig4.layout <- rbind(c(1,2),
-#                      c(3,4))
+# fig4_b2 <- f.fig4_b(plot.data,parm.fit.sum,.location=c("Minnesota"),.variety=c("Russet Burbank"))
+# g.fig4_b2 <- ggplotGrob(fig4_b2)
+# fg.fig4_b2 <- gtable_frame(g.fig4_b2, height = unit(3, "null"), width = unit(3, "null"))
 # 
-# fig4 <- grid.arrange(fig4_a.sub[[1]],fig4_a.sub[[2]],
-#                      fig4_b.sub[[1]],fig4_b.sub[[2]],
-#                      layout_matrix=fig4.layout)
-
-fig4_a1 <- f.fig4_a(plot.data,parm.fit.sum,.location=c("Argentina"),.variety=c("Innovator"))
-g.fig4_a1 <- ggplotGrob(fig4_a1)
-fg.fig4_a1 <- gtable_frame(g.fig4_a1, height = unit(3, "null"), width = unit(3, "null"))
-
-fig4_a2 <- f.fig4_a(plot.data,parm.fit.sum,.location=c("Minnesota"),.variety=c("Russet Burbank"))
-g.fig4_a2 <- ggplotGrob(fig4_a2)
-fg.fig4_a2 <- gtable_frame(g.fig4_a2, height = unit(3, "null"), width = unit(3, "null"))
-
-fig4_b1 <- f.fig4_b(plot.data,parm.fit.sum,.location=c("Argentina"),.variety=c("Innovator"))
-g.fig4_b1 <- ggplotGrob(fig4_b1)
-fg.fig4_b1 <- gtable_frame(g.fig4_b1, height = unit(3, "null"), width = unit(3, "null"))
-
-fig4_b2 <- f.fig4_b(plot.data,parm.fit.sum,.location=c("Minnesota"),.variety=c("Russet Burbank"))
-g.fig4_b2 <- ggplotGrob(fig4_b2)
-fg.fig4_b2 <- gtable_frame(g.fig4_b2, height = unit(3, "null"), width = unit(3, "null"))
-
-fig4 <- rbind(fg.fig4_a1,fg.fig4_a2,fg.fig4_b1,fg.fig4_b2,size = "first")
-fig4$widths <- unit.pmax(fg.fig4_a1$widths,fg.fig4_a2$widths,fg.fig4_b1$widths,fg.fig4_b2$widths)
-
-ggsave(filename="manuscript/images/figure4.pdf",plot=fig4,height=6,width=6,scale=0.66)
+# fig4 <- rbind(fg.fig4_a1,fg.fig4_a2,fg.fig4_b1,fg.fig4_b2,size = "first")
+# fig4$widths <- unit.pmax(fg.fig4_a1$widths,fg.fig4_a2$widths,fg.fig4_b1$widths,fg.fig4_b2$widths)
+# 
+# ggsave(filename="manuscript/images/figure4.pdf",plot=fig4,height=6,width=6,scale=0.66)
 
 # figure 5 - alternative evaluation of methods to express curve uncertainty -----------------
 
