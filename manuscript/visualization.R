@@ -814,13 +814,13 @@ f.fig4_a <- function(plot.data,parm.fit.sum,.location,.variety,.color){
   
 }
 
-fig4.list <- list(
+fig4_a.list <- list(
   location=c("Argentina","Minnesota","Canada","Belgium"),
   variety=c("Innovator","Russet Burbank","Russet Burbank","Bintje"),
   color="black"
 )
 
-fig4_a.sub <- pmap(fig4.list,~f.fig4_a(plot.data,
+fig4_a.sub <- pmap(fig4_a.list,~f.fig4_a(plot.data,
                                    parm.fit.sum,
                                    .location=..1,
                                    .variety=..2,
@@ -838,83 +838,97 @@ fig4_a <- grid.arrange(fig4_a.sub[[1]],fig4_a.sub[[2]],
 
 ggsave(filename="manuscript/images/figure4_a.pdf",plot=fig4_a,height=3,width=6,scale=0.66)
 
+# figure 5 - alternative evaluation of methods to express curve uncertainty -----------------
 
-f.fig4_b <- function(plot.data,parm.fit.sum,tab2,.location,.variety,.color){
+f.fig5 <- function(plot.data,parm.fit.sum,tab2,.location,.variety,.color){
   
   var1 <- "W"
   var2 <- "%N"
   var3 <- paste(.location,.variety,sep=" - ")
+  var4 <- paste(.location,str_replace(.variety," ","."),sep="_")
   
   c_ref <- plot.data$c %>%
     filter(location %in% .location) %>%
-    filter(variety %in% .variety)
+    filter(variety %in% .variety) %>%
+    rename(N_ref_0.05=N_0.05,
+           N_ref_0.5=N_0.5,
+           N_ref_0.95=N_0.95) %>%
+    rename(location_ref=location,
+           variety_ref=variety,
+           `location:variety_ref`=`location:variety`)
   
-  parm <- parm.fit.sum %>%
+  parm_ref <- parm.fit.sum %>%
     filter(location %in% .location) %>%
     filter(variety %in% .variety)
   
-  nls_0.95 <- nls(data=c,
-                  formula=N_0.95~alpha1*W^(-alpha2),
-                  start=list(alpha1=4.94,
-                             alpha2=0.40))
+  c_comp <- plot.data$c %>%
+    filter(!`location:variety` %in% var4) %>%
+    select(-c(N_0.05,N_0.95)) %>%
+    rename(N_comp_0.5=N_0.5) %>%
+    rename(location_comp=location,
+           variety_comp=variety,
+           `location:variety_comp`=`location:variety`)
   
-  nls_0.5 <- nls(data=c,
-                 formula=N_0.5~alpha1*W^(-alpha2),
-                 start=list(alpha1=4.94,
-                            alpha2=0.40))
+  c <- left_join(
+    c_ref,
+    c_comp,
+    by="W"
+  ) %>% 
+    mutate(N_ref_norm=0,
+           N_ref_up=N_ref_0.95-N_ref_0.5,
+           N_ref_lo=N_ref_0.05-N_ref_0.5,
+           N_comp_norm=N_comp_0.5-N_ref_0.5) %>%
+    mutate(N_class=case_when(
+      (N_comp_norm <= N_ref_up) & (N_comp_norm >= N_ref_lo) ~ T,
+      (N_comp_norm > N_ref_up) ~ F,
+      (N_comp_norm < N_ref_lo) ~ F,
+      TRUE ~ NA))
   
-  nls_0.05 <- nls(data=c,
-                  formula=N_0.05~alpha1*W^(-alpha2),
-                  start=list(alpha1=4.94,
-                             alpha2=0.40))
+  c_test <- c %>%
+    select(location_comp,variety_comp,`location:variety_comp`,N_class) %>%
+    mutate_at(vars(location_comp,variety_comp,`location:variety_comp`,N_class),as.character) %>%
+    group_by(location_comp,variety_comp,`location:variety_comp`,N_class) %>%
+    summarize(n=n(),.groups="drop")
   
-  nls_alpha1_0.05 <- summary(nls_0.05)$parameters[1,1]
-  nls_alpha2_0.05 <- summary(nls_0.05)$parameters[2,1]
-  nls_alpha1_0.5 <- summary(nls_0.5)$parameters[1,1]
-  nls_alpha2_0.5 <- summary(nls_0.5)$parameters[2,1]
-  nls_alpha1_0.95 <- summary(nls_0.95)$parameters[1,1]
-  nls_alpha2_0.95 <- summary(nls_0.95)$parameters[2,1]
-  
-  c <- c %>%
-    rowwise() %>%
-    mutate(N_0.05_nls = nls_alpha1_0.05*W^(-nls_alpha2_0.05),
-           N_0.5_nls = nls_alpha1_0.5*W^(-nls_alpha2_0.5),
-           N_0.95_nls = nls_alpha1_0.95*W^(-nls_alpha2_0.95)) %>%
-    ungroup()
-  
-  c <- c %>%
-    left_join(parm, by = c("location","variety","location:variety")) %>%
-    rowwise() %>%
-    mutate(N_0.05_est = alpha1_0.95*W^(-alpha2_0.05),
-           N_0.5_est = alpha1_0.5*W^(-alpha2_0.5),
-           N_0.95_est = alpha1_0.05*W^(-alpha2_0.95)) %>%
-    ungroup() %>%
-    select(-c(alpha1_0.05,alpha1_0.5,alpha1_0.95,alpha2_0.05,alpha2_0.5,alpha2_0.95))
+  c_test <- left_join(
+    c_test,
+    c_test %>%
+      group_by(location_comp,variety_comp,`location:variety_comp`) %>%
+      summarize(n_total=sum(n),.groups="drop"),
+    by = c("location_comp","variety_comp","location:variety_comp")
+  )
   
   ggplot() +
-    geom_ribbon(data=c,aes(ymin=N_0.05,ymax=N_0.95,x=W,group=`location:variety`,fill=`location:variety`),alpha=0.66) + #,fill="#737373"
-    geom_line(data=c,aes(x=W,y=N_0.5,group=`location:variety`),linetype=1,alpha=1.0) +
-    geom_line(data=c,aes(x=W,y=N_0.05_nls,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
-    geom_line(data=c,aes(x=W,y=N_0.95_nls,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
-    geom_line(data=c,aes(x=W,y=N_0.05_est,group=`location:variety`),linetype=2,alpha=1.0,size=0.2) +
-    geom_line(data=c,aes(x=W,y=N_0.95_est,group=`location:variety`),linetype=2,alpha=1.0,size=0.2) +
-    # facet_wrap(vars(`location:variety`)) +
-    labs(x=var1,
-         y=var2,
-         title=var3) +
-    # coord_cartesian(xlim=c(0,NA),ylim=c(0,6.0)) +
+    geom_ribbon(data=c,aes(x=W,ymin=N_ref_lo,ymax=N_ref_up),alpha=0.20) + #,fill="#737373"
+    geom_point(data=c,aes(x=W,y=N_comp_norm,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.1) + #linetype=1,
+    geom_line(data=c,aes(x=W,y=N_ref_lo,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.2) +
+    geom_line(data=c,aes(x=W,y=N_ref_up,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.2) +
     theme_classic() +
-    # theme_bw() +
-    theme(text=element_text(size=8),
-          plot.title=element_text(size=8)) + 
-    guides(fill="none") +
-    scale_fill_manual(values=.color) +
-    scale_x_log10(limits=c(1,40)) +
-    scale_y_continuous(limits=c(0,6.0))
+    facet_wrap(vars(`location:variety_comp`),scales="free_y") + 
+    # scale_color_manual(values=c("#f4a582","#92c5de"))
+    scale_color_manual(values=c("#ca0020","#0571b0"))
+    
+    # geom_line(data=c,aes(x=W,y=N_0.05_nls,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
+    # geom_line(data=c,aes(x=W,y=N_0.95_nls,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
+    # geom_line(data=c,aes(x=W,y=N_0.05_est,group=`location:variety`),linetype=2,alpha=1.0,size=0.2) +
+    # geom_line(data=c,aes(x=W,y=N_0.95_est,group=`location:variety`),linetype=2,alpha=1.0,size=0.2) +
+    # # facet_wrap(vars(`location:variety`)) +
+    # labs(x=var1,
+    #      y=var2,
+    #      title=var3) +
+    # # coord_cartesian(xlim=c(0,NA),ylim=c(0,6.0)) +
+    # theme_classic() +
+    # # theme_bw() +
+    # theme(text=element_text(size=8),
+    #       plot.title=element_text(size=8)) + 
+    # guides(fill="none") +
+    # scale_fill_manual(values=.color) +
+    # scale_x_log10(limits=c(1,40)) +
+    # scale_y_continuous(limits=c(0,6.0))
   
 }
 
-f.fig4_b <- function(plot.data,.location,.variety,.color){
+f.fig_c <- function(plot.data,.location,.variety,.color){
   
   var1 <- "Biomass [Mg ha-1]" #"W"
   var2 <- "%N [g N 100 g-1]" #"%N"
