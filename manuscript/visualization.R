@@ -459,13 +459,9 @@ ggsave(filename="manuscript/images/figure1_b.pdf",plot=fig1_b,height=4.5,width=3
 
 f.fig2 <- function(cndc.fit,.location,.variety,.color){
   
-  # var1 <- expression(paste("parameter ", italic("a"), sep=" "))
-  # var2 <- expression(paste("parameter ", italic("b"), sep=" "))
   var3 <- paste("       ",.variety,sep="")
-  # var3 <- paste(.location,.variety,sep=" - ")
   
   d <- cndc.fit %>%
-    # select(-`location:variety`)
     filter(location %in% .location) %>%
     filter(variety %in% .variety)
   
@@ -473,7 +469,10 @@ f.fig2 <- function(cndc.fit,.location,.variety,.color){
     geom_point(alpha=0.02) +
     stat_cor(color="black",size=2,
              aes(label = ..r.label..),
-             r.accuracy = 0.01) + 
+             label.x=5.0,
+             label.y=0.5,
+             r.accuracy=2,
+             hjust=0) + 
     theme_classic() +
     theme(text=element_text(size=8),
           plot.title=element_text(size=8),
@@ -482,18 +481,11 @@ f.fig2 <- function(cndc.fit,.location,.variety,.color){
           plot.title.position = "plot", 
           plot.caption.position =  "plot") +
     scale_color_manual(values = .color) +
-    scale_x_continuous(limits=c(4.0,5.5)) + 
-    scale_y_continuous(limits=c(0.01,0.79)) +
+    coord_cartesian(xlim=c(4.0,5.5),ylim=c(0.0,0.8)) +
+    scale_x_continuous(breaks=c(4.0,4.5,5.0,5.5)) +
+    scale_y_continuous(breaks=c(0.1,0.3,0.5,0.7)) +
     guides(color="none") +
-    labs(# x=var1,
-         # y=var2,
-         # title=var3)
-         caption=var3)
-  
-  # geom_point(data = d, aes(x=`location:variety_alpha1`, y=`location:variety_alpha2`), alpha=0.01, color="grey") +
-  # facet_wrap(vars(`location:variety`)) +
-  # scale_color_manual(values=c("#E41A1C","#377EB8","#4DAF4A","#984EA3","#FF7F00","#FFFF33","#A65628","#F781BF","#999999","#1B9E77","#D95F02","#7570B3","#E7298A","#66A61E","#E6AB02","#A6761D","#666666")) # +
-  # coord_cartesian(xlim=c(4.0,5.5),ylim=c(0.1,0.7))
+    labs(caption=var3)
   
   p2 <- ggMarginal(p1, type="density", data = cndc.fit, groupColour = T)
   
@@ -511,6 +503,8 @@ fig2.sub <- pmap(fig2.list,~f.fig2(cndc.fit,
                                    .location=..1,
                                    .variety=..2,
                                    .color=..3))
+
+# fig2.sub[[1]]
 
 f.fig2.lab.facet <- function(.location){
   
@@ -597,25 +591,25 @@ f.fig3 <- function(plot.data,.location,.variety,.color){
   
   n <- d %>%
     summarize(n=n()) %>%
-    pull()
+    mutate(x=max(c$W)) %>%
+    mutate(lab=paste("n=",n,sep=""))
   
   i <- d %>%
     select(index) %>%
     distinct() %>%
-    summarize(n=n()) %>%
-    pull()
+    summarize(i=n()) %>%
+    mutate(x=max(c$W)) %>%
+    mutate(lab=paste("i=",i,sep=""))
   
   ggplot() +
     geom_line(data=p,aes(x=W_0.5,y=N_0.5,group=index),color="grey",linetype=1,alpha=0.20) + #,color=`location:variety`
     geom_point(data=d,aes(x=W,y=N,color=`location:variety`),alpha=0.20) + 
-    # geom_ribbon(data=c,aes(ymin=N_0.05,ymax=N_0.95,x=W,group=`location:variety`),fill="#737373",alpha=0.66) +
+    geom_ribbon(data=c,aes(ymin=N_0.05,ymax=N_0.95,x=W,group=`location:variety`),fill="#737373",alpha=0.66) +
     geom_line(data=c,aes(x=W,y=N_0.5,group=`location:variety`),linetype=1,alpha=1.0) +
-    # facet_wrap(vars(`location:variety`)) +
-    labs(# x=var1,
-         # y=var2,
-         # title=var3) +
-         caption=var3) +
-    coord_cartesian(xlim=c(0,NA),ylim=c(0,6.0)) +
+    geom_text(data=n,aes(x=x,y=6.4,label=lab),size=2,hjust=1,vjust=1) +
+    geom_text(data=i,aes(x=x,y=5.4,label=lab),size=2,hjust=1,vjust=1) +
+    labs(caption=var3) +
+    coord_cartesian(xlim=c(0,NA),ylim=c(0,6.5)) +
     theme_classic() +
     theme(text=element_text(size=8),
           plot.title=element_text(size=8),
