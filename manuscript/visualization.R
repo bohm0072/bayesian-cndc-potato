@@ -350,20 +350,43 @@ plot.data <- f.plot.data(data,cndc.fit.sum,plateau.fit.sum,Bmax.sum)
 plot.colors.1 <- c("#490809","#931012","#CA1619","#C55962","#E74B5E","#2C652A","#33a02c","#CC6600","#ff7f00","#15527A","#0177A2","#1F78B4","#01B3F4","#62B0E4")
 plot.colors.2 <- c("#CA1619","#33a02c","#ff7f00","#1F78B4")
 
+# table 1 - distribution of alpha parameter values for each parameter independently #####
+
+tab1 <- bind_rows(parm.fit.sum,
+                  parm.fit.sum2 %>%
+                    mutate(variety=".",
+                           `location:variety`=".")) %>%
+  arrange(location,variety)
+
+write_csv(tab1,"manuscript/tables/table1.csv")
+
 # figure 1 - distribution of alpha parameter values for each parameter independently ------------------
 
 # parm = "alpha1"
 # .colors1 = plot.colors.1
 # .colors2 = plot.colors.2
+# alpha1_0.5 <- 5.00
+# alpha1_0.05 <- 4.75
+# alpha1_0.95 <- 5.25
 
-f.fig1 <- function(cndc.fit,parm,.colors1,.colors2){
+f.fig1 <- function(cndc.fit,tab1,parm,.colors1,.colors2){
   
   var4 <- paste("location_",parm,sep="")
   var5 <- paste("location:variety_",parm,sep="")
   
-  limits.x <- case_when(
-    parm == "alpha1" ~ c(4.0,5.5),
-    parm == "alpha2" ~ c(0.01,0.79)
+  coord.x <- case_when(
+    parm == "alpha1" ~ c(4.0,6.75),
+    parm == "alpha2" ~ c(0.1,1.25)
+  )
+  
+  breaks.x <- case_when(
+    parm == "alpha1" ~ c(4.0,4.5,5.0,5.5),
+    parm == "alpha2" ~ c(0.1,0.3,0.5,0.7)
+  )
+  
+  minor.breaks.x <- case_when(
+    parm == "alpha1" ~ c(4.25,4.75,5.25,5.5),
+    parm == "alpha2" ~ c(0.0,0.2,0.4,0.6)
   )
   
   label.x <- case_when(
@@ -371,63 +394,62 @@ f.fig1 <- function(cndc.fit,parm,.colors1,.colors2){
     parm == "alpha2" ~ expression(paste("parameter ", italic("b"), sep=" "))
   )
   
-  p1 <- cndc.fit %>%
-    ggplot(aes(x = !!sym(var5), y = reorder(variety, desc(variety)))) +
-    stat_halfeye(aes(fill=`location:variety`)) +
+  parm.pos.x <- case_when(
+    parm == "alpha1" ~ 6.75,
+    parm == "alpha2" ~ 1.28
+  )
+  
+  parm.lab.x <- case_when(
+    parm == "alpha1" ~ "alpha1_lab",
+    parm == "alpha2" ~ "alpha2_lab"
+  )
+  
+  t <- tab1 %>%
+    mutate(alpha1_lab=paste(format(round(alpha1_0.5,2),nsmall=2),' (',format(round(alpha1_0.05,2),nsmall=2),', ',format(round(alpha1_0.95,2),nsmall=2),')',sep=''),
+           alpha2_lab=paste(format(round(alpha2_0.5,3),nsmall=3),' (',format(round(alpha2_0.05,3),nsmall=3),', ',format(round(alpha2_0.95,3),nsmall=3),')',sep=''))
+  
+  p1 <- ggplot() +
+    stat_halfeye(data=cndc.fit, aes(x = !!sym(var5), y = reorder(variety, desc(variety)), fill=`location:variety`),.width = c(0.1, 0.90),size=2) +
+    geom_text(data=filter(t,variety!="."), aes(x=parm.pos.x,y=variety,label=!!sym(parm.lab.x)),nudge_y=0.1,hjust=1,vjust=0,size=3,color="#4d4d4d") + #label="5.00 (4.75,5.25)"
     facet_grid(location~., scales = "free_y", space = "free") +
-    coord_cartesian(xlim=limits.x) +
-    # theme_classic() +
+    coord_cartesian(xlim=coord.x) +
     theme_bw() +
     theme(axis.title.x = element_blank(),
           axis.title.y = element_blank()) +
     guides(fill = "none") +
-    scale_fill_manual(values=.colors1)
+    scale_fill_manual(values=.colors1) +
+    scale_x_continuous(breaks=breaks.x,
+                       minor_breaks=minor.breaks.x)
     
   g1 <- ggplotGrob(p1)
   fg1 <- gtable_frame(g1, height = unit(3, "null")) #debug = TRUE,
   
-  p2 <- cndc.fit %>%
-    ggplot(aes(x = !!sym(var4), y = reorder(location, desc(location)))) +
-    stat_halfeye(aes(fill=location)) +
-    coord_cartesian(xlim=limits.x) +
+  p2 <- ggplot() +
+    stat_halfeye(data=cndc.fit, aes(x = !!sym(var4), y = reorder(location, desc(location)), fill=location),.width = c(0.1, 0.90),size=2) +
+    geom_text(data=filter(t,variety=="."), aes(x=parm.pos.x,y=location,label=!!sym(parm.lab.x)),nudge_y=0.1,hjust=1,vjust=0,size=3,color="#4d4d4d") + #label="5.00 (4.75,5.25)"
+    coord_cartesian(xlim=coord.x) +
     labs(x=label.x) +
-    # theme_classic() +
     theme_bw() +
     theme(axis.title.y = element_blank()) +
     guides(fill = "none") +
-    scale_fill_manual(values=.colors2)
+    scale_fill_manual(values=.colors2) +
+    scale_x_continuous(breaks=breaks.x,
+                       minor_breaks=minor.breaks.x)
   
   g2 <- ggplotGrob(p2)
   fg2 <- gtable_frame(g2, height = unit(1, "null"))
   
-  # b <- rectGrob(gp = gpar(fill = "white"))
-  
   fg <- rbind(fg1,fg2,size = "first")
   fg$widths <- unit.pmax(fg1$widths, fg2$widths)
-  
-  # grid.arrange(fg)
-  # grid.newpage()
-  # grid.rect(gp=gpar(fill="white"))
-  # grid.draw(fg)
   
   return(fg)
   
 }
 
-fig1_a <- f.fig1(cndc.fit,"alpha1",plot.colors.1,plot.colors.2)
+fig1_a <- f.fig1(cndc.fit,tab1,"alpha1",plot.colors.1,plot.colors.2)
 ggsave(filename="manuscript/images/figure1_a.pdf",plot=fig1_a,height=4.5,width=3,units="in",scale=1.3)
-fig1_b <- f.fig1(cndc.fit,"alpha2",plot.colors.1,plot.colors.2)
+fig1_b <- f.fig1(cndc.fit,tab1,"alpha2",plot.colors.1,plot.colors.2)
 ggsave(filename="manuscript/images/figure1_b.pdf",plot=fig1_b,height=4.5,width=3,units="in",scale=1.3)
-
-# table 1 - distribution of alpha parameter values for each parameter independently #####
-
-tab1 <- bind_rows(parm.fit.sum,
-          parm.fit.sum2 %>%
-            mutate(variety=".",
-                   `location:variety`=".")) %>%
-  arrange(location,variety)
-
-write_csv(tab1,"manuscript/tables/table1.csv")
 
 # figure 2 - distribution of alpha parameters for each parameters simultaneously ----------------
 
