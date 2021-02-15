@@ -16,7 +16,7 @@ theme_set(theme_bw())
 ```
 
 ```{r}
-d <- read_csv("https://raw.githubusercontent.com/bohm0072/cndc_bayesian_eval/main/minimal_example/data/mn_two_varieties.csv?token=ADZFJGWDUSC36CHCWQIEX7DABC4PG")
+d <- read_csv("data/mn_two_varieties.csv")
 
 ```
 
