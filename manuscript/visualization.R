@@ -909,7 +909,7 @@ f.fig4 <- function(plot.data,.location,.variety,.color){
            lab_cred_est_lo=paste("(",format(round(parm$alpha1_0.05,2),nsmall=2),", ",format(round(parm$alpha2_0.95,3),nsmall=3),")",sep=""),
            lab_cred_est_up=paste("(",format(round(parm$alpha1_0.95,2),nsmall=2),", ",format(round(parm$alpha2_0.05,3),nsmall=3),")",sep=""))
   
-  g2 <- ggplot() +
+  ggplot() +
     geom_ribbon(data=c,aes(x=W,ymin=N_cred_lo,ymax=N_cred_up),alpha=0.20) + #,fill="#737373"
     geom_line(data=c,aes(x=W,y=0,group=`location:variety`),linetype=1,alpha=1.0) +
     geom_line(data=c,aes(x=W,y=N_cred_nls_lo,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
@@ -1085,7 +1085,8 @@ f.fig5 <- function(plot.data,parm.fit.sum,.location_ref,.variety_ref,.location_c
   ggplot() +
     geom_ribbon(data=c,aes(x=W,ymin=N_ref_lo,ymax=N_ref_up),alpha=0.20) + #,fill="#737373"
     geom_point(data=c,aes(x=W,y=N_comp_norm,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.2) + #linetype=1,
-    geom_line(data=c,aes(x=W,y=N_ref_norm,group=`location:variety_comp`),linetype=1,alpha=1.0,size=1.0) +
+    # geom_line(data=c,aes(x=W,y=N_ref_norm,group=`location:variety_comp`),linetype=1,alpha=1.0,size=1.0) +
+    geom_line(data=c,aes(x=W,y=0,group=`location:variety_comp`),linetype=1,alpha=1.0) +
     theme_classic() +
     theme(text=element_text(size=8),
           plot.title=element_blank(),
@@ -1305,7 +1306,8 @@ f.fig6 <- function(plot.data,parm.fit.sum,parm.orig.sum,.location,.variety){
   ggplot() +
     geom_ribbon(data=c,aes(x=W,ymin=N_ref_lo,ymax=N_ref_up),alpha=0.20) + #,fill="#737373"
     geom_point(data=c,aes(x=W,y=N_orig_norm,group=`location:variety`,color=N_class),alpha=1.0,size=0.2) + #linetype=1,
-    geom_line(data=c,aes(x=W,y=N_ref_norm,group=`location:variety`),linetype=1,alpha=1.0,size=1.0) +
+    # geom_line(data=c,aes(x=W,y=N_ref_norm,group=`location:variety`),linetype=1,alpha=1.0,size=1.0) +
+    geom_line(data=c,aes(x=W,y=0,group=`location:variety_comp`),linetype=1,alpha=1.0) +
     # geom_text(data=c_range,aes(x=range_min,y=0,label=format(round(range_min,1),nsmall=1)),size=2.5,hjust="inward",vjust=0,nudge_y=0.02) +
     # geom_text(data=c_range,aes(x=range_max,y=0,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward",vjust=0,nudge_y=0.02) +
     theme_classic() +
