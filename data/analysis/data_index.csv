@@ -103,233 +103,234 @@ index,group,owner,study,location,variety,date
 102,3,Bohman,esn-nni,Minnesota,Russet Burbank,2020-07-07
 103,3,Bohman,esn-nni,Minnesota,Russet Burbank,2020-07-22
 104,3,Bohman,esn-nni,Minnesota,Russet Burbank,2020-08-04
-105,3,Bohman,nni,Minnesota,Russet Burbank,2019-06-25
-106,3,Bohman,nni,Minnesota,Russet Burbank,2019-07-09
-107,3,Bohman,nni,Minnesota,Russet Burbank,2019-07-23
-108,3,Bohman,nni,Minnesota,Russet Burbank,2019-08-06
-109,3,Bohman,nni,Minnesota,Russet Burbank,2019-08-21
-110,3,Bohman,nni,Minnesota,Russet Burbank,2019-09-16
-111,4,Bohman,sanjay,Minnesota,Clearwater,2018-06-26
-112,4,Bohman,sanjay,Minnesota,Clearwater,2018-07-10
-113,4,Bohman,sanjay,Minnesota,Clearwater,2018-07-18
-114,4,Bohman,sanjay,Minnesota,Clearwater,2018-08-01
-115,4,Bohman,sanjay,Minnesota,Clearwater,2018-09-13
-116,4,Bohman,sanjay,Minnesota,Clearwater,2019-06-26
-117,4,Bohman,sanjay,Minnesota,Clearwater,2019-07-11
-118,4,Bohman,sanjay,Minnesota,Clearwater,2019-07-24
-119,4,Bohman,sanjay,Minnesota,Clearwater,2019-08-07
-120,4,Bohman,sanjay,Minnesota,Clearwater,2019-09-16
-121,3,Bohman,sanjay,Minnesota,Russet Burbank,2018-06-26
-122,3,Bohman,sanjay,Minnesota,Russet Burbank,2018-07-10
-123,3,Bohman,sanjay,Minnesota,Russet Burbank,2018-07-18
-124,3,Bohman,sanjay,Minnesota,Russet Burbank,2018-08-01
-125,3,Bohman,sanjay,Minnesota,Russet Burbank,2018-09-13
-126,3,Bohman,sanjay,Minnesota,Russet Burbank,2019-06-26
-127,3,Bohman,sanjay,Minnesota,Russet Burbank,2019-07-11
-128,3,Bohman,sanjay,Minnesota,Russet Burbank,2019-07-24
-129,3,Bohman,sanjay,Minnesota,Russet Burbank,2019-08-07
-130,3,Bohman,sanjay,Minnesota,Russet Burbank,2019-09-16
-131,5,Bohman,sanjay,Minnesota,Umatilla,2018-06-26
-132,5,Bohman,sanjay,Minnesota,Umatilla,2018-07-10
-133,5,Bohman,sanjay,Minnesota,Umatilla,2018-07-18
-134,5,Bohman,sanjay,Minnesota,Umatilla,2018-08-01
-135,5,Bohman,sanjay,Minnesota,Umatilla,2018-09-13
-136,5,Bohman,sanjay,Minnesota,Umatilla,2019-06-26
-137,5,Bohman,sanjay,Minnesota,Umatilla,2019-07-11
-138,5,Bohman,sanjay,Minnesota,Umatilla,2019-07-24
-139,5,Bohman,sanjay,Minnesota,Umatilla,2019-08-07
-140,5,Bohman,sanjay,Minnesota,Umatilla,2019-09-16
-141,6,Bohman,vxn,Minnesota,Dakota Russet,2014-06-30
-142,6,Bohman,vxn,Minnesota,Dakota Russet,2014-07-15
-143,6,Bohman,vxn,Minnesota,Dakota Russet,2014-07-24
-144,6,Bohman,vxn,Minnesota,Dakota Russet,2014-08-11
-145,6,Bohman,vxn,Minnesota,Dakota Russet,2014-08-26
-146,6,Bohman,vxn,Minnesota,Dakota Russet,2014-09-08
-147,6,Bohman,vxn,Minnesota,Dakota Russet,2014-09-15
-148,6,Bohman,vxn,Minnesota,Dakota Russet,2015-06-23
-149,6,Bohman,vxn,Minnesota,Dakota Russet,2015-07-07
-150,6,Bohman,vxn,Minnesota,Dakota Russet,2015-07-21
-151,6,Bohman,vxn,Minnesota,Dakota Russet,2015-08-04
-152,6,Bohman,vxn,Minnesota,Dakota Russet,2015-08-17
-153,6,Bohman,vxn,Minnesota,Dakota Russet,2015-09-01
-154,6,Bohman,vxn,Minnesota,Dakota Russet,2015-09-16
-155,7,Bohman,vxn,Minnesota,Easton,2014-06-30
-156,7,Bohman,vxn,Minnesota,Easton,2014-07-15
-157,7,Bohman,vxn,Minnesota,Easton,2014-07-24
-158,7,Bohman,vxn,Minnesota,Easton,2014-08-11
-159,7,Bohman,vxn,Minnesota,Easton,2014-08-26
-160,7,Bohman,vxn,Minnesota,Easton,2014-09-08
-161,7,Bohman,vxn,Minnesota,Easton,2014-09-15
-162,7,Bohman,vxn,Minnesota,Easton,2015-06-23
-163,7,Bohman,vxn,Minnesota,Easton,2015-07-07
-164,7,Bohman,vxn,Minnesota,Easton,2015-07-21
-165,7,Bohman,vxn,Minnesota,Easton,2015-08-04
-166,7,Bohman,vxn,Minnesota,Easton,2015-08-17
-167,7,Bohman,vxn,Minnesota,Easton,2015-09-01
-168,7,Bohman,vxn,Minnesota,Easton,2015-09-16
-169,3,Bohman,vxn,Minnesota,Russet Burbank,2014-06-30
-170,3,Bohman,vxn,Minnesota,Russet Burbank,2014-07-15
-171,3,Bohman,vxn,Minnesota,Russet Burbank,2014-07-24
-172,3,Bohman,vxn,Minnesota,Russet Burbank,2014-08-11
-173,3,Bohman,vxn,Minnesota,Russet Burbank,2014-08-26
-174,3,Bohman,vxn,Minnesota,Russet Burbank,2014-09-08
-175,3,Bohman,vxn,Minnesota,Russet Burbank,2014-09-15
-176,3,Bohman,vxn,Minnesota,Russet Burbank,2015-06-23
-177,3,Bohman,vxn,Minnesota,Russet Burbank,2015-07-07
-178,3,Bohman,vxn,Minnesota,Russet Burbank,2015-07-21
-179,3,Bohman,vxn,Minnesota,Russet Burbank,2015-08-04
-180,3,Bohman,vxn,Minnesota,Russet Burbank,2015-08-17
-181,3,Bohman,vxn,Minnesota,Russet Burbank,2015-09-01
-182,3,Bohman,vxn,Minnesota,Russet Burbank,2015-09-16
-183,8,Giletto,Drummond,Canada,Russet Burbank,1900-02-09
-184,8,Giletto,Drummond,Canada,Russet Burbank,1900-02-16
-185,8,Giletto,Drummond,Canada,Russet Burbank,1900-02-23
-186,8,Giletto,Drummond,Canada,Russet Burbank,1900-03-05
-187,8,Giletto,Drummond,Canada,Russet Burbank,1900-03-11
-188,8,Giletto,Drummond,Canada,Russet Burbank,1900-03-18
-189,8,Giletto,Drummond,Canada,Russet Burbank,1900-03-25
-190,8,Giletto,Drummond,Canada,Russet Burbank,1900-03-30
-191,8,Giletto,Drummond,Canada,Russet Burbank,1900-04-06
-192,9,Giletto,Drummond,Canada,Shepody,1900-02-02
-193,9,Giletto,Drummond,Canada,Shepody,1900-02-09
-194,9,Giletto,Drummond,Canada,Shepody,1900-02-16
-195,9,Giletto,Drummond,Canada,Shepody,1900-02-23
-196,9,Giletto,Drummond,Canada,Shepody,1900-03-05
-197,9,Giletto,Drummond,Canada,Shepody,1900-03-11
-198,9,Giletto,Drummond,Canada,Shepody,1900-03-18
-199,9,Giletto,Drummond,Canada,Shepody,1900-03-25
-200,9,Giletto,Drummond,Canada,Shepody,1900-03-30
-201,9,Giletto,Drummond,Canada,Shepody,1900-04-06
-202,10,Giletto,Giletto,Argentina,Bannock Russet,2003-02-15
-203,10,Giletto,Giletto,Argentina,Bannock Russet,2003-03-02
-204,10,Giletto,Giletto,Argentina,Bannock Russet,2003-03-17
-205,10,Giletto,Giletto,Argentina,Bannock Russet,2003-04-01
-206,10,Giletto,Giletto,Argentina,Bannock Russet,2003-04-21
-207,10,Giletto,Giletto,Argentina,Bannock Russet,2004-02-25
-208,10,Giletto,Giletto,Argentina,Bannock Russet,2004-03-02
-209,10,Giletto,Giletto,Argentina,Bannock Russet,2004-03-24
-210,10,Giletto,Giletto,Argentina,Bannock Russet,2004-04-20
-211,10,Giletto,Giletto,Argentina,Bannock Russet,2005-02-17
-212,10,Giletto,Giletto,Argentina,Bannock Russet,2005-03-04
-213,10,Giletto,Giletto,Argentina,Bannock Russet,2005-03-17
-214,10,Giletto,Giletto,Argentina,Bannock Russet,2005-04-02
-215,10,Giletto,Giletto,Argentina,Bannock Russet,2005-04-16
-216,11,Giletto,Giletto,Argentina,Gem Russet,2003-02-15
-217,11,Giletto,Giletto,Argentina,Gem Russet,2003-03-02
-218,11,Giletto,Giletto,Argentina,Gem Russet,2003-03-17
-219,11,Giletto,Giletto,Argentina,Gem Russet,2003-04-01
-220,11,Giletto,Giletto,Argentina,Gem Russet,2003-04-21
-221,11,Giletto,Giletto,Argentina,Gem Russet,2004-02-25
-222,11,Giletto,Giletto,Argentina,Gem Russet,2004-03-02
-223,11,Giletto,Giletto,Argentina,Gem Russet,2004-03-24
-224,11,Giletto,Giletto,Argentina,Gem Russet,2004-04-20
-225,11,Giletto,Giletto,Argentina,Gem Russet,2005-02-17
-226,11,Giletto,Giletto,Argentina,Gem Russet,2005-03-04
-227,11,Giletto,Giletto,Argentina,Gem Russet,2005-03-17
-228,11,Giletto,Giletto,Argentina,Gem Russet,2005-04-02
-229,11,Giletto,Giletto,Argentina,Gem Russet,2005-04-16
-230,11,Giletto,Giletto,Argentina,Gem Russet,2006-02-15
-231,11,Giletto,Giletto,Argentina,Gem Russet,2006-02-28
-232,11,Giletto,Giletto,Argentina,Gem Russet,2006-03-16
-233,11,Giletto,Giletto,Argentina,Gem Russet,2006-04-06
-234,11,Giletto,Giletto,Argentina,Gem Russet,2006-04-27
-235,12,Giletto,Giletto,Argentina,Innovator,2003-02-15
-236,12,Giletto,Giletto,Argentina,Innovator,2003-03-02
-237,12,Giletto,Giletto,Argentina,Innovator,2003-03-17
-238,12,Giletto,Giletto,Argentina,Innovator,2003-04-01
-239,12,Giletto,Giletto,Argentina,Innovator,2003-04-21
-240,12,Giletto,Giletto,Argentina,Innovator,2004-02-25
-241,12,Giletto,Giletto,Argentina,Innovator,2004-03-02
-242,12,Giletto,Giletto,Argentina,Innovator,2004-03-24
-243,12,Giletto,Giletto,Argentina,Innovator,2004-04-20
-244,12,Giletto,Giletto,Argentina,Innovator,2005-02-17
-245,12,Giletto,Giletto,Argentina,Innovator,2005-03-04
-246,12,Giletto,Giletto,Argentina,Innovator,2005-03-17
-247,12,Giletto,Giletto,Argentina,Innovator,2005-04-02
-248,12,Giletto,Giletto,Argentina,Innovator,2005-04-16
-249,12,Giletto,Giletto,Argentina,Innovator,2006-02-15
-250,12,Giletto,Giletto,Argentina,Innovator,2006-02-28
-251,12,Giletto,Giletto,Argentina,Innovator,2006-03-16
-252,12,Giletto,Giletto,Argentina,Innovator,2006-04-06
-253,12,Giletto,Giletto,Argentina,Innovator,2006-04-27
-254,13,Giletto,Giletto,Argentina,Markies Russet,2004-02-25
-255,13,Giletto,Giletto,Argentina,Markies Russet,2004-03-02
-256,13,Giletto,Giletto,Argentina,Markies Russet,2004-03-24
-257,13,Giletto,Giletto,Argentina,Markies Russet,2004-04-20
-258,13,Giletto,Giletto,Argentina,Markies Russet,2005-02-17
-259,13,Giletto,Giletto,Argentina,Markies Russet,2005-03-04
-260,13,Giletto,Giletto,Argentina,Markies Russet,2005-03-17
-261,13,Giletto,Giletto,Argentina,Markies Russet,2005-04-02
-262,13,Giletto,Giletto,Argentina,Markies Russet,2005-04-16
-263,14,Giletto,Giletto,Argentina,Umatilla Russet,2004-02-25
-264,14,Giletto,Giletto,Argentina,Umatilla Russet,2004-03-02
-265,14,Giletto,Giletto,Argentina,Umatilla Russet,2004-03-24
-266,14,Giletto,Giletto,Argentina,Umatilla Russet,2004-04-20
-267,14,Giletto,Giletto,Argentina,Umatilla Russet,2005-02-17
-268,14,Giletto,Giletto,Argentina,Umatilla Russet,2005-03-04
-269,14,Giletto,Giletto,Argentina,Umatilla Russet,2005-03-17
-270,14,Giletto,Giletto,Argentina,Umatilla Russet,2005-04-02
-271,14,Giletto,Giletto,Argentina,Umatilla Russet,2005-04-16
-272,14,Giletto,Giletto,Argentina,Umatilla Russet,2006-02-15
-273,14,Giletto,Giletto,Argentina,Umatilla Russet,2006-02-28
-274,14,Giletto,Giletto,Argentina,Umatilla Russet,2006-03-16
-275,14,Giletto,Giletto,Argentina,Umatilla Russet,2006-04-06
-276,14,Giletto,Giletto,Argentina,Umatilla Russet,2006-04-27
-277,8,Giletto,Hartland,Canada,Russet Burbank,1900-02-10
-278,8,Giletto,Hartland,Canada,Russet Burbank,1900-02-19
-279,8,Giletto,Hartland,Canada,Russet Burbank,1900-02-24
-280,8,Giletto,Hartland,Canada,Russet Burbank,1900-03-03
-281,8,Giletto,Hartland,Canada,Russet Burbank,1900-03-11
-282,8,Giletto,Hartland,Canada,Russet Burbank,1900-03-16
-283,8,Giletto,Hartland,Canada,Russet Burbank,1900-03-23
-284,8,Giletto,Hartland,Canada,Russet Burbank,1900-04-01
-285,8,Giletto,Hartland,Canada,Russet Burbank,1900-04-09
-286,9,Giletto,Hartland,Canada,Shepody,1900-02-10
-287,9,Giletto,Hartland,Canada,Shepody,1900-02-19
-288,9,Giletto,Hartland,Canada,Shepody,1900-02-24
-289,9,Giletto,Hartland,Canada,Shepody,1900-03-03
-290,9,Giletto,Hartland,Canada,Shepody,1900-03-11
-291,9,Giletto,Hartland,Canada,Shepody,1900-03-16
-292,9,Giletto,Hartland,Canada,Shepody,1900-03-23
-293,9,Giletto,Hartland,Canada,Shepody,1900-04-01
-294,9,Giletto,Hartland,Canada,Shepody,1900-04-09
-295,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-02-14
-296,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-02-20
-297,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-02-27
-298,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-03-06
-299,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-03-16
-300,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-03-23
-301,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-03-29
-302,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-04-05
-303,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-04-18
-304,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-04-25
-305,9,Giletto,Jacksonville,Canada,Shepody,1900-02-14
-306,9,Giletto,Jacksonville,Canada,Shepody,1900-02-20
-307,9,Giletto,Jacksonville,Canada,Shepody,1900-02-27
-308,9,Giletto,Jacksonville,Canada,Shepody,1900-03-06
-309,9,Giletto,Jacksonville,Canada,Shepody,1900-03-16
-310,9,Giletto,Jacksonville,Canada,Shepody,1900-03-23
-311,9,Giletto,Jacksonville,Canada,Shepody,1900-03-29
-312,9,Giletto,Jacksonville,Canada,Shepody,1900-04-05
-313,9,Giletto,Jacksonville,Canada,Shepody,1900-04-18
-314,9,Giletto,Jacksonville,Canada,Shepody,1900-04-25
-315,8,Giletto,London,Canada,Russet Burbank,1900-02-11
-316,8,Giletto,London,Canada,Russet Burbank,1900-02-19
-317,8,Giletto,London,Canada,Russet Burbank,1900-02-26
-318,8,Giletto,London,Canada,Russet Burbank,1900-03-01
-319,8,Giletto,London,Canada,Russet Burbank,1900-03-10
-320,8,Giletto,London,Canada,Russet Burbank,1900-03-15
-321,8,Giletto,London,Canada,Russet Burbank,1900-03-22
-322,8,Giletto,London,Canada,Russet Burbank,1900-03-23
-323,8,Giletto,London,Canada,Russet Burbank,1900-04-08
-324,8,Giletto,London,Canada,Russet Burbank,1900-04-15
-325,9,Giletto,London,Canada,Shepody,1900-02-11
-326,9,Giletto,London,Canada,Shepody,1900-02-19
-327,9,Giletto,London,Canada,Shepody,1900-02-26
-328,9,Giletto,London,Canada,Shepody,1900-03-01
-329,9,Giletto,London,Canada,Shepody,1900-03-10
-330,9,Giletto,London,Canada,Shepody,1900-03-15
-331,9,Giletto,London,Canada,Shepody,1900-03-22
-332,9,Giletto,London,Canada,Shepody,1900-04-08
-333,9,Giletto,London,Canada,Shepody,1900-04-15
-334,9,Giletto,London,Canada,Shepody,1900-04-21
+105,3,Bohman,esn-nni,Minnesota,Russet Burbank,2020-09-15
+106,3,Bohman,nni,Minnesota,Russet Burbank,2019-06-25
+107,3,Bohman,nni,Minnesota,Russet Burbank,2019-07-09
+108,3,Bohman,nni,Minnesota,Russet Burbank,2019-07-23
+109,3,Bohman,nni,Minnesota,Russet Burbank,2019-08-06
+110,3,Bohman,nni,Minnesota,Russet Burbank,2019-08-21
+111,3,Bohman,nni,Minnesota,Russet Burbank,2019-09-16
+112,4,Bohman,sanjay,Minnesota,Clearwater,2018-06-26
+113,4,Bohman,sanjay,Minnesota,Clearwater,2018-07-10
+114,4,Bohman,sanjay,Minnesota,Clearwater,2018-07-18
+115,4,Bohman,sanjay,Minnesota,Clearwater,2018-08-01
+116,4,Bohman,sanjay,Minnesota,Clearwater,2018-09-13
+117,4,Bohman,sanjay,Minnesota,Clearwater,2019-06-26
+118,4,Bohman,sanjay,Minnesota,Clearwater,2019-07-11
+119,4,Bohman,sanjay,Minnesota,Clearwater,2019-07-24
+120,4,Bohman,sanjay,Minnesota,Clearwater,2019-08-07
+121,4,Bohman,sanjay,Minnesota,Clearwater,2019-09-16
+122,3,Bohman,sanjay,Minnesota,Russet Burbank,2018-06-26
+123,3,Bohman,sanjay,Minnesota,Russet Burbank,2018-07-10
+124,3,Bohman,sanjay,Minnesota,Russet Burbank,2018-07-18
+125,3,Bohman,sanjay,Minnesota,Russet Burbank,2018-08-01
+126,3,Bohman,sanjay,Minnesota,Russet Burbank,2018-09-13
+127,3,Bohman,sanjay,Minnesota,Russet Burbank,2019-06-26
+128,3,Bohman,sanjay,Minnesota,Russet Burbank,2019-07-11
+129,3,Bohman,sanjay,Minnesota,Russet Burbank,2019-07-24
+130,3,Bohman,sanjay,Minnesota,Russet Burbank,2019-08-07
+131,3,Bohman,sanjay,Minnesota,Russet Burbank,2019-09-16
+132,5,Bohman,sanjay,Minnesota,Umatilla,2018-06-26
+133,5,Bohman,sanjay,Minnesota,Umatilla,2018-07-10
+134,5,Bohman,sanjay,Minnesota,Umatilla,2018-07-18
+135,5,Bohman,sanjay,Minnesota,Umatilla,2018-08-01
+136,5,Bohman,sanjay,Minnesota,Umatilla,2018-09-13
+137,5,Bohman,sanjay,Minnesota,Umatilla,2019-06-26
+138,5,Bohman,sanjay,Minnesota,Umatilla,2019-07-11
+139,5,Bohman,sanjay,Minnesota,Umatilla,2019-07-24
+140,5,Bohman,sanjay,Minnesota,Umatilla,2019-08-07
+141,5,Bohman,sanjay,Minnesota,Umatilla,2019-09-16
+142,6,Bohman,vxn,Minnesota,Dakota Russet,2014-06-30
+143,6,Bohman,vxn,Minnesota,Dakota Russet,2014-07-15
+144,6,Bohman,vxn,Minnesota,Dakota Russet,2014-07-24
+145,6,Bohman,vxn,Minnesota,Dakota Russet,2014-08-11
+146,6,Bohman,vxn,Minnesota,Dakota Russet,2014-08-26
+147,6,Bohman,vxn,Minnesota,Dakota Russet,2014-09-08
+148,6,Bohman,vxn,Minnesota,Dakota Russet,2014-09-15
+149,6,Bohman,vxn,Minnesota,Dakota Russet,2015-06-23
+150,6,Bohman,vxn,Minnesota,Dakota Russet,2015-07-07
+151,6,Bohman,vxn,Minnesota,Dakota Russet,2015-07-21
+152,6,Bohman,vxn,Minnesota,Dakota Russet,2015-08-04
+153,6,Bohman,vxn,Minnesota,Dakota Russet,2015-08-17
+154,6,Bohman,vxn,Minnesota,Dakota Russet,2015-09-01
+155,6,Bohman,vxn,Minnesota,Dakota Russet,2015-09-16
+156,7,Bohman,vxn,Minnesota,Easton,2014-06-30
+157,7,Bohman,vxn,Minnesota,Easton,2014-07-15
+158,7,Bohman,vxn,Minnesota,Easton,2014-07-24
+159,7,Bohman,vxn,Minnesota,Easton,2014-08-11
+160,7,Bohman,vxn,Minnesota,Easton,2014-08-26
+161,7,Bohman,vxn,Minnesota,Easton,2014-09-08
+162,7,Bohman,vxn,Minnesota,Easton,2014-09-15
+163,7,Bohman,vxn,Minnesota,Easton,2015-06-23
+164,7,Bohman,vxn,Minnesota,Easton,2015-07-07
+165,7,Bohman,vxn,Minnesota,Easton,2015-07-21
+166,7,Bohman,vxn,Minnesota,Easton,2015-08-04
+167,7,Bohman,vxn,Minnesota,Easton,2015-08-17
+168,7,Bohman,vxn,Minnesota,Easton,2015-09-01
+169,7,Bohman,vxn,Minnesota,Easton,2015-09-16
+170,3,Bohman,vxn,Minnesota,Russet Burbank,2014-06-30
+171,3,Bohman,vxn,Minnesota,Russet Burbank,2014-07-15
+172,3,Bohman,vxn,Minnesota,Russet Burbank,2014-07-24
+173,3,Bohman,vxn,Minnesota,Russet Burbank,2014-08-11
+174,3,Bohman,vxn,Minnesota,Russet Burbank,2014-08-26
+175,3,Bohman,vxn,Minnesota,Russet Burbank,2014-09-08
+176,3,Bohman,vxn,Minnesota,Russet Burbank,2014-09-15
+177,3,Bohman,vxn,Minnesota,Russet Burbank,2015-06-23
+178,3,Bohman,vxn,Minnesota,Russet Burbank,2015-07-07
+179,3,Bohman,vxn,Minnesota,Russet Burbank,2015-07-21
+180,3,Bohman,vxn,Minnesota,Russet Burbank,2015-08-04
+181,3,Bohman,vxn,Minnesota,Russet Burbank,2015-08-17
+182,3,Bohman,vxn,Minnesota,Russet Burbank,2015-09-01
+183,3,Bohman,vxn,Minnesota,Russet Burbank,2015-09-16
+184,8,Giletto,Drummond,Canada,Russet Burbank,1900-02-09
+185,8,Giletto,Drummond,Canada,Russet Burbank,1900-02-16
+186,8,Giletto,Drummond,Canada,Russet Burbank,1900-02-23
+187,8,Giletto,Drummond,Canada,Russet Burbank,1900-03-05
+188,8,Giletto,Drummond,Canada,Russet Burbank,1900-03-11
+189,8,Giletto,Drummond,Canada,Russet Burbank,1900-03-18
+190,8,Giletto,Drummond,Canada,Russet Burbank,1900-03-25
+191,8,Giletto,Drummond,Canada,Russet Burbank,1900-03-30
+192,8,Giletto,Drummond,Canada,Russet Burbank,1900-04-06
+193,9,Giletto,Drummond,Canada,Shepody,1900-02-02
+194,9,Giletto,Drummond,Canada,Shepody,1900-02-09
+195,9,Giletto,Drummond,Canada,Shepody,1900-02-16
+196,9,Giletto,Drummond,Canada,Shepody,1900-02-23
+197,9,Giletto,Drummond,Canada,Shepody,1900-03-05
+198,9,Giletto,Drummond,Canada,Shepody,1900-03-11
+199,9,Giletto,Drummond,Canada,Shepody,1900-03-18
+200,9,Giletto,Drummond,Canada,Shepody,1900-03-25
+201,9,Giletto,Drummond,Canada,Shepody,1900-03-30
+202,9,Giletto,Drummond,Canada,Shepody,1900-04-06
+203,10,Giletto,Giletto,Argentina,Bannock Russet,2003-02-15
+204,10,Giletto,Giletto,Argentina,Bannock Russet,2003-03-02
+205,10,Giletto,Giletto,Argentina,Bannock Russet,2003-03-17
+206,10,Giletto,Giletto,Argentina,Bannock Russet,2003-04-01
+207,10,Giletto,Giletto,Argentina,Bannock Russet,2003-04-21
+208,10,Giletto,Giletto,Argentina,Bannock Russet,2004-02-25
+209,10,Giletto,Giletto,Argentina,Bannock Russet,2004-03-02
+210,10,Giletto,Giletto,Argentina,Bannock Russet,2004-03-24
+211,10,Giletto,Giletto,Argentina,Bannock Russet,2004-04-20
+212,10,Giletto,Giletto,Argentina,Bannock Russet,2005-02-17
+213,10,Giletto,Giletto,Argentina,Bannock Russet,2005-03-04
+214,10,Giletto,Giletto,Argentina,Bannock Russet,2005-03-17
+215,10,Giletto,Giletto,Argentina,Bannock Russet,2005-04-02
+216,10,Giletto,Giletto,Argentina,Bannock Russet,2005-04-16
+217,11,Giletto,Giletto,Argentina,Gem Russet,2003-02-15
+218,11,Giletto,Giletto,Argentina,Gem Russet,2003-03-02
+219,11,Giletto,Giletto,Argentina,Gem Russet,2003-03-17
+220,11,Giletto,Giletto,Argentina,Gem Russet,2003-04-01
+221,11,Giletto,Giletto,Argentina,Gem Russet,2003-04-21
+222,11,Giletto,Giletto,Argentina,Gem Russet,2004-02-25
+223,11,Giletto,Giletto,Argentina,Gem Russet,2004-03-02
+224,11,Giletto,Giletto,Argentina,Gem Russet,2004-03-24
+225,11,Giletto,Giletto,Argentina,Gem Russet,2004-04-20
+226,11,Giletto,Giletto,Argentina,Gem Russet,2005-02-17
+227,11,Giletto,Giletto,Argentina,Gem Russet,2005-03-04
+228,11,Giletto,Giletto,Argentina,Gem Russet,2005-03-17
+229,11,Giletto,Giletto,Argentina,Gem Russet,2005-04-02
+230,11,Giletto,Giletto,Argentina,Gem Russet,2005-04-16
+231,11,Giletto,Giletto,Argentina,Gem Russet,2006-02-15
+232,11,Giletto,Giletto,Argentina,Gem Russet,2006-02-28
+233,11,Giletto,Giletto,Argentina,Gem Russet,2006-03-16
+234,11,Giletto,Giletto,Argentina,Gem Russet,2006-04-06
+235,11,Giletto,Giletto,Argentina,Gem Russet,2006-04-27
+236,12,Giletto,Giletto,Argentina,Innovator,2003-02-15
+237,12,Giletto,Giletto,Argentina,Innovator,2003-03-02
+238,12,Giletto,Giletto,Argentina,Innovator,2003-03-17
+239,12,Giletto,Giletto,Argentina,Innovator,2003-04-01
+240,12,Giletto,Giletto,Argentina,Innovator,2003-04-21
+241,12,Giletto,Giletto,Argentina,Innovator,2004-02-25
+242,12,Giletto,Giletto,Argentina,Innovator,2004-03-02
+243,12,Giletto,Giletto,Argentina,Innovator,2004-03-24
+244,12,Giletto,Giletto,Argentina,Innovator,2004-04-20
+245,12,Giletto,Giletto,Argentina,Innovator,2005-02-17
+246,12,Giletto,Giletto,Argentina,Innovator,2005-03-04
+247,12,Giletto,Giletto,Argentina,Innovator,2005-03-17
+248,12,Giletto,Giletto,Argentina,Innovator,2005-04-02
+249,12,Giletto,Giletto,Argentina,Innovator,2005-04-16
+250,12,Giletto,Giletto,Argentina,Innovator,2006-02-15
+251,12,Giletto,Giletto,Argentina,Innovator,2006-02-28
+252,12,Giletto,Giletto,Argentina,Innovator,2006-03-16
+253,12,Giletto,Giletto,Argentina,Innovator,2006-04-06
+254,12,Giletto,Giletto,Argentina,Innovator,2006-04-27
+255,13,Giletto,Giletto,Argentina,Markies Russet,2004-02-25
+256,13,Giletto,Giletto,Argentina,Markies Russet,2004-03-02
+257,13,Giletto,Giletto,Argentina,Markies Russet,2004-03-24
+258,13,Giletto,Giletto,Argentina,Markies Russet,2004-04-20
+259,13,Giletto,Giletto,Argentina,Markies Russet,2005-02-17
+260,13,Giletto,Giletto,Argentina,Markies Russet,2005-03-04
+261,13,Giletto,Giletto,Argentina,Markies Russet,2005-03-17
+262,13,Giletto,Giletto,Argentina,Markies Russet,2005-04-02
+263,13,Giletto,Giletto,Argentina,Markies Russet,2005-04-16
+264,14,Giletto,Giletto,Argentina,Umatilla Russet,2004-02-25
+265,14,Giletto,Giletto,Argentina,Umatilla Russet,2004-03-02
+266,14,Giletto,Giletto,Argentina,Umatilla Russet,2004-03-24
+267,14,Giletto,Giletto,Argentina,Umatilla Russet,2004-04-20
+268,14,Giletto,Giletto,Argentina,Umatilla Russet,2005-02-17
+269,14,Giletto,Giletto,Argentina,Umatilla Russet,2005-03-04
+270,14,Giletto,Giletto,Argentina,Umatilla Russet,2005-03-17
+271,14,Giletto,Giletto,Argentina,Umatilla Russet,2005-04-02
+272,14,Giletto,Giletto,Argentina,Umatilla Russet,2005-04-16
+273,14,Giletto,Giletto,Argentina,Umatilla Russet,2006-02-15
+274,14,Giletto,Giletto,Argentina,Umatilla Russet,2006-02-28
+275,14,Giletto,Giletto,Argentina,Umatilla Russet,2006-03-16
+276,14,Giletto,Giletto,Argentina,Umatilla Russet,2006-04-06
+277,14,Giletto,Giletto,Argentina,Umatilla Russet,2006-04-27
+278,8,Giletto,Hartland,Canada,Russet Burbank,1900-02-10
+279,8,Giletto,Hartland,Canada,Russet Burbank,1900-02-19
+280,8,Giletto,Hartland,Canada,Russet Burbank,1900-02-24
+281,8,Giletto,Hartland,Canada,Russet Burbank,1900-03-03
+282,8,Giletto,Hartland,Canada,Russet Burbank,1900-03-11
+283,8,Giletto,Hartland,Canada,Russet Burbank,1900-03-16
+284,8,Giletto,Hartland,Canada,Russet Burbank,1900-03-23
+285,8,Giletto,Hartland,Canada,Russet Burbank,1900-04-01
+286,8,Giletto,Hartland,Canada,Russet Burbank,1900-04-09
+287,9,Giletto,Hartland,Canada,Shepody,1900-02-10
+288,9,Giletto,Hartland,Canada,Shepody,1900-02-19
+289,9,Giletto,Hartland,Canada,Shepody,1900-02-24
+290,9,Giletto,Hartland,Canada,Shepody,1900-03-03
+291,9,Giletto,Hartland,Canada,Shepody,1900-03-11
+292,9,Giletto,Hartland,Canada,Shepody,1900-03-16
+293,9,Giletto,Hartland,Canada,Shepody,1900-03-23
+294,9,Giletto,Hartland,Canada,Shepody,1900-04-01
+295,9,Giletto,Hartland,Canada,Shepody,1900-04-09
+296,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-02-14
+297,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-02-20
+298,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-02-27
+299,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-03-06
+300,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-03-16
+301,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-03-23
+302,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-03-29
+303,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-04-05
+304,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-04-18
+305,8,Giletto,Jacksonville,Canada,Russet Burbank,1900-04-25
+306,9,Giletto,Jacksonville,Canada,Shepody,1900-02-14
+307,9,Giletto,Jacksonville,Canada,Shepody,1900-02-20
+308,9,Giletto,Jacksonville,Canada,Shepody,1900-02-27
+309,9,Giletto,Jacksonville,Canada,Shepody,1900-03-06
+310,9,Giletto,Jacksonville,Canada,Shepody,1900-03-16
+311,9,Giletto,Jacksonville,Canada,Shepody,1900-03-23
+312,9,Giletto,Jacksonville,Canada,Shepody,1900-03-29
+313,9,Giletto,Jacksonville,Canada,Shepody,1900-04-05
+314,9,Giletto,Jacksonville,Canada,Shepody,1900-04-18
+315,9,Giletto,Jacksonville,Canada,Shepody,1900-04-25
+316,8,Giletto,London,Canada,Russet Burbank,1900-02-11
+317,8,Giletto,London,Canada,Russet Burbank,1900-02-19
+318,8,Giletto,London,Canada,Russet Burbank,1900-02-26
+319,8,Giletto,London,Canada,Russet Burbank,1900-03-01
+320,8,Giletto,London,Canada,Russet Burbank,1900-03-10
+321,8,Giletto,London,Canada,Russet Burbank,1900-03-15
+322,8,Giletto,London,Canada,Russet Burbank,1900-03-22
+323,8,Giletto,London,Canada,Russet Burbank,1900-03-23
+324,8,Giletto,London,Canada,Russet Burbank,1900-04-08
+325,8,Giletto,London,Canada,Russet Burbank,1900-04-15
+326,9,Giletto,London,Canada,Shepody,1900-02-11
+327,9,Giletto,London,Canada,Shepody,1900-02-19
+328,9,Giletto,London,Canada,Shepody,1900-02-26
+329,9,Giletto,London,Canada,Shepody,1900-03-01
+330,9,Giletto,London,Canada,Shepody,1900-03-10
+331,9,Giletto,London,Canada,Shepody,1900-03-15
+332,9,Giletto,London,Canada,Shepody,1900-03-22
+333,9,Giletto,London,Canada,Shepody,1900-04-08
+334,9,Giletto,London,Canada,Shepody,1900-04-15
+335,9,Giletto,London,Canada,Shepody,1900-04-21

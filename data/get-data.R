@@ -6,7 +6,7 @@ library(tidyverse)
 library(lubridate)
 library(stringr)
 
-##### Rosen Data #####
+##### Bohman Data #####
 # Unpublished data from Rosen lab
 
 f.bohman <- function(){
