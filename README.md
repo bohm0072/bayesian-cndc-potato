@@ -13,6 +13,10 @@ This repo is intended to develop methods to allow for the comparison of critical
 - `fit-model.R`: Script used to fit Bayesian hierarchical model to fit CNDC using framework of Makowksi et al. (2020)  
 - `cndc-bayesian_eval.Rproj`: RStudio project for use in this analysis  
 
+## Fitted Model
+
+https://drive.google.com/open?id=1FWAm4xzzAWdWXymPAfTPpkVBsPci6ytK
+
 ## TODO
 
 ### MCM
