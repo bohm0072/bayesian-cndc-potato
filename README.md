@@ -15,7 +15,8 @@ This repo is intended to develop methods to allow for the comparison of critical
 
 ## Fitted Model
 
-https://drive.google.com/open?id=1FWAm4xzzAWdWXymPAfTPpkVBsPci6ytK
+- run script `manuscript/analysis/model-get.R` to retrieve previously fitted model
+- run script `manuscript/analysis/model-fit.R` to fit model locally
 
 ## TODO
 
