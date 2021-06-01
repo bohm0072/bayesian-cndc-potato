@@ -10,12 +10,12 @@ plan(multisession)
 # load data --------------
 
 data_cndc <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd") 
-data_cndc_index <- read_csv("data/analysis/data_cndc_index.csv",col_types="ccccccc") 
+index_cndc <- read_csv("data/analysis/index_cndc.csv",col_types="ccccccc") 
 
 # fit model -------------
 
 fit_model <- function(data=data_cndc,
-                      data_index=data_cndc_index,
+                      data_index=index_cndc,
                       model.name="model"){
   
   index.list <- data_index %>%
