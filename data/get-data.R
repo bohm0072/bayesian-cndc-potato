@@ -1,20 +1,25 @@
-# Summarize and export data for preliminary analysis of Bayesian methods for CNDC
+# Summarize and export data for subsequent analysis of Bayesian methods for CNDC
 # Using framework from Makowski et al. (2020) - doi:10.1016/j.eja.2020.126076
+# Data from:
+#   Rosen Lab at University of Minnesota - unpublished in its entirety
+#   Giletto et. al (2020), Appendix A - doi:10.1016/j.eja.2020.126114
+#   Ben Abdallah et. al (2016), Table 2 - doi:10.1007/s11540-016-9331-y, and Unpublished
 
-##### Initialization #####
+# Initialization -------------------------------------
 library(tidyverse)
 library(lubridate)
 library(stringr)
+library(readxl)
 
-##### Bohman Data #####
-# Unpublished data from Rosen lab
+# Bohman Data ----------------------------------------
+# Previously unpublished data in its entirety from Rosen Lab at University of Minnesota
 
 f.bohman <- function(){
   
-  source("data/source/Bohman/Analysis Ready Data.R")
-  ard <- f.ard()
+  source("data/source/Bohman/import_rosen-lab-potato-n-trials.R")
+  `rosen-lab-potato-n-trials` <- `f.import_rosen-lab-potato-n-trials`()
   
-  d <- ard %>%
+  d <- `rosen-lab-potato-n-trials` %>%
     filter(tissue=="wholeplant") %>%
     pivot_wider(names_from="measure",
                 values_from="value") %>%
@@ -34,7 +39,7 @@ f.bohman <- function(){
 
 bohman <- f.bohman()
 
-##### Giletto Data #####
+# Giletto Data ---------------------------------------
 # Data from Giletto et. al (2020), Appendix A - doi:10.1016/j.eja.2020.126114
 
 f.giletto <- function(){
@@ -327,8 +332,8 @@ f.giletto <- function(){
 
 giletto <- f.giletto()
 
-##### Ben Abdallah Data #####
-# Data from Ben Abdallah et. al (2016), Table 2 and Unpublished - doi:10.1007/s11540-016-9331-y
+# Ben Abdallah Data ----------------------------------
+# Data from Ben Abdallah et. al (2016), Table 2 - doi:10.1007/s11540-016-9331-y, and Unpublished
 
 f.ben_abdallah <- function(){
   
@@ -353,7 +358,7 @@ f.ben_abdallah <- function(){
 
 ben_abdallah <- f.ben_abdallah()
 
-##### Combine Data #####
+# Combine Data ---------------------------------------
 
 data <- bind_rows(
   bohman,
@@ -395,7 +400,7 @@ f.cndc <- function(data){
     ungroup() %>%
     rename(count_0=n)
   
-  # Number of dates meeting screening criteria #1
+  # Screening criteria
   #   W >= 1.0 Mg/ha for >= 3 points
   
   data.1.list <- data.0 %>%
@@ -420,43 +425,18 @@ f.cndc <- function(data){
     ungroup() %>%
     rename(count_1=n)
   
-  
-  # Number of dates meeting screening criteria #2
-  #   Skipping this step to see if we can fit data without it...
-  #   Previously, cv or sd threshold for W on a given date
-  
-  data.2.list <- data.1 %>% 
-    group_by(index) %>%
-    summarize_at(vars(W),list(~mean(.,na.rm=T),~sd(.,na.rm=T))) %>%
-    rowwise() %>%
-    mutate(cv=sd/mean) %>%
-    ungroup() %>%
-    #filter(cv>=0.10) %>%
-    #filter(cv>=0.10|sd>=1.0) %>%
-    select(-c(mean,sd,cv))
-
-  data.2 <- left_join(data.2.list,
-                      data.1,
-                      by = c("index"))
-  
-  data.2.sum <- data.2 %>%
-    select(group,date) %>%
-    distinct() %>%
-    group_by(group) %>%
-    count() %>%
-    ungroup() %>%
-    rename(count_2=n)
-  
   # Combined summary
   
-  data.sum <- index %>%
+  index.sum <- index %>%
     select(group,owner,location,variety) %>%
     distinct() %>%
     left_join(data.0.sum, c("group")) %>%
     left_join(data.1.sum, c("group")) %>%
-    left_join(data.2.sum, c("group"))
+    rename("count.index.data"="count_0") %>%
+    rename("count.index.data_cndc"="count_1")
   
-  data.cndc <- data.2
+  # data.cndc <- data.2
+  data.cndc <- data.1
   
   index.cndc <- data.cndc %>%
     select(index,group,owner,study,location,variety,date) %>%
@@ -464,10 +444,10 @@ f.cndc <- function(data){
     arrange(group,index)
   
   out <- list(data=data,
-              data.sum=data.sum,
               data.cndc=data.cndc,
               index=index,
-              index.cndc=index.cndc)
+              index.cndc=index.cndc,
+              index.sum=index.sum)
   
   return(out)
   
@@ -478,9 +458,9 @@ d <- f.cndc(data)
 ##### Export Data #####
 
 write_csv(d$data, "data/analysis/data.csv")
-write_csv(d$data.sum, "data/analysis/data_sum.csv")
 write_csv(d$data.cndc, "data/analysis/data_cndc.csv")
-write_csv(d$index, "data/analysis/data_index.csv")
-write_csv(d$index.cndc, "data/analysis/data_cndc_index.csv")
+write_csv(d$index, "data/analysis/index.csv")
+write_csv(d$index.cndc, "data/analysis/index_cndc.csv")
+write_csv(d$index.sum, "data/analysis/index_sum.csv")
 
 ##### END #####
