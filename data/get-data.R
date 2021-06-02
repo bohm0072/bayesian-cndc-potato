@@ -23,7 +23,7 @@ f.bohman <- function(){
     filter(tissue=="wholeplant") %>%
     pivot_wider(names_from="measure",
                 values_from="value") %>%
-    rename(rate_n_kgha=cum_rate_n_kgha) %>%
+    rename(rate_n_kgha=sum_rate_n_kgha) %>%
     rename(variety=trt_var) %>%
     group_by(owner,study,year,date,variety,trt_n,rate_n_kgha) %>%
     summarize_at(vars(biomdry_Mgha,n_pct),~mean(.,na.rm=T)) %>%

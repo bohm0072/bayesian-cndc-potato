@@ -73,14 +73,14 @@ model <- fit_model()
 
 # post model to google drive ----------
 
-if(file.exists("manuscript/models/model.rds")!=T){
-  
-  # model_060221.rds
-  drive_upload(media="manuscript/models/model.rds",
-               path="/My Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/manuscript/models/",
-               name="model_060221.rds")
-  
-}
+# if(file.exists("manuscript/models/model.rds")!=T){
+#   
+#   # model_060221.rds
+#   drive_upload(media="manuscript/models/model.rds",
+#                path="/My Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/manuscript/models/",
+#                name="model_060221.rds")
+#   
+# }
 
 # postscript --------------------------
 # Due to compatibility issues with `rstan`, `renv` must be re-activated after `brms` fit
