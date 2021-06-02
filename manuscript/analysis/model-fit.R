@@ -1,18 +1,26 @@
-# initialization -------------
+# pre-init 
+
+# Due to compatibility issues with `rstan`, `renv` must be deactivated before `brms` fit
+renv::hydrate(library="/Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library",update=T,sources="/Users/mini-87621949/GitHub/cndc_bayesian_eval/renv/library/R-4.1/aarch64-apple-darwin20")
+renv::deactivate()
+
+# initialization ----------------------
 
 library(tidyverse)
 library(brms)
 library(tidybayes)
 library(future)
 
+library(googledrive)
+
 plan(multisession)
 
-# load data --------------
+# load data ---------------------------
 
 data_cndc <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd") 
 index_cndc <- read_csv("data/analysis/index_cndc.csv",col_types="ccccccc") 
 
-# fit model -------------
+# fit model ---------------------------
 
 fit_model <- function(data=data_cndc,
                       data_index=index_cndc,
@@ -63,4 +71,19 @@ fit_model <- function(data=data_cndc,
 # model %<-% fit_model()
 model <- fit_model()
 
-# end --------------
+# post model to google drive ----------
+
+if(file.exists("manuscript/models/model.rds")!=T){
+  
+  # model_060221.rds
+  drive_upload(media="manuscript/models/model.rds",
+               path="/My Drive/Users/Brian/UMN Google Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/manuscript/models/",
+               name="model_060221.rds")
+  
+}
+
+# postscript --------------------------
+# Due to compatibility issues with `rstan`, `renv` must be re-activated after `brms` fit
+renv::activate()
+
+# end ---------------------------------

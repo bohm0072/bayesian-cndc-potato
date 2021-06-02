@@ -1,6 +1,8 @@
 # initialization -------------
 library(googledrive)
 
+
+
 if(file.exists("manuscript/models/model.rds")!=T){
   
   # model_030621.rds
@@ -8,7 +10,5 @@ if(file.exists("manuscript/models/model.rds")!=T){
                  path="manuscript/models/model.rds")
   
 }
-
-
 
 # end ----------
