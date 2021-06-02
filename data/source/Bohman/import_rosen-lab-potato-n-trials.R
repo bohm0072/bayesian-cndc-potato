@@ -28,7 +28,7 @@
   dates <- f.import.github(account,repo,"Tables/dates.csv",ref,token) %>% read_csv(col_types="cccDDDD")
   experiments <- f.import.github(account,repo,"Tables/experiments.csv",ref,token) %>% read_csv(col_types="ccccc")
   trt <- f.import.github(account,repo,"Tables/trt.csv",ref,token) %>% read_csv(col_types="cccccccc")
-  trt_n_cum <- f.import.github(account,repo,"Tables/trt_n_cum.csv",ref,token) %>% read_csv(col_types="ccccDd")
+  trt_n_sum <- f.import.github(account,repo,"Tables/trt_n_sum.csv",ref,token) %>% read_csv(col_types="ccccd")
   obs_tissue <- f.import.github(account,repo,"Tables/obs_tissue.csv",ref,token) %>% read_csv(col_types="ccccDccd")
   
   # Join Data -------------------------------------------
@@ -36,7 +36,7 @@
   join <- obs_tissue %>%
     left_join(experiments, by=c("owner","study","year","plot_id")) %>%
     left_join(trt, by=c("owner","study","year","trt_id")) %>%
-    left_join(trt_n_cum, by=c("owner","study","year","trt_n","date")) %>%
+    left_join(trt_n_sum, by=c("owner","study","year","trt_n")) %>%
     left_join(dates, by=c("owner","study","year")) 
   
   # Calculate Data --------------------------------------
@@ -86,7 +86,7 @@
   # Format Data -----------------------------------------
   
   format <- filter %>%
-    select(owner,study,year,date,dae,plot_id,trt_id,trt_n,cum_rate_n_kgha,trt_var,measure,tissue,value)
+    select(owner,study,year,date,dae,plot_id,trt_id,trt_n,sum_rate_n_kgha,trt_var,measure,tissue,value)
   
   # Export Data -----------------------------------------
   
