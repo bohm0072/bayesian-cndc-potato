@@ -1,4 +1,4 @@
-# pre-init 
+# pre-init ----------------------------
 
 # Due to compatibility issues with `rstan`, `renv` must be deactivated before `brms` fit
 renv::hydrate(library="/Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library",update=T,sources="/Users/mini-87621949/GitHub/cndc_bayesian_eval/renv/library/R-4.1/aarch64-apple-darwin20")
@@ -62,7 +62,8 @@ fit_model <- function(data=data_cndc,
              control = list(adapt_delta = 0.99, 
                             max_treedepth = 15),
              seed=52624,
-             file=paste("manuscript/models/",model.name,sep=""))
+             file=paste("manuscript/models/",model.name,sep=""),
+             silent=F)
   
   return(model)
   
@@ -75,7 +76,7 @@ model <- fit_model()
 
 # if(file.exists("manuscript/models/model.rds")!=T){
 #   
-#   # model_060221.rds
+#   # model_060121.rds
 #   drive_upload(media="manuscript/models/model.rds",
 #                path="/My Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/manuscript/models/",
 #                name="model_060221.rds")
