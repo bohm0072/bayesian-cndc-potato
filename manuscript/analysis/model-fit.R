@@ -62,7 +62,8 @@ fit_model <- function(data=data_cndc,
              control = list(adapt_delta = 0.99, 
                             max_treedepth = 15),
              seed=52624,
-             file=paste("manuscript/models/",model.name,sep=""))
+             file=paste("manuscript/models/",model.name,sep=""),
+             silent=F)
   
   return(model)
   
