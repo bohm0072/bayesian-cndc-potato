@@ -77,7 +77,7 @@ if(file.exists("manuscript/models/model.rds")!=T){
   
   # model_060221.rds
   drive_upload(media="manuscript/models/model.rds",
-               path="/My Drive/Users/Brian/UMN Google Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/manuscript/models/",
+               path="/My Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/manuscript/models/",
                name="model_060221.rds")
   
 }
