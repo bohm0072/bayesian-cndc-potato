@@ -880,531 +880,531 @@ index,group,owner,study,year,location,variety,rate_n_kgha,date,W,N
 183,3,Bohman,vxn,2015,Minnesota,Russet Burbank,336.2547753072755,2015-09-16,18.120039802471524,1.4093079978655623
 183,3,Bohman,vxn,2015,Minnesota,Russet Burbank,403.5057303687305,2015-09-16,20.49462912150454,1.4205418921855968
 183,3,Bohman,vxn,2015,Minnesota,Russet Burbank,134.5019101229105,2015-09-16,16.260220227631407,1.1142370587543784
-186,8,Giletto,Drummond,1900,Canada,Russet Burbank,0,1900-02-23,1.2000000000000002,3.6
-186,8,Giletto,Drummond,1900,Canada,Russet Burbank,50,1900-02-23,1.6,4
-186,8,Giletto,Drummond,1900,Canada,Russet Burbank,100,1900-02-23,1.7999999999999998,4.3
-186,8,Giletto,Drummond,1900,Canada,Russet Burbank,250,1900-02-23,1.7,4.4
-187,8,Giletto,Drummond,1900,Canada,Russet Burbank,0,1900-03-05,2.8,2.7
-187,8,Giletto,Drummond,1900,Canada,Russet Burbank,50,1900-03-05,3.5,2.8
-187,8,Giletto,Drummond,1900,Canada,Russet Burbank,100,1900-03-05,3.7,3.2
-187,8,Giletto,Drummond,1900,Canada,Russet Burbank,250,1900-03-05,4,3.2
-188,8,Giletto,Drummond,1900,Canada,Russet Burbank,0,1900-03-11,4.7,2.3
-188,8,Giletto,Drummond,1900,Canada,Russet Burbank,50,1900-03-11,6.9,2.2
-188,8,Giletto,Drummond,1900,Canada,Russet Burbank,100,1900-03-11,6.1,3
-188,8,Giletto,Drummond,1900,Canada,Russet Burbank,250,1900-03-11,5.7,3.2
-189,8,Giletto,Drummond,1900,Canada,Russet Burbank,0,1900-03-18,7.5,1.9
-189,8,Giletto,Drummond,1900,Canada,Russet Burbank,50,1900-03-18,7.1,2.2
-189,8,Giletto,Drummond,1900,Canada,Russet Burbank,100,1900-03-18,8.3,2.4
-189,8,Giletto,Drummond,1900,Canada,Russet Burbank,250,1900-03-18,8.4,2.8
-190,8,Giletto,Drummond,1900,Canada,Russet Burbank,0,1900-03-25,8.5,1.4
-190,8,Giletto,Drummond,1900,Canada,Russet Burbank,50,1900-03-25,8.7,1.7
-190,8,Giletto,Drummond,1900,Canada,Russet Burbank,100,1900-03-25,10.3,1.9
-190,8,Giletto,Drummond,1900,Canada,Russet Burbank,250,1900-03-25,8.8,2.4
-191,8,Giletto,Drummond,1900,Canada,Russet Burbank,0,1900-03-30,8.2,1.1
-191,8,Giletto,Drummond,1900,Canada,Russet Burbank,50,1900-03-30,9.7,1.4
-191,8,Giletto,Drummond,1900,Canada,Russet Burbank,100,1900-03-30,9.6,1.8
-191,8,Giletto,Drummond,1900,Canada,Russet Burbank,250,1900-03-30,11.7,2.2
-192,8,Giletto,Drummond,1900,Canada,Russet Burbank,0,1900-04-06,8.8,1.3
-192,8,Giletto,Drummond,1900,Canada,Russet Burbank,50,1900-04-06,10.100000000000001,1.5
-192,8,Giletto,Drummond,1900,Canada,Russet Burbank,100,1900-04-06,11.599999999999998,2
-192,8,Giletto,Drummond,1900,Canada,Russet Burbank,250,1900-04-06,11.899999999999999,2.2
-195,9,Giletto,Drummond,1900,Canada,Shepody,0,1900-02-16,1.2,5.5
-195,9,Giletto,Drummond,1900,Canada,Shepody,50,1900-02-16,1.1,6.1
-195,9,Giletto,Drummond,1900,Canada,Shepody,100,1900-02-16,1.3,6.3
-195,9,Giletto,Drummond,1900,Canada,Shepody,250,1900-02-16,1.2,6.3
-196,9,Giletto,Drummond,1900,Canada,Shepody,0,1900-02-23,1.8,3.6
-196,9,Giletto,Drummond,1900,Canada,Shepody,50,1900-02-23,2.1,4.3
-196,9,Giletto,Drummond,1900,Canada,Shepody,100,1900-02-23,2.1999999999999997,5.1
-196,9,Giletto,Drummond,1900,Canada,Shepody,250,1900-02-23,2.1,5.4
-197,9,Giletto,Drummond,1900,Canada,Shepody,0,1900-03-05,3.2,2.3
-197,9,Giletto,Drummond,1900,Canada,Shepody,50,1900-03-05,5.2,3
-197,9,Giletto,Drummond,1900,Canada,Shepody,100,1900-03-05,5.5,3.5
-197,9,Giletto,Drummond,1900,Canada,Shepody,250,1900-03-05,5.6,4
-198,9,Giletto,Drummond,1900,Canada,Shepody,0,1900-03-11,5.5,1.8
-198,9,Giletto,Drummond,1900,Canada,Shepody,50,1900-03-11,7.1,2.4
-198,9,Giletto,Drummond,1900,Canada,Shepody,100,1900-03-11,7.3,2.8
-198,9,Giletto,Drummond,1900,Canada,Shepody,250,1900-03-11,5.300000000000001,3.6
-199,9,Giletto,Drummond,1900,Canada,Shepody,0,1900-03-18,7.300000000000001,1.6
-199,9,Giletto,Drummond,1900,Canada,Shepody,50,1900-03-18,7.3,2
-199,9,Giletto,Drummond,1900,Canada,Shepody,100,1900-03-18,6.3,2.8
-199,9,Giletto,Drummond,1900,Canada,Shepody,250,1900-03-18,5.2,3.3
-200,9,Giletto,Drummond,1900,Canada,Shepody,0,1900-03-25,9.4,1.4
-200,9,Giletto,Drummond,1900,Canada,Shepody,50,1900-03-25,10.5,1.8
-200,9,Giletto,Drummond,1900,Canada,Shepody,100,1900-03-25,11.4,1.9
-200,9,Giletto,Drummond,1900,Canada,Shepody,250,1900-03-25,13.5,2.7
-201,9,Giletto,Drummond,1900,Canada,Shepody,0,1900-03-30,9.5,1.1
-201,9,Giletto,Drummond,1900,Canada,Shepody,50,1900-03-30,9.8,1.5
-201,9,Giletto,Drummond,1900,Canada,Shepody,100,1900-03-30,11.5,1.8
-201,9,Giletto,Drummond,1900,Canada,Shepody,250,1900-03-30,11.3,2.4
-202,9,Giletto,Drummond,1900,Canada,Shepody,0,1900-04-06,7.3,1.3
-202,9,Giletto,Drummond,1900,Canada,Shepody,50,1900-04-06,11.1,1.4
-202,9,Giletto,Drummond,1900,Canada,Shepody,100,1900-04-06,15.4,1.8
-202,9,Giletto,Drummond,1900,Canada,Shepody,250,1900-04-06,13.3,2.5
-204,10,Giletto,Giletto,2003,Argentina,Bannock Russet,0,2003-03-02,3.1,4.2
-204,10,Giletto,Giletto,2003,Argentina,Bannock Russet,80,2003-03-02,3.8,4.2
-204,10,Giletto,Giletto,2003,Argentina,Bannock Russet,150,2003-03-02,4.4,4.2
-204,10,Giletto,Giletto,2003,Argentina,Bannock Russet,250,2003-03-02,4.6,4.4
-205,10,Giletto,Giletto,2003,Argentina,Bannock Russet,0,2003-03-17,4.5,3.2
-205,10,Giletto,Giletto,2003,Argentina,Bannock Russet,80,2003-03-17,6.1,3.4
-205,10,Giletto,Giletto,2003,Argentina,Bannock Russet,150,2003-03-17,6.8,3.6
-205,10,Giletto,Giletto,2003,Argentina,Bannock Russet,250,2003-03-17,7.7,4.2
-206,10,Giletto,Giletto,2003,Argentina,Bannock Russet,0,2003-04-01,4.6,2.8
-206,10,Giletto,Giletto,2003,Argentina,Bannock Russet,80,2003-04-01,6.6,3.1
-206,10,Giletto,Giletto,2003,Argentina,Bannock Russet,150,2003-04-01,8.1,3
-206,10,Giletto,Giletto,2003,Argentina,Bannock Russet,250,2003-04-01,11.5,2.9
-207,10,Giletto,Giletto,2003,Argentina,Bannock Russet,0,2003-04-21,6.699999999999999,1.9
-207,10,Giletto,Giletto,2003,Argentina,Bannock Russet,80,2003-04-21,8.7,2.1
-207,10,Giletto,Giletto,2003,Argentina,Bannock Russet,150,2003-04-21,9.3,2.2
-207,10,Giletto,Giletto,2003,Argentina,Bannock Russet,250,2003-04-21,11.3,2.5
-208,10,Giletto,Giletto,2004,Argentina,Bannock Russet,0,2004-02-25,2.1,4.3
-208,10,Giletto,Giletto,2004,Argentina,Bannock Russet,80,2004-02-25,2.7,4.4
-208,10,Giletto,Giletto,2004,Argentina,Bannock Russet,150,2004-02-25,2.9,4.7
-208,10,Giletto,Giletto,2004,Argentina,Bannock Russet,250,2004-02-25,3.8000000000000003,4.5
-209,10,Giletto,Giletto,2004,Argentina,Bannock Russet,0,2004-03-02,3.8,4.1
-209,10,Giletto,Giletto,2004,Argentina,Bannock Russet,80,2004-03-02,5.1,4.2
-209,10,Giletto,Giletto,2004,Argentina,Bannock Russet,150,2004-03-02,5.6,4.2
-209,10,Giletto,Giletto,2004,Argentina,Bannock Russet,250,2004-03-02,6.3,4.3
-210,10,Giletto,Giletto,2004,Argentina,Bannock Russet,0,2004-03-24,7.300000000000001,2.4
-210,10,Giletto,Giletto,2004,Argentina,Bannock Russet,80,2004-03-24,12,2.8
-210,10,Giletto,Giletto,2004,Argentina,Bannock Russet,150,2004-03-24,16.3,2.9
-210,10,Giletto,Giletto,2004,Argentina,Bannock Russet,250,2004-03-24,19.7,3.4
-211,10,Giletto,Giletto,2004,Argentina,Bannock Russet,0,2004-04-20,13.6,1.3
-211,10,Giletto,Giletto,2004,Argentina,Bannock Russet,80,2004-04-20,15,1.4
-211,10,Giletto,Giletto,2004,Argentina,Bannock Russet,150,2004-04-20,17.6,1.4
-211,10,Giletto,Giletto,2004,Argentina,Bannock Russet,250,2004-04-20,20.6,2.1
-212,10,Giletto,Giletto,2005,Argentina,Bannock Russet,0,2005-02-17,2,4.8
-212,10,Giletto,Giletto,2005,Argentina,Bannock Russet,80,2005-02-17,2.3,4.9
-212,10,Giletto,Giletto,2005,Argentina,Bannock Russet,150,2005-02-17,2.3,5
-212,10,Giletto,Giletto,2005,Argentina,Bannock Russet,250,2005-02-17,2.2,5.3
-213,10,Giletto,Giletto,2005,Argentina,Bannock Russet,0,2005-03-04,3.9,4
-213,10,Giletto,Giletto,2005,Argentina,Bannock Russet,80,2005-03-04,4.2,3.9
-213,10,Giletto,Giletto,2005,Argentina,Bannock Russet,150,2005-03-04,4.3,4.1
-213,10,Giletto,Giletto,2005,Argentina,Bannock Russet,250,2005-03-04,5,4.6
-214,10,Giletto,Giletto,2005,Argentina,Bannock Russet,0,2005-03-17,7.6,3.2
-214,10,Giletto,Giletto,2005,Argentina,Bannock Russet,80,2005-03-17,8.7,3.2
-214,10,Giletto,Giletto,2005,Argentina,Bannock Russet,150,2005-03-17,8.9,3.4
-214,10,Giletto,Giletto,2005,Argentina,Bannock Russet,250,2005-03-17,12.8,3.5
-215,10,Giletto,Giletto,2005,Argentina,Bannock Russet,0,2005-04-02,13,2.2
-215,10,Giletto,Giletto,2005,Argentina,Bannock Russet,80,2005-04-02,18.200000000000003,2.4
-215,10,Giletto,Giletto,2005,Argentina,Bannock Russet,150,2005-04-02,23.6,2.5
-215,10,Giletto,Giletto,2005,Argentina,Bannock Russet,250,2005-04-02,25.7,2.7
-216,10,Giletto,Giletto,2005,Argentina,Bannock Russet,0,2005-04-16,20.799999999999997,1.6
-216,10,Giletto,Giletto,2005,Argentina,Bannock Russet,80,2005-04-16,24.7,2
-216,10,Giletto,Giletto,2005,Argentina,Bannock Russet,150,2005-04-16,32.7,2.4
-216,10,Giletto,Giletto,2005,Argentina,Bannock Russet,250,2005-04-16,36.1,3.1
-218,11,Giletto,Giletto,2003,Argentina,Gem Russet,0,2003-03-02,7.199999999999999,3.2
-218,11,Giletto,Giletto,2003,Argentina,Gem Russet,80,2003-03-02,10.3,3.2
-218,11,Giletto,Giletto,2003,Argentina,Gem Russet,150,2003-03-02,13,3
-218,11,Giletto,Giletto,2003,Argentina,Gem Russet,250,2003-03-02,14.5,3.3
-219,11,Giletto,Giletto,2003,Argentina,Gem Russet,0,2003-03-17,13.699999999999998,2
-219,11,Giletto,Giletto,2003,Argentina,Gem Russet,80,2003-03-17,17.8,2.2
-219,11,Giletto,Giletto,2003,Argentina,Gem Russet,150,2003-03-17,19.6,2.6
-219,11,Giletto,Giletto,2003,Argentina,Gem Russet,250,2003-03-17,21.4,2.8
-220,11,Giletto,Giletto,2003,Argentina,Gem Russet,0,2003-04-01,18,1.6
-220,11,Giletto,Giletto,2003,Argentina,Gem Russet,80,2003-04-01,21,2.1
-220,11,Giletto,Giletto,2003,Argentina,Gem Russet,150,2003-04-01,23.6,2.3
-220,11,Giletto,Giletto,2003,Argentina,Gem Russet,250,2003-04-01,26.3,2.3
-221,11,Giletto,Giletto,2003,Argentina,Gem Russet,0,2003-04-21,18.3,1.2
-221,11,Giletto,Giletto,2003,Argentina,Gem Russet,80,2003-04-21,21.3,1.5
-221,11,Giletto,Giletto,2003,Argentina,Gem Russet,150,2003-04-21,24.3,1.8
-221,11,Giletto,Giletto,2003,Argentina,Gem Russet,250,2003-04-21,25.9,1.9
-222,11,Giletto,Giletto,2004,Argentina,Gem Russet,0,2004-02-25,1.7,5.2
-222,11,Giletto,Giletto,2004,Argentina,Gem Russet,80,2004-02-25,1.9,5.3
-222,11,Giletto,Giletto,2004,Argentina,Gem Russet,150,2004-02-25,2.2,5.8
-222,11,Giletto,Giletto,2004,Argentina,Gem Russet,250,2004-02-25,2.2,5.8
-223,11,Giletto,Giletto,2004,Argentina,Gem Russet,0,2004-03-02,5.3,3.6
-223,11,Giletto,Giletto,2004,Argentina,Gem Russet,80,2004-03-02,5.6,3.9
-223,11,Giletto,Giletto,2004,Argentina,Gem Russet,150,2004-03-02,6.4,4
-223,11,Giletto,Giletto,2004,Argentina,Gem Russet,250,2004-03-02,8,4
-224,11,Giletto,Giletto,2004,Argentina,Gem Russet,0,2004-03-24,12.7,1.8
-224,11,Giletto,Giletto,2004,Argentina,Gem Russet,80,2004-03-24,15.9,2.2
-224,11,Giletto,Giletto,2004,Argentina,Gem Russet,150,2004-03-24,16.3,2.5
-224,11,Giletto,Giletto,2004,Argentina,Gem Russet,250,2004-03-24,18.4,3
-225,11,Giletto,Giletto,2004,Argentina,Gem Russet,0,2004-04-20,15.8,1.1
-225,11,Giletto,Giletto,2004,Argentina,Gem Russet,80,2004-04-20,17.4,1.1
-225,11,Giletto,Giletto,2004,Argentina,Gem Russet,150,2004-04-20,20.5,1.4
-225,11,Giletto,Giletto,2004,Argentina,Gem Russet,250,2004-04-20,24.6,2
-226,11,Giletto,Giletto,2005,Argentina,Gem Russet,0,2005-02-17,2,4.6
-226,11,Giletto,Giletto,2005,Argentina,Gem Russet,80,2005-02-17,2,5.2
-226,11,Giletto,Giletto,2005,Argentina,Gem Russet,150,2005-02-17,2.1,5.6
-226,11,Giletto,Giletto,2005,Argentina,Gem Russet,250,2005-02-17,2.1,5.6
-227,11,Giletto,Giletto,2005,Argentina,Gem Russet,0,2005-03-04,3.8000000000000003,3.6
-227,11,Giletto,Giletto,2005,Argentina,Gem Russet,80,2005-03-04,4.2,3.7
-227,11,Giletto,Giletto,2005,Argentina,Gem Russet,150,2005-03-04,4.8999999999999995,3.9
-227,11,Giletto,Giletto,2005,Argentina,Gem Russet,250,2005-03-04,5.9,4.4
-228,11,Giletto,Giletto,2005,Argentina,Gem Russet,0,2005-03-17,7.5,3
-228,11,Giletto,Giletto,2005,Argentina,Gem Russet,80,2005-03-17,9.1,3.3
-228,11,Giletto,Giletto,2005,Argentina,Gem Russet,150,2005-03-17,11.3,3.4
-228,11,Giletto,Giletto,2005,Argentina,Gem Russet,250,2005-03-17,12.100000000000001,4
-229,11,Giletto,Giletto,2005,Argentina,Gem Russet,0,2005-04-02,12.7,2.1
-229,11,Giletto,Giletto,2005,Argentina,Gem Russet,80,2005-04-02,14,2.4
-229,11,Giletto,Giletto,2005,Argentina,Gem Russet,150,2005-04-02,17.8,3
-229,11,Giletto,Giletto,2005,Argentina,Gem Russet,250,2005-04-02,21.5,3.4
-230,11,Giletto,Giletto,2005,Argentina,Gem Russet,0,2005-04-16,18,1.7
-230,11,Giletto,Giletto,2005,Argentina,Gem Russet,80,2005-04-16,21.9,1.8
-230,11,Giletto,Giletto,2005,Argentina,Gem Russet,150,2005-04-16,26.6,2.4
-230,11,Giletto,Giletto,2005,Argentina,Gem Russet,250,2005-04-16,30.200000000000003,2.6
-231,11,Giletto,Giletto,2006,Argentina,Gem Russet,0,2006-02-15,1.3,5.1
-231,11,Giletto,Giletto,2006,Argentina,Gem Russet,80,2006-02-15,1.3,5.2
-231,11,Giletto,Giletto,2006,Argentina,Gem Russet,150,2006-02-15,1.3,5.2
-231,11,Giletto,Giletto,2006,Argentina,Gem Russet,250,2006-02-15,1.6,5.5
-232,11,Giletto,Giletto,2006,Argentina,Gem Russet,0,2006-02-28,4.1,5.1
-232,11,Giletto,Giletto,2006,Argentina,Gem Russet,80,2006-02-28,5.1,5.2
-232,11,Giletto,Giletto,2006,Argentina,Gem Russet,150,2006-02-28,5.3,5.5
-232,11,Giletto,Giletto,2006,Argentina,Gem Russet,250,2006-02-28,5.4,5.7
-233,11,Giletto,Giletto,2006,Argentina,Gem Russet,0,2006-03-16,7.5,3.7
-233,11,Giletto,Giletto,2006,Argentina,Gem Russet,80,2006-03-16,7.9,3.9
-233,11,Giletto,Giletto,2006,Argentina,Gem Russet,150,2006-03-16,8.799999999999999,4.2
-233,11,Giletto,Giletto,2006,Argentina,Gem Russet,250,2006-03-16,10.1,4.4
-234,11,Giletto,Giletto,2006,Argentina,Gem Russet,0,2006-04-06,14.3,2.2
-234,11,Giletto,Giletto,2006,Argentina,Gem Russet,80,2006-04-06,15.4,2.4
-234,11,Giletto,Giletto,2006,Argentina,Gem Russet,150,2006-04-06,16.5,3
-234,11,Giletto,Giletto,2006,Argentina,Gem Russet,250,2006-04-06,19.200000000000003,3.1
-235,11,Giletto,Giletto,2006,Argentina,Gem Russet,0,2006-04-27,12,1.6
-235,11,Giletto,Giletto,2006,Argentina,Gem Russet,80,2006-04-27,13.6,1.9
-235,11,Giletto,Giletto,2006,Argentina,Gem Russet,150,2006-04-27,14.2,2
-235,11,Giletto,Giletto,2006,Argentina,Gem Russet,250,2006-04-27,14.9,2.2
-237,12,Giletto,Giletto,2003,Argentina,Innovator,0,2003-03-02,4.4,2.9
-237,12,Giletto,Giletto,2003,Argentina,Innovator,80,2003-03-02,4.9,2.8
-237,12,Giletto,Giletto,2003,Argentina,Innovator,150,2003-03-02,5.6,3
-237,12,Giletto,Giletto,2003,Argentina,Innovator,250,2003-03-02,6.5,3.3
-238,12,Giletto,Giletto,2003,Argentina,Innovator,0,2003-03-17,6.7,2.4
-238,12,Giletto,Giletto,2003,Argentina,Innovator,80,2003-03-17,9.5,2.5
-238,12,Giletto,Giletto,2003,Argentina,Innovator,150,2003-03-17,10.5,2.5
-238,12,Giletto,Giletto,2003,Argentina,Innovator,250,2003-03-17,12.899999999999999,2.6
-239,12,Giletto,Giletto,2003,Argentina,Innovator,0,2003-04-01,9.2,1.5
-239,12,Giletto,Giletto,2003,Argentina,Innovator,80,2003-04-01,11.7,1.6
-239,12,Giletto,Giletto,2003,Argentina,Innovator,150,2003-04-01,12.4,1.8
-239,12,Giletto,Giletto,2003,Argentina,Innovator,250,2003-04-01,16,2.1
-240,12,Giletto,Giletto,2003,Argentina,Innovator,0,2003-04-21,15.899999999999999,1.1
-240,12,Giletto,Giletto,2003,Argentina,Innovator,80,2003-04-21,17.2,1.2
-240,12,Giletto,Giletto,2003,Argentina,Innovator,150,2003-04-21,17.2,1.3
-240,12,Giletto,Giletto,2003,Argentina,Innovator,250,2003-04-21,22.400000000000002,1.4
-241,12,Giletto,Giletto,2004,Argentina,Innovator,0,2004-02-25,2.4,3.6
-241,12,Giletto,Giletto,2004,Argentina,Innovator,80,2004-02-25,3.1,3.8
-241,12,Giletto,Giletto,2004,Argentina,Innovator,150,2004-02-25,3.1,3.9
-241,12,Giletto,Giletto,2004,Argentina,Innovator,250,2004-02-25,3.2,4
-242,12,Giletto,Giletto,2004,Argentina,Innovator,0,2004-03-02,4.9,2.7
-242,12,Giletto,Giletto,2004,Argentina,Innovator,80,2004-03-02,5.6,3.1
-242,12,Giletto,Giletto,2004,Argentina,Innovator,150,2004-03-02,5.9,3.2
-242,12,Giletto,Giletto,2004,Argentina,Innovator,250,2004-03-02,6.800000000000001,3.5
-243,12,Giletto,Giletto,2004,Argentina,Innovator,0,2004-03-24,9.7,2.3
-243,12,Giletto,Giletto,2004,Argentina,Innovator,80,2004-03-24,10.8,2.6
-243,12,Giletto,Giletto,2004,Argentina,Innovator,150,2004-03-24,13.1,2.6
-243,12,Giletto,Giletto,2004,Argentina,Innovator,250,2004-03-24,15.7,3
-244,12,Giletto,Giletto,2004,Argentina,Innovator,0,2004-04-20,16.8,1.2
-244,12,Giletto,Giletto,2004,Argentina,Innovator,80,2004-04-20,17.3,1.3
-244,12,Giletto,Giletto,2004,Argentina,Innovator,150,2004-04-20,19.9,1.5
-244,12,Giletto,Giletto,2004,Argentina,Innovator,250,2004-04-20,22.6,1.5
-245,12,Giletto,Giletto,2005,Argentina,Innovator,0,2005-02-17,2.6,4.8
-245,12,Giletto,Giletto,2005,Argentina,Innovator,80,2005-02-17,2.6,4.7
-245,12,Giletto,Giletto,2005,Argentina,Innovator,150,2005-02-17,2.7,5
-245,12,Giletto,Giletto,2005,Argentina,Innovator,250,2005-02-17,2.8,5
-246,12,Giletto,Giletto,2005,Argentina,Innovator,0,2005-03-04,4.5,3.2
-246,12,Giletto,Giletto,2005,Argentina,Innovator,80,2005-03-04,5.3,3.6
-246,12,Giletto,Giletto,2005,Argentina,Innovator,150,2005-03-04,6.3999999999999995,3.8
-246,12,Giletto,Giletto,2005,Argentina,Innovator,250,2005-03-04,7.6000000000000005,3.8
-247,12,Giletto,Giletto,2005,Argentina,Innovator,0,2005-03-17,8,2.1
-247,12,Giletto,Giletto,2005,Argentina,Innovator,80,2005-03-17,8.9,2.4
-247,12,Giletto,Giletto,2005,Argentina,Innovator,150,2005-03-17,11.600000000000001,2.8
-247,12,Giletto,Giletto,2005,Argentina,Innovator,250,2005-03-17,12.9,3.1
-248,12,Giletto,Giletto,2005,Argentina,Innovator,0,2005-04-02,11,1.6
-248,12,Giletto,Giletto,2005,Argentina,Innovator,80,2005-04-02,12.4,2
-248,12,Giletto,Giletto,2005,Argentina,Innovator,150,2005-04-02,15.1,2.3
-248,12,Giletto,Giletto,2005,Argentina,Innovator,250,2005-04-02,16.4,2.5
-249,12,Giletto,Giletto,2005,Argentina,Innovator,0,2005-04-16,16.6,1
-249,12,Giletto,Giletto,2005,Argentina,Innovator,80,2005-04-16,19.4,1.2
-249,12,Giletto,Giletto,2005,Argentina,Innovator,150,2005-04-16,22.3,1.4
-249,12,Giletto,Giletto,2005,Argentina,Innovator,250,2005-04-16,24.4,1.5
-250,12,Giletto,Giletto,2006,Argentina,Innovator,0,2006-02-15,1.1,4.7
-250,12,Giletto,Giletto,2006,Argentina,Innovator,80,2006-02-15,1.7,4.8
-250,12,Giletto,Giletto,2006,Argentina,Innovator,150,2006-02-15,2,5.1
-250,12,Giletto,Giletto,2006,Argentina,Innovator,250,2006-02-15,2.4,5.3
-251,12,Giletto,Giletto,2006,Argentina,Innovator,0,2006-02-28,4.4,3.9
-251,12,Giletto,Giletto,2006,Argentina,Innovator,80,2006-02-28,4.8,4.3
-251,12,Giletto,Giletto,2006,Argentina,Innovator,150,2006-02-28,5,4.3
-251,12,Giletto,Giletto,2006,Argentina,Innovator,250,2006-02-28,5.800000000000001,4.4
-252,12,Giletto,Giletto,2006,Argentina,Innovator,0,2006-03-16,7.1,2.7
-252,12,Giletto,Giletto,2006,Argentina,Innovator,80,2006-03-16,7.4,3
-252,12,Giletto,Giletto,2006,Argentina,Innovator,150,2006-03-16,8,3.2
-252,12,Giletto,Giletto,2006,Argentina,Innovator,250,2006-03-16,9.2,3.4
-253,12,Giletto,Giletto,2006,Argentina,Innovator,0,2006-04-06,12.5,1.7
-253,12,Giletto,Giletto,2006,Argentina,Innovator,80,2006-04-06,13.5,2.1
-253,12,Giletto,Giletto,2006,Argentina,Innovator,150,2006-04-06,13.899999999999999,2.4
-253,12,Giletto,Giletto,2006,Argentina,Innovator,250,2006-04-06,15.2,2.6
-254,12,Giletto,Giletto,2006,Argentina,Innovator,0,2006-04-27,14.799999999999999,1.4
-254,12,Giletto,Giletto,2006,Argentina,Innovator,80,2006-04-27,15.4,1.5
-254,12,Giletto,Giletto,2006,Argentina,Innovator,150,2006-04-27,16.8,1.9
-254,12,Giletto,Giletto,2006,Argentina,Innovator,250,2006-04-27,18.5,2.1
-255,13,Giletto,Giletto,2004,Argentina,Markies Russet,0,2004-02-25,3.5,4.8
-255,13,Giletto,Giletto,2004,Argentina,Markies Russet,80,2004-02-25,3.8000000000000003,4.9
-255,13,Giletto,Giletto,2004,Argentina,Markies Russet,150,2004-02-25,4.2,5.1
-255,13,Giletto,Giletto,2004,Argentina,Markies Russet,250,2004-02-25,4.4,5.4
-256,13,Giletto,Giletto,2004,Argentina,Markies Russet,0,2004-03-02,5.6000000000000005,3.6
-256,13,Giletto,Giletto,2004,Argentina,Markies Russet,80,2004-03-02,6.1000000000000005,4
-256,13,Giletto,Giletto,2004,Argentina,Markies Russet,150,2004-03-02,7.9,4.2
-256,13,Giletto,Giletto,2004,Argentina,Markies Russet,250,2004-03-02,8.7,4.1
-257,13,Giletto,Giletto,2004,Argentina,Markies Russet,0,2004-03-24,10.1,2.7
-257,13,Giletto,Giletto,2004,Argentina,Markies Russet,80,2004-03-24,11.3,2.8
-257,13,Giletto,Giletto,2004,Argentina,Markies Russet,150,2004-03-24,13.5,3
-257,13,Giletto,Giletto,2004,Argentina,Markies Russet,250,2004-03-24,16.5,3.2
-258,13,Giletto,Giletto,2004,Argentina,Markies Russet,0,2004-04-20,11.1,1.8
-258,13,Giletto,Giletto,2004,Argentina,Markies Russet,80,2004-04-20,13.6,2.2
-258,13,Giletto,Giletto,2004,Argentina,Markies Russet,150,2004-04-20,16.8,2.4
-258,13,Giletto,Giletto,2004,Argentina,Markies Russet,250,2004-04-20,18.1,2.6
-259,13,Giletto,Giletto,2005,Argentina,Markies Russet,0,2005-02-17,1.7,5
-259,13,Giletto,Giletto,2005,Argentina,Markies Russet,80,2005-02-17,1.8,5.6
-259,13,Giletto,Giletto,2005,Argentina,Markies Russet,150,2005-02-17,1.9,5.6
-259,13,Giletto,Giletto,2005,Argentina,Markies Russet,250,2005-02-17,1.9,5.6
-260,13,Giletto,Giletto,2005,Argentina,Markies Russet,0,2005-03-04,4.1,4.3
-260,13,Giletto,Giletto,2005,Argentina,Markies Russet,80,2005-03-04,4.2,4.4
-260,13,Giletto,Giletto,2005,Argentina,Markies Russet,150,2005-03-04,4.7,4.5
-260,13,Giletto,Giletto,2005,Argentina,Markies Russet,250,2005-03-04,5.3,4.4
-261,13,Giletto,Giletto,2005,Argentina,Markies Russet,0,2005-03-17,8,3.1
-261,13,Giletto,Giletto,2005,Argentina,Markies Russet,80,2005-03-17,8.2,3.3
-261,13,Giletto,Giletto,2005,Argentina,Markies Russet,150,2005-03-17,9.5,3.4
-261,13,Giletto,Giletto,2005,Argentina,Markies Russet,250,2005-03-17,11.6,3.7
-262,13,Giletto,Giletto,2005,Argentina,Markies Russet,0,2005-04-02,12.9,2.3
-262,13,Giletto,Giletto,2005,Argentina,Markies Russet,80,2005-04-02,14.2,2.6
-262,13,Giletto,Giletto,2005,Argentina,Markies Russet,150,2005-04-02,16.5,2.8
-262,13,Giletto,Giletto,2005,Argentina,Markies Russet,250,2005-04-02,19.5,3
-263,13,Giletto,Giletto,2005,Argentina,Markies Russet,0,2005-04-16,14.2,1.7
-263,13,Giletto,Giletto,2005,Argentina,Markies Russet,80,2005-04-16,19.1,2.1
-263,13,Giletto,Giletto,2005,Argentina,Markies Russet,150,2005-04-16,23.3,2.3
-263,13,Giletto,Giletto,2005,Argentina,Markies Russet,250,2005-04-16,23.700000000000003,2.5
-264,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,0,2004-02-25,2.7,3.7
-264,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,80,2004-02-25,3,4.1
-264,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,150,2004-02-25,3.0999999999999996,4.2
-264,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,250,2004-02-25,3.4,4.4
-265,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,0,2004-03-02,4.3,3.1
-265,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,80,2004-03-02,6,3.4
-265,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,150,2004-03-02,7.4,3.6
-265,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,250,2004-03-02,8.100000000000001,3.8
-266,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,0,2004-03-24,11.5,1.9
-266,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,80,2004-03-24,14.9,2.5
-266,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,150,2004-03-24,17.6,2.7
-266,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,250,2004-03-24,22.4,3.3
-267,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,0,2004-04-20,13.5,0.8
-267,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,80,2004-04-20,17.200000000000003,1.2
-267,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,150,2004-04-20,23.2,1.4
-267,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,250,2004-04-20,26.6,1.5
-268,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,0,2005-02-17,2.1,5
-268,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,80,2005-02-17,2.2,5.5
-268,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,150,2005-02-17,2.3,5.3
-268,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,250,2005-02-17,2.4,5.4
-269,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,0,2005-03-04,3.7,3.5
-269,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,80,2005-03-04,4.1,3.6
-269,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,150,2005-03-04,4.4,3.7
-269,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,250,2005-03-04,6.5,3.7
-270,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,0,2005-03-17,8.3,2
-270,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,80,2005-03-17,9.8,2.1
-270,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,150,2005-03-17,10.7,2.5
-270,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,250,2005-03-17,11.7,3
-271,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,0,2005-04-02,16.1,1.9
-271,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,80,2005-04-02,18,2.1
-271,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,150,2005-04-02,20.6,2.3
-271,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,250,2005-04-02,21.700000000000003,2.8
-272,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,0,2005-04-16,20.4,1.4
-272,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,80,2005-04-16,21.6,1.6
-272,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,150,2005-04-16,22.799999999999997,1.9
-272,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,250,2005-04-16,26.200000000000003,1.9
-273,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,0,2006-02-15,1.2,4.6
-273,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,80,2006-02-15,1.4,4.8
-273,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,150,2006-02-15,1.5,4.8
-273,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,250,2006-02-15,1.8,4.9
-274,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,0,2006-02-28,3.6999999999999997,4.7
-274,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,80,2006-02-28,5,4.8
-274,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,150,2006-02-28,6.1,5.2
-274,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,250,2006-02-28,6.4,5.5
-275,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,0,2006-03-16,8.2,3.4
-275,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,80,2006-03-16,10,4
-275,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,150,2006-03-16,11.100000000000001,4.1
-275,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,250,2006-03-16,11.899999999999999,4.4
-276,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,0,2006-04-06,10.600000000000001,2.1
-276,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,80,2006-04-06,14.8,2.6
-276,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,150,2006-04-06,14.899999999999999,2.9
-276,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,250,2006-04-06,16.799999999999997,2.9
-277,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,0,2006-04-27,12.600000000000001,1.5
-277,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,80,2006-04-27,13.3,1.6
-277,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,150,2006-04-27,16.1,1.8
-277,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,250,2006-04-27,17.7,2
-280,8,Giletto,Hartland,1900,Canada,Russet Burbank,0,1900-02-24,1,3.5
-280,8,Giletto,Hartland,1900,Canada,Russet Burbank,50,1900-02-24,1.5,3.9
-280,8,Giletto,Hartland,1900,Canada,Russet Burbank,100,1900-02-24,1.5,4.4
-280,8,Giletto,Hartland,1900,Canada,Russet Burbank,250,1900-02-24,1.3,4.8
-281,8,Giletto,Hartland,1900,Canada,Russet Burbank,0,1900-03-03,2.5999999999999996,2.6
-281,8,Giletto,Hartland,1900,Canada,Russet Burbank,50,1900-03-03,3.2,3.4
-281,8,Giletto,Hartland,1900,Canada,Russet Burbank,100,1900-03-03,3.4000000000000004,3.6
-281,8,Giletto,Hartland,1900,Canada,Russet Burbank,250,1900-03-03,3.6,3.3
-282,8,Giletto,Hartland,1900,Canada,Russet Burbank,0,1900-03-11,3.5999999999999996,1.8
-282,8,Giletto,Hartland,1900,Canada,Russet Burbank,50,1900-03-11,4.4,2.7
-282,8,Giletto,Hartland,1900,Canada,Russet Burbank,100,1900-03-11,5.5,2.7
-282,8,Giletto,Hartland,1900,Canada,Russet Burbank,250,1900-03-11,5.2,2.8
-283,8,Giletto,Hartland,1900,Canada,Russet Burbank,0,1900-03-16,4.1,1.5
-283,8,Giletto,Hartland,1900,Canada,Russet Burbank,50,1900-03-16,6.4,2.1
-283,8,Giletto,Hartland,1900,Canada,Russet Burbank,100,1900-03-16,7.6,2.6
-283,8,Giletto,Hartland,1900,Canada,Russet Burbank,250,1900-03-16,6.300000000000001,2.9
-284,8,Giletto,Hartland,1900,Canada,Russet Burbank,0,1900-03-23,6.8,1.4
-284,8,Giletto,Hartland,1900,Canada,Russet Burbank,50,1900-03-23,8.5,2
-284,8,Giletto,Hartland,1900,Canada,Russet Burbank,100,1900-03-23,9.6,2.2
-284,8,Giletto,Hartland,1900,Canada,Russet Burbank,250,1900-03-23,9.4,2.7
-285,8,Giletto,Hartland,1900,Canada,Russet Burbank,0,1900-04-01,8,1.2
-285,8,Giletto,Hartland,1900,Canada,Russet Burbank,50,1900-04-01,8.8,1.5
-285,8,Giletto,Hartland,1900,Canada,Russet Burbank,100,1900-04-01,8.9,1.7
-285,8,Giletto,Hartland,1900,Canada,Russet Burbank,250,1900-04-01,9.9,2.4
-286,8,Giletto,Hartland,1900,Canada,Russet Burbank,0,1900-04-09,7.4,1.2
-286,8,Giletto,Hartland,1900,Canada,Russet Burbank,50,1900-04-09,11,1.4
-286,8,Giletto,Hartland,1900,Canada,Russet Burbank,100,1900-04-09,9.7,1.6
-286,8,Giletto,Hartland,1900,Canada,Russet Burbank,250,1900-04-09,10.3,1.7
-289,9,Giletto,Hartland,1900,Canada,Shepody,0,1900-02-24,0.8999999999999999,4
-289,9,Giletto,Hartland,1900,Canada,Shepody,50,1900-02-24,1.2,4.4
-289,9,Giletto,Hartland,1900,Canada,Shepody,100,1900-02-24,1.4,5
-289,9,Giletto,Hartland,1900,Canada,Shepody,250,1900-02-24,1.3,5.1
-290,9,Giletto,Hartland,1900,Canada,Shepody,0,1900-03-03,3.3,2.8
-290,9,Giletto,Hartland,1900,Canada,Shepody,50,1900-03-03,3.2,3.3
-290,9,Giletto,Hartland,1900,Canada,Shepody,100,1900-03-03,3.1,3.8
-290,9,Giletto,Hartland,1900,Canada,Shepody,250,1900-03-03,2.7,4.4
-291,9,Giletto,Hartland,1900,Canada,Shepody,0,1900-03-11,3.8,2.4
-291,9,Giletto,Hartland,1900,Canada,Shepody,50,1900-03-11,4.4,2.7
-291,9,Giletto,Hartland,1900,Canada,Shepody,100,1900-03-11,4.9,3.4
-291,9,Giletto,Hartland,1900,Canada,Shepody,250,1900-03-11,5.4,3.2
-292,9,Giletto,Hartland,1900,Canada,Shepody,0,1900-03-16,3.4000000000000004,1.8
-292,9,Giletto,Hartland,1900,Canada,Shepody,50,1900-03-16,4.8,2.4
-292,9,Giletto,Hartland,1900,Canada,Shepody,100,1900-03-16,7.8,2.8
-292,9,Giletto,Hartland,1900,Canada,Shepody,250,1900-03-16,7,2.9
-293,9,Giletto,Hartland,1900,Canada,Shepody,0,1900-03-23,5.6,1.9
-293,9,Giletto,Hartland,1900,Canada,Shepody,50,1900-03-23,7.3,2
-293,9,Giletto,Hartland,1900,Canada,Shepody,100,1900-03-23,6.4,2.3
-293,9,Giletto,Hartland,1900,Canada,Shepody,250,1900-03-23,7.9,2.7
-294,9,Giletto,Hartland,1900,Canada,Shepody,0,1900-04-01,6.1,1.3
-294,9,Giletto,Hartland,1900,Canada,Shepody,50,1900-04-01,9,1.5
-294,9,Giletto,Hartland,1900,Canada,Shepody,100,1900-04-01,10.600000000000001,1.9
-294,9,Giletto,Hartland,1900,Canada,Shepody,250,1900-04-01,8.5,2.3
-295,9,Giletto,Hartland,1900,Canada,Shepody,0,1900-04-09,5.9,1
-295,9,Giletto,Hartland,1900,Canada,Shepody,50,1900-04-09,7.9,1.5
-295,9,Giletto,Hartland,1900,Canada,Shepody,100,1900-04-09,8.2,1.5
-295,9,Giletto,Hartland,1900,Canada,Shepody,250,1900-04-09,11.3,2.1
-298,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,0,1900-02-27,1.4,2.9
-298,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,50,1900-02-27,1.6,3.9
-298,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,100,1900-02-27,NA,NA
-298,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,250,1900-02-27,1.7,4.8
-299,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,0,1900-03-06,1.7,2.7
-299,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,50,1900-03-06,2.8,3.2
-299,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,100,1900-03-06,NA,NA
-299,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,250,1900-03-06,2.2,3.7
-300,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,0,1900-03-16,3.9000000000000004,2
-300,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,50,1900-03-16,4.6,2.9
-300,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,100,1900-03-16,NA,NA
-300,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,250,1900-03-16,5.2,3.1
-301,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,0,1900-03-23,5.1,1.8
-301,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,50,1900-03-23,6.1,2.4
-301,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,100,1900-03-23,NA,NA
-301,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,250,1900-03-23,5.7,2.9
-302,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,0,1900-03-29,5.1,1.8
-302,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,50,1900-03-29,7.5,2.2
-302,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,100,1900-03-29,NA,NA
-302,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,250,1900-03-29,7.199999999999999,2.5
-303,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,0,1900-04-05,8.9,1.7
-303,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,50,1900-04-05,8.4,1.9
-303,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,100,1900-04-05,NA,NA
-303,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,250,1900-04-05,8.7,2.5
-304,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,0,1900-04-18,10.6,1.4
-304,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,50,1900-04-18,11.1,1.7
-304,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,100,1900-04-18,NA,NA
-304,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,250,1900-04-18,10.2,2
-305,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,0,1900-04-25,10.9,1.3
-305,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,50,1900-04-25,13,1.7
-305,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,100,1900-04-25,NA,NA
-305,8,Giletto,Jacksonville,1900,Canada,Russet Burbank,250,1900-04-25,10.2,2.3
-308,9,Giletto,Jacksonville,1900,Canada,Shepody,0,1900-02-27,1.8,3.4
-308,9,Giletto,Jacksonville,1900,Canada,Shepody,50,1900-02-27,1.5999999999999999,4.9
-308,9,Giletto,Jacksonville,1900,Canada,Shepody,100,1900-02-27,NA,NA
-308,9,Giletto,Jacksonville,1900,Canada,Shepody,250,1900-02-27,2,5.4
-309,9,Giletto,Jacksonville,1900,Canada,Shepody,0,1900-03-06,2,3.4
-309,9,Giletto,Jacksonville,1900,Canada,Shepody,50,1900-03-06,3.1,3.8
-309,9,Giletto,Jacksonville,1900,Canada,Shepody,100,1900-03-06,NA,NA
-309,9,Giletto,Jacksonville,1900,Canada,Shepody,250,1900-03-06,2.7,4.3
-310,9,Giletto,Jacksonville,1900,Canada,Shepody,0,1900-03-16,4.699999999999999,2.3
-310,9,Giletto,Jacksonville,1900,Canada,Shepody,50,1900-03-16,6.800000000000001,2.7
-310,9,Giletto,Jacksonville,1900,Canada,Shepody,100,1900-03-16,NA,NA
-310,9,Giletto,Jacksonville,1900,Canada,Shepody,250,1900-03-16,7.6000000000000005,3.5
-311,9,Giletto,Jacksonville,1900,Canada,Shepody,0,1900-03-23,4.6,1.9
-311,9,Giletto,Jacksonville,1900,Canada,Shepody,50,1900-03-23,5.5,2.6
-311,9,Giletto,Jacksonville,1900,Canada,Shepody,100,1900-03-23,NA,NA
-311,9,Giletto,Jacksonville,1900,Canada,Shepody,250,1900-03-23,8.100000000000001,3.3
-312,9,Giletto,Jacksonville,1900,Canada,Shepody,0,1900-03-29,7,1.8
-312,9,Giletto,Jacksonville,1900,Canada,Shepody,50,1900-03-29,9,2.4
-312,9,Giletto,Jacksonville,1900,Canada,Shepody,100,1900-03-29,NA,NA
-312,9,Giletto,Jacksonville,1900,Canada,Shepody,250,1900-03-29,8.2,3.1
-313,9,Giletto,Jacksonville,1900,Canada,Shepody,0,1900-04-05,7.3,1.6
-313,9,Giletto,Jacksonville,1900,Canada,Shepody,50,1900-04-05,12.3,2.3
-313,9,Giletto,Jacksonville,1900,Canada,Shepody,100,1900-04-05,NA,NA
-313,9,Giletto,Jacksonville,1900,Canada,Shepody,250,1900-04-05,13.1,2.7
-314,9,Giletto,Jacksonville,1900,Canada,Shepody,0,1900-04-18,9.4,1.3
-314,9,Giletto,Jacksonville,1900,Canada,Shepody,50,1900-04-18,9,1.6
-314,9,Giletto,Jacksonville,1900,Canada,Shepody,100,1900-04-18,NA,NA
-314,9,Giletto,Jacksonville,1900,Canada,Shepody,250,1900-04-18,10,2.3
-315,9,Giletto,Jacksonville,1900,Canada,Shepody,0,1900-04-25,8.5,1.1
-315,9,Giletto,Jacksonville,1900,Canada,Shepody,50,1900-04-25,11.2,1.4
-315,9,Giletto,Jacksonville,1900,Canada,Shepody,100,1900-04-25,NA,NA
-315,9,Giletto,Jacksonville,1900,Canada,Shepody,250,1900-04-25,12.5,2.1
-318,8,Giletto,London,1900,Canada,Russet Burbank,0,1900-02-26,2,2.7
-318,8,Giletto,London,1900,Canada,Russet Burbank,50,1900-02-26,1,5.1
-318,8,Giletto,London,1900,Canada,Russet Burbank,100,1900-02-26,NA,NA
-318,8,Giletto,London,1900,Canada,Russet Burbank,250,1900-02-26,2,4.2
-319,8,Giletto,London,1900,Canada,Russet Burbank,0,1900-03-01,1.8,3.2
-319,8,Giletto,London,1900,Canada,Russet Burbank,50,1900-03-01,2.7,4
-319,8,Giletto,London,1900,Canada,Russet Burbank,100,1900-03-01,NA,NA
-319,8,Giletto,London,1900,Canada,Russet Burbank,250,1900-03-01,2.8,3.8
-320,8,Giletto,London,1900,Canada,Russet Burbank,0,1900-03-10,3.6,1.8
-320,8,Giletto,London,1900,Canada,Russet Burbank,50,1900-03-10,3.6,3.6
-320,8,Giletto,London,1900,Canada,Russet Burbank,100,1900-03-10,NA,NA
-320,8,Giletto,London,1900,Canada,Russet Burbank,250,1900-03-10,5.300000000000001,3.5
-321,8,Giletto,London,1900,Canada,Russet Burbank,0,1900-03-15,3.6,1.4
-321,8,Giletto,London,1900,Canada,Russet Burbank,50,1900-03-15,4.7,2.8
-321,8,Giletto,London,1900,Canada,Russet Burbank,100,1900-03-15,NA,NA
-321,8,Giletto,London,1900,Canada,Russet Burbank,250,1900-03-15,6.1,2.7
-322,8,Giletto,London,1900,Canada,Russet Burbank,0,1900-03-22,8.4,1
-322,8,Giletto,London,1900,Canada,Russet Burbank,50,1900-03-22,6.6,2.3
-322,8,Giletto,London,1900,Canada,Russet Burbank,100,1900-03-22,NA,NA
-322,8,Giletto,London,1900,Canada,Russet Burbank,250,1900-03-22,7.3999999999999995,2.4
-323,8,Giletto,London,1900,Canada,Russet Burbank,0,1900-03-23,5.8,1.4
-323,8,Giletto,London,1900,Canada,Russet Burbank,50,1900-03-23,8,2
-323,8,Giletto,London,1900,Canada,Russet Burbank,100,1900-03-23,NA,NA
-323,8,Giletto,London,1900,Canada,Russet Burbank,250,1900-03-23,11.9,2.1
-324,8,Giletto,London,1900,Canada,Russet Burbank,0,1900-04-08,7.7,0.9
-324,8,Giletto,London,1900,Canada,Russet Burbank,50,1900-04-08,9.8,1.4
-324,8,Giletto,London,1900,Canada,Russet Burbank,100,1900-04-08,NA,NA
-324,8,Giletto,London,1900,Canada,Russet Burbank,250,1900-04-08,9.9,2.1
-325,8,Giletto,London,1900,Canada,Russet Burbank,0,1900-04-15,6.3,0.9
-325,8,Giletto,London,1900,Canada,Russet Burbank,50,1900-04-15,11.6,1.4
-325,8,Giletto,London,1900,Canada,Russet Burbank,100,1900-04-15,NA,NA
-325,8,Giletto,London,1900,Canada,Russet Burbank,250,1900-04-15,10.6,1.9
-329,9,Giletto,London,1900,Canada,Shepody,0,1900-03-01,2,3
-329,9,Giletto,London,1900,Canada,Shepody,50,1900-03-01,2.4,4.1
-329,9,Giletto,London,1900,Canada,Shepody,100,1900-03-01,NA,NA
-329,9,Giletto,London,1900,Canada,Shepody,250,1900-03-01,2.9000000000000004,4.6
-330,9,Giletto,London,1900,Canada,Shepody,0,1900-03-10,3.2,1.9
-330,9,Giletto,London,1900,Canada,Shepody,50,1900-03-10,4.8,3.1
-330,9,Giletto,London,1900,Canada,Shepody,100,1900-03-10,NA,NA
-330,9,Giletto,London,1900,Canada,Shepody,250,1900-03-10,3.8,4.1
-331,9,Giletto,London,1900,Canada,Shepody,0,1900-03-15,3,1.5
-331,9,Giletto,London,1900,Canada,Shepody,50,1900-03-15,5.7,2.5
-331,9,Giletto,London,1900,Canada,Shepody,100,1900-03-15,NA,NA
-331,9,Giletto,London,1900,Canada,Shepody,250,1900-03-15,6.7,3.4
-332,9,Giletto,London,1900,Canada,Shepody,0,1900-03-22,5.6,1.2
-332,9,Giletto,London,1900,Canada,Shepody,50,1900-03-22,8.600000000000001,2.1
-332,9,Giletto,London,1900,Canada,Shepody,100,1900-03-22,NA,NA
-332,9,Giletto,London,1900,Canada,Shepody,250,1900-03-22,10.5,3
-333,9,Giletto,London,1900,Canada,Shepody,0,1900-04-08,10.5,1.2
-333,9,Giletto,London,1900,Canada,Shepody,50,1900-04-08,9.1,1.3
-333,9,Giletto,London,1900,Canada,Shepody,100,1900-04-08,NA,NA
-333,9,Giletto,London,1900,Canada,Shepody,250,1900-04-08,11.9,1.9
-334,9,Giletto,London,1900,Canada,Shepody,0,1900-04-15,6.4,0.9
-334,9,Giletto,London,1900,Canada,Shepody,50,1900-04-15,12,1.5
-334,9,Giletto,London,1900,Canada,Shepody,100,1900-04-15,NA,NA
-334,9,Giletto,London,1900,Canada,Shepody,250,1900-04-15,15.299999999999999,2.1
-335,9,Giletto,London,1900,Canada,Shepody,0,1900-04-21,7.6000000000000005,0.9
-335,9,Giletto,London,1900,Canada,Shepody,50,1900-04-21,15.2,1.2
-335,9,Giletto,London,1900,Canada,Shepody,100,1900-04-21,NA,NA
-335,9,Giletto,London,1900,Canada,Shepody,250,1900-04-21,12.600000000000001,1.8
+186,8,Giletto,Drummond,1997,Canada,Russet Burbank,0,1997-07-22,1.2000000000000002,3.6
+186,8,Giletto,Drummond,1997,Canada,Russet Burbank,50,1997-07-22,1.6,4
+186,8,Giletto,Drummond,1997,Canada,Russet Burbank,100,1997-07-22,1.7999999999999998,4.3
+186,8,Giletto,Drummond,1997,Canada,Russet Burbank,250,1997-07-22,1.7,4.4
+187,8,Giletto,Drummond,1997,Canada,Russet Burbank,0,1997-08-01,2.8,2.7
+187,8,Giletto,Drummond,1997,Canada,Russet Burbank,50,1997-08-01,3.5,2.8
+187,8,Giletto,Drummond,1997,Canada,Russet Burbank,100,1997-08-01,3.7,3.2
+187,8,Giletto,Drummond,1997,Canada,Russet Burbank,250,1997-08-01,4,3.2
+188,8,Giletto,Drummond,1997,Canada,Russet Burbank,0,1997-08-07,4.7,2.3
+188,8,Giletto,Drummond,1997,Canada,Russet Burbank,50,1997-08-07,6.9,2.2
+188,8,Giletto,Drummond,1997,Canada,Russet Burbank,100,1997-08-07,6.1,3
+188,8,Giletto,Drummond,1997,Canada,Russet Burbank,250,1997-08-07,5.7,3.2
+189,8,Giletto,Drummond,1997,Canada,Russet Burbank,0,1997-08-14,7.5,1.9
+189,8,Giletto,Drummond,1997,Canada,Russet Burbank,50,1997-08-14,7.1,2.2
+189,8,Giletto,Drummond,1997,Canada,Russet Burbank,100,1997-08-14,8.3,2.4
+189,8,Giletto,Drummond,1997,Canada,Russet Burbank,250,1997-08-14,8.4,2.8
+190,8,Giletto,Drummond,1997,Canada,Russet Burbank,0,1997-08-21,8.5,1.4
+190,8,Giletto,Drummond,1997,Canada,Russet Burbank,50,1997-08-21,8.7,1.7
+190,8,Giletto,Drummond,1997,Canada,Russet Burbank,100,1997-08-21,10.3,1.9
+190,8,Giletto,Drummond,1997,Canada,Russet Burbank,250,1997-08-21,8.8,2.4
+191,8,Giletto,Drummond,1997,Canada,Russet Burbank,0,1997-08-26,8.2,1.1
+191,8,Giletto,Drummond,1997,Canada,Russet Burbank,50,1997-08-26,9.7,1.4
+191,8,Giletto,Drummond,1997,Canada,Russet Burbank,100,1997-08-26,9.6,1.8
+191,8,Giletto,Drummond,1997,Canada,Russet Burbank,250,1997-08-26,11.7,2.2
+192,8,Giletto,Drummond,1997,Canada,Russet Burbank,0,1997-09-02,8.8,1.3
+192,8,Giletto,Drummond,1997,Canada,Russet Burbank,50,1997-09-02,10.100000000000001,1.5
+192,8,Giletto,Drummond,1997,Canada,Russet Burbank,100,1997-09-02,11.599999999999998,2
+192,8,Giletto,Drummond,1997,Canada,Russet Burbank,250,1997-09-02,11.899999999999999,2.2
+195,9,Giletto,Drummond,1997,Canada,Shepody,0,1997-07-15,1.2,5.5
+195,9,Giletto,Drummond,1997,Canada,Shepody,50,1997-07-15,1.1,6.1
+195,9,Giletto,Drummond,1997,Canada,Shepody,100,1997-07-15,1.3,6.3
+195,9,Giletto,Drummond,1997,Canada,Shepody,250,1997-07-15,1.2,6.3
+196,9,Giletto,Drummond,1997,Canada,Shepody,0,1997-07-22,1.8,3.6
+196,9,Giletto,Drummond,1997,Canada,Shepody,50,1997-07-22,2.1,4.3
+196,9,Giletto,Drummond,1997,Canada,Shepody,100,1997-07-22,2.1999999999999997,5.1
+196,9,Giletto,Drummond,1997,Canada,Shepody,250,1997-07-22,2.1,5.4
+197,9,Giletto,Drummond,1997,Canada,Shepody,0,1997-08-01,3.2,2.3
+197,9,Giletto,Drummond,1997,Canada,Shepody,50,1997-08-01,5.2,3
+197,9,Giletto,Drummond,1997,Canada,Shepody,100,1997-08-01,5.5,3.5
+197,9,Giletto,Drummond,1997,Canada,Shepody,250,1997-08-01,5.6,4
+198,9,Giletto,Drummond,1997,Canada,Shepody,0,1997-08-07,5.5,1.8
+198,9,Giletto,Drummond,1997,Canada,Shepody,50,1997-08-07,7.1,2.4
+198,9,Giletto,Drummond,1997,Canada,Shepody,100,1997-08-07,7.3,2.8
+198,9,Giletto,Drummond,1997,Canada,Shepody,250,1997-08-07,5.300000000000001,3.6
+199,9,Giletto,Drummond,1997,Canada,Shepody,0,1997-08-14,7.300000000000001,1.6
+199,9,Giletto,Drummond,1997,Canada,Shepody,50,1997-08-14,7.3,2
+199,9,Giletto,Drummond,1997,Canada,Shepody,100,1997-08-14,6.3,2.8
+199,9,Giletto,Drummond,1997,Canada,Shepody,250,1997-08-14,5.2,3.3
+200,9,Giletto,Drummond,1997,Canada,Shepody,0,1997-08-21,9.4,1.4
+200,9,Giletto,Drummond,1997,Canada,Shepody,50,1997-08-21,10.5,1.8
+200,9,Giletto,Drummond,1997,Canada,Shepody,100,1997-08-21,11.4,1.9
+200,9,Giletto,Drummond,1997,Canada,Shepody,250,1997-08-21,13.5,2.7
+201,9,Giletto,Drummond,1997,Canada,Shepody,0,1997-08-26,9.5,1.1
+201,9,Giletto,Drummond,1997,Canada,Shepody,50,1997-08-26,9.8,1.5
+201,9,Giletto,Drummond,1997,Canada,Shepody,100,1997-08-26,11.5,1.8
+201,9,Giletto,Drummond,1997,Canada,Shepody,250,1997-08-26,11.3,2.4
+202,9,Giletto,Drummond,1997,Canada,Shepody,0,1997-09-02,7.3,1.3
+202,9,Giletto,Drummond,1997,Canada,Shepody,50,1997-09-02,11.1,1.4
+202,9,Giletto,Drummond,1997,Canada,Shepody,100,1997-09-02,15.4,1.8
+202,9,Giletto,Drummond,1997,Canada,Shepody,250,1997-09-02,13.3,2.5
+204,10,Giletto,Giletto,2003,Argentina,Bannock Russet,0,2003-12-23,3.1,4.2
+204,10,Giletto,Giletto,2003,Argentina,Bannock Russet,80,2003-12-23,3.8,4.2
+204,10,Giletto,Giletto,2003,Argentina,Bannock Russet,150,2003-12-23,4.4,4.2
+204,10,Giletto,Giletto,2003,Argentina,Bannock Russet,250,2003-12-23,4.6,4.4
+205,10,Giletto,Giletto,2004,Argentina,Bannock Russet,0,2004-01-07,4.5,3.2
+205,10,Giletto,Giletto,2004,Argentina,Bannock Russet,80,2004-01-07,6.1,3.4
+205,10,Giletto,Giletto,2004,Argentina,Bannock Russet,150,2004-01-07,6.8,3.6
+205,10,Giletto,Giletto,2004,Argentina,Bannock Russet,250,2004-01-07,7.7,4.2
+206,10,Giletto,Giletto,2004,Argentina,Bannock Russet,0,2004-01-22,4.6,2.8
+206,10,Giletto,Giletto,2004,Argentina,Bannock Russet,80,2004-01-22,6.6,3.1
+206,10,Giletto,Giletto,2004,Argentina,Bannock Russet,150,2004-01-22,8.1,3
+206,10,Giletto,Giletto,2004,Argentina,Bannock Russet,250,2004-01-22,11.5,2.9
+207,10,Giletto,Giletto,2004,Argentina,Bannock Russet,0,2004-02-11,6.699999999999999,1.9
+207,10,Giletto,Giletto,2004,Argentina,Bannock Russet,80,2004-02-11,8.7,2.1
+207,10,Giletto,Giletto,2004,Argentina,Bannock Russet,150,2004-02-11,9.3,2.2
+207,10,Giletto,Giletto,2004,Argentina,Bannock Russet,250,2004-02-11,11.3,2.5
+208,10,Giletto,Giletto,2004,Argentina,Bannock Russet,0,2004-11-28,2.1,4.3
+208,10,Giletto,Giletto,2004,Argentina,Bannock Russet,80,2004-11-28,2.7,4.4
+208,10,Giletto,Giletto,2004,Argentina,Bannock Russet,150,2004-11-28,2.9,4.7
+208,10,Giletto,Giletto,2004,Argentina,Bannock Russet,250,2004-11-28,3.8000000000000003,4.5
+209,10,Giletto,Giletto,2004,Argentina,Bannock Russet,0,2004-12-04,3.8,4.1
+209,10,Giletto,Giletto,2004,Argentina,Bannock Russet,80,2004-12-04,5.1,4.2
+209,10,Giletto,Giletto,2004,Argentina,Bannock Russet,150,2004-12-04,5.6,4.2
+209,10,Giletto,Giletto,2004,Argentina,Bannock Russet,250,2004-12-04,6.3,4.3
+210,10,Giletto,Giletto,2004,Argentina,Bannock Russet,0,2004-12-26,7.300000000000001,2.4
+210,10,Giletto,Giletto,2004,Argentina,Bannock Russet,80,2004-12-26,12,2.8
+210,10,Giletto,Giletto,2004,Argentina,Bannock Russet,150,2004-12-26,16.3,2.9
+210,10,Giletto,Giletto,2004,Argentina,Bannock Russet,250,2004-12-26,19.7,3.4
+211,10,Giletto,Giletto,2005,Argentina,Bannock Russet,0,2005-01-22,13.6,1.3
+211,10,Giletto,Giletto,2005,Argentina,Bannock Russet,80,2005-01-22,15,1.4
+211,10,Giletto,Giletto,2005,Argentina,Bannock Russet,150,2005-01-22,17.6,1.4
+211,10,Giletto,Giletto,2005,Argentina,Bannock Russet,250,2005-01-22,20.6,2.1
+212,10,Giletto,Giletto,2005,Argentina,Bannock Russet,0,2005-11-16,2,4.8
+212,10,Giletto,Giletto,2005,Argentina,Bannock Russet,80,2005-11-16,2.3,4.9
+212,10,Giletto,Giletto,2005,Argentina,Bannock Russet,150,2005-11-16,2.3,5
+212,10,Giletto,Giletto,2005,Argentina,Bannock Russet,250,2005-11-16,2.2,5.3
+213,10,Giletto,Giletto,2005,Argentina,Bannock Russet,0,2005-12-01,3.9,4
+213,10,Giletto,Giletto,2005,Argentina,Bannock Russet,80,2005-12-01,4.2,3.9
+213,10,Giletto,Giletto,2005,Argentina,Bannock Russet,150,2005-12-01,4.3,4.1
+213,10,Giletto,Giletto,2005,Argentina,Bannock Russet,250,2005-12-01,5,4.6
+214,10,Giletto,Giletto,2005,Argentina,Bannock Russet,0,2005-12-14,7.6,3.2
+214,10,Giletto,Giletto,2005,Argentina,Bannock Russet,80,2005-12-14,8.7,3.2
+214,10,Giletto,Giletto,2005,Argentina,Bannock Russet,150,2005-12-14,8.9,3.4
+214,10,Giletto,Giletto,2005,Argentina,Bannock Russet,250,2005-12-14,12.8,3.5
+215,10,Giletto,Giletto,2005,Argentina,Bannock Russet,0,2005-12-30,13,2.2
+215,10,Giletto,Giletto,2005,Argentina,Bannock Russet,80,2005-12-30,18.200000000000003,2.4
+215,10,Giletto,Giletto,2005,Argentina,Bannock Russet,150,2005-12-30,23.6,2.5
+215,10,Giletto,Giletto,2005,Argentina,Bannock Russet,250,2005-12-30,25.7,2.7
+216,10,Giletto,Giletto,2006,Argentina,Bannock Russet,0,2006-01-13,20.799999999999997,1.6
+216,10,Giletto,Giletto,2006,Argentina,Bannock Russet,80,2006-01-13,24.7,2
+216,10,Giletto,Giletto,2006,Argentina,Bannock Russet,150,2006-01-13,32.7,2.4
+216,10,Giletto,Giletto,2006,Argentina,Bannock Russet,250,2006-01-13,36.1,3.1
+218,11,Giletto,Giletto,2003,Argentina,Gem Russet,0,2003-12-23,7.199999999999999,3.2
+218,11,Giletto,Giletto,2003,Argentina,Gem Russet,80,2003-12-23,10.3,3.2
+218,11,Giletto,Giletto,2003,Argentina,Gem Russet,150,2003-12-23,13,3
+218,11,Giletto,Giletto,2003,Argentina,Gem Russet,250,2003-12-23,14.5,3.3
+219,11,Giletto,Giletto,2004,Argentina,Gem Russet,0,2004-01-07,13.699999999999998,2
+219,11,Giletto,Giletto,2004,Argentina,Gem Russet,80,2004-01-07,17.8,2.2
+219,11,Giletto,Giletto,2004,Argentina,Gem Russet,150,2004-01-07,19.6,2.6
+219,11,Giletto,Giletto,2004,Argentina,Gem Russet,250,2004-01-07,21.4,2.8
+220,11,Giletto,Giletto,2004,Argentina,Gem Russet,0,2004-01-22,18,1.6
+220,11,Giletto,Giletto,2004,Argentina,Gem Russet,80,2004-01-22,21,2.1
+220,11,Giletto,Giletto,2004,Argentina,Gem Russet,150,2004-01-22,23.6,2.3
+220,11,Giletto,Giletto,2004,Argentina,Gem Russet,250,2004-01-22,26.3,2.3
+221,11,Giletto,Giletto,2004,Argentina,Gem Russet,0,2004-02-11,18.3,1.2
+221,11,Giletto,Giletto,2004,Argentina,Gem Russet,80,2004-02-11,21.3,1.5
+221,11,Giletto,Giletto,2004,Argentina,Gem Russet,150,2004-02-11,24.3,1.8
+221,11,Giletto,Giletto,2004,Argentina,Gem Russet,250,2004-02-11,25.9,1.9
+222,11,Giletto,Giletto,2004,Argentina,Gem Russet,0,2004-11-28,1.7,5.2
+222,11,Giletto,Giletto,2004,Argentina,Gem Russet,80,2004-11-28,1.9,5.3
+222,11,Giletto,Giletto,2004,Argentina,Gem Russet,150,2004-11-28,2.2,5.8
+222,11,Giletto,Giletto,2004,Argentina,Gem Russet,250,2004-11-28,2.2,5.8
+223,11,Giletto,Giletto,2004,Argentina,Gem Russet,0,2004-12-04,5.3,3.6
+223,11,Giletto,Giletto,2004,Argentina,Gem Russet,80,2004-12-04,5.6,3.9
+223,11,Giletto,Giletto,2004,Argentina,Gem Russet,150,2004-12-04,6.4,4
+223,11,Giletto,Giletto,2004,Argentina,Gem Russet,250,2004-12-04,8,4
+224,11,Giletto,Giletto,2004,Argentina,Gem Russet,0,2004-12-26,12.7,1.8
+224,11,Giletto,Giletto,2004,Argentina,Gem Russet,80,2004-12-26,15.9,2.2
+224,11,Giletto,Giletto,2004,Argentina,Gem Russet,150,2004-12-26,16.3,2.5
+224,11,Giletto,Giletto,2004,Argentina,Gem Russet,250,2004-12-26,18.4,3
+225,11,Giletto,Giletto,2005,Argentina,Gem Russet,0,2005-01-22,15.8,1.1
+225,11,Giletto,Giletto,2005,Argentina,Gem Russet,80,2005-01-22,17.4,1.1
+225,11,Giletto,Giletto,2005,Argentina,Gem Russet,150,2005-01-22,20.5,1.4
+225,11,Giletto,Giletto,2005,Argentina,Gem Russet,250,2005-01-22,24.6,2
+226,11,Giletto,Giletto,2005,Argentina,Gem Russet,0,2005-11-16,2,4.6
+226,11,Giletto,Giletto,2005,Argentina,Gem Russet,80,2005-11-16,2,5.2
+226,11,Giletto,Giletto,2005,Argentina,Gem Russet,150,2005-11-16,2.1,5.6
+226,11,Giletto,Giletto,2005,Argentina,Gem Russet,250,2005-11-16,2.1,5.6
+227,11,Giletto,Giletto,2005,Argentina,Gem Russet,0,2005-12-01,3.8000000000000003,3.6
+227,11,Giletto,Giletto,2005,Argentina,Gem Russet,80,2005-12-01,4.2,3.7
+227,11,Giletto,Giletto,2005,Argentina,Gem Russet,150,2005-12-01,4.8999999999999995,3.9
+227,11,Giletto,Giletto,2005,Argentina,Gem Russet,250,2005-12-01,5.9,4.4
+228,11,Giletto,Giletto,2005,Argentina,Gem Russet,0,2005-12-14,7.5,3
+228,11,Giletto,Giletto,2005,Argentina,Gem Russet,80,2005-12-14,9.1,3.3
+228,11,Giletto,Giletto,2005,Argentina,Gem Russet,150,2005-12-14,11.3,3.4
+228,11,Giletto,Giletto,2005,Argentina,Gem Russet,250,2005-12-14,12.100000000000001,4
+229,11,Giletto,Giletto,2005,Argentina,Gem Russet,0,2005-12-30,12.7,2.1
+229,11,Giletto,Giletto,2005,Argentina,Gem Russet,80,2005-12-30,14,2.4
+229,11,Giletto,Giletto,2005,Argentina,Gem Russet,150,2005-12-30,17.8,3
+229,11,Giletto,Giletto,2005,Argentina,Gem Russet,250,2005-12-30,21.5,3.4
+230,11,Giletto,Giletto,2006,Argentina,Gem Russet,0,2006-01-13,18,1.7
+230,11,Giletto,Giletto,2006,Argentina,Gem Russet,80,2006-01-13,21.9,1.8
+230,11,Giletto,Giletto,2006,Argentina,Gem Russet,150,2006-01-13,26.6,2.4
+230,11,Giletto,Giletto,2006,Argentina,Gem Russet,250,2006-01-13,30.200000000000003,2.6
+231,11,Giletto,Giletto,2006,Argentina,Gem Russet,0,2006-12-02,1.3,5.1
+231,11,Giletto,Giletto,2006,Argentina,Gem Russet,80,2006-12-02,1.3,5.2
+231,11,Giletto,Giletto,2006,Argentina,Gem Russet,150,2006-12-02,1.3,5.2
+231,11,Giletto,Giletto,2006,Argentina,Gem Russet,250,2006-12-02,1.6,5.5
+232,11,Giletto,Giletto,2006,Argentina,Gem Russet,0,2006-12-15,4.1,5.1
+232,11,Giletto,Giletto,2006,Argentina,Gem Russet,80,2006-12-15,5.1,5.2
+232,11,Giletto,Giletto,2006,Argentina,Gem Russet,150,2006-12-15,5.3,5.5
+232,11,Giletto,Giletto,2006,Argentina,Gem Russet,250,2006-12-15,5.4,5.7
+233,11,Giletto,Giletto,2006,Argentina,Gem Russet,0,2006-12-31,7.5,3.7
+233,11,Giletto,Giletto,2006,Argentina,Gem Russet,80,2006-12-31,7.9,3.9
+233,11,Giletto,Giletto,2006,Argentina,Gem Russet,150,2006-12-31,8.799999999999999,4.2
+233,11,Giletto,Giletto,2006,Argentina,Gem Russet,250,2006-12-31,10.1,4.4
+234,11,Giletto,Giletto,2007,Argentina,Gem Russet,0,2007-01-21,14.3,2.2
+234,11,Giletto,Giletto,2007,Argentina,Gem Russet,80,2007-01-21,15.4,2.4
+234,11,Giletto,Giletto,2007,Argentina,Gem Russet,150,2007-01-21,16.5,3
+234,11,Giletto,Giletto,2007,Argentina,Gem Russet,250,2007-01-21,19.200000000000003,3.1
+235,11,Giletto,Giletto,2007,Argentina,Gem Russet,0,2007-02-11,12,1.6
+235,11,Giletto,Giletto,2007,Argentina,Gem Russet,80,2007-02-11,13.6,1.9
+235,11,Giletto,Giletto,2007,Argentina,Gem Russet,150,2007-02-11,14.2,2
+235,11,Giletto,Giletto,2007,Argentina,Gem Russet,250,2007-02-11,14.9,2.2
+237,12,Giletto,Giletto,2003,Argentina,Innovator,0,2003-12-23,4.4,2.9
+237,12,Giletto,Giletto,2003,Argentina,Innovator,80,2003-12-23,4.9,2.8
+237,12,Giletto,Giletto,2003,Argentina,Innovator,150,2003-12-23,5.6,3
+237,12,Giletto,Giletto,2003,Argentina,Innovator,250,2003-12-23,6.5,3.3
+238,12,Giletto,Giletto,2004,Argentina,Innovator,0,2004-01-07,6.7,2.4
+238,12,Giletto,Giletto,2004,Argentina,Innovator,80,2004-01-07,9.5,2.5
+238,12,Giletto,Giletto,2004,Argentina,Innovator,150,2004-01-07,10.5,2.5
+238,12,Giletto,Giletto,2004,Argentina,Innovator,250,2004-01-07,12.899999999999999,2.6
+239,12,Giletto,Giletto,2004,Argentina,Innovator,0,2004-01-22,9.2,1.5
+239,12,Giletto,Giletto,2004,Argentina,Innovator,80,2004-01-22,11.7,1.6
+239,12,Giletto,Giletto,2004,Argentina,Innovator,150,2004-01-22,12.4,1.8
+239,12,Giletto,Giletto,2004,Argentina,Innovator,250,2004-01-22,16,2.1
+240,12,Giletto,Giletto,2004,Argentina,Innovator,0,2004-02-11,15.899999999999999,1.1
+240,12,Giletto,Giletto,2004,Argentina,Innovator,80,2004-02-11,17.2,1.2
+240,12,Giletto,Giletto,2004,Argentina,Innovator,150,2004-02-11,17.2,1.3
+240,12,Giletto,Giletto,2004,Argentina,Innovator,250,2004-02-11,22.400000000000002,1.4
+241,12,Giletto,Giletto,2004,Argentina,Innovator,0,2004-11-28,2.4,3.6
+241,12,Giletto,Giletto,2004,Argentina,Innovator,80,2004-11-28,3.1,3.8
+241,12,Giletto,Giletto,2004,Argentina,Innovator,150,2004-11-28,3.1,3.9
+241,12,Giletto,Giletto,2004,Argentina,Innovator,250,2004-11-28,3.2,4
+242,12,Giletto,Giletto,2004,Argentina,Innovator,0,2004-12-04,4.9,2.7
+242,12,Giletto,Giletto,2004,Argentina,Innovator,80,2004-12-04,5.6,3.1
+242,12,Giletto,Giletto,2004,Argentina,Innovator,150,2004-12-04,5.9,3.2
+242,12,Giletto,Giletto,2004,Argentina,Innovator,250,2004-12-04,6.800000000000001,3.5
+243,12,Giletto,Giletto,2004,Argentina,Innovator,0,2004-12-26,9.7,2.3
+243,12,Giletto,Giletto,2004,Argentina,Innovator,80,2004-12-26,10.8,2.6
+243,12,Giletto,Giletto,2004,Argentina,Innovator,150,2004-12-26,13.1,2.6
+243,12,Giletto,Giletto,2004,Argentina,Innovator,250,2004-12-26,15.7,3
+244,12,Giletto,Giletto,2005,Argentina,Innovator,0,2005-01-22,16.8,1.2
+244,12,Giletto,Giletto,2005,Argentina,Innovator,80,2005-01-22,17.3,1.3
+244,12,Giletto,Giletto,2005,Argentina,Innovator,150,2005-01-22,19.9,1.5
+244,12,Giletto,Giletto,2005,Argentina,Innovator,250,2005-01-22,22.6,1.5
+245,12,Giletto,Giletto,2005,Argentina,Innovator,0,2005-11-16,2.6,4.8
+245,12,Giletto,Giletto,2005,Argentina,Innovator,80,2005-11-16,2.6,4.7
+245,12,Giletto,Giletto,2005,Argentina,Innovator,150,2005-11-16,2.7,5
+245,12,Giletto,Giletto,2005,Argentina,Innovator,250,2005-11-16,2.8,5
+246,12,Giletto,Giletto,2005,Argentina,Innovator,0,2005-12-01,4.5,3.2
+246,12,Giletto,Giletto,2005,Argentina,Innovator,80,2005-12-01,5.3,3.6
+246,12,Giletto,Giletto,2005,Argentina,Innovator,150,2005-12-01,6.3999999999999995,3.8
+246,12,Giletto,Giletto,2005,Argentina,Innovator,250,2005-12-01,7.6000000000000005,3.8
+247,12,Giletto,Giletto,2005,Argentina,Innovator,0,2005-12-14,8,2.1
+247,12,Giletto,Giletto,2005,Argentina,Innovator,80,2005-12-14,8.9,2.4
+247,12,Giletto,Giletto,2005,Argentina,Innovator,150,2005-12-14,11.600000000000001,2.8
+247,12,Giletto,Giletto,2005,Argentina,Innovator,250,2005-12-14,12.9,3.1
+248,12,Giletto,Giletto,2005,Argentina,Innovator,0,2005-12-30,11,1.6
+248,12,Giletto,Giletto,2005,Argentina,Innovator,80,2005-12-30,12.4,2
+248,12,Giletto,Giletto,2005,Argentina,Innovator,150,2005-12-30,15.1,2.3
+248,12,Giletto,Giletto,2005,Argentina,Innovator,250,2005-12-30,16.4,2.5
+249,12,Giletto,Giletto,2006,Argentina,Innovator,0,2006-01-13,16.6,1
+249,12,Giletto,Giletto,2006,Argentina,Innovator,80,2006-01-13,19.4,1.2
+249,12,Giletto,Giletto,2006,Argentina,Innovator,150,2006-01-13,22.3,1.4
+249,12,Giletto,Giletto,2006,Argentina,Innovator,250,2006-01-13,24.4,1.5
+250,12,Giletto,Giletto,2006,Argentina,Innovator,0,2006-12-02,1.1,4.7
+250,12,Giletto,Giletto,2006,Argentina,Innovator,80,2006-12-02,1.7,4.8
+250,12,Giletto,Giletto,2006,Argentina,Innovator,150,2006-12-02,2,5.1
+250,12,Giletto,Giletto,2006,Argentina,Innovator,250,2006-12-02,2.4,5.3
+251,12,Giletto,Giletto,2006,Argentina,Innovator,0,2006-12-15,4.4,3.9
+251,12,Giletto,Giletto,2006,Argentina,Innovator,80,2006-12-15,4.8,4.3
+251,12,Giletto,Giletto,2006,Argentina,Innovator,150,2006-12-15,5,4.3
+251,12,Giletto,Giletto,2006,Argentina,Innovator,250,2006-12-15,5.800000000000001,4.4
+252,12,Giletto,Giletto,2006,Argentina,Innovator,0,2006-12-31,7.1,2.7
+252,12,Giletto,Giletto,2006,Argentina,Innovator,80,2006-12-31,7.4,3
+252,12,Giletto,Giletto,2006,Argentina,Innovator,150,2006-12-31,8,3.2
+252,12,Giletto,Giletto,2006,Argentina,Innovator,250,2006-12-31,9.2,3.4
+253,12,Giletto,Giletto,2007,Argentina,Innovator,0,2007-01-21,12.5,1.7
+253,12,Giletto,Giletto,2007,Argentina,Innovator,80,2007-01-21,13.5,2.1
+253,12,Giletto,Giletto,2007,Argentina,Innovator,150,2007-01-21,13.899999999999999,2.4
+253,12,Giletto,Giletto,2007,Argentina,Innovator,250,2007-01-21,15.2,2.6
+254,12,Giletto,Giletto,2007,Argentina,Innovator,0,2007-02-11,14.799999999999999,1.4
+254,12,Giletto,Giletto,2007,Argentina,Innovator,80,2007-02-11,15.4,1.5
+254,12,Giletto,Giletto,2007,Argentina,Innovator,150,2007-02-11,16.8,1.9
+254,12,Giletto,Giletto,2007,Argentina,Innovator,250,2007-02-11,18.5,2.1
+255,13,Giletto,Giletto,2004,Argentina,Markies Russet,0,2004-11-28,3.5,4.8
+255,13,Giletto,Giletto,2004,Argentina,Markies Russet,80,2004-11-28,3.8000000000000003,4.9
+255,13,Giletto,Giletto,2004,Argentina,Markies Russet,150,2004-11-28,4.2,5.1
+255,13,Giletto,Giletto,2004,Argentina,Markies Russet,250,2004-11-28,4.4,5.4
+256,13,Giletto,Giletto,2004,Argentina,Markies Russet,0,2004-12-04,5.6000000000000005,3.6
+256,13,Giletto,Giletto,2004,Argentina,Markies Russet,80,2004-12-04,6.1000000000000005,4
+256,13,Giletto,Giletto,2004,Argentina,Markies Russet,150,2004-12-04,7.9,4.2
+256,13,Giletto,Giletto,2004,Argentina,Markies Russet,250,2004-12-04,8.7,4.1
+257,13,Giletto,Giletto,2004,Argentina,Markies Russet,0,2004-12-26,10.1,2.7
+257,13,Giletto,Giletto,2004,Argentina,Markies Russet,80,2004-12-26,11.3,2.8
+257,13,Giletto,Giletto,2004,Argentina,Markies Russet,150,2004-12-26,13.5,3
+257,13,Giletto,Giletto,2004,Argentina,Markies Russet,250,2004-12-26,16.5,3.2
+258,13,Giletto,Giletto,2005,Argentina,Markies Russet,0,2005-01-22,11.1,1.8
+258,13,Giletto,Giletto,2005,Argentina,Markies Russet,80,2005-01-22,13.6,2.2
+258,13,Giletto,Giletto,2005,Argentina,Markies Russet,150,2005-01-22,16.8,2.4
+258,13,Giletto,Giletto,2005,Argentina,Markies Russet,250,2005-01-22,18.1,2.6
+259,13,Giletto,Giletto,2005,Argentina,Markies Russet,0,2005-11-16,1.7,5
+259,13,Giletto,Giletto,2005,Argentina,Markies Russet,80,2005-11-16,1.8,5.6
+259,13,Giletto,Giletto,2005,Argentina,Markies Russet,150,2005-11-16,1.9,5.6
+259,13,Giletto,Giletto,2005,Argentina,Markies Russet,250,2005-11-16,1.9,5.6
+260,13,Giletto,Giletto,2005,Argentina,Markies Russet,0,2005-12-01,4.1,4.3
+260,13,Giletto,Giletto,2005,Argentina,Markies Russet,80,2005-12-01,4.2,4.4
+260,13,Giletto,Giletto,2005,Argentina,Markies Russet,150,2005-12-01,4.7,4.5
+260,13,Giletto,Giletto,2005,Argentina,Markies Russet,250,2005-12-01,5.3,4.4
+261,13,Giletto,Giletto,2005,Argentina,Markies Russet,0,2005-12-14,8,3.1
+261,13,Giletto,Giletto,2005,Argentina,Markies Russet,80,2005-12-14,8.2,3.3
+261,13,Giletto,Giletto,2005,Argentina,Markies Russet,150,2005-12-14,9.5,3.4
+261,13,Giletto,Giletto,2005,Argentina,Markies Russet,250,2005-12-14,11.6,3.7
+262,13,Giletto,Giletto,2005,Argentina,Markies Russet,0,2005-12-30,12.9,2.3
+262,13,Giletto,Giletto,2005,Argentina,Markies Russet,80,2005-12-30,14.2,2.6
+262,13,Giletto,Giletto,2005,Argentina,Markies Russet,150,2005-12-30,16.5,2.8
+262,13,Giletto,Giletto,2005,Argentina,Markies Russet,250,2005-12-30,19.5,3
+263,13,Giletto,Giletto,2006,Argentina,Markies Russet,0,2006-01-13,14.2,1.7
+263,13,Giletto,Giletto,2006,Argentina,Markies Russet,80,2006-01-13,19.1,2.1
+263,13,Giletto,Giletto,2006,Argentina,Markies Russet,150,2006-01-13,23.3,2.3
+263,13,Giletto,Giletto,2006,Argentina,Markies Russet,250,2006-01-13,23.700000000000003,2.5
+264,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,0,2004-11-28,2.7,3.7
+264,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,80,2004-11-28,3,4.1
+264,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,150,2004-11-28,3.0999999999999996,4.2
+264,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,250,2004-11-28,3.4,4.4
+265,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,0,2004-12-04,4.3,3.1
+265,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,80,2004-12-04,6,3.4
+265,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,150,2004-12-04,7.4,3.6
+265,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,250,2004-12-04,8.100000000000001,3.8
+266,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,0,2004-12-26,11.5,1.9
+266,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,80,2004-12-26,14.9,2.5
+266,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,150,2004-12-26,17.6,2.7
+266,14,Giletto,Giletto,2004,Argentina,Umatilla Russet,250,2004-12-26,22.4,3.3
+267,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,0,2005-01-22,13.5,0.8
+267,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,80,2005-01-22,17.200000000000003,1.2
+267,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,150,2005-01-22,23.2,1.4
+267,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,250,2005-01-22,26.6,1.5
+268,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,0,2005-11-16,2.1,5
+268,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,80,2005-11-16,2.2,5.5
+268,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,150,2005-11-16,2.3,5.3
+268,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,250,2005-11-16,2.4,5.4
+269,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,0,2005-12-01,3.7,3.5
+269,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,80,2005-12-01,4.1,3.6
+269,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,150,2005-12-01,4.4,3.7
+269,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,250,2005-12-01,6.5,3.7
+270,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,0,2005-12-14,8.3,2
+270,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,80,2005-12-14,9.8,2.1
+270,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,150,2005-12-14,10.7,2.5
+270,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,250,2005-12-14,11.7,3
+271,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,0,2005-12-30,16.1,1.9
+271,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,80,2005-12-30,18,2.1
+271,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,150,2005-12-30,20.6,2.3
+271,14,Giletto,Giletto,2005,Argentina,Umatilla Russet,250,2005-12-30,21.700000000000003,2.8
+272,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,0,2006-01-13,20.4,1.4
+272,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,80,2006-01-13,21.6,1.6
+272,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,150,2006-01-13,22.799999999999997,1.9
+272,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,250,2006-01-13,26.200000000000003,1.9
+273,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,0,2006-12-02,1.2,4.6
+273,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,80,2006-12-02,1.4,4.8
+273,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,150,2006-12-02,1.5,4.8
+273,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,250,2006-12-02,1.8,4.9
+274,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,0,2006-12-15,3.6999999999999997,4.7
+274,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,80,2006-12-15,5,4.8
+274,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,150,2006-12-15,6.1,5.2
+274,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,250,2006-12-15,6.4,5.5
+275,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,0,2006-12-31,8.2,3.4
+275,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,80,2006-12-31,10,4
+275,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,150,2006-12-31,11.100000000000001,4.1
+275,14,Giletto,Giletto,2006,Argentina,Umatilla Russet,250,2006-12-31,11.899999999999999,4.4
+276,14,Giletto,Giletto,2007,Argentina,Umatilla Russet,0,2007-01-21,10.600000000000001,2.1
+276,14,Giletto,Giletto,2007,Argentina,Umatilla Russet,80,2007-01-21,14.8,2.6
+276,14,Giletto,Giletto,2007,Argentina,Umatilla Russet,150,2007-01-21,14.899999999999999,2.9
+276,14,Giletto,Giletto,2007,Argentina,Umatilla Russet,250,2007-01-21,16.799999999999997,2.9
+277,14,Giletto,Giletto,2007,Argentina,Umatilla Russet,0,2007-02-11,12.600000000000001,1.5
+277,14,Giletto,Giletto,2007,Argentina,Umatilla Russet,80,2007-02-11,13.3,1.6
+277,14,Giletto,Giletto,2007,Argentina,Umatilla Russet,150,2007-02-11,16.1,1.8
+277,14,Giletto,Giletto,2007,Argentina,Umatilla Russet,250,2007-02-11,17.7,2
+280,8,Giletto,Hartland,1997,Canada,Russet Burbank,0,1997-07-29,1,3.5
+280,8,Giletto,Hartland,1997,Canada,Russet Burbank,50,1997-07-29,1.5,3.9
+280,8,Giletto,Hartland,1997,Canada,Russet Burbank,100,1997-07-29,1.5,4.4
+280,8,Giletto,Hartland,1997,Canada,Russet Burbank,250,1997-07-29,1.3,4.8
+281,8,Giletto,Hartland,1997,Canada,Russet Burbank,0,1997-08-05,2.5999999999999996,2.6
+281,8,Giletto,Hartland,1997,Canada,Russet Burbank,50,1997-08-05,3.2,3.4
+281,8,Giletto,Hartland,1997,Canada,Russet Burbank,100,1997-08-05,3.4000000000000004,3.6
+281,8,Giletto,Hartland,1997,Canada,Russet Burbank,250,1997-08-05,3.6,3.3
+282,8,Giletto,Hartland,1997,Canada,Russet Burbank,0,1997-08-13,3.5999999999999996,1.8
+282,8,Giletto,Hartland,1997,Canada,Russet Burbank,50,1997-08-13,4.4,2.7
+282,8,Giletto,Hartland,1997,Canada,Russet Burbank,100,1997-08-13,5.5,2.7
+282,8,Giletto,Hartland,1997,Canada,Russet Burbank,250,1997-08-13,5.2,2.8
+283,8,Giletto,Hartland,1997,Canada,Russet Burbank,0,1997-08-18,4.1,1.5
+283,8,Giletto,Hartland,1997,Canada,Russet Burbank,50,1997-08-18,6.4,2.1
+283,8,Giletto,Hartland,1997,Canada,Russet Burbank,100,1997-08-18,7.6,2.6
+283,8,Giletto,Hartland,1997,Canada,Russet Burbank,250,1997-08-18,6.300000000000001,2.9
+284,8,Giletto,Hartland,1997,Canada,Russet Burbank,0,1997-08-25,6.8,1.4
+284,8,Giletto,Hartland,1997,Canada,Russet Burbank,50,1997-08-25,8.5,2
+284,8,Giletto,Hartland,1997,Canada,Russet Burbank,100,1997-08-25,9.6,2.2
+284,8,Giletto,Hartland,1997,Canada,Russet Burbank,250,1997-08-25,9.4,2.7
+285,8,Giletto,Hartland,1997,Canada,Russet Burbank,0,1997-09-03,8,1.2
+285,8,Giletto,Hartland,1997,Canada,Russet Burbank,50,1997-09-03,8.8,1.5
+285,8,Giletto,Hartland,1997,Canada,Russet Burbank,100,1997-09-03,8.9,1.7
+285,8,Giletto,Hartland,1997,Canada,Russet Burbank,250,1997-09-03,9.9,2.4
+286,8,Giletto,Hartland,1997,Canada,Russet Burbank,0,1997-09-11,7.4,1.2
+286,8,Giletto,Hartland,1997,Canada,Russet Burbank,50,1997-09-11,11,1.4
+286,8,Giletto,Hartland,1997,Canada,Russet Burbank,100,1997-09-11,9.7,1.6
+286,8,Giletto,Hartland,1997,Canada,Russet Burbank,250,1997-09-11,10.3,1.7
+289,9,Giletto,Hartland,1997,Canada,Shepody,0,1997-07-29,0.8999999999999999,4
+289,9,Giletto,Hartland,1997,Canada,Shepody,50,1997-07-29,1.2,4.4
+289,9,Giletto,Hartland,1997,Canada,Shepody,100,1997-07-29,1.4,5
+289,9,Giletto,Hartland,1997,Canada,Shepody,250,1997-07-29,1.3,5.1
+290,9,Giletto,Hartland,1997,Canada,Shepody,0,1997-08-05,3.3,2.8
+290,9,Giletto,Hartland,1997,Canada,Shepody,50,1997-08-05,3.2,3.3
+290,9,Giletto,Hartland,1997,Canada,Shepody,100,1997-08-05,3.1,3.8
+290,9,Giletto,Hartland,1997,Canada,Shepody,250,1997-08-05,2.7,4.4
+291,9,Giletto,Hartland,1997,Canada,Shepody,0,1997-08-13,3.8,2.4
+291,9,Giletto,Hartland,1997,Canada,Shepody,50,1997-08-13,4.4,2.7
+291,9,Giletto,Hartland,1997,Canada,Shepody,100,1997-08-13,4.9,3.4
+291,9,Giletto,Hartland,1997,Canada,Shepody,250,1997-08-13,5.4,3.2
+292,9,Giletto,Hartland,1997,Canada,Shepody,0,1997-08-18,3.4000000000000004,1.8
+292,9,Giletto,Hartland,1997,Canada,Shepody,50,1997-08-18,4.8,2.4
+292,9,Giletto,Hartland,1997,Canada,Shepody,100,1997-08-18,7.8,2.8
+292,9,Giletto,Hartland,1997,Canada,Shepody,250,1997-08-18,7,2.9
+293,9,Giletto,Hartland,1997,Canada,Shepody,0,1997-08-25,5.6,1.9
+293,9,Giletto,Hartland,1997,Canada,Shepody,50,1997-08-25,7.3,2
+293,9,Giletto,Hartland,1997,Canada,Shepody,100,1997-08-25,6.4,2.3
+293,9,Giletto,Hartland,1997,Canada,Shepody,250,1997-08-25,7.9,2.7
+294,9,Giletto,Hartland,1997,Canada,Shepody,0,1997-09-03,6.1,1.3
+294,9,Giletto,Hartland,1997,Canada,Shepody,50,1997-09-03,9,1.5
+294,9,Giletto,Hartland,1997,Canada,Shepody,100,1997-09-03,10.600000000000001,1.9
+294,9,Giletto,Hartland,1997,Canada,Shepody,250,1997-09-03,8.5,2.3
+295,9,Giletto,Hartland,1997,Canada,Shepody,0,1997-09-11,5.9,1
+295,9,Giletto,Hartland,1997,Canada,Shepody,50,1997-09-11,7.9,1.5
+295,9,Giletto,Hartland,1997,Canada,Shepody,100,1997-09-11,8.2,1.5
+295,9,Giletto,Hartland,1997,Canada,Shepody,250,1997-09-11,11.3,2.1
+298,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,0,1995-07-29,1.4,2.9
+298,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,50,1995-07-29,1.6,3.9
+298,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,100,1995-07-29,NA,NA
+298,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,250,1995-07-29,1.7,4.8
+299,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,0,1995-08-05,1.7,2.7
+299,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,50,1995-08-05,2.8,3.2
+299,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,100,1995-08-05,NA,NA
+299,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,250,1995-08-05,2.2,3.7
+300,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,0,1995-08-15,3.9000000000000004,2
+300,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,50,1995-08-15,4.6,2.9
+300,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,100,1995-08-15,NA,NA
+300,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,250,1995-08-15,5.2,3.1
+301,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,0,1995-08-22,5.1,1.8
+301,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,50,1995-08-22,6.1,2.4
+301,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,100,1995-08-22,NA,NA
+301,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,250,1995-08-22,5.7,2.9
+302,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,0,1995-08-28,5.1,1.8
+302,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,50,1995-08-28,7.5,2.2
+302,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,100,1995-08-28,NA,NA
+302,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,250,1995-08-28,7.199999999999999,2.5
+303,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,0,1995-09-04,8.9,1.7
+303,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,50,1995-09-04,8.4,1.9
+303,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,100,1995-09-04,NA,NA
+303,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,250,1995-09-04,8.7,2.5
+304,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,0,1995-09-17,10.6,1.4
+304,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,50,1995-09-17,11.1,1.7
+304,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,100,1995-09-17,NA,NA
+304,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,250,1995-09-17,10.2,2
+305,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,0,1995-09-24,10.9,1.3
+305,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,50,1995-09-24,13,1.7
+305,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,100,1995-09-24,NA,NA
+305,8,Giletto,Jacksonville,1995,Canada,Russet Burbank,250,1995-09-24,10.2,2.3
+308,9,Giletto,Jacksonville,1995,Canada,Shepody,0,1995-07-29,1.8,3.4
+308,9,Giletto,Jacksonville,1995,Canada,Shepody,50,1995-07-29,1.5999999999999999,4.9
+308,9,Giletto,Jacksonville,1995,Canada,Shepody,100,1995-07-29,NA,NA
+308,9,Giletto,Jacksonville,1995,Canada,Shepody,250,1995-07-29,2,5.4
+309,9,Giletto,Jacksonville,1995,Canada,Shepody,0,1995-08-05,2,3.4
+309,9,Giletto,Jacksonville,1995,Canada,Shepody,50,1995-08-05,3.1,3.8
+309,9,Giletto,Jacksonville,1995,Canada,Shepody,100,1995-08-05,NA,NA
+309,9,Giletto,Jacksonville,1995,Canada,Shepody,250,1995-08-05,2.7,4.3
+310,9,Giletto,Jacksonville,1995,Canada,Shepody,0,1995-08-15,4.699999999999999,2.3
+310,9,Giletto,Jacksonville,1995,Canada,Shepody,50,1995-08-15,6.800000000000001,2.7
+310,9,Giletto,Jacksonville,1995,Canada,Shepody,100,1995-08-15,NA,NA
+310,9,Giletto,Jacksonville,1995,Canada,Shepody,250,1995-08-15,7.6000000000000005,3.5
+311,9,Giletto,Jacksonville,1995,Canada,Shepody,0,1995-08-22,4.6,1.9
+311,9,Giletto,Jacksonville,1995,Canada,Shepody,50,1995-08-22,5.5,2.6
+311,9,Giletto,Jacksonville,1995,Canada,Shepody,100,1995-08-22,NA,NA
+311,9,Giletto,Jacksonville,1995,Canada,Shepody,250,1995-08-22,8.100000000000001,3.3
+312,9,Giletto,Jacksonville,1995,Canada,Shepody,0,1995-08-28,7,1.8
+312,9,Giletto,Jacksonville,1995,Canada,Shepody,50,1995-08-28,9,2.4
+312,9,Giletto,Jacksonville,1995,Canada,Shepody,100,1995-08-28,NA,NA
+312,9,Giletto,Jacksonville,1995,Canada,Shepody,250,1995-08-28,8.2,3.1
+313,9,Giletto,Jacksonville,1995,Canada,Shepody,0,1995-09-04,7.3,1.6
+313,9,Giletto,Jacksonville,1995,Canada,Shepody,50,1995-09-04,12.3,2.3
+313,9,Giletto,Jacksonville,1995,Canada,Shepody,100,1995-09-04,NA,NA
+313,9,Giletto,Jacksonville,1995,Canada,Shepody,250,1995-09-04,13.1,2.7
+314,9,Giletto,Jacksonville,1995,Canada,Shepody,0,1995-09-17,9.4,1.3
+314,9,Giletto,Jacksonville,1995,Canada,Shepody,50,1995-09-17,9,1.6
+314,9,Giletto,Jacksonville,1995,Canada,Shepody,100,1995-09-17,NA,NA
+314,9,Giletto,Jacksonville,1995,Canada,Shepody,250,1995-09-17,10,2.3
+315,9,Giletto,Jacksonville,1995,Canada,Shepody,0,1995-09-24,8.5,1.1
+315,9,Giletto,Jacksonville,1995,Canada,Shepody,50,1995-09-24,11.2,1.4
+315,9,Giletto,Jacksonville,1995,Canada,Shepody,100,1995-09-24,NA,NA
+315,9,Giletto,Jacksonville,1995,Canada,Shepody,250,1995-09-24,12.5,2.1
+318,8,Giletto,London,1995,Canada,Russet Burbank,0,1995-07-15,2,2.7
+318,8,Giletto,London,1995,Canada,Russet Burbank,50,1995-07-15,1,5.1
+318,8,Giletto,London,1995,Canada,Russet Burbank,100,1995-07-15,NA,NA
+318,8,Giletto,London,1995,Canada,Russet Burbank,250,1995-07-15,2,4.2
+319,8,Giletto,London,1995,Canada,Russet Burbank,0,1995-07-18,1.8,3.2
+319,8,Giletto,London,1995,Canada,Russet Burbank,50,1995-07-18,2.7,4
+319,8,Giletto,London,1995,Canada,Russet Burbank,100,1995-07-18,NA,NA
+319,8,Giletto,London,1995,Canada,Russet Burbank,250,1995-07-18,2.8,3.8
+320,8,Giletto,London,1995,Canada,Russet Burbank,0,1995-07-27,3.6,1.8
+320,8,Giletto,London,1995,Canada,Russet Burbank,50,1995-07-27,3.6,3.6
+320,8,Giletto,London,1995,Canada,Russet Burbank,100,1995-07-27,NA,NA
+320,8,Giletto,London,1995,Canada,Russet Burbank,250,1995-07-27,5.300000000000001,3.5
+321,8,Giletto,London,1995,Canada,Russet Burbank,0,1995-08-01,3.6,1.4
+321,8,Giletto,London,1995,Canada,Russet Burbank,50,1995-08-01,4.7,2.8
+321,8,Giletto,London,1995,Canada,Russet Burbank,100,1995-08-01,NA,NA
+321,8,Giletto,London,1995,Canada,Russet Burbank,250,1995-08-01,6.1,2.7
+322,8,Giletto,London,1995,Canada,Russet Burbank,0,1995-08-08,8.4,1
+322,8,Giletto,London,1995,Canada,Russet Burbank,50,1995-08-08,6.6,2.3
+322,8,Giletto,London,1995,Canada,Russet Burbank,100,1995-08-08,NA,NA
+322,8,Giletto,London,1995,Canada,Russet Burbank,250,1995-08-08,7.3999999999999995,2.4
+323,8,Giletto,London,1995,Canada,Russet Burbank,0,1995-08-09,5.8,1.4
+323,8,Giletto,London,1995,Canada,Russet Burbank,50,1995-08-09,8,2
+323,8,Giletto,London,1995,Canada,Russet Burbank,100,1995-08-09,NA,NA
+323,8,Giletto,London,1995,Canada,Russet Burbank,250,1995-08-09,11.9,2.1
+324,8,Giletto,London,1995,Canada,Russet Burbank,0,1995-08-25,7.7,0.9
+324,8,Giletto,London,1995,Canada,Russet Burbank,50,1995-08-25,9.8,1.4
+324,8,Giletto,London,1995,Canada,Russet Burbank,100,1995-08-25,NA,NA
+324,8,Giletto,London,1995,Canada,Russet Burbank,250,1995-08-25,9.9,2.1
+325,8,Giletto,London,1995,Canada,Russet Burbank,0,1995-09-01,6.3,0.9
+325,8,Giletto,London,1995,Canada,Russet Burbank,50,1995-09-01,11.6,1.4
+325,8,Giletto,London,1995,Canada,Russet Burbank,100,1995-09-01,NA,NA
+325,8,Giletto,London,1995,Canada,Russet Burbank,250,1995-09-01,10.6,1.9
+329,9,Giletto,London,1995,Canada,Shepody,0,1995-07-18,2,3
+329,9,Giletto,London,1995,Canada,Shepody,50,1995-07-18,2.4,4.1
+329,9,Giletto,London,1995,Canada,Shepody,100,1995-07-18,NA,NA
+329,9,Giletto,London,1995,Canada,Shepody,250,1995-07-18,2.9000000000000004,4.6
+330,9,Giletto,London,1995,Canada,Shepody,0,1995-07-27,3.2,1.9
+330,9,Giletto,London,1995,Canada,Shepody,50,1995-07-27,4.8,3.1
+330,9,Giletto,London,1995,Canada,Shepody,100,1995-07-27,NA,NA
+330,9,Giletto,London,1995,Canada,Shepody,250,1995-07-27,3.8,4.1
+331,9,Giletto,London,1995,Canada,Shepody,0,1995-08-01,3,1.5
+331,9,Giletto,London,1995,Canada,Shepody,50,1995-08-01,5.7,2.5
+331,9,Giletto,London,1995,Canada,Shepody,100,1995-08-01,NA,NA
+331,9,Giletto,London,1995,Canada,Shepody,250,1995-08-01,6.7,3.4
+332,9,Giletto,London,1995,Canada,Shepody,0,1995-08-08,5.6,1.2
+332,9,Giletto,London,1995,Canada,Shepody,50,1995-08-08,8.600000000000001,2.1
+332,9,Giletto,London,1995,Canada,Shepody,100,1995-08-08,NA,NA
+332,9,Giletto,London,1995,Canada,Shepody,250,1995-08-08,10.5,3
+333,9,Giletto,London,1995,Canada,Shepody,0,1995-08-25,10.5,1.2
+333,9,Giletto,London,1995,Canada,Shepody,50,1995-08-25,9.1,1.3
+333,9,Giletto,London,1995,Canada,Shepody,100,1995-08-25,NA,NA
+333,9,Giletto,London,1995,Canada,Shepody,250,1995-08-25,11.9,1.9
+334,9,Giletto,London,1995,Canada,Shepody,0,1995-09-01,6.4,0.9
+334,9,Giletto,London,1995,Canada,Shepody,50,1995-09-01,12,1.5
+334,9,Giletto,London,1995,Canada,Shepody,100,1995-09-01,NA,NA
+334,9,Giletto,London,1995,Canada,Shepody,250,1995-09-01,15.299999999999999,2.1
+335,9,Giletto,London,1995,Canada,Shepody,0,1995-09-07,7.6000000000000005,0.9
+335,9,Giletto,London,1995,Canada,Shepody,50,1995-09-07,15.2,1.2
+335,9,Giletto,London,1995,Canada,Shepody,100,1995-09-07,NA,NA
+335,9,Giletto,London,1995,Canada,Shepody,250,1995-09-07,12.600000000000001,1.8
