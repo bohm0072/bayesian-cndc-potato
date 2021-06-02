@@ -53,12 +53,13 @@ f.giletto <- function(){
   # # #cols = c("D","E","F","G")
   # n_rate = c("0","80","150","250")
   # dap = c(45,60,75,90,110)
+  # date_plant = mdy("2003-10-24")
   # year = "2003-04"
   # variety = "Innovator"
   # location = "Argentina"
   # study = "Giletto"
   
-  f.get <- function(data,rows,n_rate,dap,year,variety,location,study){
+  f.get <- function(data,rows,n_rate,dap,date_plant,year,variety,location,study){
     
     data <- get(data)
     
@@ -87,8 +88,9 @@ f.giletto <- function(){
                        values_to="W_sh", #measure
                        cols=seq(1:length(cols_W_sh))) %>% 
           mutate(year=str_sub(year,1L,4L)) %>%
-          mutate(Date=ymd(paste(year,"01-01",sep="-"))) %>%
-          mutate(Date=Date+as.numeric(dap)) %>%
+          # mutate(Date=ymd(paste(year,"01-01",sep="-"))) %>%
+          # mutate(Date=Date+as.numeric(dap)) %>%
+          mutate(Date=date_plant+as.numeric(dap)) %>%
           select(-c(dap,year)) %>%
           select(study,location,variety,n_rate,Date,W_sh)
         
@@ -116,8 +118,9 @@ f.giletto <- function(){
                        values_to="W_t", #measure
                        cols=seq(1:length(cols_W_t))) %>% 
           mutate(year=str_sub(year,1L,4L)) %>%
-          mutate(Date=ymd(paste(year,"01-01",sep="-"))) %>%
-          mutate(Date=Date+as.numeric(dap)) %>%
+          # mutate(Date=ymd(paste(year,"01-01",sep="-"))) %>%
+          # mutate(Date=Date+as.numeric(dap)) %>%
+          mutate(Date=date_plant+as.numeric(dap)) %>%
           select(-c(dap,year)) %>%
           select(study,location,variety,n_rate,Date,W_t)
         
@@ -157,8 +160,9 @@ f.giletto <- function(){
                        values_to="N_sh", #measure
                        cols=seq(1:length(cols_N_sh))) %>% 
           mutate(year=str_sub(year,1L,4L)) %>%
-          mutate(Date=ymd(paste(year,"01-01",sep="-"))) %>%
-          mutate(Date=Date+as.numeric(dap)) %>%
+          # mutate(Date=ymd(paste(year,"01-01",sep="-"))) %>%
+          # mutate(Date=Date+as.numeric(dap)) %>%
+          mutate(Date=date_plant+as.numeric(dap)) %>%
           select(-c(dap,year)) %>%
           select(study,location,variety,n_rate,Date,N_sh)
         
@@ -186,8 +190,9 @@ f.giletto <- function(){
                        values_to="N_t", #measure
                        cols=seq(1:length(cols_N_t))) %>% 
           mutate(year=str_sub(year,1L,4L)) %>%
-          mutate(Date=ymd(paste(year,"01-01",sep="-"))) %>%
-          mutate(Date=Date+as.numeric(dap)) %>%
+          # mutate(Date=ymd(paste(year,"01-01",sep="-"))) %>%
+          # mutate(Date=Date+as.numeric(dap)) %>%
+          mutate(Date=date_plant+as.numeric(dap)) %>%
           select(-c(dap,year)) %>%
           select(study,location,variety,n_rate,Date,N_t)
         
@@ -229,6 +234,7 @@ f.giletto <- function(){
         rows = list(c(4:8),c(9:12),c(13:17),c(18:22)),
         n_rate = list(c("0","80","150","250")),
         dap = list(c(45,60,75,90,110),c(55,61,83,110),c(47,62,75,91,105),c(45,58,74,95,116)),
+        date_plant=list(ymd("2003-10-24"),ymd("2004-10-04"),ymd("2005-09-30"),ymd("2006-10-18")),
         year = list("2003-04","2004-05","2005-06","2006-07"),
         variety = list("Innovator"),
         location = list("Argentina"),
@@ -239,6 +245,7 @@ f.giletto <- function(){
         rows = list(c(23:27),c(28:31),c(32:36),c(37:41)),
         n_rate = list(c("0","80","150","250")),
         dap = list(c(45,60,75,90,110),c(55,61,83,110),c(47,62,75,91,105),c(45,58,74,95,116)),
+        date_plant=list(ymd("2003-10-24"),ymd("2004-10-04"),ymd("2005-09-30"),ymd("2006-10-18")),
         year = list("2003-04","2004-05","2005-06","2006-07"),
         variety = list("Gem Russet"),
         location = list("Argentina"),
@@ -249,6 +256,7 @@ f.giletto <- function(){
         rows = list(c(42:45),c(46:50),c(51:55)),
         n_rate = list(c("0","80","150","250")),
         dap = list(c(55,61,83,110),c(47,62,75,91,105),c(45,58,74,95,116)),
+        date_plant=list(ymd("2004-10-04"),ymd("2005-09-30"),ymd("2006-10-18")),
         year = list("2004-05","2005-06","2006-07"),
         variety = list("Umatilla Russet"),
         location = list("Argentina"),
@@ -259,6 +267,7 @@ f.giletto <- function(){
         rows = list(c(56:60),c(61:64),c(65:69)),
         n_rate = list(c("0","80","150","250")),
         dap = list(c(45,60,75,90,110),c(55,61,83,110),c(47,62,75,91,105)),
+        date_plant=list(ymd("2003-10-24"),ymd("2004-10-04"),ymd("2005-09-30")),
         year = list("2003-04","2004-05","2005-06"),
         variety = list("Bannock Russet"),
         location = list("Argentina"),
@@ -269,6 +278,7 @@ f.giletto <- function(){
         rows = list(c(70:73),c(74:78)),
         n_rate = list(c("0","80","150","250")),
         dap = list(c(55,61,83,110),c(47,62,75,91,105)),
+        date_plant=list(ymd("2004-10-04"),ymd("2005-09-30")),
         year = list("2004-05","2005-06"),
         variety = list("Markies Russet"),
         location = list("Argentina"),
@@ -279,7 +289,8 @@ f.giletto <- function(){
         rows = list(c(4:13),c(14:23),c(24:32),c(33:42)),
         n_rate = list(c("0","50","100","250")),
         dap = list(c(44,50,57,64,74,81,87,94,107,114),c(41,49,56,59,68,73,80,97,104,110),c(40,49,54,61,69,74,81,90,98),c(32,39,46,53,63,69,76,83,88,95)),
-        year = list("1900"),
+        date_plant=list(ymd("1995-06-02"),ymd("1995-05-20"),ymd("1997-06-05"),ymd("1997-05-30")),
+        year = list("1995","1995","1997","1997"),#list("1900"),
         variety = list("Shepody"),
         location = list("Canada"), #list("Canada-Jacksonville","Canada-London","Canada-Hartland","Canada-Drummond"),
         study = list("Jacksonville","London","Hartland","Drummond") #list("Giletto")
@@ -289,7 +300,8 @@ f.giletto <- function(){
         rows = list(c(43:52),c(53:62),c(63:71),c(72:80)),
         n_rate = list(c("0","50","100","250")),
         dap = list(c(44,50,57,64,74,81,87,94,107,114),c(41,49,56,59,68,73,80,81,97,104),c(40,49,54,61,69,74,81,90,98),c(39,46,53,63,69,76,83,88,95)),
-        year = list("1900"),
+        date_plant=list(ymd("1995-06-02"),ymd("1995-05-20"),ymd("1997-06-05"),ymd("1997-05-30")),
+        year = list("1995","1995","1997","1997"),#list("1900"),
         variety = list("Russet Burbank"),
         location = list("Canada"), #list("Canada-Jacksonville","Canada-London","Canada-Hartland","Canada-Drummond"),
         study = list("Jacksonville","London","Hartland","Drummond") #list("Giletto")
@@ -304,6 +316,7 @@ f.giletto <- function(){
                   get.list$rows,
                   get.list$n_rate,
                   get.list$dap,
+                  get.list$date_plant,
                   get.list$year,
                   get.list$variety,
                   get.list$location,
@@ -312,10 +325,11 @@ f.giletto <- function(){
                     rows = ..2,
                     n_rate = ..3,
                     dap = ..4,
-                    year = ..5,
-                    variety = ..6,
-                    location = ..7,
-                    study = ..8)) %>% bind_rows()
+                    date_plant = ..5,
+                    year = ..6,
+                    variety = ..7,
+                    location = ..8,
+                    study = ..9)) %>% bind_rows()
   
   d <- d %>%
     mutate(owner="Giletto") %>%
