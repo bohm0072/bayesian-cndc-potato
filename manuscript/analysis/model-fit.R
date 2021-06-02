@@ -1,4 +1,4 @@
-# pre-init 
+# pre-init ----------------------------
 
 # Due to compatibility issues with `rstan`, `renv` must be deactivated before `brms` fit
 renv::hydrate(library="/Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library",update=T,sources="/Users/mini-87621949/GitHub/cndc_bayesian_eval/renv/library/R-4.1/aarch64-apple-darwin20")
