@@ -74,6 +74,8 @@ model <- fit_model()
 
 # post model to google drive ----------
 
+# Note this code is not functional, and this uplaod was done manually via Google Drive browser GUI
+
 # if(file.exists("manuscript/models/model.rds")!=T){
 #   
 #   # model_060121.rds
