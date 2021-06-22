@@ -13,9 +13,6 @@ library(ggpubr)
 
 # read in data -------------------
 data_cndc <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd")
-# data <- data_cndc
-
-# data_cndc_index <- read_csv("data/analysis/data_cndc_index.csv",col_types="ccccccc"); #data_index = data_cndc_index
 
 # read in model fit results ------------------
 
@@ -152,7 +149,6 @@ f.plateau.fit <- function(model,data){
           mutate(`location:variety_alpha2` = b_alpha2_Intercept + r_location__alpha2 + `r_location:variety__alpha2`),
         by = c(".chain", ".iteration", ".draw", "location", "location:variety"="location:variety")) %>%
         select(.chain, .iteration, .draw, location, `location:variety`, `location:variety_alpha1`, `location:variety_alpha2`) %>%
-        # rename(alpha1=`location:variety_alpha1`,alpha2=`location:variety_alpha2`) %>%
         mutate_at(vars(location,`location:variety`),as.character),
       by=c(".chain", ".iteration", ".draw", "location", "location:variety"="location:variety")) %>%
     mutate(Nc=`location:variety_alpha1`*(Bmax^(-`location:variety_alpha2`)))
@@ -172,40 +168,7 @@ f.plateau.fit <- function(model,data){
   return(d)
   
 }
-plateau.fit <- f.plateau.fit(model,data)
-
-f.cndc.fit.sum <- function(cndc.fit){
-  
-  cndc.fit.sum <- cndc.fit %>%
-    left_join(
-      expand.grid(
-        .draw = cndc.fit %>% pull(.draw) %>% unique(),
-        W = seq(1,40,0.1),stringsAsFactors=F
-      ) %>%
-        as_tibble() %>%
-        arrange(as.numeric(.draw)),
-      by=".draw"
-    ) %>%
-    mutate(`location:variety_N`=`location:variety_alpha1`*(W^(-`location:variety_alpha2`))) %>%
-    mutate(`location_N`=`location_alpha1`*(W^(-`location_alpha2`))) %>%
-    group_by(location,variety,`location:variety`,W) %>%
-    summarize(qs = quantile(`location:variety_N`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
-    pivot_wider(names_from=prob,
-                names_prefix="N_",#"N_location:variety_",
-                values_from=qs) %>%
-    mutate_at(vars(N_0.05,N_0.5,N_0.95),as.numeric) %>%
-    # mutate_at(vars(`N_location:variety_0.05`,`N_location:variety_0.5`,`N_location:variety_0.95`),as.numeric) %>%
-    arrange(variety,location) %>%
-    mutate_at(vars(variety), ~as_factor(.)) %>%
-    mutate_at(vars(variety), ~fct_inorder(.)) %>%
-    arrange(location,variety) %>%
-    mutate_at(vars(location,`location:variety`), ~as_factor(.)) %>%
-    mutate_at(vars(location,`location:variety`), ~fct_inorder(.))
-  
-  return(cndc.fit.sum)
-  
-}
-cndc.fit.sum <- f.cndc.fit.sum(cndc.fit)
+plateau.fit <- f.plateau.fit(model,data_cndc)
 
 f.parm.fit.sum <- function(cndc.fit){
   
@@ -266,35 +229,38 @@ f.parm.fit.sum2 <- function(cndc.fit){
 }
 parm.fit.sum2 <- f.parm.fit.sum2(cndc.fit)
 
-f.plateau.fit.sum <- function(plateau.fit){
+f.plot.data <- function(data,cndc.fit){
   
-  f.plateau.fit.quantile <- function(q){
+  f.cndc.draws <- function(cndc.fit){
     
-    var1 <- paste("W",q,sep="_")
-    var2 <- paste("N",q,sep="_")
+    cndc.draws <- cndc.fit %>%
+      left_join(
+        expand.grid(
+          .draw = cndc.fit %>% pull(.draw) %>% unique(),
+          W = seq(1,40,0.1),stringsAsFactors=F
+        ) %>%
+          as_tibble() %>%
+          arrange(as.numeric(.draw)),
+        by=".draw"
+      ) %>%
+      mutate(`location:variety_N`=`location:variety_alpha1`*(W^(-`location:variety_alpha2`))) %>%
+      mutate(`location_N`=`location_alpha1`*(W^(-`location_alpha2`)))
     
-    bind_rows(
-      plateau.fit %>%
-        mutate(W=Bmax,
-               N=Nc) %>%
-        group_by(location,variety,`location:variety`,index) %>%
-        summarize_at(vars(W,N),~quantile(.,c(q)), prob = c(q), .groups="drop"),
-        # summarize_at(vars(W,N),~quantile(.,c(0.50)), prob = c(0.50), .groups="drop"),
-      plateau.fit %>%
-        mutate(W=Bmax,
-               N=7.0) %>%
-        group_by(location,variety,`location:variety`,index) %>%
-        summarize_at(vars(W,N),~quantile(.,c(q)), prob = c(q), .groups="drop"),
-      plateau.fit %>%
-        mutate(W=Bmax + Si * (0-Nc),
-               N=0) %>%
-        group_by(location,variety,`location:variety`,index) %>%
-        summarize_at(vars(W,N),~quantile(.,c(q)), prob = c(q), .groups="drop")
-    ) %>%
-      ungroup() %>%
-      mutate_at(vars(W,N),as.numeric) %>%
-      rename(!!sym(var1):=W,!!sym(var2):=N) %>%
-      # rename(W_0.5=W,N_0.5=N) %>%
+    return(cndc.draws)
+    
+  }
+  cndc.draws <- f.cndc.draws(cndc.fit)
+  
+  f.cndc.fit.sum <- function(cndc.draws){
+    
+    cndc.fit.sum <- cndc.draws %>%
+      group_by(location,variety,`location:variety`,W) %>%
+      summarize(qs = quantile(`location:variety_N`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
+      pivot_wider(names_from=prob,
+                  names_prefix="N_",#"N_location:variety_",
+                  values_from=qs) %>%
+      mutate_at(vars(N_0.05,N_0.5,N_0.95),as.numeric) %>%
+      # mutate_at(vars(`N_location:variety_0.05`,`N_location:variety_0.5`,`N_location:variety_0.95`),as.numeric) %>%
       arrange(variety,location) %>%
       mutate_at(vars(variety), ~as_factor(.)) %>%
       mutate_at(vars(variety), ~fct_inorder(.)) %>%
@@ -302,41 +268,80 @@ f.plateau.fit.sum <- function(plateau.fit){
       mutate_at(vars(location,`location:variety`), ~as_factor(.)) %>%
       mutate_at(vars(location,`location:variety`), ~fct_inorder(.))
     
+    return(cndc.fit.sum)
+    
   }
+  cndc.fit.sum <- f.cndc.fit.sum(cndc.draws)
   
-  plateau.fit.sum <- f.plateau.fit.quantile(0.5) %>%
-    left_join(f.plateau.fit.quantile(0.05), c("location", "variety", "location:variety", "index")) %>%
-    left_join(f.plateau.fit.quantile(0.95), c("location", "variety", "location:variety", "index"))
+  f.plateau.fit.sum <- function(plateau.fit){
+    
+    f.plateau.fit.quantile <- function(q){
+      
+      var1 <- paste("W",q,sep="_")
+      var2 <- paste("N",q,sep="_")
+      
+      bind_rows(
+        plateau.fit %>%
+          mutate(W=Bmax,
+                 N=Nc) %>%
+          group_by(location,variety,`location:variety`,index) %>%
+          summarize_at(vars(W,N),~quantile(.,c(q)), prob = c(q), .groups="drop"),
+        # summarize_at(vars(W,N),~quantile(.,c(0.50)), prob = c(0.50), .groups="drop"),
+        plateau.fit %>%
+          mutate(W=Bmax,
+                 N=7.0) %>%
+          group_by(location,variety,`location:variety`,index) %>%
+          summarize_at(vars(W,N),~quantile(.,c(q)), prob = c(q), .groups="drop"),
+        plateau.fit %>%
+          mutate(W=Bmax + Si * (0-Nc),
+                 N=0) %>%
+          group_by(location,variety,`location:variety`,index) %>%
+          summarize_at(vars(W,N),~quantile(.,c(q)), prob = c(q), .groups="drop")
+      ) %>%
+        ungroup() %>%
+        mutate_at(vars(W,N),as.numeric) %>%
+        rename(!!sym(var1):=W,!!sym(var2):=N) %>%
+        # rename(W_0.5=W,N_0.5=N) %>%
+        arrange(variety,location) %>%
+        mutate_at(vars(variety), ~as_factor(.)) %>%
+        mutate_at(vars(variety), ~fct_inorder(.)) %>%
+        arrange(location,variety) %>%
+        mutate_at(vars(location,`location:variety`), ~as_factor(.)) %>%
+        mutate_at(vars(location,`location:variety`), ~fct_inorder(.))
+      
+    }
+    
+    plateau.fit.sum <- f.plateau.fit.quantile(0.5) %>%
+      left_join(f.plateau.fit.quantile(0.05), c("location", "variety", "location:variety", "index")) %>%
+      left_join(f.plateau.fit.quantile(0.95), c("location", "variety", "location:variety", "index"))
+    
+    return(plateau.fit.sum)
+    
+  }
+  plateau.fit.sum <- f.plateau.fit.sum(plateau.fit)
   
-  return(plateau.fit.sum)
-  
-}
-plateau.fit.sum <- f.plateau.fit.sum(plateau.fit)
-
-f.Bmax.sum <- function(plateau.fit){
-  
-  Bmax.sum <- plateau.fit %>%
-    group_by(location,variety,`location:variety`,index) %>%
-    summarize(qs = quantile(`Bmax`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
-    pivot_wider(names_from=prob,
-                names_prefix="Bmax_",
-                values_from=qs) %>%
-    group_by(location,variety,`location:variety`) %>%
-    summarize_at(vars(Bmax_0.05,Bmax_0.5,Bmax_0.95), max) %>%
-    ungroup() %>%
-    arrange(variety,location) %>%
-    mutate_at(vars(variety), ~as_factor(.)) %>%
-    mutate_at(vars(variety), ~fct_inorder(.)) %>%
-    arrange(location,variety) %>%
-    mutate_at(vars(location,`location:variety`), ~as_factor(.)) %>%
-    mutate_at(vars(location,`location:variety`), ~fct_inorder(.))
-  
-  return(Bmax.sum)
-  
-}
-Bmax.sum <- f.Bmax.sum(plateau.fit)
-
-f.plot.data <- function(data,cndc.fit.sum,plateau.fit.sum,Bmax.sum){
+  f.Bmax.sum <- function(plateau.fit){
+    
+    Bmax.sum <- plateau.fit %>%
+      group_by(location,variety,`location:variety`,index) %>%
+      summarize(qs = quantile(`Bmax`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
+      pivot_wider(names_from=prob,
+                  names_prefix="Bmax_",
+                  values_from=qs) %>%
+      group_by(location,variety,`location:variety`) %>%
+      summarize_at(vars(Bmax_0.05,Bmax_0.5,Bmax_0.95), max) %>%
+      ungroup() %>%
+      arrange(variety,location) %>%
+      mutate_at(vars(variety), ~as_factor(.)) %>%
+      mutate_at(vars(variety), ~fct_inorder(.)) %>%
+      arrange(location,variety) %>%
+      mutate_at(vars(location,`location:variety`), ~as_factor(.)) %>%
+      mutate_at(vars(location,`location:variety`), ~fct_inorder(.))
+    
+    return(Bmax.sum)
+    
+  }
+  Bmax.sum <- f.Bmax.sum(plateau.fit)
   
   c <- cndc.fit.sum %>%
     left_join(Bmax.sum %>%
@@ -359,20 +364,29 @@ f.plot.data <- function(data,cndc.fit.sum,plateau.fit.sum,Bmax.sum){
     mutate_at(vars(location,`location:variety`), ~as_factor(.)) %>%
     mutate_at(vars(location,`location:variety`), ~fct_inorder(.))
   
-  p <- plateau.fit.sum 
+  # p <- plateau.fit.sum 
+   
+  r <- cndc.draws %>%
+    select(.draw,location,variety,`location:variety`,W,`location:variety_N`) %>%
+    rename(N=`location:variety_N`) %>%
+    left_join(Bmax.sum %>%
+                select(location,variety,`location:variety`,Bmax_0.95),
+              by=c("location","variety","location:variety")) %>%
+    filter(W <= Bmax_0.95) %>%
+    select(-Bmax_0.95)
   
   out <- list(c=c,
               d=d,
-              p=p)
+              p=plateau.fit.sum,
+              r=r)
   
   return(out)
   
 }
-plot.data <- f.plot.data(data,cndc.fit.sum,plateau.fit.sum,Bmax.sum)
+plot.data <- f.plot.data(data_cndc,cndc.fit)
 
 # set color scale -----------------
 
-# plot.colors <- c("#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#e6ab02","#f781bf","#66c2a5","#fb8072","#d95f02","#7570b3","#e7298a","#666666","#a6761d")
 plot.colors.1 <- c("#490809","#931012","#CA1619","#C55962","#E74B5E","#2C652A","#33a02c","#CC6600","#ff7f00","#15527A","#0177A2","#1F78B4","#01B3F4","#62B0E4")
 plot.colors.2 <- c("#CA1619","#33a02c","#ff7f00","#1F78B4")
 
@@ -383,8 +397,6 @@ tab1 <- bind_rows(parm.fit.sum,
                     mutate(variety=".",
                            `location:variety`=".")) %>%
   arrange(location,variety)
-
-# write_csv(tab1,"manuscript/tables/table1.csv")
 
 # figure 1 - distribution of alpha parameter values for each parameter independently ------------------
 
@@ -509,7 +521,6 @@ f.fig2 <- function(cndc.fit,.location,.variety,.color){
           plot.title.position = "plot", 
           plot.caption.position =  "plot") +
     scale_color_manual(values = .color) +
-    # coord_cartesian(xlim=c(4.0,5.5),ylim=c(0.0,0.8)) +
     scale_x_continuous(limits=c(4.0,5.5),breaks=c(4.0,4.5,5.0,5.5)) +
     scale_y_continuous(limits=c(0.0,0.8),breaks=c(0.1,0.3,0.5,0.7)) +
     guides(color="none") +
@@ -602,7 +613,6 @@ f.fig3 <- function(plot.data,.location,.variety,.color){
   
   # var1 <- "W"
   # var2 <- "%N"
-  # var3 <- paste(.location,.variety,sep=" - ")
   var3 <- paste("     ",.variety,sep="")
   
   c <- plot.data$c %>%
@@ -632,7 +642,6 @@ f.fig3 <- function(plot.data,.location,.variety,.color){
   ggplot() +
     geom_line(data=p,aes(x=W_0.5,y=N_0.5,group=index),color="grey",linetype=1,alpha=0.20) + #,color=`location:variety`
     geom_point(data=d,aes(x=W,y=N,color=`location:variety`),alpha=0.20) + 
-    # geom_ribbon(data=c,aes(ymin=N_0.05,ymax=N_0.95,x=W,group=`location:variety`),fill="#737373",alpha=0.66) +
     geom_line(data=c,aes(x=W,y=N_0.5,group=`location:variety`),linetype=1,alpha=1.0) +
     geom_text(data=n,aes(x=x,y=6.4,label=lab),size=2,hjust=1,vjust=1) +
     geom_text(data=i,aes(x=x,y=5.4,label=lab),size=2,hjust=1,vjust=1) +
@@ -667,7 +676,6 @@ f.fig3.lab.facet <- function(.location){
   ggplot() +
     geom_text(aes(x=0,y=0,label=.location),angle=270,size=2.5) +
     theme_classic() +
-    # theme_grey() +
     theme(axis.line = element_blank(),
           axis.text = element_blank(),
           axis.title = element_blank(),
@@ -805,19 +813,6 @@ f.tab2 <- function(plot.data,tab1,.location,.variety){
       select(location,variety,`location:variety`) %>%
       distinct(),
     t2)
-
-  # t2 <- bind_cols(
-  #   c %>%
-  #     select(location,variety,`location:variety`) %>%
-  #     distinct(),
-  #   tibble(q=c("0.05","0.50","0.95"),
-  #          alpha1=c(nls_alpha1_0.05,nls_alpha1_0.5,nls_alpha1_0.95),
-  #          alpha2=c(nls_alpha2_0.05,nls_alpha2_0.5,nls_alpha2_0.95)) %>%
-  #     mutate(cndc=paste(format(round(alpha1,2),nsmall=2),", ",format(round(alpha2,3),nsmall=3),sep="")) %>%
-  #     select(-c(alpha1,alpha2)) %>%
-  #     pivot_wider(names_from=q,
-  #                 names_prefix="cndc_",
-  #                 values_from=cndc))
   
   return(t2)
   
@@ -844,6 +839,7 @@ write_csv(tab2,"manuscript/tables/table2.csv")
 f.fig4 <- function(plot.data,.location,.variety,.color){
   
   var1 <- "W"
+  # var2 <- "%N"
   var3 <- paste(.location,.variety,sep=" - ")
   var4 <- "%N Difference"
   var5 <- paste("     ",.variety,sep="")
@@ -1013,126 +1009,82 @@ f.fig5 <- function(plot.data,parm.fit.sum,.location_ref,.variety_ref,.location_c
   
   var1 <- "W"
   var2 <- "%N - Diff"
-  # var3 <- paste(.location_ref,.variety_ref,sep=" - ")
+  var3 <- paste(.location_ref,.variety_ref,sep=" - ")
   var4 <- .variety_comp
+  var5 <- .location_comp
   
-  c_ref <- plot.data$c %>%
-    filter(location %in% .location_ref) %>%
-    filter(variety %in% .variety_ref) %>%
-    rename(N_ref_0.05=N_0.05,
-           N_ref_0.5=N_0.5,
-           N_ref_0.95=N_0.95) %>%
-    rename(location_ref=location,
-           variety_ref=variety,
-           `location:variety_ref`=`location:variety`)
+  r <- left_join(
+    plot.data$r %>%
+      filter(location %in% .location_ref) %>%
+      filter(variety %in% .variety_ref) %>%
+      rename(N_ref=N) %>%
+      rename(location_ref=location,
+             variety_ref=variety,
+             `location:variety_ref`=`location:variety`),
+    plot.data$r %>%
+      filter(location %in% .location_comp) %>%
+      filter(variety %in% .variety_comp) %>%
+      rename(N_comp=N) %>%
+      rename(location_comp=location,
+             variety_comp=variety,
+             `location:variety_comp`=`location:variety`),
+    by=c(".draw","W")
+  ) %>%
+    drop_na()
   
-  parm_ref <- parm.fit.sum %>%
-    filter(location %in% .location_ref) %>%
-    filter(variety %in% .variety_ref)
+  r <- r %>%
+    mutate(N_diff = N_comp - N_ref) %>% 
+    group_by(location_ref, variety_ref, `location:variety_ref`, 
+             location_comp, variety_comp, `location:variety_comp`, 
+             W) %>% 
+    # median_qi(N_diff, .width = 0.9) %>% 
+    summarize(qs = quantile(`N_diff`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
+    pivot_wider(names_from=prob,
+                names_prefix="N_diff_",#"N_location:variety_",
+                values_from=qs) %>%
+    mutate_at(vars(N_diff_0.05,N_diff_0.5,N_diff_0.95),as.numeric) %>%
+    mutate(N_class = N_diff_0.05 < 0 & N_diff_0.95 > 0)
   
-  c_comp <- plot.data$c %>%
-    # filter(`location:variety` %in% `.location:variety_comp`) %>%
-    filter(location %in% .location_comp) %>%
-    filter(variety %in% .variety_comp) %>%
-    select(-c(N_0.05,N_0.95)) %>%
-    rename(N_comp_0.5=N_0.5) %>%
-    rename(location_comp=location,
-           variety_comp=variety,
-           `location:variety_comp`=`location:variety`)
-  
-  c <- left_join(
-    c_ref,
-    c_comp,
-    by="W"
-  ) %>% 
-    mutate(N_ref_norm=0,
-           N_ref_up=N_ref_0.95-N_ref_0.5,
-           N_ref_lo=N_ref_0.05-N_ref_0.5,
-           N_comp_norm=N_comp_0.5-N_ref_0.5) %>%
-    mutate(N_class=case_when(
-      (N_comp_norm <= N_ref_up) & (N_comp_norm >= N_ref_lo) ~ T,
-      (N_comp_norm > N_ref_up) ~ F,
-      (N_comp_norm < N_ref_lo) ~ F,
-      TRUE ~ NA)) %>%
-    na.omit()
-  
-  c_test <- c %>%
-    select(location_comp,variety_comp,`location:variety_comp`,N_class) %>%
-    mutate_at(vars(location_comp,variety_comp,`location:variety_comp`,N_class),as.character) %>%
-    group_by(location_comp,variety_comp,`location:variety_comp`,N_class) %>%
-    summarize(n=n(),.groups="drop")
-  
-  c_test <- left_join(
-    c_test,
-    c_test %>%
-      group_by(location_comp,variety_comp,`location:variety_comp`) %>%
-      summarize(n_total=sum(n),.groups="drop"),
-    by = c("location_comp","variety_comp","location:variety_comp")
-  )
-  
-  c_range <- c %>%
-    filter(N_class==TRUE) %>%
-    group_by(location_comp,variety_comp,`location:variety_comp`) %>%
-    summarize(range_min=min(W),range_max=max(W),.groups="drop")
-  
-  c_fix <- c %>%
+  r_fix <- r %>%
     slice(1) %>%
-    mutate_at(vars(W,N_ref_0.05,N_ref_0.5,N_ref_0.95,N_comp_0.5,N_ref_norm,N_ref_up,N_ref_lo,N_comp_norm,N_class),~NA)
+    mutate_at(vars(W,N_diff_0.05,N_diff_0.5,N_diff_0.95,N_class),~NA)
   
-  c <- c %>%
-    bind_rows(c_fix %>% mutate(N_class=TRUE)) %>%
-    bind_rows(c_fix %>% mutate(N_class=FALSE))
-  
-  ggplot() +
-    geom_ribbon(data=c,aes(x=W,ymin=N_ref_lo,ymax=N_ref_up),alpha=0.20) + #,fill="#737373"
-    geom_point(data=c,aes(x=W,y=N_comp_norm,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.2) + #linetype=1,
-    # geom_line(data=c,aes(x=W,y=N_ref_norm,group=`location:variety_comp`),linetype=1,alpha=1.0,size=1.0) +
-    geom_line(data=c,aes(x=W,y=0,group=`location:variety_comp`),linetype=1,alpha=1.0) +
+  r <- r %>%
+    bind_rows(r_fix %>% mutate(N_class=TRUE)) %>%
+    bind_rows(r_fix %>% mutate(N_class=FALSE))
+
+  g <- ggplot() +
+    geom_ribbon(data=r,aes(x=W,ymin=N_diff_0.05,ymax=N_diff_0.95),alpha=0.20) + #,fill="#737373"
+    geom_point(data=r,aes(x=W,y=N_diff_0.5,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.2) + #linetype=1,
+    geom_line(data=r,aes(x=W,y=0,group=`location:variety_comp`),linetype=1,alpha=1.0) +
     theme_classic() +
+    labs(x=var1,
+         y=var2,
+         title=var3,
+         caption=var4) +
     theme(text=element_text(size=8),
           plot.title=element_blank(),
           axis.title.x=element_blank(),
           axis.title.y=element_blank(),
-          plot.caption = element_text(hjust=0,size=7),
-          plot.title.position = "plot",
+          plot.caption = element_text(hjust=0,size=7), 
+          plot.title.position = "plot", 
           plot.caption.position =  "plot") +
-    # facet_wrap(vars(`location:variety_comp`),scales="free_x",ncol=2) + 
-      labs(x=var1,
-           y=var2,
-           # title=var3,
-           caption=var4) +
     guides(color="none") +
     scale_color_manual(values=c("#ca0020","#0571b0")) +
-    # scale_y_continuous(limits=c(-0.3,0.3)) +
-    scale_y_continuous(n.breaks=5) +
     scale_x_continuous(limits=c(0,NA),breaks=c(0,5,10,15,20,25,30))
-  
-  # ggplot() +
-  #   geom_ribbon(data=c,aes(x=W,ymin=N_ref_lo,ymax=N_ref_up),alpha=0.20) + #,fill="#737373"
-  #   geom_point(data=c,aes(x=W,y=N_orig_norm,group=`location:variety`,color=N_class),alpha=1.0,size=0.2) + #linetype=1,
-  #   geom_line(data=c,aes(x=W,y=N_ref_norm,group=`location:variety`),linetype=1,alpha=1.0,size=1.0) +
-  #   # geom_text(data=c_range,aes(x=range_min,y=0,label=format(round(range_min,1),nsmall=1)),size=2.5,hjust="inward",vjust=0,nudge_y=0.02) +
-  #   # geom_text(data=c_range,aes(x=range_max,y=0,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward",vjust=0,nudge_y=0.02) +
-  #   theme_classic() +
-  #   # facet_wrap(vars(`location:variety`),scales="free_x") + 
-  #   labs(x=var1,
-  #        y=var2,
-  #        title=var3,
-  #        caption=var4) +
-  #   theme(text=element_text(size=8),
-  #         plot.title=element_blank(),
-  #         axis.title.x=element_blank(),
-  #         axis.title.y=element_blank(),
-  #         plot.caption = element_text(hjust=0,size=7), 
-  #         plot.title.position = "plot", 
-  #         plot.caption.position =  "plot") +
-  #   guides(color="none") +
-  #   scale_color_manual(values=c("#ca0020","#0571b0")) +
-  #   # scale_y_continuous(limits=c(-0.3,0.3)) +
-  #   # scale_x_continuous(limits=c(0,NA),breaks=c(0,5,10,15,20,25,30))
-  #   # scale_y_continuous(limits=c(-1.0,1.0),breaks=c(-1.0,-0.5,0,0.5,1.0)) +
-  #   scale_y_continuous(limits=c(-1.5,1.5),n.breaks=5) +
-  #   scale_x_continuous(limits=c(0,NA),n.breaks=4)
+    
+    if(var5%in%c("Minnesota","Belgium")) {
+      g + 
+        scale_y_continuous(limits=c(-0.33,0.33),n.breaks=5)
+    } else if(var5=="Canada"){
+      g + 
+        scale_y_continuous(limits=c(-0.5,1.0),n.breaks=5)
+    } else if(var5=="Argentina"){
+      g + 
+        scale_y_continuous(limits=c(-0.5,3.0),n.breaks=5)
+    } else {
+      g
+    }
   
 }
 
@@ -1156,7 +1108,6 @@ f.fig5.lab.facet <- function(.location){
   ggplot() +
     geom_text(aes(x=0,y=0,label=.location),angle=270,size=2.5) +
     theme_classic() +
-    # theme_grey() +
     theme(axis.line = element_blank(),
           axis.text = element_blank(),
           axis.title = element_blank(),
@@ -1277,20 +1228,6 @@ f.fig6 <- function(plot.data,parm.fit.sum,parm.orig.sum,.location,.variety){
       TRUE ~ NA)) %>%
     na.omit()
   
-  c_test <- c %>%
-    select(location,variety,`location:variety`,N_class) %>%
-    mutate_at(vars(location,variety,`location:variety`,N_class),as.character) %>%
-    group_by(location,variety,`location:variety`,N_class) %>%
-    summarize(n=n(),.groups="drop")
-  
-  c_test <- left_join(
-    c_test,
-    c_test %>%
-      group_by(location,variety,`location:variety`) %>%
-      summarize(n_total=sum(n),.groups="drop"),
-    by = c("location","variety","location:variety")
-  )
-  
   c_range <- c %>% 
     filter(N_class==TRUE) %>%
     group_by(location,variety,`location:variety`) %>%
@@ -1307,12 +1244,8 @@ f.fig6 <- function(plot.data,parm.fit.sum,parm.orig.sum,.location,.variety){
   ggplot() +
     geom_ribbon(data=c,aes(x=W,ymin=N_ref_lo,ymax=N_ref_up),alpha=0.20) + #,fill="#737373"
     geom_point(data=c,aes(x=W,y=N_orig_norm,group=`location:variety`,color=N_class),alpha=1.0,size=0.2) + #linetype=1,
-    # geom_line(data=c,aes(x=W,y=N_ref_norm,group=`location:variety`),linetype=1,alpha=1.0,size=1.0) +
-    geom_line(data=c,aes(x=W,y=0,group=`location:variety_comp`),linetype=1,alpha=1.0) +
-    # geom_text(data=c_range,aes(x=range_min,y=0,label=format(round(range_min,1),nsmall=1)),size=2.5,hjust="inward",vjust=0,nudge_y=0.02) +
-    # geom_text(data=c_range,aes(x=range_max,y=0,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward",vjust=0,nudge_y=0.02) +
+    geom_line(data=c,aes(x=W,y=0,group=`location:variety`),linetype=1,alpha=1.0) +
     theme_classic() +
-    # facet_wrap(vars(`location:variety`),scales="free_x") + 
     labs(x=var1,
          y=var2,
          title=var3,
@@ -1326,9 +1259,6 @@ f.fig6 <- function(plot.data,parm.fit.sum,parm.orig.sum,.location,.variety){
           plot.caption.position =  "plot") +
     guides(color="none") +
     scale_color_manual(values=c("#ca0020","#0571b0")) +
-    # scale_y_continuous(limits=c(-0.3,0.3)) +
-    # scale_x_continuous(limits=c(0,NA),breaks=c(0,5,10,15,20,25,30))
-    # scale_y_continuous(limits=c(-1.0,1.0),breaks=c(-1.0,-0.5,0,0.5,1.0)) +
     scale_y_continuous(limits=c(-1.5,1.5),n.breaks=5) +
     scale_x_continuous(limits=c(0,NA),n.breaks=4)
   
@@ -1351,7 +1281,6 @@ f.fig6.lab.facet <- function(.location){
   ggplot() +
     geom_text(aes(x=0,y=0,label=.location),angle=270,size=2.5) +
     theme_classic() +
-    # theme_grey() +
     theme(axis.line = element_blank(),
           axis.text = element_blank(),
           axis.title = element_blank(),
@@ -1403,110 +1332,6 @@ fig6 <- grid.arrange(fig6.sub[[1]],fig6.sub[[2]],fig6.sub[[3]],fig6.sub[[4]],fig
 ggsave(filename="manuscript/images/figure6.pdf",plot=fig6,height=2.8,width=6,units="in",scale=1.0)
 ggsave(filename="manuscript/images/figure6.png",plot=fig6,height=2.8,width=6,units="in",scale=1.0,dpi=1000)
 
-# figure 7 - sample of alternative evaluation of methods to express curve uncertainty -----------------
-
-# .location_ref = "Minnesota"
-# .variety_ref = "Russet Burbank"
-# # .location_comp = "Canada"
-# # .variety_comp = "Russet Burbank"
-# `.location:variety_comp` = c("Canada_Russet.Burbank","Belgium_Bintje")
-
-f.fig7 <- function(plot.data,parm.fit.sum,.location_ref,.variety_ref,`.location:variety_comp`){
-  
-  var1 <- "W"
-  var2 <- "%N - Diff"
-  var3 <- paste(.location_ref,.variety_ref,sep=" - ")
-  
-  c_ref <- plot.data$c %>%
-    filter(location %in% .location_ref) %>%
-    filter(variety %in% .variety_ref) %>%
-    rename(N_ref_0.05=N_0.05,
-           N_ref_0.5=N_0.5,
-           N_ref_0.95=N_0.95) %>%
-    rename(location_ref=location,
-           variety_ref=variety,
-           `location:variety_ref`=`location:variety`)
-  
-  parm_ref <- parm.fit.sum %>%
-    filter(location %in% .location_ref) %>%
-    filter(variety %in% .variety_ref)
-  
-  c_comp <- plot.data$c %>%
-    filter(`location:variety` %in% `.location:variety_comp`) %>%
-    select(-c(N_0.05,N_0.95)) %>%
-    rename(N_comp_0.5=N_0.5) %>%
-    rename(location_comp=location,
-           variety_comp=variety,
-           `location:variety_comp`=`location:variety`)
-  
-  c <- left_join(
-    c_ref,
-    c_comp,
-    by="W"
-  ) %>% 
-    mutate(N_ref_norm=0,
-           N_ref_up=N_ref_0.95-N_ref_0.5,
-           N_ref_lo=N_ref_0.05-N_ref_0.5,
-           N_comp_norm=N_comp_0.5-N_ref_0.5) %>%
-    mutate(N_class=case_when(
-      (N_comp_norm <= N_ref_up) & (N_comp_norm >= N_ref_lo) ~ T,
-      (N_comp_norm > N_ref_up) ~ F,
-      (N_comp_norm < N_ref_lo) ~ F,
-      TRUE ~ NA)) %>%
-    na.omit()
-  
-  c_test <- c %>%
-    select(location_comp,variety_comp,`location:variety_comp`,N_class) %>%
-    mutate_at(vars(location_comp,variety_comp,`location:variety_comp`,N_class),as.character) %>%
-    group_by(location_comp,variety_comp,`location:variety_comp`,N_class) %>%
-    summarize(n=n(),.groups="drop")
-  
-  c_test <- left_join(
-    c_test,
-    c_test %>%
-      group_by(location_comp,variety_comp,`location:variety_comp`) %>%
-      summarize(n_total=sum(n),.groups="drop"),
-    by = c("location_comp","variety_comp","location:variety_comp")
-  )
-  
-  c_range <- c %>%
-    filter(N_class==TRUE) %>%
-    group_by(location_comp,variety_comp,`location:variety_comp`) %>%
-    summarize(range_min=min(W),range_max=max(W),.groups="drop")
-  
-  ggplot() +
-    geom_ribbon(data=c,aes(x=W,ymin=N_ref_lo,ymax=N_ref_up),alpha=0.20) + #,fill="#737373"
-    geom_point(data=c,aes(x=W,y=N_comp_norm,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.5) + #linetype=1,
-    geom_line(data=c,aes(x=W,y=N_ref_norm,group=`location:variety_comp`),linetype=1,alpha=1.0,size=1.0) +
-    theme_classic() +
-    facet_wrap(vars(`location:variety_comp`),scales="free_x",ncol=2) + 
-    labs(x=var1,
-         y=var2,
-         title=var3) +
-    guides(color="none") +
-    scale_color_manual(values=c("#ca0020","#0571b0")) +
-    # scale_y_continuous(limits=c(-0.3,0.3)) +
-    scale_y_continuous(n.breaks=5) +
-    scale_x_continuous(limits=c(0,NA),breaks=c(0,5,10,15,20,25,30))
-  
-}
-
-fig7.list <- list(
-  location_ref=c("Minnesota","Minnesota"),
-  variety_ref=c("Russet Burbank","Russet Burbank"),
-  `location:variety_comp`=list(c("Canada_Russet.Burbank","Belgium_Bintje","Argentina_Innovator"),
-                               c("Minnesota_Clearwater","Minnesota_Dakota.Russet","Minnesota_Easton","Minnesota_Umatilla"))
-)
-
-fig7_sub <- pmap(fig7.list,~f.fig7(plot.data,
-                                   parm.fit.sum,
-                                   .location_ref=..1,
-                                   .variety_ref=..2,
-                                   `.location:variety_comp`=..3))
-
-# ggsave(filename="manuscript/images/figure7_1.pdf",plot=fig7_sub[[1]],scale=1.25,height=3,width=3)
-# ggsave(filename="manuscript/images/figure7_2.pdf",plot=fig7_sub[[2]],scale=1.25,height=3,width=3)
-
 # appendix 1 - plateau model fit with point data for each date shown for each variety x location ------------------
 
 # .location = "Minnesota"
@@ -1531,15 +1356,9 @@ f.appx1 <- function(plot.data,.location,.variety){
   
   ggplot() +
     geom_line(data=c,aes(x=W,y=N_0.5),linetype=1,alpha=1.0) +
-    # geom_line(data=c,aes(x=W,y=N_0.05),linetype=2,alpha=0.5) +
-    # geom_line(data=c,aes(x=W,y=N_0.95),linetype=2,alpha=0.5) +
     geom_line(data=p,aes(x=W_0.5,y=N_0.5,group=index),linetype=1,alpha=0.5) +
-    # geom_line(data=p,aes(x=W_0.05,y=N_0.05,group=index),linetype=2,alpha=0.3) +
-    # geom_line(data=p,aes(x=W_0.95,y=N_0.95,group=index),linetype=2,alpha=0.3) +
     geom_point(data=d,aes(x=W,y=N),alpha=0.33) +
-    # facet_wrap(vars(`location:variety`,index)) +
     facet_wrap(vars(as.numeric(index)),ncol=8) +
-    # facet_grid(`location:variety`~index) +
     labs(x = "W",
          y = "%N",
          title = paste(.location,.variety,sep=" - ")) + 
