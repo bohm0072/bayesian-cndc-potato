@@ -13,7 +13,7 @@ library(future)
 
 library(googledrive)
 
-plan(multisession)
+# plan(multisession)
 
 # load data ---------------------------
 
@@ -22,9 +22,11 @@ index_cndc <- read_csv("data/analysis/index_cndc.csv",col_types="ccccccc")
 
 # fit model ---------------------------
 
+model.name = "model_070621"
+
 fit_model <- function(data=data_cndc,
                       data_index=index_cndc,
-                      model.name="model"){
+                      model.name=model.name){
   
   index.list <- data_index %>%
     pull(index)
@@ -72,18 +74,23 @@ fit_model <- function(data=data_cndc,
 # model %<-% fit_model()
 model <- fit_model()
 
-# post model to google drive ----------
+# post model to Google Drive ----------
 
-# Note this code is not functional, and this uplaod was done manually via Google Drive browser GUI
+f.google.drive.model.sync <- function(model.name){
+  
+  model.path = paste0("manuscript/models/",model.name)
+  
+  drive_auth(email = "bohm0072@umn.edu")
+  
+  drive_put(media=paste0(model.path,".rds"),
+            path=as_id("https://drive.google.com/drive/folders/1sSHW3PZW1lknSbnwIMDYFTXjcPXwiMYE"),
+            # path="/My Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/manuscript/models/",
+            name=paste0(model.name,".rds"))
+  
+}
 
-# if(file.exists("manuscript/models/model.rds")!=T){
-#   
-#   # model_060121.rds
-#   drive_upload(media="manuscript/models/model.rds",
-#                path="/My Drive/Research/Publications/Chapter 4/Version 2/GitHub/cndc_bayesian_eval/manuscript/models/",
-#                name="model_060221.rds")
-#   
-# }
+f.google.drive.model.sync(model.name)
+
 
 # postscript --------------------------
 # Due to compatibility issues with `rstan`, `renv` must be re-activated after `brms` fit

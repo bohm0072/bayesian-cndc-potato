@@ -16,7 +16,7 @@ data_cndc <- read_csv("data/analysis/data_cndc.csv",col_types="cccccccdcdd")
 
 # read in model fit results ------------------
 
-model <- readRDS("manuscript/models/model_060221.rds"); model
+model <- readRDS("manuscript/models/model_070621.rds"); model
 
 # the fmin() function used in Stan isn't defined in R, so we need to create it so that when we try to use brms to make predictions, it knows what to do with the fmin()
 fmin <- function(x,y){
@@ -30,7 +30,7 @@ f.parm.orig.sum <- function(){
   
   tibble(
     location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
-    variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla"),
+    variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet"),
     alpha1_orig=c(5.30,5.32,5.30,5.53,5.19,5.37,5.37,4.57,5.04,5.00,5.00,5.00,5.00,5.00),
     alpha2_orig=c(0.25,0.36,0.42,0.25,0.25,0.45,0.45,0.42,0.42,0.45,0.45,0.45,0.45,0.45)
   ) %>%
@@ -534,7 +534,7 @@ f.fig2 <- function(cndc.fit,.location,.variety,.color){
 
 fig2.list <- list(
   location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
-  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla"),
+  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet"),
   color=plot.colors.1
 )
 
@@ -662,7 +662,7 @@ f.fig3 <- function(plot.data,.location,.variety,.color){
 
 fig3.list <- list(
   location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
-  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla"),
+  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet"),
   color=plot.colors.1
 )
 
@@ -820,7 +820,7 @@ f.tab2 <- function(plot.data,tab1,.location,.variety){
 
 tab2.list <- list(
   location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
-  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla")
+  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet")
 )
 
 tab2 <- pmap(tab2.list,~f.tab2(plot.data,
@@ -932,7 +932,7 @@ f.fig4 <- function(plot.data,.location,.variety,.color){
 
 fig4.list <- list(
   location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
-  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla"),
+  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet"),
   color=plot.colors.1
 )
 
@@ -1092,7 +1092,7 @@ fig5.list <- list(
   location_ref=c("Minnesota"),
   variety_ref=c("Russet Burbank"),
   location_comp=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
-  variety_comp=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla"),
+  variety_comp=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet"),
   color=plot.colors.1
 )
 
@@ -1266,7 +1266,7 @@ f.fig6 <- function(plot.data,parm.fit.sum,parm.orig.sum,.location,.variety){
 
 fig6.list <- list(
   location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
-  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla"),
+  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet"),
   color=plot.colors.1
 )
 
@@ -1421,7 +1421,7 @@ f.appx1.join <- function(){
   g.appx1_m <- ggplotGrob(appx1_m)
   fg.appx1_m <- gtable_frame(g.appx1_m, height = unit(5*(7/7), "null"), width = unit(6, "null"))
   
-  appx1_n <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Umatilla"))
+  appx1_n <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Umatilla Russet"))
   g.appx1_n <- ggplotGrob(appx1_n)
   fg.appx1_n <- gtable_frame(g.appx1_n, height = unit(5*(2/7), "null"), width = unit(6, "null"))
   
@@ -1531,7 +1531,7 @@ f.appx2 <- function(plot.data,parm.fit.sum,.location,.variety){
 
 appx2.list <- list(
   location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
-  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla")
+  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet")
 )
 
 appx2_sub <- pmap(appx2.list,~f.appx2(plot.data,
@@ -1550,6 +1550,3 @@ ggsave(filename="manuscript/images/appendix2.pdf",plot=appx2,scale=1.5,height=50
 ggsave(filename="manuscript/images/appendix2.png",plot=appx2,scale=1.5,height=50,width=6,limitsize=F)
 
 # END --------------------
-
-
-

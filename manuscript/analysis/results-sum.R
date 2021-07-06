@@ -17,7 +17,14 @@ f.t1 <- function(){
     ungroup() %>%
     select(-study) %>%
     group_by(owner,location,variety) %>%
-    summarize_at(vars(year),~sum(.))
+    summarize_at(vars(year),~sum(.)) 
+  
+  # Adjust for growing season overlapping multiple calendar years for Argentina
+  t1_yr <- t1_yr %>%
+    mutate(year=case_when(
+      location=="Argentina" ~ as.integer(year - 1),
+      T ~ year
+    ))
   
   t1_ix <- data_cndc %>%
     select(owner,location,variety,index) %>%
@@ -46,6 +53,5 @@ write_csv(t1,"manuscript/tables/table1.csv")
 
 appx_t1 <- data_cndc
 write_csv(appx_t1,"manuscript/tables/appx_table1.csv")
-
 
 # end ----------------
