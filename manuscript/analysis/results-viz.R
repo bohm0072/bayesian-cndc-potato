@@ -1049,14 +1049,14 @@ f.fig5 <- function(plot.data,parm.fit.sum,.location_ref,.variety_ref,.location_c
     slice(1) %>%
     mutate_at(vars(W,N_diff_0.05,N_diff_0.5,N_diff_0.95,N_class),~NA)
   
-  r <- r %>%
+  r_plot <- r %>%
     bind_rows(r_fix %>% mutate(N_class=TRUE)) %>%
     bind_rows(r_fix %>% mutate(N_class=FALSE))
 
   g <- ggplot() +
-    geom_ribbon(data=r,aes(x=W,ymin=N_diff_0.05,ymax=N_diff_0.95),alpha=0.20) + #,fill="#737373"
-    geom_point(data=r,aes(x=W,y=N_diff_0.5,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.2) + #linetype=1,
-    geom_line(data=r,aes(x=W,y=0,group=`location:variety_comp`),linetype=1,alpha=1.0) +
+    geom_ribbon(data=r_plot,aes(x=W,ymin=N_diff_0.05,ymax=N_diff_0.95),alpha=0.20) + #,fill="#737373"
+    geom_point(data=r_plot,aes(x=W,y=N_diff_0.5,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.2) + #linetype=1,
+    geom_line(data=r_plot,aes(x=W,y=0,group=`location:variety_comp`),linetype=1,alpha=1.0) +
     theme_classic() +
     labs(x=var1,
          y=var2,
@@ -1434,8 +1434,9 @@ f.appx1.join <- function(){
 fg <- f.appx1.join()
 
 ggsave(filename="manuscript/images/appendix1.pdf",plot=fg,height=40,width=6,scale=1.5,limitsize=F)
+ggsave(filename="manuscript/images/appendix1.png",plot=fg,height=40,width=6,scale=1.5,limitsize=F)
 
-# appendix 2 - full alternative evaluation of methods to express curve uncertainty -----------------
+# appendix 2 - full comparing curves to each other fits -----------------
 
 # .location = "Minnesota"
 # .variety = "Russet Burbank"
@@ -1447,70 +1448,58 @@ f.appx2 <- function(plot.data,parm.fit.sum,.location,.variety){
   var3 <- paste(.location,.variety,sep=" - ")
   var4 <- paste(.location,str_replace(.variety," ","."),sep="_")
   
-  c_ref <- plot.data$c %>%
-    filter(location %in% .location) %>%
-    filter(variety %in% .variety) %>%
-    rename(N_ref_0.05=N_0.05,
-           N_ref_0.5=N_0.5,
-           N_ref_0.95=N_0.95) %>%
-    rename(location_ref=location,
-           variety_ref=variety,
-           `location:variety_ref`=`location:variety`)
+  r <- left_join(
+    plot.data$r %>%
+      filter(location %in% .location) %>%
+      filter(variety %in% .variety) %>%
+      # filter(location %in% .location_ref) %>%
+      # filter(variety %in% .variety_ref) %>%
+      rename(N_ref=N) %>%
+      rename(location_ref=location,
+             variety_ref=variety,
+             `location:variety_ref`=`location:variety`),
+    plot.data$r %>%
+      # filter(location %in% .location_comp) %>%
+      # filter(variety %in% .variety_comp) %>%
+      rename(N_comp=N) %>%
+      rename(location_comp=location,
+             variety_comp=variety,
+             `location:variety_comp`=`location:variety`),
+    by=c(".draw","W")
+  ) %>%
+    filter(`location:variety_ref`!=`location:variety_comp`) %>%
+    drop_na()
   
-  parm_ref <- parm.fit.sum %>%
-    filter(location %in% .location) %>%
-    filter(variety %in% .variety)
+  r <- r %>%
+    mutate(N_diff = N_comp - N_ref) %>% 
+    group_by(location_ref, variety_ref, `location:variety_ref`, 
+             location_comp, variety_comp, `location:variety_comp`, 
+             W) %>% 
+    summarize(qs = quantile(`N_diff`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
+    pivot_wider(names_from=prob,
+                names_prefix="N_diff_",
+                values_from=qs) %>%
+    mutate_at(vars(N_diff_0.05,N_diff_0.5,N_diff_0.95),as.numeric) %>%
+    mutate(N_class = N_diff_0.05 < 0 & N_diff_0.95 > 0)
   
-  c_comp <- plot.data$c %>%
-    filter(!`location:variety` %in% var4) %>%
-    select(-c(N_0.05,N_0.95)) %>%
-    rename(N_comp_0.5=N_0.5) %>%
-    rename(location_comp=location,
-           variety_comp=variety,
-           `location:variety_comp`=`location:variety`)
-  
-  c <- left_join(
-    c_ref,
-    c_comp,
-    by="W"
-  ) %>% 
-    mutate(N_ref_norm=0,
-           N_ref_up=N_ref_0.95-N_ref_0.5,
-           N_ref_lo=N_ref_0.05-N_ref_0.5,
-           N_comp_norm=N_comp_0.5-N_ref_0.5) %>%
-    mutate(N_class=case_when(
-      (N_comp_norm <= N_ref_up) & (N_comp_norm >= N_ref_lo) ~ T,
-      (N_comp_norm > N_ref_up) ~ F,
-      (N_comp_norm < N_ref_lo) ~ F,
-      TRUE ~ NA)) %>%
-    na.omit()
-  
-  c_test <- c %>%
-    select(location_comp,variety_comp,`location:variety_comp`,N_class) %>%
-    mutate_at(vars(location_comp,variety_comp,`location:variety_comp`,N_class),as.character) %>%
-    group_by(location_comp,variety_comp,`location:variety_comp`,N_class) %>%
-    summarize(n=n(),.groups="drop")
-  
-  c_test <- left_join(
-    c_test,
-    c_test %>%
-      group_by(location_comp,variety_comp,`location:variety_comp`) %>%
-      summarize(n_total=sum(n),.groups="drop"),
-    by = c("location_comp","variety_comp","location:variety_comp")
-  )
-  
-  c_range <- c %>%
+  r_range <- r %>%
     filter(N_class==TRUE) %>%
     group_by(location_comp,variety_comp,`location:variety_comp`) %>%
     summarize(range_min=min(W),range_max=max(W),.groups="drop")
   
-  ggplot() +
-    geom_ribbon(data=c,aes(x=W,ymin=N_ref_lo,ymax=N_ref_up),alpha=0.20) + #,fill="#737373"
-    geom_point(data=c,aes(x=W,y=N_comp_norm,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.1) + #linetype=1,
-    geom_line(data=c,aes(x=W,y=N_ref_norm,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.2) +
-    geom_line(data=c,aes(x=W,y=N_ref_lo,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.1) +
-    geom_line(data=c,aes(x=W,y=N_ref_up,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.1) +
-    geom_text(data=c_range,aes(x=2,y=0.5,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward") +
+  r_fix <- r %>%
+    slice(1) %>%
+    mutate_at(vars(W,N_diff_0.05,N_diff_0.5,N_diff_0.95,N_class),~NA)
+  
+  r_plot <- r %>%
+    bind_rows(r_fix %>% mutate(N_class=TRUE)) %>%
+    bind_rows(r_fix %>% mutate(N_class=FALSE))
+  
+  g <- ggplot() +
+    geom_ribbon(data=r_plot,aes(x=W,ymin=N_diff_0.05,ymax=N_diff_0.95),alpha=0.20) + #,fill="#737373"
+    geom_point(data=r_plot,aes(x=W,y=N_diff_0.5,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.2) + #linetype=1,
+    geom_line(data=r_plot,aes(x=W,y=0,group=`location:variety_comp`),linetype=1,alpha=1.0) +
+    geom_text(data=r_range,aes(x=2,y=0.5,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward") +
     theme_classic() +
     facet_wrap(vars(`location:variety_comp`),scales="free_x",ncol=5) + 
     labs(x=var1,
@@ -1520,6 +1509,23 @@ f.appx2 <- function(plot.data,parm.fit.sum,.location,.variety){
     scale_color_manual(values=c("#ca0020","#0571b0")) +
     scale_y_continuous(n.breaks=4) +
     scale_x_continuous(limits=c(0,NA),breaks=c(0,5,10,15,20,25,30))
+
+  # ggplot() +
+  #   geom_ribbon(data=c,aes(x=W,ymin=N_ref_lo,ymax=N_ref_up),alpha=0.20) + #,fill="#737373"
+  #   geom_point(data=c,aes(x=W,y=N_comp_norm,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.1) + #linetype=1,
+  #   geom_line(data=c,aes(x=W,y=N_ref_norm,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.2) +
+  #   geom_line(data=c,aes(x=W,y=N_ref_lo,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.1) +
+  #   geom_line(data=c,aes(x=W,y=N_ref_up,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.1) +
+  #   geom_text(data=c_range,aes(x=2,y=0.5,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward") +
+  #   theme_classic() +
+  #   facet_wrap(vars(`location:variety_comp`),scales="free_x",ncol=5) + 
+  #   labs(x=var1,
+  #        y=var2,
+  #        title=var3) +
+  #   guides(color="none") +
+  #   scale_color_manual(values=c("#ca0020","#0571b0")) +
+  #   scale_y_continuous(n.breaks=4) +
+  #   scale_x_continuous(limits=c(0,NA),breaks=c(0,5,10,15,20,25,30))
   
 }
 
@@ -1541,6 +1547,7 @@ appx2 <- grid.arrange(appx2_sub[[1]],appx2_sub[[2]],appx2_sub[[3]],appx2_sub[[4]
                       layout_matrix=appx2.layout)
 
 ggsave(filename="manuscript/images/appendix2.pdf",plot=appx2,scale=1.5,height=50,width=6,limitsize=F)
+ggsave(filename="manuscript/images/appendix2.png",plot=appx2,scale=1.5,height=50,width=6,limitsize=F)
 
 # END --------------------
 
