@@ -1531,7 +1531,7 @@ f.appx2 <- function(plot.data,parm.fit.sum,.location,.variety){
     geom_ribbon(data=r_plot,aes(x=W,ymin=N_diff_0.05,ymax=N_diff_0.95),alpha=0.20) + #,fill="#737373"
     geom_point(data=r_plot,aes(x=W,y=N_diff_0.5,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.2) + #linetype=1,
     geom_line(data=r_plot,aes(x=W,y=0,group=`location:variety_comp`),linetype=1,alpha=1.0) +
-    geom_text(data=r_range,aes(x=2,y=0.5,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward") +
+    geom_text(data=r_range,aes(x=2,y=0.5,label=paste0("(",format(round(range_min,1),nsmall=1)," , ",format(round(range_max,1),nsmall=1)),")"),size=2.5,hjust="inward") +
     theme_classic() +
     facet_wrap(vars(`location:variety_comp`),scales="free_x",ncol=5) + 
     labs(x=var1,
