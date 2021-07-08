@@ -385,6 +385,9 @@ f.plot.data <- function(data,cndc.fit){
 }
 plot.data <- f.plot.data(data_cndc,cndc.fit)
 
+#Free Unsued Memory
+gc()
+
 # set color scale -----------------
 
 plot.colors.1 <- c("#490809","#931012","#CA1619","#C55962","#E74B5E","#2C652A","#33a02c","#CC6600","#ff7f00","#15527A","#0177A2","#1F78B4","#01B3F4","#62B0E4")
@@ -1337,7 +1340,7 @@ ggsave(filename="manuscript/images/figure6.png",plot=fig6,height=2.8,width=6,uni
 # .location = "Minnesota"
 # .variety = "Russet Burbank"
 
-f.appx1 <- function(plot.data,.location,.variety){
+f.appx1 <- function(plot.data,tab1,.location,.variety){
   
   c <- plot.data$c %>%
     filter(location%in%.location) %>%
@@ -1347,81 +1350,110 @@ f.appx1 <- function(plot.data,.location,.variety){
   d <- plot.data$d %>%
     filter(location%in%.location) %>%
     filter(variety%in%.variety) %>%
-    mutate_at(vars(location,variety,`location:variety`), ~fct_drop(.))
+    mutate_at(vars(location,variety,`location:variety`), ~fct_drop(.)) %>%
+    left_join(tab1 %>%
+                select(location,variety,`location:variety`,alpha1_0.5,alpha2_0.5),
+              by = c("location", "variety", "location:variety")) %>%
+    mutate(Nc=alpha1_0.5*(W^(-alpha2_0.5))) %>%
+    mutate(Nclass=case_when(
+      N>Nc ~ "Surplus",
+      N<Nc ~ "Deficit",
+      N==Nc ~ "Optimal")
+    ) %>%
+    filter(is.na(Nclass)!=T)
   
   p <- plot.data$p %>%
     filter(location%in%.location) %>%
     filter(variety%in%.variety) %>%
     mutate_at(vars(location,variety,`location:variety`), ~fct_drop(.))
   
+  d.sum.index <- d %>%
+    group_by(index,Nclass) %>%
+    count(Nclass) %>%
+    pivot_wider(names_from="Nclass",values_from=n)
+  
+  d.sum.group <- d %>%
+    group_by(group,Nclass) %>%
+    count(Nclass) %>%
+    pivot_wider(names_from="Nclass",values_from=n)
+  
+  d.colors <- c("#ca0020","#0571b0")
+  
   ggplot() +
     geom_line(data=c,aes(x=W,y=N_0.5),linetype=1,alpha=1.0) +
     geom_line(data=p,aes(x=W_0.5,y=N_0.5,group=index),linetype=1,alpha=0.5) +
-    geom_point(data=d,aes(x=W,y=N),alpha=0.33) +
+    geom_point(data=d,aes(x=W,y=N,color=Nclass),alpha=0.33) +
+    geom_text(data=d.sum.index,aes(x=0,y=0,label=Deficit),color=d.colors[[1]],size=3,hjust=0,vjust=0) + # paste0("Deficit: ",Deficit)
+    geom_text(data=d.sum.index,aes(x=0,y=6,label=Surplus),color=d.colors[[2]],size=3,hjust=0,vjust=1) + 
     facet_wrap(vars(as.numeric(index)),ncol=8) +
     labs(x = "W",
          y = "%N",
-         title = paste(.location,.variety,sep=" - ")) + 
+         title = paste(.location,.variety,sep=" - "),
+         color = "N Status\nClassification",
+         subtitle = paste0("Deficit: ",d.sum.group$Deficit,", ","Surplus: ",d.sum.group$Surplus)) + 
+    guides(color=guide_legend()) +
     coord_cartesian(xlim=c(0,NA),ylim=c(0,6.0)) +
-    theme_classic()
+    theme_classic() +
+    theme(legend.position = "right") +
+    scale_color_manual(values=d.colors)
   
 }
 
 f.appx1.join <- function(){
   
-  appx1_a <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Bannock Russet"))
+  appx1_a <- f.appx1(plot.data,tab1,.location=c("Argentina"),.variety=c("Bannock Russet"))
   g.appx1_a <- ggplotGrob(appx1_a)
   fg.appx1_a <- gtable_frame(g.appx1_a, height = unit(5*(2/7), "null"), width = unit(6, "null"))
 
-  appx1_b <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Gem Russet"))
+  appx1_b <- f.appx1(plot.data,tab1,.location=c("Argentina"),.variety=c("Gem Russet"))
   g.appx1_b <- ggplotGrob(appx1_b)
   fg.appx1_b <- gtable_frame(g.appx1_b, height = unit(5*(3/7), "null"), width = unit(6, "null"))
   
-  appx1_c <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Innovator"))
+  appx1_c <- f.appx1(plot.data,tab1,.location=c("Argentina"),.variety=c("Innovator"))
   g.appx1_c <- ggplotGrob(appx1_c)
   fg.appx1_c <- gtable_frame(g.appx1_c, height = unit(5*(3/7), "null"), width = unit(6, "null"))
   
-  appx1_d <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Markies Russet"))
+  appx1_d <- f.appx1(plot.data,tab1,.location=c("Argentina"),.variety=c("Markies Russet"))
   g.appx1_d <- ggplotGrob(appx1_d)
   fg.appx1_d <- gtable_frame(g.appx1_d, height = unit(5*(2/7), "null"), width = unit(6, "null"))
   
-  appx1_e <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Umatilla Russet"))
+  appx1_e <- f.appx1(plot.data,tab1,.location=c("Argentina"),.variety=c("Umatilla Russet"))
   g.appx1_e <- ggplotGrob(appx1_e)
   fg.appx1_e <- gtable_frame(g.appx1_e, height = unit(5*(2/7), "null"), width = unit(6, "null"))
   
-  appx1_f <- f.appx1(plot.data,.location=c("Belgium"),.variety=c("Bintje"))
+  appx1_f <- f.appx1(plot.data,tab1,.location=c("Belgium"),.variety=c("Bintje"))
   g.appx1_f <- ggplotGrob(appx1_f)
   fg.appx1_f <- gtable_frame(g.appx1_f, height = unit(5*(7/7), "null"), width = unit(6, "null"))
   
-  appx1_g <- f.appx1(plot.data,.location=c("Belgium"),.variety=c("Charlotte"))
+  appx1_g <- f.appx1(plot.data,tab1,.location=c("Belgium"),.variety=c("Charlotte"))
   g.appx1_g <- ggplotGrob(appx1_g)
   fg.appx1_g <- gtable_frame(g.appx1_g, height = unit(5*(3/7), "null"), width = unit(6, "null"))
   
-  appx1_h <- f.appx1(plot.data,.location=c("Canada"),.variety=c("Russet Burbank"))
+  appx1_h <- f.appx1(plot.data,tab1,.location=c("Canada"),.variety=c("Russet Burbank"))
   g.appx1_h <- ggplotGrob(appx1_h)
   fg.appx1_h <- gtable_frame(g.appx1_h, height = unit(5*(4/7), "null"), width = unit(6, "null"))
   
-  appx1_i <- f.appx1(plot.data,.location=c("Canada"),.variety=c("Shepody"))
+  appx1_i <- f.appx1(plot.data,tab1,.location=c("Canada"),.variety=c("Shepody"))
   g.appx1_i <- ggplotGrob(appx1_i)
   fg.appx1_i <- gtable_frame(g.appx1_i, height = unit(5*(4/7), "null"), width = unit(6, "null"))
   
-  appx1_j <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Clearwater"))
+  appx1_j <- f.appx1(plot.data,tab1,.location=c("Minnesota"),.variety=c("Clearwater"))
   g.appx1_j <- ggplotGrob(appx1_j)
   fg.appx1_j <- gtable_frame(g.appx1_j, height = unit(5*(2/7), "null"), width = unit(6, "null"))
   
-  appx1_k <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Dakota Russet"))
+  appx1_k <- f.appx1(plot.data,tab1,.location=c("Minnesota"),.variety=c("Dakota Russet"))
   g.appx1_k <- ggplotGrob(appx1_k)
   fg.appx1_k <- gtable_frame(g.appx1_k, height = unit(5*(2/7), "null"), width = unit(6, "null"))
   
-  appx1_l <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Easton"))
+  appx1_l <- f.appx1(plot.data,tab1,.location=c("Minnesota"),.variety=c("Easton"))
   g.appx1_l <- ggplotGrob(appx1_l)
   fg.appx1_l <- gtable_frame(g.appx1_l, height = unit(5*(2/7), "null"), width = unit(6, "null"))
   
-  appx1_m <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Russet Burbank"))
+  appx1_m <- f.appx1(plot.data,tab1,.location=c("Minnesota"),.variety=c("Russet Burbank"))
   g.appx1_m <- ggplotGrob(appx1_m)
   fg.appx1_m <- gtable_frame(g.appx1_m, height = unit(5*(7/7), "null"), width = unit(6, "null"))
   
-  appx1_n <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Umatilla Russet"))
+  appx1_n <- f.appx1(plot.data,tab1,.location=c("Minnesota"),.variety=c("Umatilla Russet"))
   g.appx1_n <- ggplotGrob(appx1_n)
   fg.appx1_n <- gtable_frame(g.appx1_n, height = unit(5*(2/7), "null"), width = unit(6, "null"))
   
