@@ -24,212 +24,149 @@ fmin <- function(x,y){
 }
 
 
-# read in previous critical N dilution curve fits #####
-
-f.parm.orig.sum <- function(){
-  
-  tibble(
-    location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
-    variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet"),
-    alpha1_orig=c(5.30,5.32,5.30,5.53,5.19,5.37,5.37,4.57,5.04,5.00,5.00,5.00,5.00,5.00),
-    alpha2_orig=c(0.25,0.36,0.42,0.25,0.25,0.45,0.45,0.42,0.42,0.45,0.45,0.45,0.45,0.45)
-  ) %>%
-    mutate(variety.name=str_replace(variety," ",".")) %>%
-    mutate(`location:variety`=paste(location,"_",variety.name,sep="")) %>%
-    select(-variety.name) %>%
-    relocate(`location:variety`,.after=variety) %>%
-    arrange(variety,location) %>%
-    mutate_at(vars(variety), ~as_factor(.)) %>%
-    mutate_at(vars(variety), ~fct_inorder(.)) %>%
-    arrange(location,variety) %>%
-    mutate_at(vars(location,`location:variety`), ~as_factor(.)) %>%
-    mutate_at(vars(location,`location:variety`), ~fct_inorder(.))
-  
-}
-
-parm.orig.sum <- f.parm.orig.sum()
-
 # format data for results and figures ---------------
 
-f.cndc.fit <- function(model){
+f.plot.data <- function(data,model){
   
-  f.parm.fit <- function(model,parm){
+  f.cndc.fit <- function(model){
     
-    var1 <- paste("b_",parm,"_Intercept",sep="")
-    var2 <- paste("r_location__",parm,sep="")
-    var3 <- paste("r_location:variety__",parm,sep="")
-    var4 <- paste("location_",parm,sep="")
-    var5 <- paste("location:variety_",parm,sep="")
+    f.parm.fit <- function(model,parm){
+      
+      var1 <- paste("b_",parm,"_Intercept",sep="")
+      var2 <- paste("r_location__",parm,sep="")
+      var3 <- paste("r_location:variety__",parm,sep="")
+      var4 <- paste("location_",parm,sep="")
+      var5 <- paste("location:variety_",parm,sep="")
+      
+      d <- model %>%
+        spread_draws(
+          !!sym(var1),
+          (!!sym(var2))[!!sym("location"),],
+          (!!sym(var3))[!!sym("location:variety"),]
+        ) %>%
+        rowwise() %>%
+        filter(is.na(str_match(`location:variety`,location))==F) %>%
+        ungroup() %>%
+        mutate(!!sym(var4) := !!sym(var1) + !!sym(var2)) %>%
+        mutate(!!sym(var5) := !!sym(var1) + !!sym(var2) + !!sym(var3)) %>%
+        mutate_at(vars(location,`location:variety`),as.character) 
+      
+      d <- d %>%
+        mutate(variety=str_split(d$`location:variety`,"_",simplify=T)[,2]) %>% 
+        rowwise() %>%
+        mutate_at(vars(variety),~str_replace(.,"[.]"," ")) %>%
+        ungroup()
+      
+      d <- d %>%
+        arrange(variety,location) %>%
+        mutate_at(vars(variety), ~as_factor(.)) %>%
+        mutate_at(vars(variety), ~fct_inorder(.)) %>%
+        arrange(location,variety) %>%
+        mutate_at(vars(location), ~as_factor(.)) %>%
+        mutate_at(vars(location), ~fct_inorder(.))
+      
+      return(d)
+      
+    }
     
-    d <- model %>%
-      spread_draws(
-        !!sym(var1),
-        (!!sym(var2))[!!sym("location"),],
-        (!!sym(var3))[!!sym("location:variety"),]
-      ) %>%
-      rowwise() %>%
-      filter(is.na(str_match(`location:variety`,location))==F) %>%
-      ungroup() %>%
-      mutate(!!sym(var4) := !!sym(var1) + !!sym(var2)) %>%
-      mutate(!!sym(var5) := !!sym(var1) + !!sym(var2) + !!sym(var3)) %>%
-      mutate_at(vars(location,`location:variety`),as.character) 
+    alpha1.fit <- f.parm.fit(model,"alpha1")
+    alpha2.fit <- f.parm.fit(model,"alpha2")
     
-    d <- d %>%
-      mutate(variety=str_split(d$`location:variety`,"_",simplify=T)[,2]) %>% 
-      rowwise() %>%
-      mutate_at(vars(variety),~str_replace(.,"[.]"," ")) %>%
-      ungroup()
+    cndc.fit <- left_join(
+      alpha1.fit,
+      alpha2.fit,
+      by = c(".chain", ".iteration", ".draw", "location", "variety", "location:variety")
+    ) %>%
+      relocate(all_of(c("location","variety","location:variety")),.after=.draw)
     
-    d <- d %>%
+    
+    
+    return(cndc.fit)
+    
+  }
+  cndc.fit <- f.cndc.fit(model)
+  
+  # read in previous critical N dilution curve fits
+  f.parm.orig.sum <- function(){
+    
+    tibble(
+      location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
+      variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet"),
+      alpha1_orig=c(5.30,5.32,5.30,5.53,5.19,5.37,5.37,4.57,5.04,5.00,5.00,5.00,5.00,5.00),
+      alpha2_orig=c(0.25,0.36,0.42,0.25,0.25,0.45,0.45,0.42,0.42,0.45,0.45,0.45,0.45,0.45)
+    ) %>%
+      mutate(variety.name=str_replace(variety," ",".")) %>%
+      mutate(`location:variety`=paste(location,"_",variety.name,sep="")) %>%
+      select(-variety.name) %>%
+      relocate(`location:variety`,.after=variety) %>%
       arrange(variety,location) %>%
       mutate_at(vars(variety), ~as_factor(.)) %>%
       mutate_at(vars(variety), ~fct_inorder(.)) %>%
       arrange(location,variety) %>%
+      mutate_at(vars(location,`location:variety`), ~as_factor(.)) %>%
+      mutate_at(vars(location,`location:variety`), ~fct_inorder(.))
+    
+  }
+  parm.orig.sum <- f.parm.orig.sum()
+  
+  f.parm.fit.sum <- function(cndc.fit){
+    
+    parm.fit.sum <- left_join(
+      cndc.fit %>%
+        group_by(location,variety,`location:variety`) %>%
+        summarize(qs = quantile(`location:variety_alpha1`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
+        pivot_wider(names_from=prob,
+                    names_prefix="alpha1_",
+                    values_from=qs) %>%
+        mutate_at(vars(alpha1_0.05,alpha1_0.5,alpha1_0.95),as.numeric),
+      cndc.fit %>%
+        group_by(location,variety,`location:variety`) %>%
+        summarize(qs = quantile(`location:variety_alpha2`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
+        pivot_wider(names_from=prob,
+                    names_prefix="alpha2_",
+                    values_from=qs)%>%
+        mutate_at(vars(alpha2_0.05,alpha2_0.5,alpha2_0.95),as.numeric),
+      by = c("location","variety","location:variety")
+    ) %>%
+      arrange(variety,location) %>%
+      mutate_at(vars(variety), ~as_factor(.)) %>%
+      mutate_at(vars(variety), ~fct_inorder(.)) %>%
+      arrange(location,variety) %>%
+      mutate_at(vars(location,`location:variety`), ~as_factor(.)) %>%
+      mutate_at(vars(location,`location:variety`), ~fct_inorder(.))
+    
+    return(parm.fit.sum)
+    
+  }
+  parm.fit.sum <- f.parm.fit.sum(cndc.fit)
+  
+  f.parm.fit.sum2 <- function(cndc.fit){
+    
+    parm.fit.sum2 <- left_join(
+      cndc.fit %>%
+        group_by(location) %>%
+        summarize(qs = quantile(`location_alpha1`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
+        pivot_wider(names_from=prob,
+                    names_prefix="alpha1_",
+                    values_from=qs) %>%
+        mutate_at(vars(alpha1_0.05,alpha1_0.5,alpha1_0.95),as.numeric),
+      cndc.fit %>%
+        group_by(location) %>%
+        summarize(qs = quantile(`location_alpha2`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
+        pivot_wider(names_from=prob,
+                    names_prefix="alpha2_",
+                    values_from=qs)%>%
+        mutate_at(vars(alpha2_0.05,alpha2_0.5,alpha2_0.95),as.numeric),
+      by = c("location")
+    ) %>%
+      arrange(location) %>%
       mutate_at(vars(location), ~as_factor(.)) %>%
       mutate_at(vars(location), ~fct_inorder(.))
     
-    return(d)
+    return(parm.fit.sum2)
     
   }
-  
-  alpha1.fit <- f.parm.fit(model,"alpha1")
-  alpha2.fit <- f.parm.fit(model,"alpha2")
-  
-  cndc.fit <- left_join(
-    alpha1.fit,
-    alpha2.fit,
-    by = c(".chain", ".iteration", ".draw", "location", "variety", "location:variety")
-  ) %>%
-    relocate(all_of(c("location","variety","location:variety")),.after=.draw)
-  
-  
-  
-  return(cndc.fit)
-  
-}
-cndc.fit <- f.cndc.fit(model)
-
-f.plateau.fit <- function(model,data){
-  
-  d0 <- data %>%
-    select(index,location,variety) %>%
-    left_join(
-      left_join(
-        model %>%
-          spread_draws(b_Bmax_Intercept, r_index__Bmax[index,]) %>%
-          mutate(index_Bmax = b_Bmax_Intercept + r_index__Bmax),
-        model %>%
-          spread_draws(b_Si_Intercept, r_index__Si[index,]) %>%
-          mutate(index_Si = b_Si_Intercept + r_index__Si),
-        by = c(".chain", ".iteration", ".draw", "index")) %>%
-        select(.chain,.iteration,.draw,index,index_Bmax,index_Si) %>%
-        rename(Bmax=index_Bmax,Si=index_Si) %>%
-        mutate_at(vars(index),as.character),
-      by=c("index"))
-  
-  d0$variety.name=str_replace(d0$variety," ",".")
-  d0$`location:variety`=paste(d0$location,"_",d0$variety.name,sep="")
-  d0$variety.name <- NULL
-  d0 <- d0 %>% relocate(`location:variety`,.after=variety)
-  
-  d1 <- d0 %>% 
-    left_join(
-      left_join(
-        model %>%
-          spread_draws(b_alpha1_Intercept, `r_location__alpha1`[`location`,], `r_location:variety__alpha1`[`location:variety`,]) %>%
-          rowwise() %>%
-          filter(is.na(str_match(`location:variety`,location))==F) %>%
-          ungroup() %>%
-          mutate(`location:variety_alpha1` = b_alpha1_Intercept + r_location__alpha1 + `r_location:variety__alpha1`),
-        model %>%
-          spread_draws(b_alpha2_Intercept, `r_location__alpha2`[`location`,], `r_location:variety__alpha2`[`location:variety`,]) %>%
-          rowwise() %>%
-          filter(is.na(str_match(`location:variety`,location))==F) %>%
-          ungroup() %>%
-          mutate(`location:variety_alpha2` = b_alpha2_Intercept + r_location__alpha2 + `r_location:variety__alpha2`),
-        by = c(".chain", ".iteration", ".draw", "location", "location:variety"="location:variety")) %>%
-        select(.chain, .iteration, .draw, location, `location:variety`, `location:variety_alpha1`, `location:variety_alpha2`) %>%
-        mutate_at(vars(location,`location:variety`),as.character),
-      by=c(".chain", ".iteration", ".draw", "location", "location:variety"="location:variety")) %>%
-    mutate(Nc=`location:variety_alpha1`*(Bmax^(-`location:variety_alpha2`)))
-  
-  d2 <- d1 %>%
-    relocate(.chain,.iteration,.draw,.before=index) %>%
-    relocate(`location:variety_alpha1`,`location:variety_alpha2`,.before=Bmax) %>%
-    arrange(variety,location) %>%
-    mutate_at(vars(variety), ~as_factor(.)) %>%
-    mutate_at(vars(variety), ~fct_inorder(.)) %>%
-    arrange(location,variety) %>%
-    mutate_at(vars(location), ~as_factor(.)) %>%
-    mutate_at(vars(location), ~fct_inorder(.))
-  
-  d <- d2
-  
-  return(d)
-  
-}
-plateau.fit <- f.plateau.fit(model,data_cndc)
-
-f.parm.fit.sum <- function(cndc.fit){
-  
-  parm.fit.sum <- left_join(
-    cndc.fit %>%
-      group_by(location,variety,`location:variety`) %>%
-      summarize(qs = quantile(`location:variety_alpha1`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
-      pivot_wider(names_from=prob,
-                  names_prefix="alpha1_",
-                  values_from=qs) %>%
-      mutate_at(vars(alpha1_0.05,alpha1_0.5,alpha1_0.95),as.numeric),
-    cndc.fit %>%
-      group_by(location,variety,`location:variety`) %>%
-      summarize(qs = quantile(`location:variety_alpha2`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
-      pivot_wider(names_from=prob,
-                  names_prefix="alpha2_",
-                  values_from=qs)%>%
-      mutate_at(vars(alpha2_0.05,alpha2_0.5,alpha2_0.95),as.numeric),
-    by = c("location","variety","location:variety")
-  ) %>%
-    arrange(variety,location) %>%
-    mutate_at(vars(variety), ~as_factor(.)) %>%
-    mutate_at(vars(variety), ~fct_inorder(.)) %>%
-    arrange(location,variety) %>%
-    mutate_at(vars(location,`location:variety`), ~as_factor(.)) %>%
-    mutate_at(vars(location,`location:variety`), ~fct_inorder(.))
-  
-  return(parm.fit.sum)
-  
-}
-parm.fit.sum <- f.parm.fit.sum(cndc.fit)
-
-f.parm.fit.sum2 <- function(cndc.fit){
-  
-  parm.fit.sum2 <- left_join(
-    cndc.fit %>%
-      group_by(location) %>%
-      summarize(qs = quantile(`location_alpha1`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
-      pivot_wider(names_from=prob,
-                  names_prefix="alpha1_",
-                  values_from=qs) %>%
-      mutate_at(vars(alpha1_0.05,alpha1_0.5,alpha1_0.95),as.numeric),
-    cndc.fit %>%
-      group_by(location) %>%
-      summarize(qs = quantile(`location_alpha2`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
-      pivot_wider(names_from=prob,
-                  names_prefix="alpha2_",
-                  values_from=qs)%>%
-      mutate_at(vars(alpha2_0.05,alpha2_0.5,alpha2_0.95),as.numeric),
-    by = c("location")
-  ) %>%
-    arrange(location) %>%
-    mutate_at(vars(location), ~as_factor(.)) %>%
-    mutate_at(vars(location), ~fct_inorder(.))
-  
-  return(parm.fit.sum2)
-  
-}
-parm.fit.sum2 <- f.parm.fit.sum2(cndc.fit)
-
-f.plot.data <- function(data,cndc.fit){
+  parm.fit.sum2 <- f.parm.fit.sum2(cndc.fit)
   
   f.cndc.draws <- function(cndc.fit){
     
@@ -273,8 +210,70 @@ f.plot.data <- function(data,cndc.fit){
   }
   cndc.fit.sum <- f.cndc.fit.sum(cndc.draws)
   
+  f.plateau.fit <- function(model,data){
+    
+    d0 <- data %>%
+      select(index,location,variety) %>%
+      left_join(
+        left_join(
+          model %>%
+            spread_draws(b_Bmax_Intercept, r_index__Bmax[index,]) %>%
+            mutate(index_Bmax = b_Bmax_Intercept + r_index__Bmax),
+          model %>%
+            spread_draws(b_Si_Intercept, r_index__Si[index,]) %>%
+            mutate(index_Si = b_Si_Intercept + r_index__Si),
+          by = c(".chain", ".iteration", ".draw", "index")) %>%
+          select(.chain,.iteration,.draw,index,index_Bmax,index_Si) %>%
+          rename(Bmax=index_Bmax,Si=index_Si) %>%
+          mutate_at(vars(index),as.character),
+        by=c("index"))
+    
+    d0$variety.name=str_replace(d0$variety," ",".")
+    d0$`location:variety`=paste(d0$location,"_",d0$variety.name,sep="")
+    d0$variety.name <- NULL
+    d0 <- d0 %>% relocate(`location:variety`,.after=variety)
+    
+    d1 <- d0 %>% 
+      left_join(
+        left_join(
+          model %>%
+            spread_draws(b_alpha1_Intercept, `r_location__alpha1`[`location`,], `r_location:variety__alpha1`[`location:variety`,]) %>%
+            rowwise() %>%
+            filter(is.na(str_match(`location:variety`,location))==F) %>%
+            ungroup() %>%
+            mutate(`location:variety_alpha1` = b_alpha1_Intercept + r_location__alpha1 + `r_location:variety__alpha1`),
+          model %>%
+            spread_draws(b_alpha2_Intercept, `r_location__alpha2`[`location`,], `r_location:variety__alpha2`[`location:variety`,]) %>%
+            rowwise() %>%
+            filter(is.na(str_match(`location:variety`,location))==F) %>%
+            ungroup() %>%
+            mutate(`location:variety_alpha2` = b_alpha2_Intercept + r_location__alpha2 + `r_location:variety__alpha2`),
+          by = c(".chain", ".iteration", ".draw", "location", "location:variety"="location:variety")) %>%
+          select(.chain, .iteration, .draw, location, `location:variety`, `location:variety_alpha1`, `location:variety_alpha2`) %>%
+          mutate_at(vars(location,`location:variety`),as.character),
+        by=c(".chain", ".iteration", ".draw", "location", "location:variety"="location:variety")) %>%
+      mutate(Nc=`location:variety_alpha1`*(Bmax^(-`location:variety_alpha2`)))
+    
+    d2 <- d1 %>%
+      relocate(.chain,.iteration,.draw,.before=index) %>%
+      relocate(`location:variety_alpha1`,`location:variety_alpha2`,.before=Bmax) %>%
+      arrange(variety,location) %>%
+      mutate_at(vars(variety), ~as_factor(.)) %>%
+      mutate_at(vars(variety), ~fct_inorder(.)) %>%
+      arrange(location,variety) %>%
+      mutate_at(vars(location), ~as_factor(.)) %>%
+      mutate_at(vars(location), ~fct_inorder(.))
+    
+    d <- d2
+    
+    return(d)
+    
+  }
+  plateau.fit <- f.plateau.fit(model,data)
+  
   f.plateau.fit.sum <- function(plateau.fit){
     
+    #q=0.5
     f.plateau.fit.quantile <- function(q){
       
       var1 <- paste("W",q,sep="_")
@@ -285,18 +284,18 @@ f.plot.data <- function(data,cndc.fit){
           mutate(W=Bmax,
                  N=Nc) %>%
           group_by(location,variety,`location:variety`,index) %>%
-          summarize_at(vars(W,N),~quantile(.,c(q)), prob = c(q), .groups="drop"),
+          summarize_at(vars(W,N),~quantile(.,c(q),na.rm=T), prob = c(q), .groups="drop"),
         # summarize_at(vars(W,N),~quantile(.,c(0.50)), prob = c(0.50), .groups="drop"),
         plateau.fit %>%
           mutate(W=Bmax,
                  N=7.0) %>%
           group_by(location,variety,`location:variety`,index) %>%
-          summarize_at(vars(W,N),~quantile(.,c(q)), prob = c(q), .groups="drop"),
+          summarize_at(vars(W,N),~quantile(.,c(q),na.rm=T), prob = c(q), .groups="drop"),
         plateau.fit %>%
           mutate(W=Bmax + Si * (0-Nc),
                  N=0) %>%
           group_by(location,variety,`location:variety`,index) %>%
-          summarize_at(vars(W,N),~quantile(.,c(q)), prob = c(q), .groups="drop")
+          summarize_at(vars(W,N),~quantile(.,c(q),na.rm=T), prob = c(q), .groups="drop")
       ) %>%
         ungroup() %>%
         mutate_at(vars(W,N),as.numeric) %>%
@@ -378,12 +377,16 @@ f.plot.data <- function(data,cndc.fit){
   out <- list(c=c,
               d=d,
               p=plateau.fit.sum,
-              r=r)
+              r=r,
+              cndc.fit=cndc.fit,
+              parm.fit.sum=parm.fit.sum,
+              parm.fit.sum2=parm.fit.sum2,
+              parm.orig.sum=parm.orig.sum)
   
   return(out)
   
 }
-plot.data <- f.plot.data(data_cndc,cndc.fit)
+plot.data <- f.plot.data(data_cndc,model)
 
 #Free Unsued Memory
 gc()
@@ -395,8 +398,8 @@ plot.colors.2 <- c("#CA1619","#33a02c","#ff7f00","#1F78B4")
 
 # table 1 - distribution of alpha parameter values for each parameter independently #####
 
-tab1 <- bind_rows(parm.fit.sum,
-                  parm.fit.sum2 %>%
+plot.data$tab1 <- bind_rows(plot.data$parm.fit.sum,
+                  plot.data$parm.fit.sum2 %>%
                     mutate(variety=".",
                            `location:variety`=".")) %>%
   arrange(location,variety)
@@ -410,7 +413,7 @@ tab1 <- bind_rows(parm.fit.sum,
 # alpha1_0.05 <- 4.75
 # alpha1_0.95 <- 5.25
 
-f.fig1 <- function(cndc.fit,tab1,parm,.colors1,.colors2){
+f.fig1 <- function(plot.data,parm,.colors1,.colors2){
   
   var4 <- paste("location_",parm,sep="")
   var5 <- paste("location:variety_",parm,sep="")
@@ -445,12 +448,12 @@ f.fig1 <- function(cndc.fit,tab1,parm,.colors1,.colors2){
     parm == "alpha2" ~ "alpha2_lab"
   )
   
-  t <- tab1 %>%
+  t <- plot.data$tab1 %>%
     mutate(alpha1_lab=paste(format(round(alpha1_0.5,2),nsmall=2),' (',format(round(alpha1_0.05,2),nsmall=2),', ',format(round(alpha1_0.95,2),nsmall=2),')',sep=''),
            alpha2_lab=paste(format(round(alpha2_0.5,3),nsmall=3),' (',format(round(alpha2_0.05,3),nsmall=3),', ',format(round(alpha2_0.95,3),nsmall=3),')',sep=''))
   
   p1 <- ggplot() +
-    stat_halfeye(data=cndc.fit, aes(x = !!sym(var5), y = reorder(variety, desc(variety)), fill=`location:variety`),.width = c(0.1, 0.90),size=2) +
+    stat_halfeye(data=plot.data$cndc.fit, aes(x = !!sym(var5), y = reorder(variety, desc(variety)), fill=`location:variety`),.width = c(0.1, 0.90),size=2) +
     geom_text(data=filter(t,variety!="."), aes(x=parm.pos.x,y=variety,label=!!sym(parm.lab.x)),nudge_y=0.1,hjust=1,vjust=0,size=3,color="#4d4d4d") + #label="5.00 (4.75,5.25)"
     facet_grid(location~., scales = "free_y", space = "free") +
     coord_cartesian(xlim=coord.x) +
@@ -466,7 +469,7 @@ f.fig1 <- function(cndc.fit,tab1,parm,.colors1,.colors2){
   fg1 <- gtable_frame(g1, height = unit(3, "null")) #debug = TRUE,
   
   p2 <- ggplot() +
-    stat_halfeye(data=cndc.fit, aes(x = !!sym(var4), y = reorder(location, desc(location)), fill=location),.width = c(0.1, 0.90),size=2) +
+    stat_halfeye(data=plot.data$cndc.fit, aes(x = !!sym(var4), y = reorder(location, desc(location)), fill=location),.width = c(0.1, 0.90),size=2) +
     geom_text(data=filter(t,variety=="."), aes(x=parm.pos.x,y=location,label=!!sym(parm.lab.x)),nudge_y=0.1,hjust=1,vjust=0,size=3,color="#4d4d4d") + #label="5.00 (4.75,5.25)"
     coord_cartesian(xlim=coord.x) +
     labs(x=label.x) +
@@ -487,10 +490,10 @@ f.fig1 <- function(cndc.fit,tab1,parm,.colors1,.colors2){
   
 }
 
-fig1_a <- f.fig1(cndc.fit,tab1,"alpha1",plot.colors.1,plot.colors.2)
+fig1_a <- f.fig1(plot.data,"alpha1",plot.colors.1,plot.colors.2)
 ggsave(filename="manuscript/images/figure1_a.pdf",plot=fig1_a,height=4.5,width=3,units="in",scale=1.3)
 ggsave(filename="manuscript/images/figure1_a.png",plot=fig1_a,height=4.5,width=3,units="in",scale=1.3,dpi=1000)
-fig1_b <- f.fig1(cndc.fit,tab1,"alpha2",plot.colors.1,plot.colors.2)
+fig1_b <- f.fig1(plot.data,"alpha2",plot.colors.1,plot.colors.2)
 ggsave(filename="manuscript/images/figure1_b.pdf",plot=fig1_b,height=4.5,width=3,units="in",scale=1.3)
 ggsave(filename="manuscript/images/figure1_b.png",plot=fig1_b,height=4.5,width=3,units="in",scale=1.3,dpi=1000)
 
@@ -500,11 +503,11 @@ ggsave(filename="manuscript/images/figure1_b.png",plot=fig1_b,height=4.5,width=3
 # .variety = "Innovator"
 # .color = "#e41a1c"
 
-f.fig2 <- function(cndc.fit,.location,.variety,.color){
+f.fig2 <- function(plot.data,.location,.variety,.color){
   
   var3 <- paste("       ",.variety,sep="")
   
-  d <- cndc.fit %>%
+  d <- plot.data$cndc.fit %>%
     filter(location %in% .location) %>%
     filter(variety %in% .variety)
   
@@ -529,7 +532,7 @@ f.fig2 <- function(cndc.fit,.location,.variety,.color){
     guides(color="none") +
     labs(caption=var3)
   
-  p2 <- ggMarginal(p1, type="density", data = cndc.fit, groupColour = T)
+  p2 <- ggMarginal(p1, type="density", data = plot.data$cndc.fit, groupColour = T)
   
   return(p2)
   
@@ -541,10 +544,12 @@ fig2.list <- list(
   color=plot.colors.1
 )
 
-fig2.sub <- pmap(fig2.list,~f.fig2(cndc.fit,
+fig2.sub <- pmap(fig2.list,~f.fig2(plot.data,
                                    .location=..1,
                                    .variety=..2,
                                    .color=..3))
+
+# f.fig2(plot.data,fig2.list$location[[14]],fig2.list$variety[[14]],fig2.list$color[[14]])
 
 # fig2.sub[[1]]
 
@@ -735,9 +740,9 @@ ggsave(filename="manuscript/images/figure3.png",plot=fig3,height=4,width=6,units
 # .location = "Minnesota"
 # .variety = "Russet Burbank"
 
-f.tab2 <- function(plot.data,tab1,.location,.variety){
+f.tab2 <- function(plot.data,.location,.variety){
   
-  t1 <- tab1 %>%
+  t1 <- plot.data$tab1 %>%
     filter(variety!=".") %>%
     filter(location %in% .location) %>%
     filter(variety %in% .variety)
@@ -827,7 +832,6 @@ tab2.list <- list(
 )
 
 tab2 <- pmap(tab2.list,~f.tab2(plot.data,
-                               tab1,
                                .location=..1,
                                .variety=..2)) %>% bind_rows()
 
@@ -851,7 +855,7 @@ f.fig4 <- function(plot.data,.location,.variety,.color){
     filter(location %in% .location) %>%
     filter(variety %in% .variety)
   
-  parm <- parm.fit.sum %>%
+  parm <- plot.data$parm.fit.sum %>%
     filter(location %in% .location) %>%
     filter(variety %in% .variety)
   
@@ -1008,7 +1012,7 @@ ggsave(filename="manuscript/images/figure4.png",plot=fig4,height=4,width=6,units
 # .location_ref = "Minnesota"
 # .variety_ref = "Russet Burbank"
 
-f.fig5 <- function(plot.data,parm.fit.sum,.location_ref,.variety_ref,.location_comp,.variety_comp){
+f.fig5 <- function(plot.data,.location_ref,.variety_ref,.location_comp,.variety_comp){
   
   var1 <- "W"
   var2 <- "%N - Diff"
@@ -1055,6 +1059,22 @@ f.fig5 <- function(plot.data,parm.fit.sum,.location_ref,.variety_ref,.location_c
   r_plot <- r %>%
     bind_rows(r_fix %>% mutate(N_class=TRUE)) %>%
     bind_rows(r_fix %>% mutate(N_class=FALSE))
+  
+  r_range <- r %>% 
+    filter(N_class==TRUE) %>%
+    # group_by(location_ref,variety,`location:variety`) %>%
+    group_by(location_ref, variety_ref, `location:variety_ref`, 
+             location_comp, variety_comp, `location:variety_comp`) %>%
+    summarize(range_min=min(W),range_max=max(W),.groups="drop")
+  
+  if(lengths(r_range[,1])==0){
+    r_range <- r %>%
+      select(c("location_ref", "variety_ref", "location:variety_ref", 
+               "location_comp", "variety_comp", "location:variety_comp")) %>%
+      distinct() %>%
+      mutate(range_min=NA,
+             range_max=NA)
+  }
 
   g <- ggplot() +
     geom_ribbon(data=r_plot,aes(x=W,ymin=N_diff_0.05,ymax=N_diff_0.95),alpha=0.20) + #,fill="#737373"
@@ -1078,13 +1098,16 @@ f.fig5 <- function(plot.data,parm.fit.sum,.location_ref,.variety_ref,.location_c
     
     if(var5%in%c("Minnesota","Belgium")) {
       g + 
-        scale_y_continuous(limits=c(-0.33,0.33),n.breaks=5)
+        scale_y_continuous(limits=c(-0.33,0.33),n.breaks=5) +
+        geom_text(data=r_range,aes(x=1,y=0.33,label=paste0("[",format(round(range_min,1),nsmall=1),", ",format(round(range_max,1),nsmall=1),"]")),size=2.0,hjust="inward",vjust=1)
     } else if(var5=="Canada"){
       g + 
-        scale_y_continuous(limits=c(-0.5,1.0),n.breaks=5)
+        scale_y_continuous(limits=c(-0.5,1.0),n.breaks=5) +
+        geom_text(data=r_range,aes(x=1,y=1.0,label=paste0("[",format(round(range_min,1),nsmall=1),", ",format(round(range_max,1),nsmall=1),"]")),size=2.0,hjust="inward",vjust=1)
     } else if(var5=="Argentina"){
       g + 
-        scale_y_continuous(limits=c(-0.5,3.0),n.breaks=5)
+        scale_y_continuous(limits=c(-0.5,3.0),n.breaks=5) +
+        geom_text(data=r_range,aes(x=1,y=3.0,label=paste0("[",format(round(range_min,1),nsmall=1),", ",format(round(range_max,1),nsmall=1),"]")),size=2.0,hjust="inward",vjust=1)
     } else {
       g
     }
@@ -1095,12 +1118,10 @@ fig5.list <- list(
   location_ref=c("Minnesota"),
   variety_ref=c("Russet Burbank"),
   location_comp=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
-  variety_comp=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet"),
-  color=plot.colors.1
+  variety_comp=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet")
 )
 
 fig5.sub <- pmap(fig5.list,~f.fig5(plot.data,
-                                   parm.fit.sum,
                                    .location_ref=..1,
                                    .variety_ref=..2,
                                    .location_comp=..3,
@@ -1179,12 +1200,124 @@ fig5 <- grid.arrange(fig5.sub[[1]],fig5.sub[[2]],fig5.sub[[3]],fig5.sub[[4]],fig
 ggsave(filename="manuscript/images/figure5.pdf",plot=fig5,height=4,width=6,units="in",scale=1.0)
 ggsave(filename="manuscript/images/figure5.png",plot=fig5,height=4,width=6,units="in",scale=1.0,dpi=1000)
 
+# figure 5 table - tabular values for comparing curves to each other fits ------------
+
+# .location_comp = "Belgium"
+# .variety_comp = "Bintje"
+# .location_ref = "Minnesota"
+# .variety_ref = "Russet Burbank"
+
+f.fig5.tab <- function(plot.data,.location_ref,.variety_ref,.location_comp,.variety_comp){
+  
+  var1 <- "W"
+  var2 <- "%N - Diff"
+  var3 <- paste(.location_ref,.variety_ref,sep=" - ")
+  var4 <- .variety_comp
+  var5 <- .location_comp
+  
+  r <- left_join(
+    plot.data$r %>%
+      filter(location %in% .location_ref) %>%
+      filter(variety %in% .variety_ref) %>%
+      rename(N_ref=N) %>%
+      rename(location_ref=location,
+             variety_ref=variety,
+             `location:variety_ref`=`location:variety`),
+    plot.data$r %>%
+      filter(location %in% .location_comp) %>%
+      filter(variety %in% .variety_comp) %>%
+      rename(N_comp=N) %>%
+      rename(location_comp=location,
+             variety_comp=variety,
+             `location:variety_comp`=`location:variety`),
+    by=c(".draw","W")
+  ) %>%
+    drop_na()
+  
+  r <- r %>%
+    mutate(N_diff = N_comp - N_ref) %>% 
+    group_by(location_ref, variety_ref, `location:variety_ref`, 
+             location_comp, variety_comp, `location:variety_comp`, 
+             W) %>% 
+    # median_qi(N_diff, .width = 0.9) %>% 
+    summarize(qs = quantile(`N_diff`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
+    pivot_wider(names_from=prob,
+                names_prefix="N_diff_",#"N_location:variety_",
+                values_from=qs) %>%
+    mutate_at(vars(N_diff_0.05,N_diff_0.5,N_diff_0.95),as.numeric) %>%
+    mutate(N_class = N_diff_0.05 < 0 & N_diff_0.95 > 0)
+  
+  r_fix <- r %>%
+    slice(1) %>%
+    mutate_at(vars(W,N_diff_0.05,N_diff_0.5,N_diff_0.95,N_class),~NA)
+  
+  r_plot <- r %>%
+    bind_rows(r_fix %>% mutate(N_class=TRUE)) %>%
+    bind_rows(r_fix %>% mutate(N_class=FALSE))
+  
+  r_range <- r %>% 
+    filter(N_class==TRUE) %>%
+    # group_by(location_ref,variety,`location:variety`) %>%
+    group_by(location_ref, variety_ref, `location:variety_ref`, 
+             location_comp, variety_comp, `location:variety_comp`) %>%
+    summarize(range_min=min(W),range_max=max(W),.groups="drop")
+  
+  if(lengths(r_range[,1])==0){
+    r_range <- r %>%
+      select(c("location_ref", "variety_ref", "location:variety_ref", 
+               "location_comp", "variety_comp", "location:variety_comp")) %>%
+      distinct() %>%
+      mutate(range_min=NA,
+             range_max=NA)
+  }
+  
+  out <- r %>%
+    filter(N_class==FALSE) %>%
+    mutate(across(N_diff_0.5,abs)) %>%
+    group_by(location_ref, variety_ref, `location:variety_ref`, 
+             location_comp, variety_comp, `location:variety_comp`) %>%
+    summarize(across(N_diff_0.5,max),.groups="drop") 
+  
+  if(lengths(out[,1])==0){
+    out <- r %>%
+      select(c("location_ref", "variety_ref", "location:variety_ref", 
+               "location_comp", "variety_comp", "location:variety_comp")) %>%
+      distinct() %>%
+      mutate(N_diff_0.5=NA)
+  }
+  
+  out <- out %>%
+    bind_cols(r_range %>% select(-c("location_ref", "variety_ref", "location:variety_ref", 
+                                    "location_comp", "variety_comp", "location:variety_comp"))) %>%
+    rename(N_max_diff=N_diff_0.5,
+           W_nodiff_min=range_min,
+           W_nodiff_max=range_max)
+  
+  return(out)
+  
+}
+
+fig5.tab.list <- list(
+  location_ref=c("Minnesota"),
+  variety_ref=c("Russet Burbank"),
+  location_comp=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
+  variety_comp=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet")
+)
+
+fig5.tab <- pmap(fig5.tab.list,~f.fig5.tab(plot.data,
+                                           .location_ref=..1,
+                                           .variety_ref=..2,
+                                           .location_comp=..3,
+                                           .variety_comp=..4)) %>% bind_rows()
+
+write_csv(fig5.tab,"manuscript/tables/figure5_table.csv")
+
 # figure 6 - comparing these curves to previous curve fits -----------------
 
 # .location = "Belgium"
 # .variety = "Bintje"
 
-f.fig6 <- function(plot.data,parm.fit.sum,parm.orig.sum,.location,.variety){
+f.fig6 <- function(plot.data,.location,.variety){
   
   var1 <- "W"
   var2 <- "%N - Diff"
@@ -1198,11 +1331,11 @@ f.fig6 <- function(plot.data,parm.fit.sum,parm.orig.sum,.location,.variety){
            N_ref_0.5=N_0.5,
            N_ref_0.95=N_0.95)
   
-  parm_ref <- parm.fit.sum %>%
+  parm_ref <- plot.data$parm.fit.sum %>%
     filter(location %in% .location) %>%
     filter(variety %in% .variety)
   
-  parm_orig <- parm.orig.sum %>%
+  parm_orig <- plot.data$parm.orig.sum %>%
     filter(location %in% .location) %>%
     filter(variety %in% .variety)
   
@@ -1240,14 +1373,15 @@ f.fig6 <- function(plot.data,parm.fit.sum,parm.orig.sum,.location,.variety){
     c_range <- c %>%
       select(location,variety,`location:variety`) %>%
       distinct() %>%
-      mutate(range_min=0,
-             range_max=0)
+      mutate(range_min=NA,
+             range_max=NA)
   }
   
-  ggplot() +
+  g <- ggplot() +
     geom_ribbon(data=c,aes(x=W,ymin=N_ref_lo,ymax=N_ref_up),alpha=0.20) + #,fill="#737373"
     geom_point(data=c,aes(x=W,y=N_orig_norm,group=`location:variety`,color=N_class),alpha=1.0,size=0.2) + #linetype=1,
     geom_line(data=c,aes(x=W,y=0,group=`location:variety`),linetype=1,alpha=1.0) +
+    geom_text(data=c_range,aes(x=1,y=1.5,label=paste0("[",format(round(range_min,1),nsmall=1),", ",format(round(range_max,1),nsmall=1),"]")),size=2.0,hjust="inward",vjust=1) +
     theme_classic() +
     labs(x=var1,
          y=var2,
@@ -1268,14 +1402,11 @@ f.fig6 <- function(plot.data,parm.fit.sum,parm.orig.sum,.location,.variety){
 }
 
 fig6.list <- list(
-  location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
-  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet"),
-  color=plot.colors.1
+  location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada"), #,"Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
+  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody") #,"Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet"),
 )
 
 fig6.sub <- pmap(fig6.list,~f.fig6(plot.data,
-                                   parm.fit.sum,
-                                   parm.orig.sum,
                                    .location=..1,
                                    .variety=..2))
 
@@ -1335,12 +1466,103 @@ fig6 <- grid.arrange(fig6.sub[[1]],fig6.sub[[2]],fig6.sub[[3]],fig6.sub[[4]],fig
 ggsave(filename="manuscript/images/figure6.pdf",plot=fig6,height=2.8,width=6,units="in",scale=1.0)
 ggsave(filename="manuscript/images/figure6.png",plot=fig6,height=2.8,width=6,units="in",scale=1.0,dpi=1000)
 
+# figure 6 table - tabular values for the previous curve fit comparison --------------------
+
+# .location = "Canada"
+# .variety = "Shepody"
+
+f.fig6.tab <- function(plot.data,.location,.variety){
+  
+  var1 <- "W"
+  var2 <- "%N - Diff"
+  var3 <- paste(.location,.variety,sep=" - ")
+  var4 <- .variety
+  
+  c_ref <- plot.data$c %>%
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety) %>%
+    rename(N_ref_0.05=N_0.05,
+           N_ref_0.5=N_0.5,
+           N_ref_0.95=N_0.95)
+  
+  parm_ref <- plot.data$parm.fit.sum %>%
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety)
+  
+  parm_orig <- plot.data$parm.orig.sum %>%
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety)
+  
+  c_orig <- plot.data$c %>%
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety) %>%
+    select(location,variety,`location:variety`,W) %>%
+    mutate(alpha1_orig=parm_orig$alpha1_orig,
+           alpha2_orig=parm_orig$alpha2_orig) %>%
+    mutate(N_orig=alpha1_orig*W^(-alpha2_orig))
+  
+  c <- left_join(
+    c_ref,
+    c_orig %>%
+      select(W,N_orig),
+    by="W"
+  ) %>% 
+    mutate(N_ref_norm=0,
+           N_ref_up=N_ref_0.95-N_ref_0.5,
+           N_ref_lo=N_ref_0.05-N_ref_0.5,
+           N_orig_norm=N_orig-N_ref_0.5) %>%
+    mutate(N_class=case_when(
+      (N_orig_norm <= N_ref_up) & (N_orig_norm >= N_ref_lo) ~ T,
+      (N_orig_norm > N_ref_up) ~ F,
+      (N_orig_norm < N_ref_lo) ~ F,
+      TRUE ~ NA)) %>%
+    na.omit()
+  
+  c_range <- c %>% 
+    filter(N_class==TRUE) %>%
+    group_by(location,variety,`location:variety`) %>%
+    summarize(range_min=min(W),range_max=max(W),.groups="drop")
+  
+  if(lengths(c_range[,1])==0){
+    c_range <- c %>%
+      select(location,variety,`location:variety`) %>%
+      distinct() %>%
+      mutate(range_min=NA,
+             range_max=NA)
+  }
+  
+  out <- c %>%
+    filter(N_class==FALSE) %>%
+    mutate(across(N_orig_norm,abs)) %>%
+    group_by(location,variety,location:variety) %>%
+    summarize(across(N_orig_norm,max),.groups="drop") %>%
+    bind_cols(c_range %>% select(-c("location","variety","location:variety"))) %>%
+    rename(N_max_diff=N_orig_norm,
+           W_nodiff_min=range_min,
+           W_nodiff_max=range_max)
+  
+  return(out)
+  
+}
+
+fig6.tab.list <- list(
+  location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada"), #,"Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
+  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody") #,"Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet"),
+)
+
+fig6.tab <- pmap(fig6.tab.list,~f.fig6.tab(plot.data,
+                                           .location=..1,
+                                           .variety=..2)) %>% bind_rows()
+
+write_csv(fig6.tab,"manuscript/tables/figure6_table.csv")
+
+
 # appendix 1 - plateau model fit with point data for each date shown for each variety x location ------------------
 
 # .location = "Minnesota"
 # .variety = "Russet Burbank"
 
-f.appx1 <- function(plot.data,tab1,.location,.variety){
+f.appx1 <- function(plot.data,.location,.variety){
   
   c <- plot.data$c %>%
     filter(location%in%.location) %>%
@@ -1351,7 +1573,7 @@ f.appx1 <- function(plot.data,tab1,.location,.variety){
     filter(location%in%.location) %>%
     filter(variety%in%.variety) %>%
     mutate_at(vars(location,variety,`location:variety`), ~fct_drop(.)) %>%
-    left_join(tab1 %>%
+    left_join(plot.data$tab1 %>%
                 select(location,variety,`location:variety`,alpha1_0.5,alpha2_0.5),
               by = c("location", "variety", "location:variety")) %>%
     mutate(Nc=alpha1_0.5*(W^(-alpha2_0.5))) %>%
@@ -1401,59 +1623,59 @@ f.appx1 <- function(plot.data,tab1,.location,.variety){
 
 f.appx1.join <- function(){
   
-  appx1_a <- f.appx1(plot.data,tab1,.location=c("Argentina"),.variety=c("Bannock Russet"))
+  appx1_a <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Bannock Russet"))
   g.appx1_a <- ggplotGrob(appx1_a)
   fg.appx1_a <- gtable_frame(g.appx1_a, height = unit(5*(2/7), "null"), width = unit(6, "null"))
 
-  appx1_b <- f.appx1(plot.data,tab1,.location=c("Argentina"),.variety=c("Gem Russet"))
+  appx1_b <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Gem Russet"))
   g.appx1_b <- ggplotGrob(appx1_b)
   fg.appx1_b <- gtable_frame(g.appx1_b, height = unit(5*(3/7), "null"), width = unit(6, "null"))
   
-  appx1_c <- f.appx1(plot.data,tab1,.location=c("Argentina"),.variety=c("Innovator"))
+  appx1_c <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Innovator"))
   g.appx1_c <- ggplotGrob(appx1_c)
   fg.appx1_c <- gtable_frame(g.appx1_c, height = unit(5*(3/7), "null"), width = unit(6, "null"))
   
-  appx1_d <- f.appx1(plot.data,tab1,.location=c("Argentina"),.variety=c("Markies Russet"))
+  appx1_d <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Markies Russet"))
   g.appx1_d <- ggplotGrob(appx1_d)
   fg.appx1_d <- gtable_frame(g.appx1_d, height = unit(5*(2/7), "null"), width = unit(6, "null"))
   
-  appx1_e <- f.appx1(plot.data,tab1,.location=c("Argentina"),.variety=c("Umatilla Russet"))
+  appx1_e <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Umatilla Russet"))
   g.appx1_e <- ggplotGrob(appx1_e)
   fg.appx1_e <- gtable_frame(g.appx1_e, height = unit(5*(2/7), "null"), width = unit(6, "null"))
   
-  appx1_f <- f.appx1(plot.data,tab1,.location=c("Belgium"),.variety=c("Bintje"))
+  appx1_f <- f.appx1(plot.data,.location=c("Belgium"),.variety=c("Bintje"))
   g.appx1_f <- ggplotGrob(appx1_f)
   fg.appx1_f <- gtable_frame(g.appx1_f, height = unit(5*(7/7), "null"), width = unit(6, "null"))
   
-  appx1_g <- f.appx1(plot.data,tab1,.location=c("Belgium"),.variety=c("Charlotte"))
+  appx1_g <- f.appx1(plot.data,.location=c("Belgium"),.variety=c("Charlotte"))
   g.appx1_g <- ggplotGrob(appx1_g)
   fg.appx1_g <- gtable_frame(g.appx1_g, height = unit(5*(3/7), "null"), width = unit(6, "null"))
   
-  appx1_h <- f.appx1(plot.data,tab1,.location=c("Canada"),.variety=c("Russet Burbank"))
+  appx1_h <- f.appx1(plot.data,.location=c("Canada"),.variety=c("Russet Burbank"))
   g.appx1_h <- ggplotGrob(appx1_h)
   fg.appx1_h <- gtable_frame(g.appx1_h, height = unit(5*(4/7), "null"), width = unit(6, "null"))
   
-  appx1_i <- f.appx1(plot.data,tab1,.location=c("Canada"),.variety=c("Shepody"))
+  appx1_i <- f.appx1(plot.data,.location=c("Canada"),.variety=c("Shepody"))
   g.appx1_i <- ggplotGrob(appx1_i)
   fg.appx1_i <- gtable_frame(g.appx1_i, height = unit(5*(4/7), "null"), width = unit(6, "null"))
   
-  appx1_j <- f.appx1(plot.data,tab1,.location=c("Minnesota"),.variety=c("Clearwater"))
+  appx1_j <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Clearwater"))
   g.appx1_j <- ggplotGrob(appx1_j)
   fg.appx1_j <- gtable_frame(g.appx1_j, height = unit(5*(2/7), "null"), width = unit(6, "null"))
   
-  appx1_k <- f.appx1(plot.data,tab1,.location=c("Minnesota"),.variety=c("Dakota Russet"))
+  appx1_k <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Dakota Russet"))
   g.appx1_k <- ggplotGrob(appx1_k)
   fg.appx1_k <- gtable_frame(g.appx1_k, height = unit(5*(2/7), "null"), width = unit(6, "null"))
   
-  appx1_l <- f.appx1(plot.data,tab1,.location=c("Minnesota"),.variety=c("Easton"))
+  appx1_l <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Easton"))
   g.appx1_l <- ggplotGrob(appx1_l)
   fg.appx1_l <- gtable_frame(g.appx1_l, height = unit(5*(2/7), "null"), width = unit(6, "null"))
   
-  appx1_m <- f.appx1(plot.data,tab1,.location=c("Minnesota"),.variety=c("Russet Burbank"))
+  appx1_m <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Russet Burbank"))
   g.appx1_m <- ggplotGrob(appx1_m)
   fg.appx1_m <- gtable_frame(g.appx1_m, height = unit(5*(7/7), "null"), width = unit(6, "null"))
   
-  appx1_n <- f.appx1(plot.data,tab1,.location=c("Minnesota"),.variety=c("Umatilla Russet"))
+  appx1_n <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Umatilla Russet"))
   g.appx1_n <- ggplotGrob(appx1_n)
   fg.appx1_n <- gtable_frame(g.appx1_n, height = unit(5*(2/7), "null"), width = unit(6, "null"))
   
@@ -1473,7 +1695,7 @@ ggsave(filename="manuscript/images/appendix1.png",plot=fg,height=40,width=6,scal
 # .location = "Minnesota"
 # .variety = "Russet Burbank"
 
-f.appx2 <- function(plot.data,parm.fit.sum,.location,.variety){
+f.appx2 <- function(plot.data,.location,.variety){
   
   var1 <- "W"
   var2 <- "%N - Diff"
@@ -1531,7 +1753,7 @@ f.appx2 <- function(plot.data,parm.fit.sum,.location,.variety){
     geom_ribbon(data=r_plot,aes(x=W,ymin=N_diff_0.05,ymax=N_diff_0.95),alpha=0.20) + #,fill="#737373"
     geom_point(data=r_plot,aes(x=W,y=N_diff_0.5,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.2) + #linetype=1,
     geom_line(data=r_plot,aes(x=W,y=0,group=`location:variety_comp`),linetype=1,alpha=1.0) +
-    geom_text(data=r_range,aes(x=2,y=0.5,label=paste0("(",format(round(range_min,1),nsmall=1)," , ",format(round(range_max,1),nsmall=1)),")"),size=2.5,hjust="inward") +
+    geom_text(data=r_range,aes(x=1,y=3,label=paste0("[",format(round(range_min,1),nsmall=1),", ",format(round(range_max,1),nsmall=1),"]")),size=2.5,hjust="inward",vjust=1) +
     theme_classic() +
     facet_wrap(vars(`location:variety_comp`),scales="free_x",ncol=5) + 
     labs(x=var1,
@@ -1540,24 +1762,8 @@ f.appx2 <- function(plot.data,parm.fit.sum,.location,.variety){
     guides(color="none") +
     scale_color_manual(values=c("#ca0020","#0571b0")) +
     scale_y_continuous(n.breaks=4) +
+    coord_cartesian(ylim=c(-3.0,3.0)) +
     scale_x_continuous(limits=c(0,NA),breaks=c(0,5,10,15,20,25,30))
-
-  # ggplot() +
-  #   geom_ribbon(data=c,aes(x=W,ymin=N_ref_lo,ymax=N_ref_up),alpha=0.20) + #,fill="#737373"
-  #   geom_point(data=c,aes(x=W,y=N_comp_norm,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.1) + #linetype=1,
-  #   geom_line(data=c,aes(x=W,y=N_ref_norm,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.2) +
-  #   geom_line(data=c,aes(x=W,y=N_ref_lo,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.1) +
-  #   geom_line(data=c,aes(x=W,y=N_ref_up,group=`location:variety_comp`),linetype=1,alpha=1.0,size=0.1) +
-  #   geom_text(data=c_range,aes(x=2,y=0.5,label=format(round(range_max,1),nsmall=1)),size=2.5,hjust="inward") +
-  #   theme_classic() +
-  #   facet_wrap(vars(`location:variety_comp`),scales="free_x",ncol=5) + 
-  #   labs(x=var1,
-  #        y=var2,
-  #        title=var3) +
-  #   guides(color="none") +
-  #   scale_color_manual(values=c("#ca0020","#0571b0")) +
-  #   scale_y_continuous(n.breaks=4) +
-  #   scale_x_continuous(limits=c(0,NA),breaks=c(0,5,10,15,20,25,30))
   
 }
 
@@ -1567,7 +1773,6 @@ appx2.list <- list(
 )
 
 appx2_sub <- pmap(appx2.list,~f.appx2(plot.data,
-                                      parm.fit.sum,
                                       .location=..1,
                                       .variety=..2))
 
