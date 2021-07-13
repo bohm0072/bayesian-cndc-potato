@@ -1,0 +1,15 @@
+location_ref,variety_ref,location:variety_ref,location_comp,variety_comp,location:variety_comp,N_max_diff,W_nodiff_min,W_nodiff_max
+Minnesota,Russet Burbank,Minnesota_Russet.Burbank,Argentina,Bannock Russet,Argentina_Bannock.Russet,2.3826589918349566,1,1
+Minnesota,Russet Burbank,Minnesota_Russet.Burbank,Argentina,Gem Russet,Argentina_Gem.Russet,2.0285682265459544,1,1
+Minnesota,Russet Burbank,Minnesota_Russet.Burbank,Argentina,Innovator,Argentina_Innovator,1.765390744897308,1,1
+Minnesota,Russet Burbank,Minnesota_Russet.Burbank,Argentina,Markies Russet,Argentina_Markies.Russet,2.247675469400161,1,1
+Minnesota,Russet Burbank,Minnesota_Russet.Burbank,Argentina,Umatilla Russet,Argentina_Umatilla.Russet,2.143284670954226,1,1
+Minnesota,Russet Burbank,Minnesota_Russet.Burbank,Belgium,Bintje,Belgium_Bintje,NA,1,12.200000000000001
+Minnesota,Russet Burbank,Minnesota_Russet.Burbank,Belgium,Charlotte,Belgium_Charlotte,NA,1,12.100000000000001
+Minnesota,Russet Burbank,Minnesota_Russet.Burbank,Canada,Russet Burbank,Canada_Russet.Burbank,0.25655592312465003,1,1.9
+Minnesota,Russet Burbank,Minnesota_Russet.Burbank,Canada,Shepody,Canada_Shepody,0.5590336609504912,1,1.3
+Minnesota,Russet Burbank,Minnesota_Russet.Burbank,Minnesota,Clearwater,Minnesota_Clearwater,NA,1,13.3
+Minnesota,Russet Burbank,Minnesota_Russet.Burbank,Minnesota,Dakota Russet,Minnesota_Dakota.Russet,NA,1,15.4
+Minnesota,Russet Burbank,Minnesota_Russet.Burbank,Minnesota,Easton,Minnesota_Easton,NA,1,18.400000000000002
+Minnesota,Russet Burbank,Minnesota_Russet.Burbank,Minnesota,Russet Burbank,Minnesota_Russet.Burbank,0,NA,NA
+Minnesota,Russet Burbank,Minnesota_Russet.Burbank,Minnesota,Umatilla Russet,Minnesota_Umatilla.Russet,NA,1,14.8

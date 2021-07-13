@@ -33,6 +33,13 @@ f.bohman <- function(){
     mutate(location="Minnesota") %>%
     select(owner,study,year,location,variety,rate_n_kgha,date,W=biomdry_Mgha,N=n_pct)
   
+  # Update `variety` for uniform naming across studies evaluated
+  d <- d %>%
+    mutate(variety=case_when(
+      variety=="Umatilla" ~ "Umatilla Russet",
+      T ~ variety
+    ))
+  
   return(d)
   
 }
