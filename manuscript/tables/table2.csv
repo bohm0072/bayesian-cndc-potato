@@ -1,29 +1,15 @@
-location,variety,location:variety,conserv_est_lo,nls_est_lo,median,nls_est_hi,conserv_est_hi
-Argentina,Bannock Russet,Argentina_Bannock.Russet,4.72,4.82,4.96,5.10,5.20
-Argentina,Bannock Russet,Argentina_Bannock.Russet,0.163,0.146,0.140,0.135,0.118
-Argentina,Gem Russet,Argentina_Gem.Russet,4.72,4.80,4.96,5.07,5.20
-Argentina,Gem Russet,Argentina_Gem.Russet,0.207,0.190,0.178,0.152,0.139
-Argentina,Innovator,Argentina_Innovator,4.70,4.83,4.94,5.06,5.19
-Argentina,Innovator,Argentina_Innovator,0.253,0.241,0.212,0.193,0.177
-Argentina,Markies Russet,Argentina_Markies.Russet,4.72,4.82,4.96,5.08,5.20
-Argentina,Markies Russet,Argentina_Markies.Russet,0.183,0.167,0.155,0.135,0.121
-Argentina,Umatilla Russet,Argentina_Umatilla.Russet,4.71,4.85,4.95,5.06,5.19
-Argentina,Umatilla Russet,Argentina_Umatilla.Russet,0.206,0.195,0.165,0.143,0.131
-Belgium,Bintje,Belgium_Bintje,4.42,4.52,4.72,4.90,4.98
-Belgium,Bintje,Belgium_Bintje,0.640,0.606,0.579,0.567,0.531
-Belgium,Charlotte,Belgium_Charlotte,4.44,4.56,4.74,4.89,5.00
-Belgium,Charlotte,Belgium_Charlotte,0.637,0.607,0.559,0.531,0.499
-Canada,Russet Burbank,Canada_Russet.Burbank,4.46,4.53,4.74,4.93,5.01
-Canada,Russet Burbank,Canada_Russet.Burbank,0.531,0.498,0.489,0.480,0.447
-Canada,Shepody,Canada_Shepody,4.48,4.55,4.77,4.95,5.03
-Canada,Shepody,Canada_Shepody,0.448,0.416,0.412,0.406,0.376
-Minnesota,Clearwater,Minnesota_Clearwater,4.47,4.56,4.75,4.93,5.01
-Minnesota,Clearwater,Minnesota_Clearwater,0.648,0.622,0.585,0.558,0.531
-Minnesota,Dakota Russet,Minnesota_Dakota.Russet,4.46,4.54,4.75,4.94,5.01
-Minnesota,Dakota Russet,Minnesota_Dakota.Russet,0.647,0.619,0.599,0.588,0.559
-Minnesota,Easton,Minnesota_Easton,4.46,4.54,4.75,4.91,5.01
-Minnesota,Easton,Minnesota_Easton,0.636,0.608,0.592,0.567,0.543
-Minnesota,Russet Burbank,Minnesota_Russet.Burbank,4.46,4.51,4.74,4.95,5.00
-Minnesota,Russet Burbank,Minnesota_Russet.Burbank,0.595,0.562,0.566,0.567,0.534
-Minnesota,Umatilla Russet,Minnesota_Umatilla.Russet,4.47,4.56,4.75,4.92,5.01
-Minnesota,Umatilla Russet,Minnesota_Umatilla.Russet,0.655,0.631,0.588,0.546,0.523
+location,variety,location:variety,nls_alpha1_0.05,nls_alpha2_0.05,alpha1_0.5,alpha2_0.5,nls_alpha1_0.95,nls_alpha2_0.95
+Argentina,Bannock Russet,Argentina_Bannock.Russet,4.82,0.146,4.96,0.140,5.10,0.135
+Argentina,Gem Russet,Argentina_Gem.Russet,4.80,0.190,4.96,0.178,5.07,0.152
+Argentina,Innovator,Argentina_Innovator,4.83,0.241,4.94,0.212,5.06,0.193
+Argentina,Markies Russet,Argentina_Markies.Russet,4.82,0.167,4.96,0.155,5.08,0.135
+Argentina,Umatilla Russet,Argentina_Umatilla.Russet,4.85,0.195,4.95,0.165,5.06,0.143
+Belgium,Bintje,Belgium_Bintje,4.52,0.606,4.72,0.579,4.90,0.567
+Belgium,Charlotte,Belgium_Charlotte,4.56,0.607,4.74,0.559,4.89,0.531
+Canada,Russet Burbank,Canada_Russet.Burbank,4.53,0.498,4.74,0.489,4.93,0.480
+Canada,Shepody,Canada_Shepody,4.55,0.416,4.77,0.412,4.95,0.406
+Minnesota,Clearwater,Minnesota_Clearwater,4.56,0.622,4.75,0.585,4.93,0.558
+Minnesota,Dakota Russet,Minnesota_Dakota.Russet,4.54,0.619,4.75,0.599,4.94,0.588
+Minnesota,Easton,Minnesota_Easton,4.54,0.608,4.75,0.592,4.91,0.567
+Minnesota,Russet Burbank,Minnesota_Russet.Burbank,4.51,0.562,4.74,0.566,4.95,0.567
+Minnesota,Umatilla Russet,Minnesota_Umatilla.Russet,4.56,0.631,4.75,0.588,4.92,0.546

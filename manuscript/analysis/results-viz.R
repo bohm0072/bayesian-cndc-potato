@@ -396,7 +396,7 @@ gc()
 plot.colors.1 <- c("#490809","#931012","#CA1619","#C55962","#E74B5E","#2C652A","#33a02c","#CC6600","#ff7f00","#15527A","#0177A2","#1F78B4","#01B3F4","#62B0E4")
 plot.colors.2 <- c("#CA1619","#33a02c","#ff7f00","#1F78B4")
 
-# table 1 - distribution of alpha parameter values for each parameter independently #####
+# figure 1 table - distribution of alpha parameter values for each parameter independently #####
 
 plot.data$tab1 <- bind_rows(plot.data$parm.fit.sum,
                   plot.data$parm.fit.sum2 %>%
@@ -491,11 +491,19 @@ f.fig1 <- function(plot.data,parm,.colors1,.colors2){
 }
 
 fig1_a <- f.fig1(plot.data,"alpha1",plot.colors.1,plot.colors.2)
-ggsave(filename="manuscript/images/figure1_a.pdf",plot=fig1_a,height=4.5,width=3,units="in",scale=1.3)
-ggsave(filename="manuscript/images/figure1_a.png",plot=fig1_a,height=4.5,width=3,units="in",scale=1.3,dpi=1000)
+# ggsave(filename="manuscript/images/figure1_a.pdf",plot=fig1_a,height=4.5,width=3,units="in",scale=1.3)
+# ggsave(filename="manuscript/images/figure1_a.png",plot=fig1_a,height=4.5,width=3,units="in",scale=1.3,dpi=1000)
 fig1_b <- f.fig1(plot.data,"alpha2",plot.colors.1,plot.colors.2)
-ggsave(filename="manuscript/images/figure1_b.pdf",plot=fig1_b,height=4.5,width=3,units="in",scale=1.3)
-ggsave(filename="manuscript/images/figure1_b.png",plot=fig1_b,height=4.5,width=3,units="in",scale=1.3,dpi=1000)
+# ggsave(filename="manuscript/images/figure1_b.pdf",plot=fig1_b,height=4.5,width=3,units="in",scale=1.3)
+# ggsave(filename="manuscript/images/figure1_b.png",plot=fig1_b,height=4.5,width=3,units="in",scale=1.3,dpi=1000)
+
+fig1.layout <- rbind(c(1,2))
+
+fig1 <- grid.arrange(fig1_a,fig1_b,
+                     layout_matrix=fig1.layout)
+
+ggsave(filename="manuscript/images/figure1.pdf",plot=fig1,height=4.5,width=6.0,units="in",scale=1.3,device=cairo_pdf) #height=4.5,width=6,scale=1.3
+# ggsave(filename="manuscript/images/figure1.png",plot=fig1,height=4.5,width=6,units="in",scale=1.3,dpi=1000)
 
 # figure 2 - distribution of alpha parameters for each parameters simultaneously ----------------
 
@@ -598,7 +606,7 @@ fig2.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
                      c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
                      c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
-                     c(20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20))
+                     c(NA,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20))
 
 fig2 <- grid.arrange(fig2.sub[[1]],fig2.sub[[2]],fig2.sub[[3]],fig2.sub[[4]],fig2.sub[[5]],
                      fig2.sub[[6]],fig2.sub[[7]],fig2.sub[[8]],fig2.sub[[9]],
@@ -607,7 +615,7 @@ fig2 <- grid.arrange(fig2.sub[[1]],fig2.sub[[2]],fig2.sub[[3]],fig2.sub[[4]],fig
                      f.fig2.lab.axis.y(),f.fig2.lab.axis.x(),
                      layout_matrix=fig2.layout)
 
-ggsave(filename="manuscript/images/figure2.pdf",plot=fig2,height=4,width=6,units="in",scale=1)
+ggsave(filename="manuscript/images/figure2.pdf",plot=fig2,height=4,width=6,units="in",scale=1,,device=cairo_pdf)
 ggsave(filename="manuscript/images/figure2.png",plot=fig2,height=4,width=6,units="in",scale=1,dpi=1000)
 
 
@@ -723,7 +731,7 @@ fig3.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
                      c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
                      c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
-                     c(20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20))
+                     c(NA,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20))
 
 fig3 <- grid.arrange(fig3.sub[[1]],fig3.sub[[2]],fig3.sub[[3]],fig3.sub[[4]],fig3.sub[[5]],
                      fig3.sub[[6]],fig3.sub[[7]],fig3.sub[[8]],fig3.sub[[9]],
@@ -732,10 +740,10 @@ fig3 <- grid.arrange(fig3.sub[[1]],fig3.sub[[2]],fig3.sub[[3]],fig3.sub[[4]],fig
                      f.fig3.lab.axis.y(),f.fig3.lab.axis.x(),
                      layout_matrix=fig3.layout)
 
-ggsave(filename="manuscript/images/figure3.pdf",plot=fig3,height=4,width=6,units="in",scale=1.0)
-ggsave(filename="manuscript/images/figure3.png",plot=fig3,height=4,width=6,units="in",scale=1.0,dpi=1000)
+ggsave(filename="manuscript/images/figure3.pdf",plot=fig3,height=4,width=6,units="in",scale=1.0,device=cairo_pdf)
+# ggsave(filename="manuscript/images/figure3.png",plot=fig3,height=4,width=6,units="in",scale=1.0,dpi=1000)
 
-# table 2 - fitted boundary nls curves -----------------
+# table 1 - fitted boundary nls curves -----------------
 
 # .location = "Minnesota"
 # .variety = "Russet Burbank"
@@ -781,34 +789,47 @@ f.tab2 <- function(plot.data,.location,.variety){
            nls_alpha1_0.95=nls_alpha1_0.95,
            nls_alpha2_0.95=nls_alpha2_0.95)
   
-  # a1 = "alpha1_0.05"
-  # a2 = "alpha2_0.95"
-  # name = "conserv_est_lo"
+  # a1 = "nls_alpha1_0.05"
+  # a2 = "nls_alpha2_0.05"
+  # name = "nls_est_lo"
   
   f.t2.select <- function(t,a1,a2,name){
     
-    .t <- t %>%
-      select(!!sym(a1),!!sym(a2)) %>%
-      pivot_longer(cols=c(!!sym(a1),!!sym(a2)),values_to=name) %>%
-      select(-name)
+    # .t <- t %>%
+    #   select(!!sym(a1),!!sym(a2)) %>%
+    #   pivot_longer(cols=c(!!sym(a1),!!sym(a2)),values_to=name) %>%
+    #   select(-name)
     
-    .t <- bind_rows(
-      .t %>%
-        slice(1) %>%
-        mutate_all(~format(round(.,2),nsmall=2)),
-      .t %>%
-        slice(2) %>%
-        mutate_all(~format(round(.,3),nsmall=3))
-    )
+    # .t <- bind_rows(
+    #   .t %>%
+    #     slice(1) %>%
+    #     mutate_all(~format(round(.,2),nsmall=2)),
+    #   .t %>%
+    #     slice(2) %>%
+    #     mutate_all(~format(round(.,3),nsmall=3))
+    # )
+    
+    .t <- t %>%
+      select(!!sym(a1),!!sym(a2))
 
+    .t <- .t %>%
+      mutate(across(.cols=c(!!sym(a1)),.fns=~format(round(.,2),nsmall=2))) %>%
+      mutate(across(.cols=c(!!sym(a2)),.fns=~format(round(.,3),nsmall=3)))
+    
     return(.t)  
     
   }
   
+  # t2.list <- list(
+  #   a1 = c("alpha1_0.05","nls_alpha1_0.05","alpha1_0.5","nls_alpha1_0.95","alpha1_0.95"),
+  #   a2 = c("alpha2_0.95","nls_alpha2_0.05","alpha2_0.5","nls_alpha2_0.95","alpha2_0.05"),
+  #   name = c("conserv_est_lo","nls_est_lo","median","nls_est_hi","conserv_est_hi")
+  # )
+  
   t2.list <- list(
-    a1 = c("alpha1_0.05","nls_alpha1_0.05","alpha1_0.5","nls_alpha1_0.95","alpha1_0.95"),
-    a2 = c("alpha2_0.95","nls_alpha2_0.05","alpha2_0.5","nls_alpha2_0.95","alpha2_0.05"),
-    name = c("conserv_est_lo","nls_est_lo","median","nls_est_hi","conserv_est_hi")
+    a1 = c("nls_alpha1_0.05","alpha1_0.5","nls_alpha1_0.95"),
+    a2 = c("nls_alpha2_0.05","alpha2_0.5","nls_alpha2_0.95"),
+    name = c("nls_est_lo","median","nls_est_hi")
   )
   
   t2 <- pmap(t2.list,~f.t2.select(t,
@@ -835,15 +856,14 @@ tab2 <- pmap(tab2.list,~f.tab2(plot.data,
                                .location=..1,
                                .variety=..2)) %>% bind_rows()
 
-write_csv(tab2,"manuscript/tables/table2.csv")
+write_csv(tab2,"manuscript/tables/table1.csv")
 
-# figure 4 - curve fits for each variety x location with uncertainty  ------------------
+# figure 4a - curve fits for each variety x location with uncertainty  ------------------
 
 # .location = "Argentina"
 # .variety = "Innovator"
-# .color = "#e41a1c"
 
-f.fig4 <- function(plot.data,.location,.variety,.color){
+f.fig4 <- function(plot.data,.location,.variety){
   
   var1 <- "W"
   # var2 <- "%N"
@@ -939,14 +959,12 @@ f.fig4 <- function(plot.data,.location,.variety,.color){
 
 fig4.list <- list(
   location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
-  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet"),
-  color=plot.colors.1
+  variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet")
 )
 
 fig4.sub <- pmap(fig4.list,~f.fig4(plot.data,
                                    .location=..1,
-                                   .variety=..2,
-                                   .color=..3))
+                                   .variety=..2))
 
 f.fig4.lab.facet <- function(.location){
   
@@ -964,7 +982,7 @@ f.fig4.lab.facet <- function(.location){
 f.fig4.lab.axis.y <- function(){
   
   ggplot() +
-    geom_text(aes(x=0,y=0),label=expression("%N Difference [g N 100 g"^-1*"]"),angle=90,size=3,parse=T) +
+    geom_text(aes(x=0,y=0),label=expression("∆ %N"[c]*" [g N 100 g"^-1*"]"),angle=90,size=3,parse=T) + #expression("%N Difference [g N 100 g"^-1*"]")
     theme_classic() +
     theme(axis.line = element_blank(),
           axis.text = element_blank(),
@@ -993,7 +1011,7 @@ fig4.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
                      c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
                      c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
-                     c(20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20))
+                     c(NA,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20))
 
 fig4 <- grid.arrange(fig4.sub[[1]],fig4.sub[[2]],fig4.sub[[3]],fig4.sub[[4]],fig4.sub[[5]],
                      fig4.sub[[6]],fig4.sub[[7]],fig4.sub[[8]],fig4.sub[[9]],
@@ -1002,8 +1020,219 @@ fig4 <- grid.arrange(fig4.sub[[1]],fig4.sub[[2]],fig4.sub[[3]],fig4.sub[[4]],fig
                      f.fig4.lab.axis.y(),f.fig4.lab.axis.x(),
                      layout_matrix=fig4.layout)
 
-ggsave(filename="manuscript/images/figure4.pdf",plot=fig4,height=4,width=6,units="in",scale=1.0)
-ggsave(filename="manuscript/images/figure4.png",plot=fig4,height=4,width=6,units="in",scale=1.0,dpi=1000)
+ggsave(filename="manuscript/images/figure4a.pdf",plot=fig4,height=4,width=6,units="in",scale=1.0,device=cairo_pdf)
+# ggsave(filename="manuscript/images/figure4a.png",plot=fig4,height=4,width=6,units="in",scale=1.0,dpi=1000)
+# ggsave(filename="manuscript/images/figure4a.eps",plot=fig4,height=4,width=6,units="in",scale=1.0)
+
+
+# figure 4b - curve fits with uncertainty and spaghetti plot for single variety x location  ------------------
+
+# .location = "Minnesota"
+# .variety = "Russet Burbank"
+
+f.fig4.callout <- function(plot.data,.location,.variety,.plot){
+  
+  var1 <- "W"
+  # var2 <- "%N"
+  var3 <- paste(.location,.variety,sep=" - ")
+  var4 <- "%N Difference"
+  var5 <- paste("     ",.variety,sep="")
+  
+  set.seed(999999)
+  
+  draw.list <- sample(x = c(1:(plot.data$r %>%select(.draw) %>% distinct() %>% count() %>% pull())),
+                      size = 15,
+                      replace = F)
+  
+  r <- plot.data$r %>%
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety) %>%
+    filter(.draw %in% draw.list)
+  
+  c <- plot.data$c %>%
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety)
+  
+  parm <- plot.data$parm.fit.sum %>%
+    filter(location %in% .location) %>%
+    filter(variety %in% .variety)
+  
+  nls_0.95 <- nls(data=c,
+                  formula=N_0.95~alpha1*W^(-alpha2),
+                  start=list(alpha1=4.94,
+                             alpha2=0.40))
+  
+  nls_0.5 <- nls(data=c,
+                 formula=N_0.5~alpha1*W^(-alpha2),
+                 start=list(alpha1=4.94,
+                            alpha2=0.40))
+  
+  nls_0.05 <- nls(data=c,
+                  formula=N_0.05~alpha1*W^(-alpha2),
+                  start=list(alpha1=4.94,
+                             alpha2=0.40))
+  
+  nls_alpha1_0.05 <- summary(nls_0.05)$parameters[1,1]
+  nls_alpha2_0.05 <- summary(nls_0.05)$parameters[2,1]
+  nls_alpha1_0.5 <- summary(nls_0.5)$parameters[1,1]
+  nls_alpha2_0.5 <- summary(nls_0.5)$parameters[2,1]
+  nls_alpha1_0.95 <- summary(nls_0.95)$parameters[1,1]
+  nls_alpha2_0.95 <- summary(nls_0.95)$parameters[2,1]
+  
+  c <- c %>%
+    rowwise() %>%
+    mutate(N_0.05_nls = nls_alpha1_0.05*W^(-nls_alpha2_0.05),
+           N_0.5_nls = nls_alpha1_0.5*W^(-nls_alpha2_0.5),
+           N_0.95_nls = nls_alpha1_0.95*W^(-nls_alpha2_0.95)) %>%
+    ungroup()
+  
+  c <- c %>%
+    left_join(parm, by = c("location","variety","location:variety")) %>%
+    rowwise() %>%
+    mutate(N_0.05_est = alpha1_0.05*W^(-alpha2_0.95),
+           N_0.5_est = alpha1_0.5*W^(-alpha2_0.5),
+           N_0.95_est = alpha1_0.95*W^(-alpha2_0.05)) %>%
+    ungroup() %>%
+    select(-c(alpha1_0.05,alpha1_0.5,alpha1_0.95,alpha2_0.05,alpha2_0.5,alpha2_0.95))
+  
+  c <- c %>%
+    mutate(N_cred_lo=N_0.05-N_0.5,
+           N_cred_up=N_0.95-N_0.5,
+           N_cred_nls_lo=N_0.05_nls-N_0.5,
+           N_cred_nls_up=N_0.95_nls-N_0.5,
+           N_cred_est_lo=N_0.05_est-N_0.5,
+           N_cred_est_up=N_0.95_est-N_0.5)
+  
+  r <- r %>%
+    rename(N_draw=N) %>%
+    left_join(c %>%
+                select(location,variety,`location:variety`,W,N_0.5),
+              by = c("location", "variety", "location:variety", "W")) %>%
+    mutate(N_draw=N_draw-N_0.5) %>%
+    select(-N_0.5)
+  
+  l <- c %>%
+    summarize_all(last) %>%
+    mutate(lab_median=paste("(",format(round(parm$alpha1_0.5,2),nsmall=2),", ",format(round(parm$alpha2_0.5,3),nsmall=3),")",sep=""),
+           lab_cred_nls_lo=paste("(",format(round(nls_alpha1_0.05,2),nsmall=2),", ",format(round(nls_alpha2_0.05,3),nsmall=3),")",sep=""),
+           lab_cred_nls_up=paste("(",format(round(nls_alpha1_0.95,2),nsmall=2),", ",format(round(nls_alpha2_0.95,3),nsmall=3),")",sep=""),
+           lab_cred_est_lo=paste("(",format(round(parm$alpha1_0.05,2),nsmall=2),", ",format(round(parm$alpha2_0.95,3),nsmall=3),")",sep=""),
+           lab_cred_est_up=paste("(",format(round(parm$alpha1_0.95,2),nsmall=2),", ",format(round(parm$alpha2_0.05,3),nsmall=3),")",sep=""))
+  
+  g <- ggplot() +
+    geom_ribbon(data=c,aes(x=W,ymin=N_cred_lo,ymax=N_cred_up),alpha=0.20) + #,fill="#404040" #,fill="#737373"
+    geom_line(data=c,aes(x=W,y=0,group=`location:variety`),linetype=1,alpha=1.0) +
+    theme_classic() +
+    theme(text=element_text(size=8),
+          plot.title=element_blank(),
+          axis.title.x=element_blank(),
+          axis.title.y=element_blank(),
+          plot.caption = element_text(hjust=0,size=7), 
+          plot.title.position = "plot", 
+          plot.caption.position =  "plot") +
+    scale_y_continuous(limits=c(-0.45,0.45),breaks=c(-0.6,-0.3,0,0.3,0.6)) +
+    scale_x_continuous(limits=c(0,NA),breaks=c(0,5,10,15))
+  
+  if(.plot=="draws"){
+    g +
+      geom_line(data=r,aes(x=W,y=N_draw,group=.draw),alpha=0.80,color="#ca0020",size=0.20) +
+      geom_line(data=c,aes(x=W,y=0,group=`location:variety`),linetype=1,alpha=1.0)
+  }else if(.plot=="estimate"){
+    g +
+      geom_line(data=c,aes(x=W,y=N_cred_nls_lo,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
+      geom_line(data=c,aes(x=W,y=N_cred_nls_up,group=`location:variety`),linetype=3,alpha=1.0,size=0.2)
+  }else if(.plot=="conservative"){
+    g +
+      geom_line(data=c,aes(x=W,y=N_cred_est_lo,group=`location:variety`),linetype=2,alpha=1.0,size=0.2) +
+      geom_line(data=c,aes(x=W,y=N_cred_est_up,group=`location:variety`),linetype=2,alpha=1.0,size=0.2)
+  }else if(.plot=="all"){
+    g +
+      geom_line(data=r,aes(x=W,y=N_draw,group=.draw),alpha=0.80,color="#ca0020",size=0.20) +
+      geom_line(data=c,aes(x=W,y=0,group=`location:variety`),linetype=1,alpha=1.0) +
+      geom_line(data=c,aes(x=W,y=N_cred_nls_lo,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
+      geom_line(data=c,aes(x=W,y=N_cred_nls_up,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
+      geom_line(data=c,aes(x=W,y=N_cred_est_lo,group=`location:variety`),linetype=2,alpha=1.0,size=0.2) +
+      geom_line(data=c,aes(x=W,y=N_cred_est_up,group=`location:variety`),linetype=2,alpha=1.0,size=0.2)
+  }else{
+    g
+  }
+  
+}
+
+fig4.callout.list <- list(
+  .plot=c("all","draws","estimate","conservative")
+)
+
+fig4.callout.sub <- pmap(fig4.callout.list,~f.fig4.callout(plot.data,
+                                                           .location="Minnesota",
+                                                           .variety="Russet Burbank",
+                                                           .plot=..1))
+
+f.fig4.callout.lab.facet <- function(.location){
+  
+  ggplot() +
+    geom_text(aes(x=0,y=0,label=.location),angle=270,size=2.5) +
+    theme_classic() +
+    # theme_grey() +
+    theme(axis.line = element_blank(),
+          axis.text = element_blank(),
+          axis.title = element_blank(),
+          axis.ticks = element_blank(),
+          panel.background = element_rect(fill="#d2d2d2",color="black"))
+  
+}
+f.fig4.callout.lab.axis.y <- function(){
+  
+  ggplot() +
+    geom_text(aes(x=0,y=0),label=expression("∆ %N"[c]*" [g N 100 g"^-1*"]"),angle=90,size=3,parse=T) +
+    theme_classic() +
+    theme(axis.line = element_blank(),
+          axis.text = element_blank(),
+          axis.title = element_blank(),
+          axis.ticks = element_blank())
+  
+}
+f.fig4.callout.lab.axis.x <- function(){
+  
+  ggplot() +
+    geom_text(aes(x=0,y=0),label=expression("Biomass [Mg ha"^-1*"]"),angle=0,size=3,parse=T) +
+    theme_classic() +
+    theme(axis.line = element_blank(),
+          axis.text = element_blank(),
+          axis.title = element_blank(),
+          axis.ticks = element_blank())
+  
+}
+
+fig4.callout.layout <- rbind(c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
+                             c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
+                             c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
+                             c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
+                             c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
+                             c(NA,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,NA))
+
+fig4.callout <- grid.arrange(fig4.callout.sub[[2]],fig4.callout.sub[[3]],fig4.callout.sub[[4]],
+                            f.fig4.callout.lab.axis.y(),f.fig4.callout.lab.axis.x(), f.fig4.callout.lab.facet("Minnesota x Russet Burbank"),
+                             layout_matrix=fig4.callout.layout)
+
+ggsave(filename="manuscript/images/figure4b.pdf",plot=fig4.callout,height=2.2,width=6.0,units="in",scale=1.0,device=cairo_pdf)
+# ggsave(filename="manuscript/images/figure4b.png",plot=fig4.callout,height=2.2,width=6.0,units="in",scale=1.0,dpi=1000)
+
+# fig4.callout.layout <- rbind(c(2,1,1,1,1,1,1),
+#                              c(2,1,1,1,1,1,1),
+#                              c(2,1,1,1,1,1,1),
+#                              c(2,1,1,1,1,1,1),
+#                              c(2,1,1,1,1,1,1),
+#                              c(2,1,1,1,1,1,1),
+#                              c(NA,3,3,3,3,3,3))
+# 
+# fig4.callout <- grid.arrange(fig4.callout.sub[[1]],
+#                              f.fig4.callout.lab.axis.y(),f.fig4.callout.lab.axis.x(),
+#                              layout_matrix=fig4.callout.layout)
+# 
+# ggsave(filename="manuscript/images/figure4_callout.pdf",plot=fig4.callout,height=3.0,width=3.0,units="in",scale=1.0)
+# ggsave(filename="manuscript/images/figure4_callout.png",plot=fig4.callout,height=3.0,width=3.0,units="in",scale=1.0,dpi=1000)
+
 
 # figure 5 - comparing curves to each other fits -----------------
 
@@ -1142,7 +1371,7 @@ f.fig5.lab.facet <- function(.location){
 f.fig5.lab.axis.y <- function(){
   
   ggplot() +
-    geom_text(aes(x=0,y=0),label=expression("%N Difference [g N 100 g"^-1*"]"),angle=90,size=3,parse=T) +
+    geom_text(aes(x=0,y=0),label=expression("∆ %N"[c]*" [g N 100 g"^-1*"]"),angle=90,size=3,parse=T) +
     theme_classic() +
     theme(axis.line = element_blank(),
           axis.text = element_blank(),
@@ -1188,7 +1417,7 @@ fig5.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
                      c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
                      c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
-                     c(20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20))
+                     c(NA,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20))
 
 fig5 <- grid.arrange(fig5.sub[[1]],fig5.sub[[2]],fig5.sub[[3]],fig5.sub[[4]],fig5.sub[[5]],
                      fig5.sub[[6]],fig5.sub[[7]],fig5.sub[[8]],fig5.sub[[9]],
@@ -1197,8 +1426,8 @@ fig5 <- grid.arrange(fig5.sub[[1]],fig5.sub[[2]],fig5.sub[[3]],fig5.sub[[4]],fig
                      f.fig5.lab.axis.y(),f.fig5.lab.axis.x(),
                      layout_matrix=fig5.layout)
 
-ggsave(filename="manuscript/images/figure5.pdf",plot=fig5,height=4,width=6,units="in",scale=1.0)
-ggsave(filename="manuscript/images/figure5.png",plot=fig5,height=4,width=6,units="in",scale=1.0,dpi=1000)
+ggsave(filename="manuscript/images/figure5.pdf",plot=fig5,height=4,width=6,units="in",scale=1.0,device=cairo_pdf)
+# ggsave(filename="manuscript/images/figure5.png",plot=fig5,height=4,width=6,units="in",scale=1.0,dpi=1000)
 
 # figure 5 table - tabular values for comparing curves to each other fits ------------
 
@@ -1425,7 +1654,7 @@ f.fig6.lab.facet <- function(.location){
 f.fig6.lab.axis.y <- function(){
   
   ggplot() +
-    geom_text(aes(x=0,y=0),label=expression("%N Difference [g N 100 g"^-1*"]"),angle=90,size=3,parse=T) +
+    geom_text(aes(x=0,y=0),label=expression("∆%N"[c]*" [g N 100 g"^-1*"]"),angle=90,size=3,parse=T) +
     theme_classic() +
     theme(axis.line = element_blank(),
           axis.text = element_blank(),
@@ -1454,7 +1683,7 @@ fig6.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      # c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
                      # c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
                      # c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
-                     c(20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20))
+                     c(NA,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20))
 
 fig6 <- grid.arrange(fig6.sub[[1]],fig6.sub[[2]],fig6.sub[[3]],fig6.sub[[4]],fig6.sub[[5]],
                      fig6.sub[[6]],fig6.sub[[7]],fig6.sub[[8]],fig6.sub[[9]],
@@ -1463,7 +1692,7 @@ fig6 <- grid.arrange(fig6.sub[[1]],fig6.sub[[2]],fig6.sub[[3]],fig6.sub[[4]],fig
                      f.fig6.lab.axis.y(),f.fig6.lab.axis.x(),
                      layout_matrix=fig6.layout)
 
-ggsave(filename="manuscript/images/figure6.pdf",plot=fig6,height=2.8,width=6,units="in",scale=1.0)
+ggsave(filename="manuscript/images/figure6.pdf",plot=fig6,height=2.8,width=6,units="in",scale=1.0,device=cairo_pdf)
 ggsave(filename="manuscript/images/figure6.png",plot=fig6,height=2.8,width=6,units="in",scale=1.0,dpi=1000)
 
 # figure 6 table - tabular values for the previous curve fit comparison --------------------
@@ -1557,7 +1786,7 @@ fig6.tab <- pmap(fig6.tab.list,~f.fig6.tab(plot.data,
 write_csv(fig6.tab,"manuscript/tables/figure6_table.csv")
 
 
-# appendix 1 - plateau model fit with point data for each date shown for each variety x location ------------------
+# figure S1 - plateau model fit with point data for each date shown for each variety x location ------------------
 
 # .location = "Minnesota"
 # .variety = "Russet Burbank"
@@ -1608,8 +1837,8 @@ f.appx1 <- function(plot.data,.location,.variety){
     geom_text(data=d.sum.index,aes(x=0,y=0,label=Deficit),color=d.colors[[1]],size=3,hjust=0,vjust=0) + # paste0("Deficit: ",Deficit)
     geom_text(data=d.sum.index,aes(x=0,y=6,label=Surplus),color=d.colors[[2]],size=3,hjust=0,vjust=1) + 
     facet_wrap(vars(as.numeric(index)),ncol=8) +
-    labs(x = "W",
-         y = "%N",
+    labs(x = expression("Biomass [Mg ha"^-1*"]"),
+         y = expression("%N [g N 100 g"^-1*"]"),
          title = paste(.location,.variety,sep=" - "),
          color = "N Status\nClassification",
          subtitle = paste0("Deficit: ",d.sum.group$Deficit,", ","Surplus: ",d.sum.group$Surplus)) + 
@@ -1623,6 +1852,26 @@ f.appx1 <- function(plot.data,.location,.variety){
 
 f.appx1.join <- function(){
   
+  f.appx1_title <- function(){
+    
+    appx1_title <- "Figure S1: Linear-plateau curves fitted for each experimental sampling date"
+    appx1_caption <- "Fitted critical N dilution curve for each level of location:variety shown at each level of index with the fitted linear-plateau 
+curve and experimental data observed for that date. Experimental data points are classified depending on whether the
+N concentration [%N] for that given level of biomass is less than the critical N concentration [%Nc] (i.e., Deficit) or is 
+greater than %Nc (i.e., Surplus). The total number of experimental observations classified as Deficit or Surplus is 
+summarized for each level of index and also for the each level of location:variety."
+    
+    ggplot() +
+      labs(title = appx1_title,
+           subtitle = appx1_caption) +
+      theme_classic() +
+      theme(axis.line = element_blank())
+    
+  }
+  appx1_title <- f.appx1_title()
+  g.appx1_title <- ggplotGrob(appx1_title)
+  fg.appx1_title <- gtable_frame(g.appx1_title, height = unit(5*(0.33/7), "null"), width = unit(6, "null"))
+  
   appx1_a <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Bannock Russet"))
   g.appx1_a <- ggplotGrob(appx1_a)
   fg.appx1_a <- gtable_frame(g.appx1_a, height = unit(5*(2/7), "null"), width = unit(6, "null"))
@@ -1630,75 +1879,75 @@ f.appx1.join <- function(){
   appx1_b <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Gem Russet"))
   g.appx1_b <- ggplotGrob(appx1_b)
   fg.appx1_b <- gtable_frame(g.appx1_b, height = unit(5*(3/7), "null"), width = unit(6, "null"))
-  
+
   appx1_c <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Innovator"))
   g.appx1_c <- ggplotGrob(appx1_c)
   fg.appx1_c <- gtable_frame(g.appx1_c, height = unit(5*(3/7), "null"), width = unit(6, "null"))
-  
+
   appx1_d <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Markies Russet"))
   g.appx1_d <- ggplotGrob(appx1_d)
   fg.appx1_d <- gtable_frame(g.appx1_d, height = unit(5*(2/7), "null"), width = unit(6, "null"))
-  
+
   appx1_e <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Umatilla Russet"))
   g.appx1_e <- ggplotGrob(appx1_e)
   fg.appx1_e <- gtable_frame(g.appx1_e, height = unit(5*(2/7), "null"), width = unit(6, "null"))
-  
+
   appx1_f <- f.appx1(plot.data,.location=c("Belgium"),.variety=c("Bintje"))
   g.appx1_f <- ggplotGrob(appx1_f)
   fg.appx1_f <- gtable_frame(g.appx1_f, height = unit(5*(7/7), "null"), width = unit(6, "null"))
-  
+
   appx1_g <- f.appx1(plot.data,.location=c("Belgium"),.variety=c("Charlotte"))
   g.appx1_g <- ggplotGrob(appx1_g)
   fg.appx1_g <- gtable_frame(g.appx1_g, height = unit(5*(3/7), "null"), width = unit(6, "null"))
-  
+
   appx1_h <- f.appx1(plot.data,.location=c("Canada"),.variety=c("Russet Burbank"))
   g.appx1_h <- ggplotGrob(appx1_h)
   fg.appx1_h <- gtable_frame(g.appx1_h, height = unit(5*(4/7), "null"), width = unit(6, "null"))
-  
+
   appx1_i <- f.appx1(plot.data,.location=c("Canada"),.variety=c("Shepody"))
   g.appx1_i <- ggplotGrob(appx1_i)
   fg.appx1_i <- gtable_frame(g.appx1_i, height = unit(5*(4/7), "null"), width = unit(6, "null"))
-  
+
   appx1_j <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Clearwater"))
   g.appx1_j <- ggplotGrob(appx1_j)
   fg.appx1_j <- gtable_frame(g.appx1_j, height = unit(5*(2/7), "null"), width = unit(6, "null"))
-  
+
   appx1_k <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Dakota Russet"))
   g.appx1_k <- ggplotGrob(appx1_k)
   fg.appx1_k <- gtable_frame(g.appx1_k, height = unit(5*(2/7), "null"), width = unit(6, "null"))
-  
+
   appx1_l <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Easton"))
   g.appx1_l <- ggplotGrob(appx1_l)
   fg.appx1_l <- gtable_frame(g.appx1_l, height = unit(5*(2/7), "null"), width = unit(6, "null"))
-  
+
   appx1_m <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Russet Burbank"))
   g.appx1_m <- ggplotGrob(appx1_m)
   fg.appx1_m <- gtable_frame(g.appx1_m, height = unit(5*(7/7), "null"), width = unit(6, "null"))
-  
+
   appx1_n <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Umatilla Russet"))
   g.appx1_n <- ggplotGrob(appx1_n)
   fg.appx1_n <- gtable_frame(g.appx1_n, height = unit(5*(2/7), "null"), width = unit(6, "null"))
-  
-  fg <- rbind(fg.appx1_a,fg.appx1_b,fg.appx1_c,fg.appx1_d,fg.appx1_e,fg.appx1_f,fg.appx1_g,fg.appx1_h,fg.appx1_i,fg.appx1_j,fg.appx1_k,fg.appx1_l,fg.appx1_m,fg.appx1_n,size = "first")
-  fg$widths <- unit.pmax(fg.appx1_a$widths, fg.appx1_b$widths, fg.appx1_c$widths, fg.appx1_d$widths, fg.appx1_e$widths, fg.appx1_f$widths, fg.appx1_g$widths, fg.appx1_h$widths, fg.appx1_i$widths, fg.appx1_j$widths, fg.appx1_k$widths, fg.appx1_l$widths, fg.appx1_m$widths, fg.appx1_n$widths)
+
+  fg <- rbind(fg.appx1_title,fg.appx1_a,fg.appx1_b,fg.appx1_c,fg.appx1_d,fg.appx1_e,fg.appx1_f,fg.appx1_g,fg.appx1_h,fg.appx1_i,fg.appx1_j,fg.appx1_k,fg.appx1_l,fg.appx1_m,fg.appx1_n,size = "first")
+  fg$widths <- unit.pmax(fg.appx1_title$widths, fg.appx1_a$widths, fg.appx1_b$widths, fg.appx1_c$widths, fg.appx1_d$widths, fg.appx1_e$widths, fg.appx1_f$widths, fg.appx1_g$widths, fg.appx1_h$widths, fg.appx1_i$widths, fg.appx1_j$widths, fg.appx1_k$widths, fg.appx1_l$widths, fg.appx1_m$widths, fg.appx1_n$widths)
   
   return(fg)
 }
 
-fg <- f.appx1.join()
+appx1 <- f.appx1.join()
 
-ggsave(filename="manuscript/images/appendix1.pdf",plot=fg,height=40,width=6,scale=1.5,limitsize=F)
-ggsave(filename="manuscript/images/appendix1.png",plot=fg,height=40,width=6,scale=1.5,limitsize=F)
+ggsave(filename="manuscript/images/figureS1.pdf",plot=appx1,height=40,width=6,scale=1.5,limitsize=F,device=cairo_pdf)
+# ggsave(filename="manuscript/images/figureS1.png",plot=fg,height=40,width=6,scale=1.5,limitsize=F)
 
-# appendix 2 - full comparing curves to each other fits -----------------
+# figure S2 - full comparing curves to each other fits -----------------
 
 # .location = "Minnesota"
 # .variety = "Russet Burbank"
 
 f.appx2 <- function(plot.data,.location,.variety){
   
-  var1 <- "W"
-  var2 <- "%N - Diff"
+  var1 <- expression("Biomass [Mg ha"^-1*"]")
+  var2 <- expression("∆%N"[c]*" [g N 100 g"^-1*"]")
   var3 <- paste(.location,.variety,sep=" - ")
   var4 <- paste(.location,str_replace(.variety," ","."),sep="_")
   
@@ -1746,6 +1995,7 @@ f.appx2 <- function(plot.data,.location,.variety){
     mutate_at(vars(W,N_diff_0.05,N_diff_0.5,N_diff_0.95,N_class),~NA)
   
   r_plot <- r %>%
+    mutate(N_class = !N_class) %>%
     bind_rows(r_fix %>% mutate(N_class=TRUE)) %>%
     bind_rows(r_fix %>% mutate(N_class=FALSE))
   
@@ -1755,15 +2005,17 @@ f.appx2 <- function(plot.data,.location,.variety){
     geom_line(data=r_plot,aes(x=W,y=0,group=`location:variety_comp`),linetype=1,alpha=1.0) +
     geom_text(data=r_range,aes(x=1,y=3,label=paste0("[",format(round(range_min,1),nsmall=1),", ",format(round(range_max,1),nsmall=1),"]")),size=2.5,hjust="inward",vjust=1) +
     theme_classic() +
-    facet_wrap(vars(`location:variety_comp`),scales="free_x",ncol=5) + 
+    # facet_wrap(vars(`location:variety_comp`),scales="free_x",ncol=7) + 
+    facet_wrap(vars(location_comp,variety_comp),scales="free_x",ncol=7) + 
     labs(x=var1,
          y=var2,
-         title=var3) +
-    guides(color="none") +
-    scale_color_manual(values=c("#ca0020","#0571b0")) +
+         title=var3,
+         color="Significant\nDifference") +
+    # guides(color="none") +
+    scale_color_manual(values=c("#0571b0","#ca0020")) +
     scale_y_continuous(n.breaks=4) +
     coord_cartesian(ylim=c(-3.0,3.0)) +
-    scale_x_continuous(limits=c(0,NA),breaks=c(0,5,10,15,20,25,30))
+    scale_x_continuous(limits=c(0,NA),n.breaks=4) #,minor_breaks=c(5,15,25) ,breaks=c(0,10,20,30)
   
 }
 
@@ -1776,14 +2028,39 @@ appx2_sub <- pmap(appx2.list,~f.appx2(plot.data,
                                       .location=..1,
                                       .variety=..2))
 
-appx2.layout <- rbind(1,2,3,4,5,6,7,8,9,10,11,12,13,14)
+f.appx2_title <- function(){
+  
+  appx2_title <- "         Figure S2: Pairwise comparisons of differences in critical N concertation for all levels of location:variety"
+  appx2_caption <- "           Pairwise comparison of the difference in critical N concentration values [∆%Nc] between the critical N concentration [%Nc]
+           for a given reference curve (i.e., title) and %Nc for all levels of location:variety evaluated in the present study (i.e., facets).
+           The grey shaded region represents the 90% credible region (lower bound, 5% quantile; upper bound, 95% quantile)  
+           for ∆%Nc. The colored points represent the median value for ∆%Nc at a given biomass level where blue or red color
+           respectively indicate that credible region for ∆%Nc does or does not contain zero. The solid black line represents
+           a constant value of zero (i.e., %Nc for reference curve). The range of biomass values for which ∆%Nc is not significantly
+           different (i.e., credible region contains zero) is given in brackets."
+  
+  ggplot() +
+    labs(title = appx2_title,
+         subtitle = appx2_caption) +
+    theme_classic() +
+    theme(axis.line = element_blank())
+  
+}
+appx2_title <- f.appx2_title()
+# g.appx1_title <- ggplotGrob(appx1_title)
+# fg.appx1_title <- gtable_frame(g.appx1_title, height = unit(5*(0.33/7), "null"), width = unit(6, "null"))
 
-appx2 <- grid.arrange(appx2_sub[[1]],appx2_sub[[2]],appx2_sub[[3]],appx2_sub[[4]],appx2_sub[[5]],
+
+# appx2.layout <- rbind(1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,9,9,9,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,15,15,15)
+appx2.layout <- rbind(1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15)
+
+appx2 <- grid.arrange(appx2_title,
+                      appx2_sub[[1]],appx2_sub[[2]],appx2_sub[[3]],appx2_sub[[4]],appx2_sub[[5]],
                       appx2_sub[[6]],appx2_sub[[7]],appx2_sub[[8]],appx2_sub[[9]],appx2_sub[[10]],
                       appx2_sub[[11]],appx2_sub[[12]],appx2_sub[[13]],appx2_sub[[14]],
                       layout_matrix=appx2.layout)
 
-ggsave(filename="manuscript/images/appendix2.pdf",plot=appx2,scale=1.5,height=50,width=6,limitsize=F)
-ggsave(filename="manuscript/images/appendix2.png",plot=appx2,scale=1.5,height=50,width=6,limitsize=F)
+ggsave(filename="manuscript/images/figureS2.pdf",plot=appx2,scale=1.5,height=35,width=6,limitsize=F,device=cairo_pdf)
+# ggsave(filename="manuscript/images/figureS2.png",plot=appx2,scale=1.5,height=50,width=6,limitsize=F)
 
 # END --------------------

@@ -52,6 +52,6 @@ write_csv(t1,"manuscript/tables/table1.csv")
 # This is data_cndc, the set of experimental data used to populate the model
 
 appx_t1 <- data_cndc
-write_csv(appx_t1,"manuscript/tables/appx_table1.csv")
+write_csv(appx_t1,"manuscript/tables/tableS1.csv")
 
 # end ----------------
