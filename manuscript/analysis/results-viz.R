@@ -1855,11 +1855,11 @@ f.appx1.join <- function(){
   f.appx1_title <- function(){
     
     appx1_title <- "Figure S1: Linear-plateau curves fitted for each experimental sampling date"
-    appx1_caption <- "Fitted critical N dilution curve for each level of location:variety shown at each level of index with the fitted linear-plateau 
+    appx1_caption <- "Fitted critical N dilution curve for each variety within location shown for each level of index with the fitted linear-plateau 
 curve and experimental data observed for that date. Experimental data points are classified depending on whether the
 N concentration [%N] for that given level of biomass is less than the critical N concentration [%Nc] (i.e., Deficit) or is 
 greater than %Nc (i.e., Surplus). The total number of experimental observations classified as Deficit or Surplus is 
-summarized for each level of index and also for the each level of location:variety."
+summarized for each level of index and also for the each variety within location."
     
     ggplot() +
       labs(title = appx1_title,
@@ -2030,12 +2030,12 @@ appx2_sub <- pmap(appx2.list,~f.appx2(plot.data,
 
 f.appx2_title <- function(){
   
-  appx2_title <- "         Figure S2: Pairwise comparisons of differences in critical N concertation for all levels of location:variety"
+  appx2_title <- "         Figure S2: Pairwise comparisons of differences in critical N concertation for variety within location"
   appx2_caption <- "           Pairwise comparison of the difference in critical N concentration values [∆%Nc] between the critical N concentration [%Nc]
-           for a given reference curve (i.e., title) and %Nc for all levels of location:variety evaluated in the present study (i.e., facets).
-           The grey shaded region represents the 90% credible region (lower bound, 5% quantile; upper bound, 95% quantile)  
-           for ∆%Nc. The colored points represent the median value for ∆%Nc at a given biomass level where blue or red color
-           respectively indicate that credible region for ∆%Nc does or does not contain zero. The solid black line represents
+           for a given reference curve (i.e., title) and %Nc for all levels of variety within location evaluated in the present study
+           (i.e., facets). The grey shaded region represents the 90% credible region (lower bound, 5% quantile; upper bound, 
+           95% quantile) for ∆%Nc. The colored points represent the median value for ∆%Nc at a given biomass level where blue or
+           red color respectively indicate that credible region for ∆%Nc does or does not contain zero. The solid black line represents
            a constant value of zero (i.e., %Nc for reference curve). The range of biomass values for which ∆%Nc is not significantly
            different (i.e., credible region contains zero) is given in brackets."
   
