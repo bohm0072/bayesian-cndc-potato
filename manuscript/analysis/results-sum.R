@@ -34,6 +34,7 @@ f.t1 <- function(){
   
   t1_ob <- data_cndc %>%
     distinct() %>%
+    drop_na() %>%
     group_by(owner,location,variety) %>%
     summarize_at(vars(W),~n())
   
@@ -50,8 +51,37 @@ write_csv(t1,"manuscript/tables/table1.csv")
 
 # Appendix Table 1 ------------
 # This is data_cndc, the set of experimental data used to populate the model
+# Formatted for presentation...
 
-appx_t1 <- data_cndc
+f.appx_t1 <- function(){
+  appx_t1 <- data_cndc %>%
+    select(c(location,variety,index,date,study,year,rate_n_kgha,W,N)) %>%
+    mutate(study=case_when(
+      location=="Minnesota" & study=="blcmr" ~ "MN-1",
+      location=="Minnesota" & study=="vxn" ~ "MN-2",
+      location=="Minnesota" & study=="chloro" ~ "MN-3",
+      location=="Minnesota" & study=="sanjay" ~ "MN-4",
+      location=="Minnesota" & study=="nni" ~ "MN-5",
+      location=="Minnesota" & study=="esn-nni" ~ "MN-6",
+      location=="Argentina" & study=="Giletto" ~ "", #NA_character_,
+      T ~ study
+    )) %>%
+    # mutate(rate_n_kgha=round(rate_n_kgha,0)) %>%
+    mutate(across(.cols=c(rate_n_kgha),.fns=~format(round(., 1), nsmall = 1)))%>%
+    # mutate(across(.cols=c(W,N),.fns=~round(.,3))) %>%
+    mutate(across(.cols=c(W,N),.fns=~format(round(., 3), nsmall = 3)))%>%
+    rename(
+      location = location,
+      variety = variety,
+      index = index,
+      date = date,
+      study = study,
+      rate_n_kgha = rate_n_kgha,
+      biomass_Mgha = W,
+      n_pct = N
+    ) 
+}
+appx_t1 <- f.appx_t1()
 write_csv(appx_t1,"manuscript/tables/tableS1.csv")
 
 # end ----------------

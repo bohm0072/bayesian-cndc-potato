@@ -502,8 +502,8 @@ fig1.layout <- rbind(c(1,2))
 fig1 <- grid.arrange(fig1_a,fig1_b,
                      layout_matrix=fig1.layout)
 
-ggsave(filename="manuscript/images/figure1.pdf",plot=fig1,height=4.5,width=6.0,units="in",scale=1.3,device=cairo_pdf) #height=4.5,width=6,scale=1.3
-ggsave(filename="manuscript/images/figure1.png",plot=fig1,height=4.5,width=6,units="in",scale=1.3,dpi=1000)
+ggsave(filename="manuscript/images/figure3.pdf",plot=fig1,height=4.5,width=6.0,units="in",scale=1.3,device=cairo_pdf) #height=4.5,width=6,scale=1.3
+ggsave(filename="manuscript/images/figure3.png",plot=fig1,height=4.5,width=6,units="in",scale=1.3,dpi=1000)
 
 # figure 2 - distribution of alpha parameters for each parameters simultaneously ----------------
 
@@ -644,6 +644,7 @@ f.fig3 <- function(plot.data,.location,.variety,.color){
     filter(variety %in% .variety)
   
   n <- d %>%
+    drop_na() %>%
     summarize(n=n()) %>%
     mutate(x=max(c$W)) %>%
     mutate(lab=paste("n=",n,sep=""))
@@ -651,6 +652,7 @@ f.fig3 <- function(plot.data,.location,.variety,.color){
   i <- d %>%
     select(index) %>%
     distinct() %>%
+    drop_na() %>%
     summarize(i=n()) %>%
     mutate(x=max(c$W)) %>%
     mutate(lab=paste("i=",i,sep=""))
@@ -856,7 +858,7 @@ tab2 <- pmap(tab2.list,~f.tab2(plot.data,
                                .location=..1,
                                .variety=..2)) %>% bind_rows()
 
-write_csv(tab2,"manuscript/tables/table1.csv")
+write_csv(tab2,"manuscript/tables/table6.csv")
 
 # figure 4a - curve fits for each variety x location with uncertainty  ------------------
 
@@ -1875,59 +1877,73 @@ summarized for each level of index and also for the each variety within location
   appx1_a <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Bannock Russet"))
   g.appx1_a <- ggplotGrob(appx1_a)
   fg.appx1_a <- gtable_frame(g.appx1_a, height = unit(5*(2/7), "null"), width = unit(6, "null"))
+  ggsave(filename="manuscript/images/figureS1_a.png",plot=fg.appx1_a,height=5*(2/7)*1.40,width=6,scale=1.5,limitsize=F,dpi=1000)
 
   appx1_b <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Gem Russet"))
   g.appx1_b <- ggplotGrob(appx1_b)
   fg.appx1_b <- gtable_frame(g.appx1_b, height = unit(5*(3/7), "null"), width = unit(6, "null"))
-
+  ggsave(filename="manuscript/images/figureS1_b.png",plot=fg.appx1_b,height=5*(3/7)*1.25,width=6,scale=1.5,limitsize=F,dpi=1000)
+  
   appx1_c <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Innovator"))
   g.appx1_c <- ggplotGrob(appx1_c)
   fg.appx1_c <- gtable_frame(g.appx1_c, height = unit(5*(3/7), "null"), width = unit(6, "null"))
+  ggsave(filename="manuscript/images/figureS1_c.png",plot=fg.appx1_c,height=5*(3/7)*1.25,width=6,scale=1.5,limitsize=F,dpi=1000)
 
   appx1_d <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Markies Russet"))
   g.appx1_d <- ggplotGrob(appx1_d)
   fg.appx1_d <- gtable_frame(g.appx1_d, height = unit(5*(2/7), "null"), width = unit(6, "null"))
-
+  ggsave(filename="manuscript/images/figureS1_d.png",plot=fg.appx1_d,height=5*(2/7)*1.40,width=6,scale=1.5,limitsize=F,dpi=1000)
+  
   appx1_e <- f.appx1(plot.data,.location=c("Argentina"),.variety=c("Umatilla Russet"))
   g.appx1_e <- ggplotGrob(appx1_e)
   fg.appx1_e <- gtable_frame(g.appx1_e, height = unit(5*(2/7), "null"), width = unit(6, "null"))
-
+  ggsave(filename="manuscript/images/figureS1_e.png",plot=fg.appx1_e,height=5*(2/7)*1.40,width=6,scale=1.5,limitsize=F,dpi=1000)
+  
   appx1_f <- f.appx1(plot.data,.location=c("Belgium"),.variety=c("Bintje"))
   g.appx1_f <- ggplotGrob(appx1_f)
   fg.appx1_f <- gtable_frame(g.appx1_f, height = unit(5*(7/7), "null"), width = unit(6, "null"))
-
+  ggsave(filename="manuscript/images/figureS1_f.png",plot=fg.appx1_f,height=5*(7/7)*1.05,width=6,scale=1.5,limitsize=F,dpi=1000)
+  
   appx1_g <- f.appx1(plot.data,.location=c("Belgium"),.variety=c("Charlotte"))
   g.appx1_g <- ggplotGrob(appx1_g)
   fg.appx1_g <- gtable_frame(g.appx1_g, height = unit(5*(3/7), "null"), width = unit(6, "null"))
-
+  ggsave(filename="manuscript/images/figureS1_g.png",plot=fg.appx1_g,height=5*(3/7)*1.25,width=6,scale=1.5,limitsize=F,dpi=1000)
+  
   appx1_h <- f.appx1(plot.data,.location=c("Canada"),.variety=c("Russet Burbank"))
   g.appx1_h <- ggplotGrob(appx1_h)
   fg.appx1_h <- gtable_frame(g.appx1_h, height = unit(5*(4/7), "null"), width = unit(6, "null"))
-
+  ggsave(filename="manuscript/images/figureS1_h.png",plot=fg.appx1_h,height=5*(4/7)*1.20,width=6,scale=1.5,limitsize=F,dpi=1000)
+  
   appx1_i <- f.appx1(plot.data,.location=c("Canada"),.variety=c("Shepody"))
   g.appx1_i <- ggplotGrob(appx1_i)
   fg.appx1_i <- gtable_frame(g.appx1_i, height = unit(5*(4/7), "null"), width = unit(6, "null"))
-
+  ggsave(filename="manuscript/images/figureS1_i.png",plot=fg.appx1_i,height=5*(4/7)*1.20,width=6,scale=1.5,limitsize=F,dpi=1000)
+  
   appx1_j <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Clearwater"))
   g.appx1_j <- ggplotGrob(appx1_j)
   fg.appx1_j <- gtable_frame(g.appx1_j, height = unit(5*(2/7), "null"), width = unit(6, "null"))
-
+  ggsave(filename="manuscript/images/figureS1_j.png",plot=fg.appx1_j,height=5*(2/7)*1.40,width=6,scale=1.5,limitsize=F,dpi=1000)
+  
   appx1_k <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Dakota Russet"))
   g.appx1_k <- ggplotGrob(appx1_k)
   fg.appx1_k <- gtable_frame(g.appx1_k, height = unit(5*(2/7), "null"), width = unit(6, "null"))
-
+  ggsave(filename="manuscript/images/figureS1_k.png",plot=fg.appx1_k,height=5*(2/7)*1.40,width=6,scale=1.5,limitsize=F,dpi=1000)
+  
   appx1_l <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Easton"))
   g.appx1_l <- ggplotGrob(appx1_l)
   fg.appx1_l <- gtable_frame(g.appx1_l, height = unit(5*(2/7), "null"), width = unit(6, "null"))
-
+  ggsave(filename="manuscript/images/figureS1_l.png",plot=fg.appx1_l,height=5*(2/7)*1.40,width=6,scale=1.5,limitsize=F,dpi=1000)
+  
   appx1_m <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Russet Burbank"))
   g.appx1_m <- ggplotGrob(appx1_m)
   fg.appx1_m <- gtable_frame(g.appx1_m, height = unit(5*(7/7), "null"), width = unit(6, "null"))
-
+  ggsave(filename="manuscript/images/figureS1_m.png",plot=fg.appx1_m,height=5*(7/7)*1.05,width=6,scale=1.5,limitsize=F,dpi=1000)
+  
   appx1_n <- f.appx1(plot.data,.location=c("Minnesota"),.variety=c("Umatilla Russet"))
   g.appx1_n <- ggplotGrob(appx1_n)
   fg.appx1_n <- gtable_frame(g.appx1_n, height = unit(5*(2/7), "null"), width = unit(6, "null"))
-
+  ggsave(filename="manuscript/images/figureS1_n.png",plot=fg.appx1_n,height=5*(2/7)*1.40,width=6,scale=1.5,limitsize=F,dpi=1000)
+  
   fg <- rbind(fg.appx1_title,fg.appx1_a,fg.appx1_b,fg.appx1_c,fg.appx1_d,fg.appx1_e,fg.appx1_f,fg.appx1_g,fg.appx1_h,fg.appx1_i,fg.appx1_j,fg.appx1_k,fg.appx1_l,fg.appx1_m,fg.appx1_n,size = "first")
   fg$widths <- unit.pmax(fg.appx1_title$widths, fg.appx1_a$widths, fg.appx1_b$widths, fg.appx1_c$widths, fg.appx1_d$widths, fg.appx1_e$widths, fg.appx1_f$widths, fg.appx1_g$widths, fg.appx1_h$widths, fg.appx1_i$widths, fg.appx1_j$widths, fg.appx1_k$widths, fg.appx1_l$widths, fg.appx1_m$widths, fg.appx1_n$widths)
   
@@ -1937,7 +1953,7 @@ summarized for each level of index and also for the each variety within location
 appx1 <- f.appx1.join()
 
 ggsave(filename="manuscript/images/figureS1.pdf",plot=appx1,height=40,width=6,scale=1.5,limitsize=F,device=cairo_pdf)
-# ggsave(filename="manuscript/images/figureS1.png",plot=fg,height=40,width=6,scale=1.5,limitsize=F)
+ggsave(filename="manuscript/images/figureS1.png",plot=appx1,height=40,width=6,scale=1.5,limitsize=F,dpi=1000)
 
 # figure S2 - full comparing curves to each other fits -----------------
 
@@ -2061,6 +2077,6 @@ appx2 <- grid.arrange(appx2_title,
                       layout_matrix=appx2.layout)
 
 ggsave(filename="manuscript/images/figureS2.pdf",plot=appx2,scale=1.5,height=35,width=6,limitsize=F,device=cairo_pdf)
-# ggsave(filename="manuscript/images/figureS2.png",plot=appx2,scale=1.5,height=50,width=6,limitsize=F)
+ggsave(filename="manuscript/images/figureS2.png",plot=appx2,scale=1.5,height=50,width=6,limitsize=F,dpi=1000)
 
 # END --------------------

@@ -1,0 +1,1410 @@
+location,variety,index,date,study,year,rate_n_kgha,biomass_Mgha,n_pct
+Belgium,Bintje,1,1999-06-28,Franière,1999,  0.0, 1.874,3.676
+Belgium,Bintje,1,1999-06-28,Franière,1999,119.0, 2.000,3.813
+Belgium,Bintje,1,1999-06-28,Franière,1999,170.0, 1.752,3.966
+Belgium,Bintje,1,1999-06-28,Franière,1999,221.0, 1.974,4.427
+Belgium,Bintje,2,1997-06-12,Gembloux,1997,  0.0, 0.788,3.785
+Belgium,Bintje,2,1997-06-12,Gembloux,1997, 75.0, 1.151,4.446
+Belgium,Bintje,2,1997-06-12,Gembloux,1997,113.0, 1.136,4.801
+Belgium,Bintje,2,1997-06-12,Gembloux,1997,150.0, 1.197,4.852
+Belgium,Bintje,2,1997-06-12,Gembloux,1997,188.0, 1.251,4.845
+Belgium,Bintje,3,1997-06-24,Gembloux,1997,  0.0, 2.167,2.485
+Belgium,Bintje,3,1997-06-24,Gembloux,1997, 75.0, 3.078,3.526
+Belgium,Bintje,3,1997-06-24,Gembloux,1997,113.0, 3.379,3.890
+Belgium,Bintje,3,1997-06-24,Gembloux,1997,150.0, 3.329,3.923
+Belgium,Bintje,3,1997-06-24,Gembloux,1997,188.0, 3.305,3.990
+Belgium,Bintje,4,1997-07-03,Gembloux,1997,  0.0, 3.420,1.877
+Belgium,Bintje,4,1997-07-03,Gembloux,1997, 75.0, 5.320,2.787
+Belgium,Bintje,4,1997-07-03,Gembloux,1997,113.0, 4.870,3.097
+Belgium,Bintje,4,1997-07-03,Gembloux,1997,150.0, 5.186,3.349
+Belgium,Bintje,4,1997-07-03,Gembloux,1997,188.0, 5.027,3.527
+Belgium,Bintje,5,1997-07-16,Gembloux,1997,  0.0, 6.435,1.248
+Belgium,Bintje,5,1997-07-16,Gembloux,1997, 75.0, 8.816,1.861
+Belgium,Bintje,5,1997-07-16,Gembloux,1997,113.0, 8.171,2.151
+Belgium,Bintje,5,1997-07-16,Gembloux,1997,150.0, 8.254,2.462
+Belgium,Bintje,5,1997-07-16,Gembloux,1997,188.0, 8.841,2.570
+Belgium,Bintje,6,1997-07-30,Gembloux,1997,  0.0, 9.369,1.039
+Belgium,Bintje,6,1997-07-30,Gembloux,1997, 75.0,12.364,1.394
+Belgium,Bintje,6,1997-07-30,Gembloux,1997,113.0,10.852,1.550
+Belgium,Bintje,6,1997-07-30,Gembloux,1997,150.0,12.339,1.809
+Belgium,Bintje,6,1997-07-30,Gembloux,1997,188.0,12.706,1.755
+Belgium,Bintje,7,1998-06-22,Gembloux,1998,  0.0, 0.932,2.903
+Belgium,Bintje,7,1998-06-22,Gembloux,1998, 88.0, 1.776,4.579
+Belgium,Bintje,7,1998-06-22,Gembloux,1998,132.0, 1.658,4.500
+Belgium,Bintje,7,1998-06-22,Gembloux,1998,176.0, 1.824,5.231
+Belgium,Bintje,7,1998-06-22,Gembloux,1998,220.0, 1.664,5.144
+Belgium,Bintje,8,1998-07-01,Gembloux,1998,  0.0, 2.436,1.782
+Belgium,Bintje,8,1998-07-01,Gembloux,1998, 88.0, 3.592,2.675
+Belgium,Bintje,8,1998-07-01,Gembloux,1998,132.0, 3.411,2.913
+Belgium,Bintje,8,1998-07-01,Gembloux,1998,176.0, 3.658,3.411
+Belgium,Bintje,8,1998-07-01,Gembloux,1998,220.0, 3.662,3.362
+Belgium,Bintje,9,1998-07-13,Gembloux,1998,  0.0, 5.158,1.097
+Belgium,Bintje,9,1998-07-13,Gembloux,1998, 88.0, 8.229,1.672
+Belgium,Bintje,9,1998-07-13,Gembloux,1998,132.0, 6.482,1.925
+Belgium,Bintje,9,1998-07-13,Gembloux,1998,176.0, 6.575,2.364
+Belgium,Bintje,9,1998-07-13,Gembloux,1998,220.0, 7.083,2.231
+Belgium,Bintje,11,1999-06-24,Gembloux,1999,  0.0, 1.655,2.735
+Belgium,Bintje,11,1999-06-24,Gembloux,1999,119.0, 2.116,3.891
+Belgium,Bintje,11,1999-06-24,Gembloux,1999,170.0, 1.716,4.488
+Belgium,Bintje,11,1999-06-24,Gembloux,1999,221.0, 1.998,4.304
+Belgium,Bintje,12,1999-07-08,Gembloux,1999,  0.0, 4.438,1.638
+Belgium,Bintje,12,1999-07-08,Gembloux,1999,119.0, 5.385,2.589
+Belgium,Bintje,12,1999-07-08,Gembloux,1999,170.0, 5.501,2.837
+Belgium,Bintje,12,1999-07-08,Gembloux,1999,221.0, 5.381,2.938
+Belgium,Bintje,13,1999-07-19,Gembloux,1999,  0.0, 7.822,1.068
+Belgium,Bintje,13,1999-07-19,Gembloux,1999,119.0, 8.960,1.922
+Belgium,Bintje,13,1999-07-19,Gembloux,1999,170.0, 7.291,2.363
+Belgium,Bintje,13,1999-07-19,Gembloux,1999,221.0, 8.236,2.487
+Belgium,Bintje,14,2000-06-15,Gembloux,2000,  0.0, 1.749,3.109
+Belgium,Bintje,14,2000-06-15,Gembloux,2000,102.0, 2.778,4.345
+Belgium,Bintje,14,2000-06-15,Gembloux,2000,145.0, 2.375,4.795
+Belgium,Bintje,14,2000-06-15,Gembloux,2000,189.0, 2.707,4.968
+Belgium,Bintje,15,2000-06-29,Gembloux,2000,  0.0, 4.692,1.530
+Belgium,Bintje,15,2000-06-29,Gembloux,2000,102.0, 5.833,2.461
+Belgium,Bintje,15,2000-06-29,Gembloux,2000,145.0, 5.145,2.676
+Belgium,Bintje,15,2000-06-29,Gembloux,2000,189.0, 5.617,2.954
+Belgium,Bintje,16,2000-07-13,Gembloux,2000,  0.0, 8.063,1.079
+Belgium,Bintje,16,2000-07-13,Gembloux,2000,102.0, 8.919,1.812
+Belgium,Bintje,16,2000-07-13,Gembloux,2000,145.0, 8.321,2.140
+Belgium,Bintje,16,2000-07-13,Gembloux,2000,189.0, 8.486,1.886
+Belgium,Bintje,18,2004-06-21,Gembloux,2004,  0.0, 1.881,2.541
+Belgium,Bintje,18,2004-06-21,Gembloux,2004,100.0, 2.486,3.770
+Belgium,Bintje,18,2004-06-21,Gembloux,2004,140.0, 2.515,3.746
+Belgium,Bintje,18,2004-06-21,Gembloux,2004,180.0, 2.454,4.482
+Belgium,Bintje,18,2004-06-21,Gembloux,2004,240.0, 2.365,4.158
+Belgium,Bintje,19,2004-06-28,Gembloux,2004,  0.0, 2.942,1.852
+Belgium,Bintje,19,2004-06-28,Gembloux,2004,100.0, 4.103,2.961
+Belgium,Bintje,19,2004-06-28,Gembloux,2004,140.0, 3.734,2.967
+Belgium,Bintje,19,2004-06-28,Gembloux,2004,180.0, 3.848,3.146
+Belgium,Bintje,19,2004-06-28,Gembloux,2004,240.0, 3.991,3.345
+Belgium,Bintje,20,2004-07-05,Gembloux,2004,  0.0, 4.190,1.545
+Belgium,Bintje,20,2004-07-05,Gembloux,2004,100.0, 5.525,2.223
+Belgium,Bintje,20,2004-07-05,Gembloux,2004,140.0, 5.775,2.393
+Belgium,Bintje,20,2004-07-05,Gembloux,2004,180.0, 5.460,2.521
+Belgium,Bintje,20,2004-07-05,Gembloux,2004,240.0, 6.077,2.603
+Belgium,Bintje,21,2004-07-12,Gembloux,2004,  0.0, 5.669,1.184
+Belgium,Bintje,21,2004-07-12,Gembloux,2004,100.0, 7.292,2.004
+Belgium,Bintje,21,2004-07-12,Gembloux,2004,140.0, 6.821,2.105
+Belgium,Bintje,21,2004-07-12,Gembloux,2004,180.0, 6.980,2.393
+Belgium,Bintje,21,2004-07-12,Gembloux,2004,240.0, 7.465,2.477
+Belgium,Bintje,22,2004-07-19,Gembloux,2004,  0.0, 6.698,1.030
+Belgium,Bintje,22,2004-07-19,Gembloux,2004,100.0, 9.010,1.566
+Belgium,Bintje,22,2004-07-19,Gembloux,2004,140.0, 8.727,1.647
+Belgium,Bintje,22,2004-07-19,Gembloux,2004,180.0, 8.393,2.034
+Belgium,Bintje,22,2004-07-19,Gembloux,2004,240.0, 9.347,2.082
+Belgium,Bintje,23,2004-07-27,Gembloux,2004,  0.0, 8.159,0.881
+Belgium,Bintje,23,2004-07-27,Gembloux,2004,100.0,10.805,1.466
+Belgium,Bintje,23,2004-07-27,Gembloux,2004,140.0,10.240,1.516
+Belgium,Bintje,23,2004-07-27,Gembloux,2004,180.0,11.061,1.733
+Belgium,Bintje,23,2004-07-27,Gembloux,2004,240.0,10.978,1.824
+Belgium,Bintje,25,2010-06-28,Gembloux,2010,  0.0, 3.099,2.535
+Belgium,Bintje,25,2010-06-28,Gembloux,2010,115.0, 3.190,3.290
+Belgium,Bintje,25,2010-06-28,Gembloux,2010,165.0, 3.423,3.283
+Belgium,Bintje,25,2010-06-28,Gembloux,2010,215.0, 3.219,3.498
+Belgium,Bintje,25,2010-06-28,Gembloux,2010,248.0, 3.419,3.717
+Belgium,Bintje,26,2010-07-05,Gembloux,2010,  0.0, 4.204,2.097
+Belgium,Bintje,26,2010-07-05,Gembloux,2010,115.0, 4.325,2.714
+Belgium,Bintje,26,2010-07-05,Gembloux,2010,165.0, 4.342,2.916
+Belgium,Bintje,26,2010-07-05,Gembloux,2010,215.0, 4.056,3.048
+Belgium,Bintje,26,2010-07-05,Gembloux,2010,248.0, 4.413,3.109
+Belgium,Bintje,27,2010-07-12,Gembloux,2010,  0.0, 5.123,1.871
+Belgium,Bintje,27,2010-07-12,Gembloux,2010,115.0, 5.497,2.531
+Belgium,Bintje,27,2010-07-12,Gembloux,2010,165.0, 5.236,2.546
+Belgium,Bintje,27,2010-07-12,Gembloux,2010,215.0, 5.430,2.741
+Belgium,Bintje,27,2010-07-12,Gembloux,2010,248.0, 5.273,2.780
+Belgium,Bintje,28,2010-07-26,Gembloux,2010,  0.0, 7.188,1.700
+Belgium,Bintje,28,2010-07-26,Gembloux,2010,115.0, 7.721,2.250
+Belgium,Bintje,28,2010-07-26,Gembloux,2010,165.0, 8.154,2.456
+Belgium,Bintje,28,2010-07-26,Gembloux,2010,215.0, 7.066,2.594
+Belgium,Bintje,28,2010-07-26,Gembloux,2010,248.0, 7.797,2.582
+Belgium,Bintje,29,2011-06-14,Gembloux,2011,  0.0, 1.436,3.764
+Belgium,Bintje,29,2011-06-14,Gembloux,2011, 98.0, 1.458,3.625
+Belgium,Bintje,29,2011-06-14,Gembloux,2011,140.0, 1.266,3.747
+Belgium,Bintje,29,2011-06-14,Gembloux,2011,182.0, 1.554,3.605
+Belgium,Bintje,29,2011-06-14,Gembloux,2011,210.0, 1.356,3.767
+Belgium,Bintje,30,2011-07-06,Gembloux,2011,  0.0, 5.547,1.787
+Belgium,Bintje,30,2011-07-06,Gembloux,2011, 98.0, 5.148,2.416
+Belgium,Bintje,30,2011-07-06,Gembloux,2011,140.0, 5.412,2.389
+Belgium,Bintje,30,2011-07-06,Gembloux,2011,182.0, 5.366,2.624
+Belgium,Bintje,30,2011-07-06,Gembloux,2011,210.0, 5.529,2.636
+Belgium,Bintje,31,2011-07-20,Gembloux,2011,  0.0, 8.264,1.190
+Belgium,Bintje,31,2011-07-20,Gembloux,2011, 98.0, 8.247,1.840
+Belgium,Bintje,31,2011-07-20,Gembloux,2011,140.0, 8.039,2.015
+Belgium,Bintje,31,2011-07-20,Gembloux,2011,182.0, 8.876,2.095
+Belgium,Bintje,31,2011-07-20,Gembloux,2011,210.0, 8.532,2.072
+Belgium,Bintje,32,2011-07-25,Gembloux,2011,  0.0, 8.767,1.169
+Belgium,Bintje,32,2011-07-25,Gembloux,2011, 98.0,10.217,1.759
+Belgium,Bintje,32,2011-07-25,Gembloux,2011,140.0, 8.856,1.891
+Belgium,Bintje,32,2011-07-25,Gembloux,2011,182.0, 9.422,2.153
+Belgium,Bintje,32,2011-07-25,Gembloux,2011,210.0, 9.304,2.105
+Belgium,Bintje,33,2012-06-27,Gembloux,2012,  0.0, 1.021,3.812
+Belgium,Bintje,33,2012-06-27,Gembloux,2012, 50.0, 1.104,4.742
+Belgium,Bintje,33,2012-06-27,Gembloux,2012,100.0, 1.209,5.503
+Belgium,Bintje,33,2012-06-27,Gembloux,2012,150.0, 1.367,5.572
+Belgium,Bintje,33,2012-06-27,Gembloux,2012,200.0, 1.276,6.199
+Belgium,Bintje,33,2012-06-27,Gembloux,2012,250.0, 1.321,5.865
+Belgium,Bintje,34,2012-07-04,Gembloux,2012,  0.0, 1.910,2.959
+Belgium,Bintje,34,2012-07-04,Gembloux,2012, 50.0, 2.828,3.470
+Belgium,Bintje,34,2012-07-04,Gembloux,2012,100.0, 2.829,3.962
+Belgium,Bintje,34,2012-07-04,Gembloux,2012,150.0, 2.752,4.410
+Belgium,Bintje,34,2012-07-04,Gembloux,2012,200.0, 3.254,4.613
+Belgium,Bintje,34,2012-07-04,Gembloux,2012,250.0, 2.969,5.036
+Belgium,Bintje,35,2012-07-11,Gembloux,2012,  0.0, 3.251,2.250
+Belgium,Bintje,35,2012-07-11,Gembloux,2012, 50.0, 3.414,2.591
+Belgium,Bintje,35,2012-07-11,Gembloux,2012,100.0, 4.002,2.953
+Belgium,Bintje,35,2012-07-11,Gembloux,2012,150.0, 4.283,3.129
+Belgium,Bintje,35,2012-07-11,Gembloux,2012,200.0, 4.295,3.503
+Belgium,Bintje,35,2012-07-11,Gembloux,2012,250.0, 4.662,3.401
+Belgium,Bintje,36,2012-07-25,Gembloux,2012,  0.0, 5.821,1.502
+Belgium,Bintje,36,2012-07-25,Gembloux,2012, 50.0, 7.313,1.783
+Belgium,Bintje,36,2012-07-25,Gembloux,2012,100.0, 6.062,2.020
+Belgium,Bintje,36,2012-07-25,Gembloux,2012,150.0, 7.538,2.207
+Belgium,Bintje,36,2012-07-25,Gembloux,2012,200.0, 5.396,2.511
+Belgium,Bintje,36,2012-07-25,Gembloux,2012,250.0, 6.214,2.542
+Belgium,Bintje,38,2013-06-26,Gembloux,2013,  0.0, 1.000,4.544
+Belgium,Bintje,38,2013-06-26,Gembloux,2013, 50.0, 1.415,5.039
+Belgium,Bintje,38,2013-06-26,Gembloux,2013,100.0, 1.157,5.458
+Belgium,Bintje,38,2013-06-26,Gembloux,2013,150.0, 1.448,5.766
+Belgium,Bintje,38,2013-06-26,Gembloux,2013,200.0, 1.232,5.277
+Belgium,Bintje,38,2013-06-26,Gembloux,2013,250.0, 1.294,5.722
+Belgium,Bintje,39,2013-07-11,Gembloux,2013,  0.0, 3.788,1.804
+Belgium,Bintje,39,2013-07-11,Gembloux,2013, 50.0, 4.327,2.445
+Belgium,Bintje,39,2013-07-11,Gembloux,2013,100.0, 4.347,3.117
+Belgium,Bintje,39,2013-07-11,Gembloux,2013,150.0, 4.645,2.969
+Belgium,Bintje,39,2013-07-11,Gembloux,2013,200.0, 5.037,3.249
+Belgium,Bintje,39,2013-07-11,Gembloux,2013,250.0, 4.504,3.747
+Belgium,Bintje,40,2013-07-23,Gembloux,2013,  0.0, 5.188,1.495
+Belgium,Bintje,40,2013-07-23,Gembloux,2013, 50.0, 6.674,1.858
+Belgium,Bintje,40,2013-07-23,Gembloux,2013,100.0, 7.141,2.266
+Belgium,Bintje,40,2013-07-23,Gembloux,2013,150.0, 7.209,2.495
+Belgium,Bintje,40,2013-07-23,Gembloux,2013,200.0, 7.130,2.524
+Belgium,Bintje,40,2013-07-23,Gembloux,2013,250.0, 6.759,2.667
+Belgium,Bintje,41,2014-06-18,Gembloux,2014,  0.0, 2.509,3.144
+Belgium,Bintje,41,2014-06-18,Gembloux,2014,100.0, 2.911,3.797
+Belgium,Bintje,41,2014-06-18,Gembloux,2014,200.0, 2.853,4.012
+Belgium,Bintje,41,2014-06-18,Gembloux,2014,250.0, 2.674,3.863
+Belgium,Bintje,42,2014-07-03,Gembloux,2014,  0.0, 5.995,1.710
+Belgium,Bintje,42,2014-07-03,Gembloux,2014,100.0, 5.986,2.167
+Belgium,Bintje,42,2014-07-03,Gembloux,2014,200.0, 6.752,2.397
+Belgium,Bintje,42,2014-07-03,Gembloux,2014,250.0, 6.765,2.546
+Belgium,Bintje,43,2014-07-30,Gembloux,2014,  0.0,10.227,1.110
+Belgium,Bintje,43,2014-07-30,Gembloux,2014,100.0,11.697,1.327
+Belgium,Bintje,43,2014-07-30,Gembloux,2014,200.0,11.096,1.755
+Belgium,Bintje,43,2014-07-30,Gembloux,2014,250.0,11.770,1.881
+Belgium,Charlotte,44,1999-07-06,Gembloux,1999,  0.0, 3.074,1.885
+Belgium,Charlotte,44,1999-07-06,Gembloux,1999, 84.0, 3.429,2.987
+Belgium,Charlotte,44,1999-07-06,Gembloux,1999,120.0, 4.220,2.559
+Belgium,Charlotte,44,1999-07-06,Gembloux,1999,156.0, 4.322,2.995
+Belgium,Charlotte,45,1999-07-22,Gembloux,1999,  0.0, 5.785,1.336
+Belgium,Charlotte,45,1999-07-22,Gembloux,1999, 84.0, 8.473,1.642
+Belgium,Charlotte,45,1999-07-22,Gembloux,1999,120.0, 7.696,1.801
+Belgium,Charlotte,45,1999-07-22,Gembloux,1999,156.0, 8.291,2.274
+Belgium,Charlotte,47,2010-07-01,Gembloux,2010,  0.0, 3.339,2.321
+Belgium,Charlotte,47,2010-07-01,Gembloux,2010,100.0, 4.014,3.126
+Belgium,Charlotte,47,2010-07-01,Gembloux,2010,140.0, 3.711,3.267
+Belgium,Charlotte,47,2010-07-01,Gembloux,2010,180.0, 3.297,2.962
+Belgium,Charlotte,47,2010-07-01,Gembloux,2010,210.0, 3.351,3.295
+Belgium,Charlotte,48,2010-07-08,Gembloux,2010,  0.0, 4.724,2.061
+Belgium,Charlotte,48,2010-07-08,Gembloux,2010,100.0, 5.133,2.736
+Belgium,Charlotte,48,2010-07-08,Gembloux,2010,140.0, 4.384,2.680
+Belgium,Charlotte,48,2010-07-08,Gembloux,2010,180.0, 5.067,2.699
+Belgium,Charlotte,48,2010-07-08,Gembloux,2010,210.0, 5.217,2.866
+Belgium,Charlotte,49,2010-07-15,Gembloux,2010,  0.0, 5.827,1.923
+Belgium,Charlotte,49,2010-07-15,Gembloux,2010,100.0, 5.911,2.347
+Belgium,Charlotte,49,2010-07-15,Gembloux,2010,140.0, 6.106,2.419
+Belgium,Charlotte,49,2010-07-15,Gembloux,2010,180.0, 5.187,2.483
+Belgium,Charlotte,49,2010-07-15,Gembloux,2010,210.0, 5.925,2.444
+Belgium,Charlotte,50,2010-07-19,Gembloux,2010,  0.0, 5.358,1.937
+Belgium,Charlotte,50,2010-07-19,Gembloux,2010,100.0, 6.080,2.328
+Belgium,Charlotte,50,2010-07-19,Gembloux,2010,140.0, 6.050,2.294
+Belgium,Charlotte,50,2010-07-19,Gembloux,2010,180.0, 5.955,2.436
+Belgium,Charlotte,50,2010-07-19,Gembloux,2010,210.0, 6.156,2.436
+Belgium,Charlotte,51,2011-06-20,Gembloux,2011,  0.0, 2.362,3.047
+Belgium,Charlotte,51,2011-06-20,Gembloux,2011, 84.0, 2.642,3.496
+Belgium,Charlotte,51,2011-06-20,Gembloux,2011,120.0, 2.317,3.306
+Belgium,Charlotte,51,2011-06-20,Gembloux,2011,156.0, 2.766,3.392
+Belgium,Charlotte,51,2011-06-20,Gembloux,2011,180.0, 2.948,3.415
+Belgium,Charlotte,52,2011-07-04,Gembloux,2011,  0.0, 5.171,1.698
+Belgium,Charlotte,52,2011-07-04,Gembloux,2011, 84.0, 5.587,2.400
+Belgium,Charlotte,52,2011-07-04,Gembloux,2011,120.0, 5.323,2.585
+Belgium,Charlotte,52,2011-07-04,Gembloux,2011,156.0, 6.033,2.435
+Belgium,Charlotte,52,2011-07-04,Gembloux,2011,180.0, 5.193,2.572
+Belgium,Charlotte,53,2011-07-11,Gembloux,2011,  0.0, 6.445,1.582
+Belgium,Charlotte,53,2011-07-11,Gembloux,2011, 84.0, 7.598,1.869
+Belgium,Charlotte,53,2011-07-11,Gembloux,2011,120.0, 6.371,2.206
+Belgium,Charlotte,53,2011-07-11,Gembloux,2011,156.0, 7.570,2.128
+Belgium,Charlotte,53,2011-07-11,Gembloux,2011,180.0, 6.473,2.311
+Belgium,Charlotte,54,2011-07-18,Gembloux,2011,  0.0, 8.515,1.363
+Belgium,Charlotte,54,2011-07-18,Gembloux,2011, 84.0, 9.640,1.620
+Belgium,Charlotte,54,2011-07-18,Gembloux,2011,120.0, 9.399,1.786
+Belgium,Charlotte,54,2011-07-18,Gembloux,2011,156.0, 9.679,1.835
+Belgium,Charlotte,54,2011-07-18,Gembloux,2011,180.0,10.127,1.784
+Belgium,Charlotte,55,2012-06-27,Gembloux,2012,  0.0, 1.266,4.452
+Belgium,Charlotte,55,2012-06-27,Gembloux,2012, 50.0, 1.355,4.883
+Belgium,Charlotte,55,2012-06-27,Gembloux,2012,100.0, 1.459,5.636
+Belgium,Charlotte,55,2012-06-27,Gembloux,2012,150.0, 1.487,5.896
+Belgium,Charlotte,55,2012-06-27,Gembloux,2012,200.0, 1.500,5.896
+Belgium,Charlotte,55,2012-06-27,Gembloux,2012,250.0, 1.462,5.591
+Belgium,Charlotte,56,2012-07-02,Gembloux,2012,  0.0, 2.091,3.115
+Belgium,Charlotte,56,2012-07-02,Gembloux,2012, 50.0, 2.385,3.927
+Belgium,Charlotte,56,2012-07-02,Gembloux,2012,100.0, 2.739,4.230
+Belgium,Charlotte,56,2012-07-02,Gembloux,2012,150.0, 2.642,4.569
+Belgium,Charlotte,56,2012-07-02,Gembloux,2012,200.0, 2.689,4.885
+Belgium,Charlotte,56,2012-07-02,Gembloux,2012,250.0, 2.626,4.947
+Belgium,Charlotte,57,2012-07-09,Gembloux,2012,  0.0, 4.092,2.184
+Belgium,Charlotte,57,2012-07-09,Gembloux,2012, 50.0, 4.538,2.651
+Belgium,Charlotte,57,2012-07-09,Gembloux,2012,100.0, 4.102,3.107
+Belgium,Charlotte,57,2012-07-09,Gembloux,2012,150.0, 4.540,3.277
+Belgium,Charlotte,57,2012-07-09,Gembloux,2012,200.0, 4.565,3.430
+Belgium,Charlotte,57,2012-07-09,Gembloux,2012,250.0, 4.301,3.794
+Belgium,Charlotte,58,2012-07-16,Gembloux,2012,  0.0, 5.005,1.901
+Belgium,Charlotte,58,2012-07-16,Gembloux,2012, 50.0, 4.804,2.221
+Belgium,Charlotte,58,2012-07-16,Gembloux,2012,100.0, 5.505,2.386
+Belgium,Charlotte,58,2012-07-16,Gembloux,2012,150.0, 5.468,2.577
+Belgium,Charlotte,58,2012-07-16,Gembloux,2012,200.0, 5.961,2.942
+Belgium,Charlotte,58,2012-07-16,Gembloux,2012,250.0, 5.488,3.124
+Belgium,Charlotte,60,2013-06-24,Gembloux,2013,  0.0, 1.029,4.139
+Belgium,Charlotte,60,2013-06-24,Gembloux,2013, 50.0, 1.368,4.568
+Belgium,Charlotte,60,2013-06-24,Gembloux,2013,100.0, 1.511,4.755
+Belgium,Charlotte,60,2013-06-24,Gembloux,2013,150.0, 1.426,5.215
+Belgium,Charlotte,60,2013-06-24,Gembloux,2013,200.0, 1.698,4.947
+Belgium,Charlotte,60,2013-06-24,Gembloux,2013,250.0, 1.356,5.547
+Belgium,Charlotte,61,2013-07-01,Gembloux,2013,  0.0, 2.185,2.671
+Belgium,Charlotte,61,2013-07-01,Gembloux,2013, 50.0, 2.529,3.271
+Belgium,Charlotte,61,2013-07-01,Gembloux,2013,100.0, 2.913,4.027
+Belgium,Charlotte,61,2013-07-01,Gembloux,2013,150.0, 2.937,4.080
+Belgium,Charlotte,61,2013-07-01,Gembloux,2013,200.0, 3.273,4.063
+Belgium,Charlotte,61,2013-07-01,Gembloux,2013,250.0, 2.983,4.602
+Belgium,Charlotte,62,2013-07-15,Gembloux,2013,  0.0, 5.339,1.413
+Belgium,Charlotte,62,2013-07-15,Gembloux,2013, 50.0, 6.698,1.810
+Belgium,Charlotte,62,2013-07-15,Gembloux,2013,100.0, 6.914,2.383
+Belgium,Charlotte,62,2013-07-15,Gembloux,2013,150.0, 7.407,2.434
+Belgium,Charlotte,62,2013-07-15,Gembloux,2013,200.0, 6.964,2.647
+Belgium,Charlotte,62,2013-07-15,Gembloux,2013,250.0, 6.939,2.788
+Belgium,Charlotte,63,2014-06-16,Gembloux 1,2014,  0.0, 2.416,3.134
+Belgium,Charlotte,63,2014-06-16,Gembloux 1,2014,100.0, 2.407,3.999
+Belgium,Charlotte,63,2014-06-16,Gembloux 1,2014,200.0, 2.686,4.172
+Belgium,Charlotte,63,2014-06-16,Gembloux 1,2014,250.0, 2.530,4.652
+Belgium,Charlotte,64,2014-06-30,Gembloux 1,2014,  0.0, 5.433,1.731
+Belgium,Charlotte,64,2014-06-30,Gembloux 1,2014,100.0, 5.727,2.096
+Belgium,Charlotte,64,2014-06-30,Gembloux 1,2014,200.0, 5.744,2.423
+Belgium,Charlotte,64,2014-06-30,Gembloux 1,2014,250.0, 5.867,2.551
+Belgium,Charlotte,65,2014-07-28,Gembloux 1,2014,  0.0, 9.452,1.310
+Belgium,Charlotte,65,2014-07-28,Gembloux 1,2014,100.0,11.159,1.552
+Belgium,Charlotte,65,2014-07-28,Gembloux 1,2014,200.0,11.672,1.726
+Belgium,Charlotte,65,2014-07-28,Gembloux 1,2014,250.0,12.833,1.771
+Belgium,Charlotte,66,2014-06-24,Gembloux 2,2014,  0.0, 3.308,2.498
+Belgium,Charlotte,66,2014-06-24,Gembloux 2,2014,100.0, 3.871,3.046
+Belgium,Charlotte,66,2014-06-24,Gembloux 2,2014,250.0, 3.530,3.588
+Belgium,Charlotte,67,2014-07-08,Gembloux 2,2014,  0.0, 6.020,1.535
+Belgium,Charlotte,67,2014-07-08,Gembloux 2,2014,100.0, 7.216,1.959
+Belgium,Charlotte,67,2014-07-08,Gembloux 2,2014,250.0, 7.240,2.270
+Belgium,Charlotte,68,2014-07-15,Gembloux 2,2014,  0.0, 7.221,1.350
+Belgium,Charlotte,68,2014-07-15,Gembloux 2,2014,100.0, 7.878,1.878
+Belgium,Charlotte,68,2014-07-15,Gembloux 2,2014,250.0, 8.910,2.128
+Belgium,Charlotte,69,2014-07-23,Gembloux 2,2014,  0.0, 8.923,1.095
+Belgium,Charlotte,69,2014-07-23,Gembloux 2,2014,100.0,10.894,1.673
+Belgium,Charlotte,69,2014-07-23,Gembloux 2,2014,250.0,10.030,1.895
+Belgium,Bintje,70,1998-06-24,Gouy,1998,  0.0, 1.073,2.728
+Belgium,Bintje,70,1998-06-24,Gouy,1998, 88.0, 1.733,4.134
+Belgium,Bintje,70,1998-06-24,Gouy,1998,132.0, 1.889,4.490
+Belgium,Bintje,70,1998-06-24,Gouy,1998,176.0, 1.895,4.771
+Belgium,Bintje,70,1998-06-24,Gouy,1998,220.0, 1.506,4.827
+Belgium,Bintje,71,1998-07-07,Gouy,1998,  0.0, 3.470,1.938
+Belgium,Bintje,71,1998-07-07,Gouy,1998, 88.0, 4.625,2.390
+Belgium,Bintje,71,1998-07-07,Gouy,1998,132.0, 4.325,2.688
+Belgium,Bintje,71,1998-07-07,Gouy,1998,176.0, 5.499,2.898
+Belgium,Bintje,71,1998-07-07,Gouy,1998,220.0, 4.058,3.306
+Belgium,Bintje,72,1998-07-15,Gouy,1998,  0.0, 4.402,1.677
+Belgium,Bintje,72,1998-07-15,Gouy,1998, 88.0, 6.754,1.735
+Belgium,Bintje,72,1998-07-15,Gouy,1998,132.0, 6.612,2.048
+Belgium,Bintje,72,1998-07-15,Gouy,1998,176.0, 7.966,2.406
+Belgium,Bintje,72,1998-07-15,Gouy,1998,220.0, 5.594,2.771
+Belgium,Bintje,73,1999-06-28,incourt,1999,  0.0, 2.643,3.543
+Belgium,Bintje,73,1999-06-28,incourt,1999,112.0, 2.528,4.344
+Belgium,Bintje,73,1999-06-28,incourt,1999,160.0, 2.477,4.534
+Belgium,Bintje,73,1999-06-28,incourt,1999,208.0, 2.342,5.148
+Belgium,Bintje,74,1999-07-01,Marcq,1999,  0.0, 1.959,4.042
+Belgium,Bintje,74,1999-07-01,Marcq,1999,105.0, 2.057,4.076
+Belgium,Bintje,74,1999-07-01,Marcq,1999,150.0, 2.244,4.261
+Belgium,Bintje,74,1999-07-01,Marcq,1999,195.0, 2.268,4.756
+Belgium,Bintje,75,1997-06-10,Masnuy,1997,  0.0, 1.082,4.776
+Belgium,Bintje,75,1997-06-10,Masnuy,1997, 58.0, 0.890,5.339
+Belgium,Bintje,75,1997-06-10,Masnuy,1997, 87.0, 1.057,5.351
+Belgium,Bintje,75,1997-06-10,Masnuy,1997,115.0, 1.083,5.305
+Belgium,Bintje,75,1997-06-10,Masnuy,1997,144.0, 0.843,5.638
+Belgium,Bintje,76,1997-07-01,Masnuy,1997,  0.0, 4.053,2.973
+Belgium,Bintje,76,1997-07-01,Masnuy,1997, 58.0, 5.631,3.506
+Belgium,Bintje,76,1997-07-01,Masnuy,1997, 87.0, 4.509,3.099
+Belgium,Bintje,76,1997-07-01,Masnuy,1997,115.0, 4.675,3.518
+Belgium,Bintje,76,1997-07-01,Masnuy,1997,144.0, 4.947,3.902
+Belgium,Bintje,77,1997-07-24,Masnuy,1997,  0.0,10.419,1.391
+Belgium,Bintje,77,1997-07-24,Masnuy,1997, 58.0,11.762,1.900
+Belgium,Bintje,77,1997-07-24,Masnuy,1997, 87.0,11.242,1.960
+Belgium,Bintje,77,1997-07-24,Masnuy,1997,115.0, 9.430,1.995
+Belgium,Bintje,77,1997-07-24,Masnuy,1997,144.0,10.579,2.319
+Belgium,Bintje,78,1999-06-28,Pontillas,1999,  0.0, 2.640,2.081
+Belgium,Bintje,78,1999-06-28,Pontillas,1999, 88.0, 3.312,3.286
+Belgium,Bintje,78,1999-06-28,Pontillas,1999,125.0, 3.311,3.808
+Belgium,Bintje,78,1999-06-28,Pontillas,1999,163.0, 3.357,3.696
+Belgium,Bintje,79,2000-07-19,Roisin,2000,  0.0, 2.433,2.251
+Belgium,Bintje,79,2000-07-19,Roisin,2000,102.0, 2.876,2.643
+Belgium,Bintje,79,2000-07-19,Roisin,2000,145.0, 2.679,2.832
+Belgium,Bintje,79,2000-07-19,Roisin,2000,189.0, 2.600,2.984
+Minnesota,Russet Burbank,82,1991-06-24,MN-1,1991,  0.0, 1.173,2.528
+Minnesota,Russet Burbank,82,1991-06-24,MN-1,1991,269.0, 3.170,3.396
+Minnesota,Russet Burbank,82,1991-06-24,MN-1,1991,269.0, 2.277,4.438
+Minnesota,Russet Burbank,82,1991-06-24,MN-1,1991,269.0, 3.008,3.790
+Minnesota,Russet Burbank,82,1991-06-24,MN-1,1991,269.0, 2.944,3.393
+Minnesota,Russet Burbank,82,1991-06-24,MN-1,1991,269.0, 2.912,4.149
+Minnesota,Russet Burbank,82,1991-06-24,MN-1,1991,179.3, 2.352,3.851
+Minnesota,Russet Burbank,82,1991-06-24,MN-1,1991,179.3, 1.948,3.825
+Minnesota,Russet Burbank,82,1991-06-24,MN-1,1991,134.5, 2.260,3.709
+Minnesota,Russet Burbank,82,1991-06-24,MN-1,1991,224.2, 2.126,4.052
+Minnesota,Russet Burbank,83,1991-07-02,MN-1,1991,  0.0, 1.760,1.721
+Minnesota,Russet Burbank,83,1991-07-02,MN-1,1991,269.0, 3.463,2.462
+Minnesota,Russet Burbank,83,1991-07-02,MN-1,1991,269.0, 2.777,3.899
+Minnesota,Russet Burbank,83,1991-07-02,MN-1,1991,269.0, 4.942,3.130
+Minnesota,Russet Burbank,83,1991-07-02,MN-1,1991,269.0, 3.793,3.143
+Minnesota,Russet Burbank,83,1991-07-02,MN-1,1991,269.0, 4.144,2.839
+Minnesota,Russet Burbank,83,1991-07-02,MN-1,1991,179.3, 2.475,3.675
+Minnesota,Russet Burbank,83,1991-07-02,MN-1,1991,179.3, 4.938,2.149
+Minnesota,Russet Burbank,83,1991-07-02,MN-1,1991,134.5, 4.422,2.405
+Minnesota,Russet Burbank,83,1991-07-02,MN-1,1991,224.2, 3.241,3.159
+Minnesota,Russet Burbank,84,1991-07-16,MN-1,1991,  0.0, 4.419,1.160
+Minnesota,Russet Burbank,84,1991-07-16,MN-1,1991,269.0, 8.157,1.252
+Minnesota,Russet Burbank,84,1991-07-16,MN-1,1991,269.0, 7.084,2.866
+Minnesota,Russet Burbank,84,1991-07-16,MN-1,1991,269.0, 6.547,2.146
+Minnesota,Russet Burbank,84,1991-07-16,MN-1,1991,269.0, 5.106,2.194
+Minnesota,Russet Burbank,84,1991-07-16,MN-1,1991,269.0, 7.342,1.733
+Minnesota,Russet Burbank,84,1991-07-16,MN-1,1991,179.3, 6.197,2.303
+Minnesota,Russet Burbank,84,1991-07-16,MN-1,1991,179.3, 7.194,1.502
+Minnesota,Russet Burbank,84,1991-07-16,MN-1,1991,134.5, 7.186,1.358
+Minnesota,Russet Burbank,84,1991-07-16,MN-1,1991,224.2, 5.309,2.208
+Minnesota,Russet Burbank,85,1991-07-30,MN-1,1991,  0.0, 6.706,1.028
+Minnesota,Russet Burbank,85,1991-07-30,MN-1,1991,269.0, 7.093,1.336
+Minnesota,Russet Burbank,85,1991-07-30,MN-1,1991,269.0, 8.471,2.037
+Minnesota,Russet Burbank,85,1991-07-30,MN-1,1991,269.0,10.974,2.136
+Minnesota,Russet Burbank,85,1991-07-30,MN-1,1991,269.0, 8.224,1.562
+Minnesota,Russet Burbank,85,1991-07-30,MN-1,1991,269.0, 9.284,1.475
+Minnesota,Russet Burbank,85,1991-07-30,MN-1,1991,179.3, 7.131,1.077
+Minnesota,Russet Burbank,85,1991-07-30,MN-1,1991,179.3, 9.526,1.031
+Minnesota,Russet Burbank,85,1991-07-30,MN-1,1991,134.5, 9.068,1.258
+Minnesota,Russet Burbank,85,1991-07-30,MN-1,1991,224.2, 8.649,2.036
+Minnesota,Russet Burbank,86,1991-08-13,MN-1,1991,  0.0, 8.439,0.549
+Minnesota,Russet Burbank,86,1991-08-13,MN-1,1991,269.0,12.142,1.049
+Minnesota,Russet Burbank,86,1991-08-13,MN-1,1991,269.0,11.388,2.256
+Minnesota,Russet Burbank,86,1991-08-13,MN-1,1991,269.0,13.740,2.061
+Minnesota,Russet Burbank,86,1991-08-13,MN-1,1991,269.0,11.754,1.746
+Minnesota,Russet Burbank,86,1991-08-13,MN-1,1991,269.0,12.443,1.581
+Minnesota,Russet Burbank,86,1991-08-13,MN-1,1991,179.3,11.700,1.661
+Minnesota,Russet Burbank,86,1991-08-13,MN-1,1991,179.3,11.819,0.792
+Minnesota,Russet Burbank,86,1991-08-13,MN-1,1991,134.5,10.877,0.862
+Minnesota,Russet Burbank,86,1991-08-13,MN-1,1991,224.2,10.769,1.242
+Minnesota,Russet Burbank,87,1991-09-05,MN-1,1991,  0.0,10.023,0.778
+Minnesota,Russet Burbank,87,1991-09-05,MN-1,1991,269.0,15.916,0.770
+Minnesota,Russet Burbank,87,1991-09-05,MN-1,1991,269.0,17.624,1.052
+Minnesota,Russet Burbank,87,1991-09-05,MN-1,1991,269.0,17.869,0.991
+Minnesota,Russet Burbank,87,1991-09-05,MN-1,1991,269.0,17.403,0.933
+Minnesota,Russet Burbank,87,1991-09-05,MN-1,1991,269.0,16.458,0.883
+Minnesota,Russet Burbank,87,1991-09-05,MN-1,1991,179.3,17.858,0.958
+Minnesota,Russet Burbank,87,1991-09-05,MN-1,1991,179.3,17.061,0.808
+Minnesota,Russet Burbank,87,1991-09-05,MN-1,1991,134.5,16.247,0.849
+Minnesota,Russet Burbank,87,1991-09-05,MN-1,1991,224.2,16.938,1.130
+Minnesota,Russet Burbank,90,1992-06-25,MN-1,1992,  0.0, 2.463,1.664
+Minnesota,Russet Burbank,90,1992-06-25,MN-1,1992,269.0, 3.125,3.851
+Minnesota,Russet Burbank,90,1992-06-25,MN-1,1992,269.0, 3.719,3.487
+Minnesota,Russet Burbank,90,1992-06-25,MN-1,1992,269.0, 4.442,3.346
+Minnesota,Russet Burbank,90,1992-06-25,MN-1,1992,269.0, 3.601,3.641
+Minnesota,Russet Burbank,90,1992-06-25,MN-1,1992,269.0, 4.370,3.862
+Minnesota,Russet Burbank,90,1992-06-25,MN-1,1992,179.3, 3.378,3.695
+Minnesota,Russet Burbank,90,1992-06-25,MN-1,1992,179.3, 4.384,3.162
+Minnesota,Russet Burbank,90,1992-06-25,MN-1,1992,134.5, 3.851,3.555
+Minnesota,Russet Burbank,90,1992-06-25,MN-1,1992,224.2, 4.135,3.370
+Minnesota,Russet Burbank,91,1992-07-17,MN-1,1992,  0.0, 5.116,0.996
+Minnesota,Russet Burbank,91,1992-07-17,MN-1,1992,269.0, 9.187,2.103
+Minnesota,Russet Burbank,91,1992-07-17,MN-1,1992,269.0, 9.379,2.405
+Minnesota,Russet Burbank,91,1992-07-17,MN-1,1992,269.0,10.147,2.348
+Minnesota,Russet Burbank,91,1992-07-17,MN-1,1992,269.0, 9.321,2.329
+Minnesota,Russet Burbank,91,1992-07-17,MN-1,1992,269.0, 9.397,2.233
+Minnesota,Russet Burbank,91,1992-07-17,MN-1,1992,179.3,10.297,1.969
+Minnesota,Russet Burbank,91,1992-07-17,MN-1,1992,179.3, 9.052,1.638
+Minnesota,Russet Burbank,91,1992-07-17,MN-1,1992,134.5, 9.573,1.687
+Minnesota,Russet Burbank,91,1992-07-17,MN-1,1992,224.2,10.190,1.965
+Minnesota,Russet Burbank,92,1992-08-05,MN-1,1992,  0.0, 6.961,0.898
+Minnesota,Russet Burbank,92,1992-08-05,MN-1,1992,269.0,14.294,1.722
+Minnesota,Russet Burbank,92,1992-08-05,MN-1,1992,269.0,14.818,1.821
+Minnesota,Russet Burbank,92,1992-08-05,MN-1,1992,269.0,15.855,1.637
+Minnesota,Russet Burbank,92,1992-08-05,MN-1,1992,269.0,12.586,1.814
+Minnesota,Russet Burbank,92,1992-08-05,MN-1,1992,269.0,12.726,1.781
+Minnesota,Russet Burbank,92,1992-08-05,MN-1,1992,179.3,14.998,1.550
+Minnesota,Russet Burbank,92,1992-08-05,MN-1,1992,179.3,12.601,1.238
+Minnesota,Russet Burbank,92,1992-08-05,MN-1,1992,134.5,13.200,1.282
+Minnesota,Russet Burbank,92,1992-08-05,MN-1,1992,224.2,15.080,1.618
+Minnesota,Russet Burbank,93,1992-08-26,MN-1,1992,  0.0, 8.439,1.168
+Minnesota,Russet Burbank,93,1992-08-26,MN-1,1992,269.0,16.415,1.722
+Minnesota,Russet Burbank,93,1992-08-26,MN-1,1992,269.0,13.943,1.615
+Minnesota,Russet Burbank,93,1992-08-26,MN-1,1992,269.0,17.810,1.491
+Minnesota,Russet Burbank,93,1992-08-26,MN-1,1992,269.0,14.990,1.509
+Minnesota,Russet Burbank,93,1992-08-26,MN-1,1992,269.0,17.201,1.556
+Minnesota,Russet Burbank,93,1992-08-26,MN-1,1992,179.3,16.680,1.541
+Minnesota,Russet Burbank,93,1992-08-26,MN-1,1992,179.3,14.014,1.198
+Minnesota,Russet Burbank,93,1992-08-26,MN-1,1992,134.5,15.224,1.265
+Minnesota,Russet Burbank,93,1992-08-26,MN-1,1992,224.2,15.636,1.565
+Minnesota,Russet Burbank,94,1992-09-08,MN-1,1992,  0.0, 8.473,0.624
+Minnesota,Russet Burbank,94,1992-09-08,MN-1,1992,269.0,15.335,1.690
+Minnesota,Russet Burbank,94,1992-09-08,MN-1,1992,269.0,16.290,1.527
+Minnesota,Russet Burbank,94,1992-09-08,MN-1,1992,269.0,15.551,1.668
+Minnesota,Russet Burbank,94,1992-09-08,MN-1,1992,269.0,16.005,1.543
+Minnesota,Russet Burbank,94,1992-09-08,MN-1,1992,269.0,15.986,1.592
+Minnesota,Russet Burbank,94,1992-09-08,MN-1,1992,179.3,14.222,1.518
+Minnesota,Russet Burbank,94,1992-09-08,MN-1,1992,179.3,13.729,1.155
+Minnesota,Russet Burbank,94,1992-09-08,MN-1,1992,134.5,13.983,1.494
+Minnesota,Russet Burbank,94,1992-09-08,MN-1,1992,224.2,14.502,1.473
+Minnesota,Russet Burbank,95,2016-06-27,MN-3,2016, 44.8, 1.505,3.017
+Minnesota,Russet Burbank,95,2016-06-27,MN-3,2016,179.3, 2.119,4.486
+Minnesota,Russet Burbank,95,2016-06-27,MN-3,2016,336.3, 1.982,4.598
+Minnesota,Russet Burbank,95,2016-06-27,MN-3,2016,246.6, 2.001,4.582
+Minnesota,Russet Burbank,96,2016-07-12,MN-3,2016, 44.8, 4.805,1.797
+Minnesota,Russet Burbank,96,2016-07-12,MN-3,2016,179.3, 4.821,3.041
+Minnesota,Russet Burbank,96,2016-07-12,MN-3,2016,336.3, 5.463,3.439
+Minnesota,Russet Burbank,96,2016-07-12,MN-3,2016,246.6, 5.531,2.881
+Minnesota,Russet Burbank,97,2016-07-25,MN-3,2016, 44.8, 8.674,1.216
+Minnesota,Russet Burbank,97,2016-07-25,MN-3,2016,179.3,10.064,2.084
+Minnesota,Russet Burbank,97,2016-07-25,MN-3,2016,336.3,11.006,2.702
+Minnesota,Russet Burbank,97,2016-07-25,MN-3,2016,246.6,10.312,2.382
+Minnesota,Russet Burbank,98,2016-08-02,MN-3,2016, 44.8, 9.413,1.083
+Minnesota,Russet Burbank,98,2016-08-02,MN-3,2016,179.3, 9.965,1.733
+Minnesota,Russet Burbank,98,2016-08-02,MN-3,2016,336.3,11.080,2.567
+Minnesota,Russet Burbank,98,2016-08-02,MN-3,2016,246.6,10.409,2.024
+Minnesota,Russet Burbank,99,2016-08-09,MN-3,2016, 44.8, 9.909,1.031
+Minnesota,Russet Burbank,99,2016-08-09,MN-3,2016,179.3,11.655,1.695
+Minnesota,Russet Burbank,99,2016-08-09,MN-3,2016,336.3,12.029,2.382
+Minnesota,Russet Burbank,99,2016-08-09,MN-3,2016,246.6,10.644,2.151
+Minnesota,Russet Burbank,100,2016-09-13,MN-3,2016, 44.8,10.655,0.922
+Minnesota,Russet Burbank,100,2016-09-13,MN-3,2016,179.3,13.389,1.242
+Minnesota,Russet Burbank,100,2016-09-13,MN-3,2016,336.3,16.216,1.538
+Minnesota,Russet Burbank,100,2016-09-13,MN-3,2016,246.6,17.785,1.583
+Minnesota,Russet Burbank,101,2020-06-24,MN-6,2020, 56.0, 2.158,3.117
+Minnesota,Russet Burbank,101,2020-06-24,MN-6,2020,156.9, 2.759,4.050
+Minnesota,Russet Burbank,101,2020-06-24,MN-6,2020,336.3, 2.263,4.568
+Minnesota,Russet Burbank,101,2020-06-24,MN-6,2020,269.0, 2.212,4.786
+Minnesota,Russet Burbank,101,2020-06-24,MN-6,2020,291.4, 3.053,4.247
+Minnesota,Russet Burbank,101,2020-06-24,MN-6,2020,291.4, 2.449,4.371
+Minnesota,Russet Burbank,101,2020-06-24,MN-6,2020,291.4, 2.966,4.133
+Minnesota,Russet Burbank,101,2020-06-24,MN-6,2020,246.6, 2.358,4.329
+Minnesota,Russet Burbank,102,2020-07-07,MN-6,2020, 56.0, 5.214,1.699
+Minnesota,Russet Burbank,102,2020-07-07,MN-6,2020,156.9, 5.211,3.007
+Minnesota,Russet Burbank,102,2020-07-07,MN-6,2020,336.3, 5.110,3.599
+Minnesota,Russet Burbank,102,2020-07-07,MN-6,2020,269.0, 4.531,3.579
+Minnesota,Russet Burbank,102,2020-07-07,MN-6,2020,291.4, 6.278,2.974
+Minnesota,Russet Burbank,102,2020-07-07,MN-6,2020,291.4, 5.597,3.463
+Minnesota,Russet Burbank,102,2020-07-07,MN-6,2020,291.4, 5.808,3.345
+Minnesota,Russet Burbank,102,2020-07-07,MN-6,2020,246.6, 5.265,3.185
+Minnesota,Russet Burbank,103,2020-07-22,MN-6,2020, 56.0, 8.352,1.177
+Minnesota,Russet Burbank,103,2020-07-22,MN-6,2020,156.9, 9.648,1.827
+Minnesota,Russet Burbank,103,2020-07-22,MN-6,2020,336.3, 8.320,2.794
+Minnesota,Russet Burbank,103,2020-07-22,MN-6,2020,269.0, 8.712,2.405
+Minnesota,Russet Burbank,103,2020-07-22,MN-6,2020,291.4, 9.890,2.393
+Minnesota,Russet Burbank,103,2020-07-22,MN-6,2020,291.4, 8.874,2.369
+Minnesota,Russet Burbank,103,2020-07-22,MN-6,2020,291.4, 8.824,2.583
+Minnesota,Russet Burbank,103,2020-07-22,MN-6,2020,246.6, 9.466,2.027
+Minnesota,Russet Burbank,104,2020-08-04,MN-6,2020, 56.0,12.838,1.023
+Minnesota,Russet Burbank,104,2020-08-04,MN-6,2020,156.9,13.804,1.418
+Minnesota,Russet Burbank,104,2020-08-04,MN-6,2020,336.3,12.722,2.223
+Minnesota,Russet Burbank,104,2020-08-04,MN-6,2020,269.0,13.615,1.851
+Minnesota,Russet Burbank,104,2020-08-04,MN-6,2020,291.4,15.027,1.859
+Minnesota,Russet Burbank,104,2020-08-04,MN-6,2020,291.4,15.892,1.946
+Minnesota,Russet Burbank,104,2020-08-04,MN-6,2020,291.4,15.115,2.024
+Minnesota,Russet Burbank,104,2020-08-04,MN-6,2020,246.6,13.474,1.565
+Minnesota,Russet Burbank,105,2020-09-15,MN-6,2020, 56.0,11.768,0.828
+Minnesota,Russet Burbank,105,2020-09-15,MN-6,2020,156.9,14.680,0.909
+Minnesota,Russet Burbank,105,2020-09-15,MN-6,2020,336.3,13.410,1.265
+Minnesota,Russet Burbank,105,2020-09-15,MN-6,2020,269.0,14.030,1.175
+Minnesota,Russet Burbank,105,2020-09-15,MN-6,2020,291.4,14.576,1.170
+Minnesota,Russet Burbank,105,2020-09-15,MN-6,2020,291.4,14.270,1.151
+Minnesota,Russet Burbank,105,2020-09-15,MN-6,2020,291.4,12.866,1.223
+Minnesota,Russet Burbank,105,2020-09-15,MN-6,2020,246.6,14.875,1.026
+Minnesota,Russet Burbank,106,2019-06-25,MN-5,2019, 44.8, 2.032,2.883
+Minnesota,Russet Burbank,106,2019-06-25,MN-5,2019,156.9, 2.434,3.990
+Minnesota,Russet Burbank,106,2019-06-25,MN-5,2019,246.6, 1.980,4.294
+Minnesota,Russet Burbank,106,2019-06-25,MN-5,2019,336.3, 1.913,4.891
+Minnesota,Russet Burbank,106,2019-06-25,MN-5,2019,156.9, 2.051,4.363
+Minnesota,Russet Burbank,106,2019-06-25,MN-5,2019,246.6, 2.106,3.850
+Minnesota,Russet Burbank,106,2019-06-25,MN-5,2019,336.3, 1.994,4.666
+Minnesota,Russet Burbank,106,2019-06-25,MN-5,2019,291.4, 1.982,4.128
+Minnesota,Russet Burbank,107,2019-07-09,MN-5,2019, 44.8, 4.821,1.580
+Minnesota,Russet Burbank,107,2019-07-09,MN-5,2019,156.9, 5.650,1.920
+Minnesota,Russet Burbank,107,2019-07-09,MN-5,2019,246.6, 5.386,2.208
+Minnesota,Russet Burbank,107,2019-07-09,MN-5,2019,336.3, 5.647,2.655
+Minnesota,Russet Burbank,107,2019-07-09,MN-5,2019,156.9, 5.320,1.967
+Minnesota,Russet Burbank,107,2019-07-09,MN-5,2019,246.6, 5.574,1.884
+Minnesota,Russet Burbank,107,2019-07-09,MN-5,2019,336.3, 4.961,2.003
+Minnesota,Russet Burbank,107,2019-07-09,MN-5,2019,291.4, 5.119,2.243
+Minnesota,Russet Burbank,108,2019-07-23,MN-5,2019, 44.8, 9.187,0.928
+Minnesota,Russet Burbank,108,2019-07-23,MN-5,2019,156.9,10.092,1.415
+Minnesota,Russet Burbank,108,2019-07-23,MN-5,2019,246.6, 9.898,1.662
+Minnesota,Russet Burbank,108,2019-07-23,MN-5,2019,336.3, 8.906,1.962
+Minnesota,Russet Burbank,108,2019-07-23,MN-5,2019,156.9, 8.630,1.287
+Minnesota,Russet Burbank,108,2019-07-23,MN-5,2019,246.6, 9.763,1.291
+Minnesota,Russet Burbank,108,2019-07-23,MN-5,2019,336.3, 9.159,1.270
+Minnesota,Russet Burbank,108,2019-07-23,MN-5,2019,291.4, 8.693,1.635
+Minnesota,Russet Burbank,109,2019-08-06,MN-5,2019, 44.8, 9.759,0.860
+Minnesota,Russet Burbank,109,2019-08-06,MN-5,2019,156.9,11.801,1.365
+Minnesota,Russet Burbank,109,2019-08-06,MN-5,2019,246.6,12.727,1.354
+Minnesota,Russet Burbank,109,2019-08-06,MN-5,2019,336.3,11.101,1.823
+Minnesota,Russet Burbank,109,2019-08-06,MN-5,2019,156.9, 9.696,1.088
+Minnesota,Russet Burbank,109,2019-08-06,MN-5,2019,246.6,10.870,1.432
+Minnesota,Russet Burbank,109,2019-08-06,MN-5,2019,336.3,14.521,1.545
+Minnesota,Russet Burbank,109,2019-08-06,MN-5,2019,291.4,12.574,1.687
+Minnesota,Russet Burbank,110,2019-08-21,MN-5,2019, 44.8,10.918,0.676
+Minnesota,Russet Burbank,110,2019-08-21,MN-5,2019,156.9,14.349,0.962
+Minnesota,Russet Burbank,110,2019-08-21,MN-5,2019,246.6,13.726,1.169
+Minnesota,Russet Burbank,110,2019-08-21,MN-5,2019,336.3,13.588,1.354
+Minnesota,Russet Burbank,110,2019-08-21,MN-5,2019,156.9,12.124,0.824
+Minnesota,Russet Burbank,110,2019-08-21,MN-5,2019,246.6,13.350,1.173
+Minnesota,Russet Burbank,110,2019-08-21,MN-5,2019,336.3,12.425,1.375
+Minnesota,Russet Burbank,110,2019-08-21,MN-5,2019,291.4,12.259,1.302
+Minnesota,Russet Burbank,111,2019-09-16,MN-5,2019, 44.8,10.668,0.860
+Minnesota,Russet Burbank,111,2019-09-16,MN-5,2019,156.9,13.393,0.903
+Minnesota,Russet Burbank,111,2019-09-16,MN-5,2019,246.6,14.015,1.065
+Minnesota,Russet Burbank,111,2019-09-16,MN-5,2019,336.3,13.168,1.055
+Minnesota,Russet Burbank,111,2019-09-16,MN-5,2019,156.9,11.629,0.775
+Minnesota,Russet Burbank,111,2019-09-16,MN-5,2019,246.6,13.488,1.014
+Minnesota,Russet Burbank,111,2019-09-16,MN-5,2019,336.3,11.903,1.161
+Minnesota,Russet Burbank,111,2019-09-16,MN-5,2019,291.4,13.217,1.144
+Minnesota,Clearwater,112,2018-06-26,MN-4,2018,134.5, 1.282,5.092
+Minnesota,Clearwater,112,2018-06-26,MN-4,2018,269.0, 2.780,4.947
+Minnesota,Clearwater,112,2018-06-26,MN-4,2018,403.5, 1.201,5.759
+Minnesota,Clearwater,113,2018-07-10,MN-4,2018,134.5, 3.849,2.364
+Minnesota,Clearwater,113,2018-07-10,MN-4,2018,269.0, 4.049,3.113
+Minnesota,Clearwater,113,2018-07-10,MN-4,2018,403.5, 4.156,3.428
+Minnesota,Clearwater,114,2018-07-18,MN-4,2018,134.5, 4.993,1.699
+Minnesota,Clearwater,114,2018-07-18,MN-4,2018,269.0, 5.119,2.328
+Minnesota,Clearwater,114,2018-07-18,MN-4,2018,403.5, 5.648,2.981
+Minnesota,Clearwater,115,2018-08-01,MN-4,2018,134.5, 6.685,1.239
+Minnesota,Clearwater,115,2018-08-01,MN-4,2018,269.0, 7.474,1.743
+Minnesota,Clearwater,115,2018-08-01,MN-4,2018,403.5,10.176,2.134
+Minnesota,Clearwater,116,2018-09-13,MN-4,2018,134.5,11.095,0.971
+Minnesota,Clearwater,116,2018-09-13,MN-4,2018,269.0,12.036,1.401
+Minnesota,Clearwater,116,2018-09-13,MN-4,2018,403.5,13.479,1.708
+Minnesota,Clearwater,117,2019-06-26,MN-4,2019,134.5, 1.236,5.958
+Minnesota,Clearwater,117,2019-06-26,MN-4,2019,269.0, 1.272,5.992
+Minnesota,Clearwater,117,2019-06-26,MN-4,2019,403.5, 1.221,6.644
+Minnesota,Clearwater,118,2019-07-11,MN-4,2019,134.5, 3.618,3.093
+Minnesota,Clearwater,118,2019-07-11,MN-4,2019,269.0, 2.846,3.599
+Minnesota,Clearwater,118,2019-07-11,MN-4,2019,403.5, 3.327,4.270
+Minnesota,Clearwater,119,2019-07-24,MN-4,2019,134.5, 4.296,2.063
+Minnesota,Clearwater,119,2019-07-24,MN-4,2019,269.0, 5.008,2.665
+Minnesota,Clearwater,119,2019-07-24,MN-4,2019,403.5, 5.189,3.396
+Minnesota,Clearwater,120,2019-08-07,MN-4,2019,134.5, 7.390,1.560
+Minnesota,Clearwater,120,2019-08-07,MN-4,2019,269.0, 6.236,2.215
+Minnesota,Clearwater,120,2019-08-07,MN-4,2019,403.5, 6.531,2.603
+Minnesota,Clearwater,121,2019-09-16,MN-4,2019,134.5,12.145,0.989
+Minnesota,Clearwater,121,2019-09-16,MN-4,2019,269.0,11.956,1.039
+Minnesota,Clearwater,121,2019-09-16,MN-4,2019,403.5,11.899,1.525
+Minnesota,Russet Burbank,122,2018-06-26,MN-4,2018,134.5, 3.911,4.380
+Minnesota,Russet Burbank,122,2018-06-26,MN-4,2018,269.0, 4.505,4.725
+Minnesota,Russet Burbank,122,2018-06-26,MN-4,2018,403.5, 3.632,4.894
+Minnesota,Russet Burbank,123,2018-07-10,MN-4,2018,134.5, 7.460,1.972
+Minnesota,Russet Burbank,123,2018-07-10,MN-4,2018,269.0, 9.401,2.659
+Minnesota,Russet Burbank,123,2018-07-10,MN-4,2018,403.5, 8.691,2.963
+Minnesota,Russet Burbank,124,2018-07-18,MN-4,2018,134.5, 8.352,1.558
+Minnesota,Russet Burbank,124,2018-07-18,MN-4,2018,269.0, 8.319,2.469
+Minnesota,Russet Burbank,124,2018-07-18,MN-4,2018,403.5, 9.454,2.902
+Minnesota,Russet Burbank,125,2018-08-01,MN-4,2018,134.5,13.414,1.307
+Minnesota,Russet Burbank,125,2018-08-01,MN-4,2018,269.0,14.632,1.962
+Minnesota,Russet Burbank,125,2018-08-01,MN-4,2018,403.5,11.964,2.274
+Minnesota,Russet Burbank,126,2018-09-13,MN-4,2018,134.5,15.909,1.060
+Minnesota,Russet Burbank,126,2018-09-13,MN-4,2018,269.0,16.700,1.368
+Minnesota,Russet Burbank,126,2018-09-13,MN-4,2018,403.5,17.559,1.509
+Minnesota,Russet Burbank,127,2019-06-26,MN-4,2019,134.5, 2.401,4.839
+Minnesota,Russet Burbank,127,2019-06-26,MN-4,2019,269.0, 2.242,5.557
+Minnesota,Russet Burbank,127,2019-06-26,MN-4,2019,403.5, 2.639,5.495
+Minnesota,Russet Burbank,128,2019-07-11,MN-4,2019,134.5, 5.742,2.535
+Minnesota,Russet Burbank,128,2019-07-11,MN-4,2019,269.0, 5.695,3.158
+Minnesota,Russet Burbank,128,2019-07-11,MN-4,2019,403.5, 5.794,3.880
+Minnesota,Russet Burbank,129,2019-07-24,MN-4,2019,134.5, 8.527,1.716
+Minnesota,Russet Burbank,129,2019-07-24,MN-4,2019,269.0, 8.009,2.344
+Minnesota,Russet Burbank,129,2019-07-24,MN-4,2019,403.5, 9.011,2.707
+Minnesota,Russet Burbank,130,2019-08-07,MN-4,2019,134.5,12.223,1.419
+Minnesota,Russet Burbank,130,2019-08-07,MN-4,2019,269.0,10.839,1.759
+Minnesota,Russet Burbank,130,2019-08-07,MN-4,2019,403.5,10.141,2.268
+Minnesota,Russet Burbank,131,2019-09-16,MN-4,2019,134.5,13.201,0.963
+Minnesota,Russet Burbank,131,2019-09-16,MN-4,2019,269.0,13.316,1.102
+Minnesota,Russet Burbank,131,2019-09-16,MN-4,2019,403.5,12.786,1.256
+Minnesota,Umatilla Russet,132,2018-06-26,MN-4,2018,134.5, 1.848,4.992
+Minnesota,Umatilla Russet,132,2018-06-26,MN-4,2018,269.0, 1.658,5.479
+Minnesota,Umatilla Russet,132,2018-06-26,MN-4,2018,403.5, 1.594,5.508
+Minnesota,Umatilla Russet,133,2018-07-10,MN-4,2018,134.5, 4.335,2.124
+Minnesota,Umatilla Russet,133,2018-07-10,MN-4,2018,269.0, 6.247,3.238
+Minnesota,Umatilla Russet,133,2018-07-10,MN-4,2018,403.5, 5.275,3.606
+Minnesota,Umatilla Russet,134,2018-07-18,MN-4,2018,134.5, 6.287,1.510
+Minnesota,Umatilla Russet,134,2018-07-18,MN-4,2018,269.0, 7.883,2.150
+Minnesota,Umatilla Russet,134,2018-07-18,MN-4,2018,403.5, 5.283,2.710
+Minnesota,Umatilla Russet,135,2018-08-01,MN-4,2018,134.5, 9.267,1.210
+Minnesota,Umatilla Russet,135,2018-08-01,MN-4,2018,269.0, 8.093,1.771
+Minnesota,Umatilla Russet,135,2018-08-01,MN-4,2018,403.5, 9.509,2.458
+Minnesota,Umatilla Russet,136,2018-09-13,MN-4,2018,134.5,11.841,1.031
+Minnesota,Umatilla Russet,136,2018-09-13,MN-4,2018,269.0,14.584,1.324
+Minnesota,Umatilla Russet,136,2018-09-13,MN-4,2018,403.5,15.365,1.692
+Minnesota,Umatilla Russet,137,2019-06-26,MN-4,2019,134.5, 1.699,5.384
+Minnesota,Umatilla Russet,137,2019-06-26,MN-4,2019,269.0, 1.652,5.834
+Minnesota,Umatilla Russet,137,2019-06-26,MN-4,2019,403.5, 1.848,6.002
+Minnesota,Umatilla Russet,138,2019-07-11,MN-4,2019,134.5, 5.246,2.815
+Minnesota,Umatilla Russet,138,2019-07-11,MN-4,2019,269.0, 5.351,3.322
+Minnesota,Umatilla Russet,138,2019-07-11,MN-4,2019,403.5, 4.699,4.295
+Minnesota,Umatilla Russet,139,2019-07-24,MN-4,2019,134.5, 8.274,1.683
+Minnesota,Umatilla Russet,139,2019-07-24,MN-4,2019,269.0, 8.239,2.197
+Minnesota,Umatilla Russet,139,2019-07-24,MN-4,2019,403.5, 7.433,3.043
+Minnesota,Umatilla Russet,140,2019-08-07,MN-4,2019,134.5,12.417,1.445
+Minnesota,Umatilla Russet,140,2019-08-07,MN-4,2019,269.0,10.898,1.869
+Minnesota,Umatilla Russet,140,2019-08-07,MN-4,2019,403.5,10.296,2.362
+Minnesota,Umatilla Russet,141,2019-09-16,MN-4,2019,134.5,13.649,1.048
+Minnesota,Umatilla Russet,141,2019-09-16,MN-4,2019,269.0,13.193,1.176
+Minnesota,Umatilla Russet,141,2019-09-16,MN-4,2019,403.5,14.133,1.296
+Minnesota,Dakota Russet,142,2014-06-30,MN-2,2014,134.5, 1.700,3.555
+Minnesota,Dakota Russet,142,2014-06-30,MN-2,2014,201.8, 1.702,4.170
+Minnesota,Dakota Russet,142,2014-06-30,MN-2,2014,269.0, 1.781,4.495
+Minnesota,Dakota Russet,142,2014-06-30,MN-2,2014,336.3, 2.025,4.282
+Minnesota,Dakota Russet,142,2014-06-30,MN-2,2014,403.5, 1.343,5.047
+Minnesota,Dakota Russet,143,2014-07-15,MN-2,2014,134.5, 5.004,1.768
+Minnesota,Dakota Russet,143,2014-07-15,MN-2,2014,201.8, 4.980,2.383
+Minnesota,Dakota Russet,143,2014-07-15,MN-2,2014,269.0, 4.866,2.896
+Minnesota,Dakota Russet,143,2014-07-15,MN-2,2014,336.3, 4.857,2.944
+Minnesota,Dakota Russet,143,2014-07-15,MN-2,2014,403.5, 4.610,2.998
+Minnesota,Dakota Russet,144,2014-07-24,MN-2,2014,134.5, 7.106,1.335
+Minnesota,Dakota Russet,144,2014-07-24,MN-2,2014,201.8, 7.177,1.610
+Minnesota,Dakota Russet,144,2014-07-24,MN-2,2014,269.0, 8.019,2.026
+Minnesota,Dakota Russet,144,2014-07-24,MN-2,2014,336.3, 6.742,2.471
+Minnesota,Dakota Russet,144,2014-07-24,MN-2,2014,403.5, 7.638,2.533
+Minnesota,Dakota Russet,145,2014-08-11,MN-2,2014,134.5, 9.497,1.023
+Minnesota,Dakota Russet,145,2014-08-11,MN-2,2014,201.8,10.228,1.110
+Minnesota,Dakota Russet,145,2014-08-11,MN-2,2014,269.0, 9.769,1.481
+Minnesota,Dakota Russet,145,2014-08-11,MN-2,2014,336.3,10.359,1.803
+Minnesota,Dakota Russet,145,2014-08-11,MN-2,2014,403.5,11.094,1.753
+Minnesota,Dakota Russet,146,2014-08-26,MN-2,2014,134.5,10.980,0.937
+Minnesota,Dakota Russet,146,2014-08-26,MN-2,2014,201.8,12.288,1.143
+Minnesota,Dakota Russet,146,2014-08-26,MN-2,2014,269.0,11.348,1.380
+Minnesota,Dakota Russet,146,2014-08-26,MN-2,2014,336.3,13.600,1.513
+Minnesota,Dakota Russet,146,2014-08-26,MN-2,2014,403.5,10.734,1.657
+Minnesota,Dakota Russet,147,2014-09-08,MN-2,2014,134.5,11.734,0.845
+Minnesota,Dakota Russet,147,2014-09-08,MN-2,2014,201.8,12.986,1.099
+Minnesota,Dakota Russet,147,2014-09-08,MN-2,2014,269.0,12.596,1.197
+Minnesota,Dakota Russet,147,2014-09-08,MN-2,2014,336.3,11.118,1.344
+Minnesota,Dakota Russet,147,2014-09-08,MN-2,2014,403.5,10.728,1.523
+Minnesota,Dakota Russet,148,2014-09-15,MN-2,2014,134.5, 9.936,0.923
+Minnesota,Dakota Russet,148,2014-09-15,MN-2,2014,201.8,12.757,1.036
+Minnesota,Dakota Russet,148,2014-09-15,MN-2,2014,269.0,13.207,1.194
+Minnesota,Dakota Russet,148,2014-09-15,MN-2,2014,336.3,12.784,1.509
+Minnesota,Dakota Russet,148,2014-09-15,MN-2,2014,403.5,12.900,1.494
+Minnesota,Dakota Russet,149,2015-06-23,MN-2,2015,134.5, 2.883,3.146
+Minnesota,Dakota Russet,149,2015-06-23,MN-2,2015,201.8, 3.603,3.519
+Minnesota,Dakota Russet,149,2015-06-23,MN-2,2015,269.0, 3.680,4.107
+Minnesota,Dakota Russet,149,2015-06-23,MN-2,2015,336.3, 3.397,4.006
+Minnesota,Dakota Russet,149,2015-06-23,MN-2,2015,403.5, 3.488,4.297
+Minnesota,Dakota Russet,150,2015-07-07,MN-2,2015,134.5, 6.344,1.754
+Minnesota,Dakota Russet,150,2015-07-07,MN-2,2015,201.8, 6.931,2.071
+Minnesota,Dakota Russet,150,2015-07-07,MN-2,2015,269.0, 6.751,2.502
+Minnesota,Dakota Russet,150,2015-07-07,MN-2,2015,336.3, 6.971,2.695
+Minnesota,Dakota Russet,150,2015-07-07,MN-2,2015,403.5, 6.386,3.199
+Minnesota,Dakota Russet,151,2015-07-21,MN-2,2015,134.5, 8.863,1.436
+Minnesota,Dakota Russet,151,2015-07-21,MN-2,2015,201.8, 9.928,1.468
+Minnesota,Dakota Russet,151,2015-07-21,MN-2,2015,269.0, 9.317,1.913
+Minnesota,Dakota Russet,151,2015-07-21,MN-2,2015,336.3, 9.784,1.768
+Minnesota,Dakota Russet,151,2015-07-21,MN-2,2015,403.5, 9.513,2.121
+Minnesota,Dakota Russet,152,2015-08-04,MN-2,2015,134.5,14.906,1.018
+Minnesota,Dakota Russet,152,2015-08-04,MN-2,2015,201.8,12.896,1.292
+Minnesota,Dakota Russet,152,2015-08-04,MN-2,2015,269.0,12.486,1.640
+Minnesota,Dakota Russet,152,2015-08-04,MN-2,2015,336.3,13.018,1.743
+Minnesota,Dakota Russet,152,2015-08-04,MN-2,2015,403.5,13.060,1.817
+Minnesota,Dakota Russet,153,2015-08-17,MN-2,2015,134.5,13.119,1.037
+Minnesota,Dakota Russet,153,2015-08-17,MN-2,2015,201.8,12.257,1.154
+Minnesota,Dakota Russet,153,2015-08-17,MN-2,2015,269.0,13.511,1.279
+Minnesota,Dakota Russet,153,2015-08-17,MN-2,2015,336.3,12.565,1.363
+Minnesota,Dakota Russet,153,2015-08-17,MN-2,2015,403.5,12.051,1.424
+Minnesota,Dakota Russet,154,2015-09-01,MN-2,2015,134.5,11.945,0.965
+Minnesota,Dakota Russet,154,2015-09-01,MN-2,2015,201.8,13.746,1.300
+Minnesota,Dakota Russet,154,2015-09-01,MN-2,2015,269.0,12.129,1.381
+Minnesota,Dakota Russet,154,2015-09-01,MN-2,2015,336.3,12.676,1.293
+Minnesota,Dakota Russet,154,2015-09-01,MN-2,2015,403.5,15.288,1.622
+Minnesota,Dakota Russet,155,2015-09-16,MN-2,2015,134.5,14.279,1.042
+Minnesota,Dakota Russet,155,2015-09-16,MN-2,2015,201.8,14.591,1.228
+Minnesota,Dakota Russet,155,2015-09-16,MN-2,2015,269.0,14.625,1.598
+Minnesota,Dakota Russet,155,2015-09-16,MN-2,2015,336.3,14.458,1.552
+Minnesota,Dakota Russet,155,2015-09-16,MN-2,2015,403.5,15.437,1.759
+Minnesota,Easton,156,2014-06-30,MN-2,2014,134.5, 2.025,3.216
+Minnesota,Easton,156,2014-06-30,MN-2,2014,201.8, 1.716,4.153
+Minnesota,Easton,156,2014-06-30,MN-2,2014,269.0, 1.806,3.823
+Minnesota,Easton,156,2014-06-30,MN-2,2014,336.3, 1.620,4.264
+Minnesota,Easton,156,2014-06-30,MN-2,2014,403.5, 1.691,4.165
+Minnesota,Easton,157,2014-07-15,MN-2,2014,134.5, 4.687,1.741
+Minnesota,Easton,157,2014-07-15,MN-2,2014,201.8, 4.908,2.044
+Minnesota,Easton,157,2014-07-15,MN-2,2014,269.0, 4.702,2.611
+Minnesota,Easton,157,2014-07-15,MN-2,2014,336.3, 4.199,2.772
+Minnesota,Easton,157,2014-07-15,MN-2,2014,403.5, 4.751,3.091
+Minnesota,Easton,158,2014-07-24,MN-2,2014,134.5, 6.545,1.334
+Minnesota,Easton,158,2014-07-24,MN-2,2014,201.8, 8.618,1.331
+Minnesota,Easton,158,2014-07-24,MN-2,2014,269.0, 7.308,1.981
+Minnesota,Easton,158,2014-07-24,MN-2,2014,336.3, 6.684,2.379
+Minnesota,Easton,158,2014-07-24,MN-2,2014,403.5, 8.070,2.675
+Minnesota,Easton,159,2014-08-11,MN-2,2014,134.5, 9.733,0.956
+Minnesota,Easton,159,2014-08-11,MN-2,2014,201.8,12.289,1.105
+Minnesota,Easton,159,2014-08-11,MN-2,2014,269.0,12.525,1.307
+Minnesota,Easton,159,2014-08-11,MN-2,2014,336.3,11.165,1.532
+Minnesota,Easton,159,2014-08-11,MN-2,2014,403.5,11.932,1.635
+Minnesota,Easton,160,2014-08-26,MN-2,2014,134.5,12.269,0.858
+Minnesota,Easton,160,2014-08-26,MN-2,2014,201.8,14.534,0.936
+Minnesota,Easton,160,2014-08-26,MN-2,2014,269.0,14.162,1.135
+Minnesota,Easton,160,2014-08-26,MN-2,2014,336.3,15.420,1.294
+Minnesota,Easton,160,2014-08-26,MN-2,2014,403.5,14.700,1.331
+Minnesota,Easton,161,2014-09-08,MN-2,2014,134.5,11.945,0.891
+Minnesota,Easton,161,2014-09-08,MN-2,2014,201.8,13.205,0.873
+Minnesota,Easton,161,2014-09-08,MN-2,2014,269.0,13.459,0.964
+Minnesota,Easton,161,2014-09-08,MN-2,2014,336.3,15.005,1.328
+Minnesota,Easton,161,2014-09-08,MN-2,2014,403.5,13.709,1.019
+Minnesota,Easton,162,2014-09-15,MN-2,2014,134.5,13.173,0.782
+Minnesota,Easton,162,2014-09-15,MN-2,2014,201.8,16.669,0.839
+Minnesota,Easton,162,2014-09-15,MN-2,2014,269.0,16.528,1.092
+Minnesota,Easton,162,2014-09-15,MN-2,2014,336.3,15.734,1.085
+Minnesota,Easton,162,2014-09-15,MN-2,2014,403.5,16.064,1.280
+Minnesota,Easton,163,2015-06-23,MN-2,2015,134.5, 2.789,3.528
+Minnesota,Easton,163,2015-06-23,MN-2,2015,201.8, 2.707,4.309
+Minnesota,Easton,163,2015-06-23,MN-2,2015,269.0, 2.946,4.230
+Minnesota,Easton,163,2015-06-23,MN-2,2015,336.3, 2.803,4.613
+Minnesota,Easton,163,2015-06-23,MN-2,2015,403.5, 2.678,4.800
+Minnesota,Easton,164,2015-07-07,MN-2,2015,134.5, 7.138,1.744
+Minnesota,Easton,164,2015-07-07,MN-2,2015,201.8, 5.904,2.253
+Minnesota,Easton,164,2015-07-07,MN-2,2015,269.0, 5.500,2.701
+Minnesota,Easton,164,2015-07-07,MN-2,2015,336.3, 6.109,3.085
+Minnesota,Easton,164,2015-07-07,MN-2,2015,403.5, 6.528,3.255
+Minnesota,Easton,165,2015-07-21,MN-2,2015,134.5, 8.646,1.153
+Minnesota,Easton,165,2015-07-21,MN-2,2015,201.8, 9.773,1.502
+Minnesota,Easton,165,2015-07-21,MN-2,2015,269.0, 8.627,1.583
+Minnesota,Easton,165,2015-07-21,MN-2,2015,336.3, 7.935,2.457
+Minnesota,Easton,165,2015-07-21,MN-2,2015,403.5,11.911,2.461
+Minnesota,Easton,166,2015-08-04,MN-2,2015,134.5,14.158,1.050
+Minnesota,Easton,166,2015-08-04,MN-2,2015,201.8,12.883,1.439
+Minnesota,Easton,166,2015-08-04,MN-2,2015,269.0,12.848,1.345
+Minnesota,Easton,166,2015-08-04,MN-2,2015,336.3,15.287,1.621
+Minnesota,Easton,166,2015-08-04,MN-2,2015,403.5,13.095,1.626
+Minnesota,Easton,167,2015-08-17,MN-2,2015,134.5,13.716,0.835
+Minnesota,Easton,167,2015-08-17,MN-2,2015,201.8,15.250,0.978
+Minnesota,Easton,167,2015-08-17,MN-2,2015,269.0,11.759,1.248
+Minnesota,Easton,167,2015-08-17,MN-2,2015,336.3,11.977,1.360
+Minnesota,Easton,167,2015-08-17,MN-2,2015,403.5,14.714,1.387
+Minnesota,Easton,168,2015-09-01,MN-2,2015,134.5,14.720,0.928
+Minnesota,Easton,168,2015-09-01,MN-2,2015,201.8,15.597,1.020
+Minnesota,Easton,168,2015-09-01,MN-2,2015,269.0,12.938,1.085
+Minnesota,Easton,168,2015-09-01,MN-2,2015,336.3,20.582,1.235
+Minnesota,Easton,168,2015-09-01,MN-2,2015,403.5,20.652,1.349
+Minnesota,Easton,169,2015-09-16,MN-2,2015,134.5,17.413,0.886
+Minnesota,Easton,169,2015-09-16,MN-2,2015,201.8,18.756,1.143
+Minnesota,Easton,169,2015-09-16,MN-2,2015,269.0,19.651,1.023
+Minnesota,Easton,169,2015-09-16,MN-2,2015,336.3,22.086,1.265
+Minnesota,Easton,169,2015-09-16,MN-2,2015,403.5,20.618,1.429
+Minnesota,Russet Burbank,170,2014-06-30,MN-2,2014,134.5, 1.932,3.705
+Minnesota,Russet Burbank,170,2014-06-30,MN-2,2014,201.8, 1.567,4.192
+Minnesota,Russet Burbank,170,2014-06-30,MN-2,2014,269.0, 1.943,3.187
+Minnesota,Russet Burbank,170,2014-06-30,MN-2,2014,336.3, 1.881,4.504
+Minnesota,Russet Burbank,170,2014-06-30,MN-2,2014,403.5, 2.615,3.892
+Minnesota,Russet Burbank,171,2014-07-15,MN-2,2014,134.5, 5.122,1.847
+Minnesota,Russet Burbank,171,2014-07-15,MN-2,2014,201.8, 5.097,2.185
+Minnesota,Russet Burbank,171,2014-07-15,MN-2,2014,269.0, 5.421,2.815
+Minnesota,Russet Burbank,171,2014-07-15,MN-2,2014,336.3, 5.395,3.391
+Minnesota,Russet Burbank,171,2014-07-15,MN-2,2014,403.5, 6.829,3.105
+Minnesota,Russet Burbank,172,2014-07-24,MN-2,2014,134.5, 7.692,1.220
+Minnesota,Russet Burbank,172,2014-07-24,MN-2,2014,201.8, 9.585,1.510
+Minnesota,Russet Burbank,172,2014-07-24,MN-2,2014,269.0, 7.454,1.913
+Minnesota,Russet Burbank,172,2014-07-24,MN-2,2014,336.3, 8.644,2.417
+Minnesota,Russet Burbank,172,2014-07-24,MN-2,2014,403.5, 7.809,2.712
+Minnesota,Russet Burbank,173,2014-08-11,MN-2,2014,134.5,11.952,0.927
+Minnesota,Russet Burbank,173,2014-08-11,MN-2,2014,201.8,11.664,1.198
+Minnesota,Russet Burbank,173,2014-08-11,MN-2,2014,269.0,12.314,1.369
+Minnesota,Russet Burbank,173,2014-08-11,MN-2,2014,336.3,12.030,1.662
+Minnesota,Russet Burbank,173,2014-08-11,MN-2,2014,403.5,13.352,2.060
+Minnesota,Russet Burbank,174,2014-08-26,MN-2,2014,134.5,12.321,0.821
+Minnesota,Russet Burbank,174,2014-08-26,MN-2,2014,201.8,14.347,0.971
+Minnesota,Russet Burbank,174,2014-08-26,MN-2,2014,269.0,14.772,1.105
+Minnesota,Russet Burbank,174,2014-08-26,MN-2,2014,336.3,13.015,1.323
+Minnesota,Russet Burbank,174,2014-08-26,MN-2,2014,403.5,15.549,1.632
+Minnesota,Russet Burbank,175,2014-09-08,MN-2,2014,134.5,13.084,0.886
+Minnesota,Russet Burbank,175,2014-09-08,MN-2,2014,201.8,16.117,0.872
+Minnesota,Russet Burbank,175,2014-09-08,MN-2,2014,269.0,16.375,1.033
+Minnesota,Russet Burbank,175,2014-09-08,MN-2,2014,336.3,13.873,1.141
+Minnesota,Russet Burbank,175,2014-09-08,MN-2,2014,403.5,14.796,1.157
+Minnesota,Russet Burbank,176,2014-09-15,MN-2,2014,134.5,12.121,0.850
+Minnesota,Russet Burbank,176,2014-09-15,MN-2,2014,201.8,14.604,0.907
+Minnesota,Russet Burbank,176,2014-09-15,MN-2,2014,269.0,14.536,1.051
+Minnesota,Russet Burbank,176,2014-09-15,MN-2,2014,336.3,13.780,1.165
+Minnesota,Russet Burbank,176,2014-09-15,MN-2,2014,403.5,15.517,1.302
+Minnesota,Russet Burbank,177,2015-06-23,MN-2,2015,134.5, 3.483,3.096
+Minnesota,Russet Burbank,177,2015-06-23,MN-2,2015,201.8, 3.821,3.916
+Minnesota,Russet Burbank,177,2015-06-23,MN-2,2015,269.0, 3.634,3.861
+Minnesota,Russet Burbank,177,2015-06-23,MN-2,2015,336.3, 3.576,4.474
+Minnesota,Russet Burbank,177,2015-06-23,MN-2,2015,403.5, 3.857,4.484
+Minnesota,Russet Burbank,177,2015-06-23,MN-2,2015,134.5, 3.517,3.246
+Minnesota,Russet Burbank,178,2015-07-07,MN-2,2015,134.5, 7.597,1.778
+Minnesota,Russet Burbank,178,2015-07-07,MN-2,2015,201.8, 8.701,1.929
+Minnesota,Russet Burbank,178,2015-07-07,MN-2,2015,269.0, 8.926,2.336
+Minnesota,Russet Burbank,178,2015-07-07,MN-2,2015,336.3, 7.281,2.867
+Minnesota,Russet Burbank,178,2015-07-07,MN-2,2015,403.5, 7.495,2.963
+Minnesota,Russet Burbank,178,2015-07-07,MN-2,2015,134.5, 7.839,1.748
+Minnesota,Russet Burbank,179,2015-07-21,MN-2,2015,134.5,10.576,1.087
+Minnesota,Russet Burbank,179,2015-07-21,MN-2,2015,201.8,11.735,1.451
+Minnesota,Russet Burbank,179,2015-07-21,MN-2,2015,269.0,11.833,1.514
+Minnesota,Russet Burbank,179,2015-07-21,MN-2,2015,336.3,10.423,   NA
+Minnesota,Russet Burbank,179,2015-07-21,MN-2,2015,403.5, 9.504,1.664
+Minnesota,Russet Burbank,179,2015-07-21,MN-2,2015,134.5,11.584,1.212
+Minnesota,Russet Burbank,180,2015-08-04,MN-2,2015,134.5,13.184,1.130
+Minnesota,Russet Burbank,180,2015-08-04,MN-2,2015,201.8,14.810,1.287
+Minnesota,Russet Burbank,180,2015-08-04,MN-2,2015,269.0,13.212,1.421
+Minnesota,Russet Burbank,180,2015-08-04,MN-2,2015,336.3,11.994,1.716
+Minnesota,Russet Burbank,180,2015-08-04,MN-2,2015,403.5,15.056,1.745
+Minnesota,Russet Burbank,180,2015-08-04,MN-2,2015,134.5,16.776,1.015
+Minnesota,Russet Burbank,181,2015-08-17,MN-2,2015,134.5,11.970,0.936
+Minnesota,Russet Burbank,181,2015-08-17,MN-2,2015,201.8,13.130,1.365
+Minnesota,Russet Burbank,181,2015-08-17,MN-2,2015,269.0,12.293,1.158
+Minnesota,Russet Burbank,181,2015-08-17,MN-2,2015,336.3,13.713,1.249
+Minnesota,Russet Burbank,181,2015-08-17,MN-2,2015,403.5,15.103,1.406
+Minnesota,Russet Burbank,181,2015-08-17,MN-2,2015,134.5,11.217,0.720
+Minnesota,Russet Burbank,182,2015-09-01,MN-2,2015,134.5,14.871,0.884
+Minnesota,Russet Burbank,182,2015-09-01,MN-2,2015,201.8,13.359,1.119
+Minnesota,Russet Burbank,182,2015-09-01,MN-2,2015,269.0,14.589,1.001
+Minnesota,Russet Burbank,182,2015-09-01,MN-2,2015,336.3,15.221,1.220
+Minnesota,Russet Burbank,182,2015-09-01,MN-2,2015,403.5,16.701,1.430
+Minnesota,Russet Burbank,182,2015-09-01,MN-2,2015,134.5,13.758,0.978
+Minnesota,Russet Burbank,183,2015-09-16,MN-2,2015,134.5,16.489,1.090
+Minnesota,Russet Burbank,183,2015-09-16,MN-2,2015,201.8,17.345,1.266
+Minnesota,Russet Burbank,183,2015-09-16,MN-2,2015,269.0,17.935,1.287
+Minnesota,Russet Burbank,183,2015-09-16,MN-2,2015,336.3,18.120,1.409
+Minnesota,Russet Burbank,183,2015-09-16,MN-2,2015,403.5,20.495,1.421
+Minnesota,Russet Burbank,183,2015-09-16,MN-2,2015,134.5,16.260,1.114
+Canada,Russet Burbank,186,1997-07-22,Drummond,1997,  0.0, 1.200,3.600
+Canada,Russet Burbank,186,1997-07-22,Drummond,1997, 50.0, 1.600,4.000
+Canada,Russet Burbank,186,1997-07-22,Drummond,1997,100.0, 1.800,4.300
+Canada,Russet Burbank,186,1997-07-22,Drummond,1997,250.0, 1.700,4.400
+Canada,Russet Burbank,187,1997-08-01,Drummond,1997,  0.0, 2.800,2.700
+Canada,Russet Burbank,187,1997-08-01,Drummond,1997, 50.0, 3.500,2.800
+Canada,Russet Burbank,187,1997-08-01,Drummond,1997,100.0, 3.700,3.200
+Canada,Russet Burbank,187,1997-08-01,Drummond,1997,250.0, 4.000,3.200
+Canada,Russet Burbank,188,1997-08-07,Drummond,1997,  0.0, 4.700,2.300
+Canada,Russet Burbank,188,1997-08-07,Drummond,1997, 50.0, 6.900,2.200
+Canada,Russet Burbank,188,1997-08-07,Drummond,1997,100.0, 6.100,3.000
+Canada,Russet Burbank,188,1997-08-07,Drummond,1997,250.0, 5.700,3.200
+Canada,Russet Burbank,189,1997-08-14,Drummond,1997,  0.0, 7.500,1.900
+Canada,Russet Burbank,189,1997-08-14,Drummond,1997, 50.0, 7.100,2.200
+Canada,Russet Burbank,189,1997-08-14,Drummond,1997,100.0, 8.300,2.400
+Canada,Russet Burbank,189,1997-08-14,Drummond,1997,250.0, 8.400,2.800
+Canada,Russet Burbank,190,1997-08-21,Drummond,1997,  0.0, 8.500,1.400
+Canada,Russet Burbank,190,1997-08-21,Drummond,1997, 50.0, 8.700,1.700
+Canada,Russet Burbank,190,1997-08-21,Drummond,1997,100.0,10.300,1.900
+Canada,Russet Burbank,190,1997-08-21,Drummond,1997,250.0, 8.800,2.400
+Canada,Russet Burbank,191,1997-08-26,Drummond,1997,  0.0, 8.200,1.100
+Canada,Russet Burbank,191,1997-08-26,Drummond,1997, 50.0, 9.700,1.400
+Canada,Russet Burbank,191,1997-08-26,Drummond,1997,100.0, 9.600,1.800
+Canada,Russet Burbank,191,1997-08-26,Drummond,1997,250.0,11.700,2.200
+Canada,Russet Burbank,192,1997-09-02,Drummond,1997,  0.0, 8.800,1.300
+Canada,Russet Burbank,192,1997-09-02,Drummond,1997, 50.0,10.100,1.500
+Canada,Russet Burbank,192,1997-09-02,Drummond,1997,100.0,11.600,2.000
+Canada,Russet Burbank,192,1997-09-02,Drummond,1997,250.0,11.900,2.200
+Canada,Shepody,195,1997-07-15,Drummond,1997,  0.0, 1.200,5.500
+Canada,Shepody,195,1997-07-15,Drummond,1997, 50.0, 1.100,6.100
+Canada,Shepody,195,1997-07-15,Drummond,1997,100.0, 1.300,6.300
+Canada,Shepody,195,1997-07-15,Drummond,1997,250.0, 1.200,6.300
+Canada,Shepody,196,1997-07-22,Drummond,1997,  0.0, 1.800,3.600
+Canada,Shepody,196,1997-07-22,Drummond,1997, 50.0, 2.100,4.300
+Canada,Shepody,196,1997-07-22,Drummond,1997,100.0, 2.200,5.100
+Canada,Shepody,196,1997-07-22,Drummond,1997,250.0, 2.100,5.400
+Canada,Shepody,197,1997-08-01,Drummond,1997,  0.0, 3.200,2.300
+Canada,Shepody,197,1997-08-01,Drummond,1997, 50.0, 5.200,3.000
+Canada,Shepody,197,1997-08-01,Drummond,1997,100.0, 5.500,3.500
+Canada,Shepody,197,1997-08-01,Drummond,1997,250.0, 5.600,4.000
+Canada,Shepody,198,1997-08-07,Drummond,1997,  0.0, 5.500,1.800
+Canada,Shepody,198,1997-08-07,Drummond,1997, 50.0, 7.100,2.400
+Canada,Shepody,198,1997-08-07,Drummond,1997,100.0, 7.300,2.800
+Canada,Shepody,198,1997-08-07,Drummond,1997,250.0, 5.300,3.600
+Canada,Shepody,199,1997-08-14,Drummond,1997,  0.0, 7.300,1.600
+Canada,Shepody,199,1997-08-14,Drummond,1997, 50.0, 7.300,2.000
+Canada,Shepody,199,1997-08-14,Drummond,1997,100.0, 6.300,2.800
+Canada,Shepody,199,1997-08-14,Drummond,1997,250.0, 5.200,3.300
+Canada,Shepody,200,1997-08-21,Drummond,1997,  0.0, 9.400,1.400
+Canada,Shepody,200,1997-08-21,Drummond,1997, 50.0,10.500,1.800
+Canada,Shepody,200,1997-08-21,Drummond,1997,100.0,11.400,1.900
+Canada,Shepody,200,1997-08-21,Drummond,1997,250.0,13.500,2.700
+Canada,Shepody,201,1997-08-26,Drummond,1997,  0.0, 9.500,1.100
+Canada,Shepody,201,1997-08-26,Drummond,1997, 50.0, 9.800,1.500
+Canada,Shepody,201,1997-08-26,Drummond,1997,100.0,11.500,1.800
+Canada,Shepody,201,1997-08-26,Drummond,1997,250.0,11.300,2.400
+Canada,Shepody,202,1997-09-02,Drummond,1997,  0.0, 7.300,1.300
+Canada,Shepody,202,1997-09-02,Drummond,1997, 50.0,11.100,1.400
+Canada,Shepody,202,1997-09-02,Drummond,1997,100.0,15.400,1.800
+Canada,Shepody,202,1997-09-02,Drummond,1997,250.0,13.300,2.500
+Argentina,Bannock Russet,204,2003-12-23,,2003,  0.0, 3.100,4.200
+Argentina,Bannock Russet,204,2003-12-23,,2003, 80.0, 3.800,4.200
+Argentina,Bannock Russet,204,2003-12-23,,2003,150.0, 4.400,4.200
+Argentina,Bannock Russet,204,2003-12-23,,2003,250.0, 4.600,4.400
+Argentina,Bannock Russet,205,2004-01-07,,2004,  0.0, 4.500,3.200
+Argentina,Bannock Russet,205,2004-01-07,,2004, 80.0, 6.100,3.400
+Argentina,Bannock Russet,205,2004-01-07,,2004,150.0, 6.800,3.600
+Argentina,Bannock Russet,205,2004-01-07,,2004,250.0, 7.700,4.200
+Argentina,Bannock Russet,206,2004-01-22,,2004,  0.0, 4.600,2.800
+Argentina,Bannock Russet,206,2004-01-22,,2004, 80.0, 6.600,3.100
+Argentina,Bannock Russet,206,2004-01-22,,2004,150.0, 8.100,3.000
+Argentina,Bannock Russet,206,2004-01-22,,2004,250.0,11.500,2.900
+Argentina,Bannock Russet,207,2004-02-11,,2004,  0.0, 6.700,1.900
+Argentina,Bannock Russet,207,2004-02-11,,2004, 80.0, 8.700,2.100
+Argentina,Bannock Russet,207,2004-02-11,,2004,150.0, 9.300,2.200
+Argentina,Bannock Russet,207,2004-02-11,,2004,250.0,11.300,2.500
+Argentina,Bannock Russet,208,2004-11-28,,2004,  0.0, 2.100,4.300
+Argentina,Bannock Russet,208,2004-11-28,,2004, 80.0, 2.700,4.400
+Argentina,Bannock Russet,208,2004-11-28,,2004,150.0, 2.900,4.700
+Argentina,Bannock Russet,208,2004-11-28,,2004,250.0, 3.800,4.500
+Argentina,Bannock Russet,209,2004-12-04,,2004,  0.0, 3.800,4.100
+Argentina,Bannock Russet,209,2004-12-04,,2004, 80.0, 5.100,4.200
+Argentina,Bannock Russet,209,2004-12-04,,2004,150.0, 5.600,4.200
+Argentina,Bannock Russet,209,2004-12-04,,2004,250.0, 6.300,4.300
+Argentina,Bannock Russet,210,2004-12-26,,2004,  0.0, 7.300,2.400
+Argentina,Bannock Russet,210,2004-12-26,,2004, 80.0,12.000,2.800
+Argentina,Bannock Russet,210,2004-12-26,,2004,150.0,16.300,2.900
+Argentina,Bannock Russet,210,2004-12-26,,2004,250.0,19.700,3.400
+Argentina,Bannock Russet,211,2005-01-22,,2005,  0.0,13.600,1.300
+Argentina,Bannock Russet,211,2005-01-22,,2005, 80.0,15.000,1.400
+Argentina,Bannock Russet,211,2005-01-22,,2005,150.0,17.600,1.400
+Argentina,Bannock Russet,211,2005-01-22,,2005,250.0,20.600,2.100
+Argentina,Bannock Russet,212,2005-11-16,,2005,  0.0, 2.000,4.800
+Argentina,Bannock Russet,212,2005-11-16,,2005, 80.0, 2.300,4.900
+Argentina,Bannock Russet,212,2005-11-16,,2005,150.0, 2.300,5.000
+Argentina,Bannock Russet,212,2005-11-16,,2005,250.0, 2.200,5.300
+Argentina,Bannock Russet,213,2005-12-01,,2005,  0.0, 3.900,4.000
+Argentina,Bannock Russet,213,2005-12-01,,2005, 80.0, 4.200,3.900
+Argentina,Bannock Russet,213,2005-12-01,,2005,150.0, 4.300,4.100
+Argentina,Bannock Russet,213,2005-12-01,,2005,250.0, 5.000,4.600
+Argentina,Bannock Russet,214,2005-12-14,,2005,  0.0, 7.600,3.200
+Argentina,Bannock Russet,214,2005-12-14,,2005, 80.0, 8.700,3.200
+Argentina,Bannock Russet,214,2005-12-14,,2005,150.0, 8.900,3.400
+Argentina,Bannock Russet,214,2005-12-14,,2005,250.0,12.800,3.500
+Argentina,Bannock Russet,215,2005-12-30,,2005,  0.0,13.000,2.200
+Argentina,Bannock Russet,215,2005-12-30,,2005, 80.0,18.200,2.400
+Argentina,Bannock Russet,215,2005-12-30,,2005,150.0,23.600,2.500
+Argentina,Bannock Russet,215,2005-12-30,,2005,250.0,25.700,2.700
+Argentina,Bannock Russet,216,2006-01-13,,2006,  0.0,20.800,1.600
+Argentina,Bannock Russet,216,2006-01-13,,2006, 80.0,24.700,2.000
+Argentina,Bannock Russet,216,2006-01-13,,2006,150.0,32.700,2.400
+Argentina,Bannock Russet,216,2006-01-13,,2006,250.0,36.100,3.100
+Argentina,Gem Russet,218,2003-12-23,,2003,  0.0, 7.200,3.200
+Argentina,Gem Russet,218,2003-12-23,,2003, 80.0,10.300,3.200
+Argentina,Gem Russet,218,2003-12-23,,2003,150.0,13.000,3.000
+Argentina,Gem Russet,218,2003-12-23,,2003,250.0,14.500,3.300
+Argentina,Gem Russet,219,2004-01-07,,2004,  0.0,13.700,2.000
+Argentina,Gem Russet,219,2004-01-07,,2004, 80.0,17.800,2.200
+Argentina,Gem Russet,219,2004-01-07,,2004,150.0,19.600,2.600
+Argentina,Gem Russet,219,2004-01-07,,2004,250.0,21.400,2.800
+Argentina,Gem Russet,220,2004-01-22,,2004,  0.0,18.000,1.600
+Argentina,Gem Russet,220,2004-01-22,,2004, 80.0,21.000,2.100
+Argentina,Gem Russet,220,2004-01-22,,2004,150.0,23.600,2.300
+Argentina,Gem Russet,220,2004-01-22,,2004,250.0,26.300,2.300
+Argentina,Gem Russet,221,2004-02-11,,2004,  0.0,18.300,1.200
+Argentina,Gem Russet,221,2004-02-11,,2004, 80.0,21.300,1.500
+Argentina,Gem Russet,221,2004-02-11,,2004,150.0,24.300,1.800
+Argentina,Gem Russet,221,2004-02-11,,2004,250.0,25.900,1.900
+Argentina,Gem Russet,222,2004-11-28,,2004,  0.0, 1.700,5.200
+Argentina,Gem Russet,222,2004-11-28,,2004, 80.0, 1.900,5.300
+Argentina,Gem Russet,222,2004-11-28,,2004,150.0, 2.200,5.800
+Argentina,Gem Russet,222,2004-11-28,,2004,250.0, 2.200,5.800
+Argentina,Gem Russet,223,2004-12-04,,2004,  0.0, 5.300,3.600
+Argentina,Gem Russet,223,2004-12-04,,2004, 80.0, 5.600,3.900
+Argentina,Gem Russet,223,2004-12-04,,2004,150.0, 6.400,4.000
+Argentina,Gem Russet,223,2004-12-04,,2004,250.0, 8.000,4.000
+Argentina,Gem Russet,224,2004-12-26,,2004,  0.0,12.700,1.800
+Argentina,Gem Russet,224,2004-12-26,,2004, 80.0,15.900,2.200
+Argentina,Gem Russet,224,2004-12-26,,2004,150.0,16.300,2.500
+Argentina,Gem Russet,224,2004-12-26,,2004,250.0,18.400,3.000
+Argentina,Gem Russet,225,2005-01-22,,2005,  0.0,15.800,1.100
+Argentina,Gem Russet,225,2005-01-22,,2005, 80.0,17.400,1.100
+Argentina,Gem Russet,225,2005-01-22,,2005,150.0,20.500,1.400
+Argentina,Gem Russet,225,2005-01-22,,2005,250.0,24.600,2.000
+Argentina,Gem Russet,226,2005-11-16,,2005,  0.0, 2.000,4.600
+Argentina,Gem Russet,226,2005-11-16,,2005, 80.0, 2.000,5.200
+Argentina,Gem Russet,226,2005-11-16,,2005,150.0, 2.100,5.600
+Argentina,Gem Russet,226,2005-11-16,,2005,250.0, 2.100,5.600
+Argentina,Gem Russet,227,2005-12-01,,2005,  0.0, 3.800,3.600
+Argentina,Gem Russet,227,2005-12-01,,2005, 80.0, 4.200,3.700
+Argentina,Gem Russet,227,2005-12-01,,2005,150.0, 4.900,3.900
+Argentina,Gem Russet,227,2005-12-01,,2005,250.0, 5.900,4.400
+Argentina,Gem Russet,228,2005-12-14,,2005,  0.0, 7.500,3.000
+Argentina,Gem Russet,228,2005-12-14,,2005, 80.0, 9.100,3.300
+Argentina,Gem Russet,228,2005-12-14,,2005,150.0,11.300,3.400
+Argentina,Gem Russet,228,2005-12-14,,2005,250.0,12.100,4.000
+Argentina,Gem Russet,229,2005-12-30,,2005,  0.0,12.700,2.100
+Argentina,Gem Russet,229,2005-12-30,,2005, 80.0,14.000,2.400
+Argentina,Gem Russet,229,2005-12-30,,2005,150.0,17.800,3.000
+Argentina,Gem Russet,229,2005-12-30,,2005,250.0,21.500,3.400
+Argentina,Gem Russet,230,2006-01-13,,2006,  0.0,18.000,1.700
+Argentina,Gem Russet,230,2006-01-13,,2006, 80.0,21.900,1.800
+Argentina,Gem Russet,230,2006-01-13,,2006,150.0,26.600,2.400
+Argentina,Gem Russet,230,2006-01-13,,2006,250.0,30.200,2.600
+Argentina,Gem Russet,231,2006-12-02,,2006,  0.0, 1.300,5.100
+Argentina,Gem Russet,231,2006-12-02,,2006, 80.0, 1.300,5.200
+Argentina,Gem Russet,231,2006-12-02,,2006,150.0, 1.300,5.200
+Argentina,Gem Russet,231,2006-12-02,,2006,250.0, 1.600,5.500
+Argentina,Gem Russet,232,2006-12-15,,2006,  0.0, 4.100,5.100
+Argentina,Gem Russet,232,2006-12-15,,2006, 80.0, 5.100,5.200
+Argentina,Gem Russet,232,2006-12-15,,2006,150.0, 5.300,5.500
+Argentina,Gem Russet,232,2006-12-15,,2006,250.0, 5.400,5.700
+Argentina,Gem Russet,233,2006-12-31,,2006,  0.0, 7.500,3.700
+Argentina,Gem Russet,233,2006-12-31,,2006, 80.0, 7.900,3.900
+Argentina,Gem Russet,233,2006-12-31,,2006,150.0, 8.800,4.200
+Argentina,Gem Russet,233,2006-12-31,,2006,250.0,10.100,4.400
+Argentina,Gem Russet,234,2007-01-21,,2007,  0.0,14.300,2.200
+Argentina,Gem Russet,234,2007-01-21,,2007, 80.0,15.400,2.400
+Argentina,Gem Russet,234,2007-01-21,,2007,150.0,16.500,3.000
+Argentina,Gem Russet,234,2007-01-21,,2007,250.0,19.200,3.100
+Argentina,Gem Russet,235,2007-02-11,,2007,  0.0,12.000,1.600
+Argentina,Gem Russet,235,2007-02-11,,2007, 80.0,13.600,1.900
+Argentina,Gem Russet,235,2007-02-11,,2007,150.0,14.200,2.000
+Argentina,Gem Russet,235,2007-02-11,,2007,250.0,14.900,2.200
+Argentina,Innovator,237,2003-12-23,,2003,  0.0, 4.400,2.900
+Argentina,Innovator,237,2003-12-23,,2003, 80.0, 4.900,2.800
+Argentina,Innovator,237,2003-12-23,,2003,150.0, 5.600,3.000
+Argentina,Innovator,237,2003-12-23,,2003,250.0, 6.500,3.300
+Argentina,Innovator,238,2004-01-07,,2004,  0.0, 6.700,2.400
+Argentina,Innovator,238,2004-01-07,,2004, 80.0, 9.500,2.500
+Argentina,Innovator,238,2004-01-07,,2004,150.0,10.500,2.500
+Argentina,Innovator,238,2004-01-07,,2004,250.0,12.900,2.600
+Argentina,Innovator,239,2004-01-22,,2004,  0.0, 9.200,1.500
+Argentina,Innovator,239,2004-01-22,,2004, 80.0,11.700,1.600
+Argentina,Innovator,239,2004-01-22,,2004,150.0,12.400,1.800
+Argentina,Innovator,239,2004-01-22,,2004,250.0,16.000,2.100
+Argentina,Innovator,240,2004-02-11,,2004,  0.0,15.900,1.100
+Argentina,Innovator,240,2004-02-11,,2004, 80.0,17.200,1.200
+Argentina,Innovator,240,2004-02-11,,2004,150.0,17.200,1.300
+Argentina,Innovator,240,2004-02-11,,2004,250.0,22.400,1.400
+Argentina,Innovator,241,2004-11-28,,2004,  0.0, 2.400,3.600
+Argentina,Innovator,241,2004-11-28,,2004, 80.0, 3.100,3.800
+Argentina,Innovator,241,2004-11-28,,2004,150.0, 3.100,3.900
+Argentina,Innovator,241,2004-11-28,,2004,250.0, 3.200,4.000
+Argentina,Innovator,242,2004-12-04,,2004,  0.0, 4.900,2.700
+Argentina,Innovator,242,2004-12-04,,2004, 80.0, 5.600,3.100
+Argentina,Innovator,242,2004-12-04,,2004,150.0, 5.900,3.200
+Argentina,Innovator,242,2004-12-04,,2004,250.0, 6.800,3.500
+Argentina,Innovator,243,2004-12-26,,2004,  0.0, 9.700,2.300
+Argentina,Innovator,243,2004-12-26,,2004, 80.0,10.800,2.600
+Argentina,Innovator,243,2004-12-26,,2004,150.0,13.100,2.600
+Argentina,Innovator,243,2004-12-26,,2004,250.0,15.700,3.000
+Argentina,Innovator,244,2005-01-22,,2005,  0.0,16.800,1.200
+Argentina,Innovator,244,2005-01-22,,2005, 80.0,17.300,1.300
+Argentina,Innovator,244,2005-01-22,,2005,150.0,19.900,1.500
+Argentina,Innovator,244,2005-01-22,,2005,250.0,22.600,1.500
+Argentina,Innovator,245,2005-11-16,,2005,  0.0, 2.600,4.800
+Argentina,Innovator,245,2005-11-16,,2005, 80.0, 2.600,4.700
+Argentina,Innovator,245,2005-11-16,,2005,150.0, 2.700,5.000
+Argentina,Innovator,245,2005-11-16,,2005,250.0, 2.800,5.000
+Argentina,Innovator,246,2005-12-01,,2005,  0.0, 4.500,3.200
+Argentina,Innovator,246,2005-12-01,,2005, 80.0, 5.300,3.600
+Argentina,Innovator,246,2005-12-01,,2005,150.0, 6.400,3.800
+Argentina,Innovator,246,2005-12-01,,2005,250.0, 7.600,3.800
+Argentina,Innovator,247,2005-12-14,,2005,  0.0, 8.000,2.100
+Argentina,Innovator,247,2005-12-14,,2005, 80.0, 8.900,2.400
+Argentina,Innovator,247,2005-12-14,,2005,150.0,11.600,2.800
+Argentina,Innovator,247,2005-12-14,,2005,250.0,12.900,3.100
+Argentina,Innovator,248,2005-12-30,,2005,  0.0,11.000,1.600
+Argentina,Innovator,248,2005-12-30,,2005, 80.0,12.400,2.000
+Argentina,Innovator,248,2005-12-30,,2005,150.0,15.100,2.300
+Argentina,Innovator,248,2005-12-30,,2005,250.0,16.400,2.500
+Argentina,Innovator,249,2006-01-13,,2006,  0.0,16.600,1.000
+Argentina,Innovator,249,2006-01-13,,2006, 80.0,19.400,1.200
+Argentina,Innovator,249,2006-01-13,,2006,150.0,22.300,1.400
+Argentina,Innovator,249,2006-01-13,,2006,250.0,24.400,1.500
+Argentina,Innovator,250,2006-12-02,,2006,  0.0, 1.100,4.700
+Argentina,Innovator,250,2006-12-02,,2006, 80.0, 1.700,4.800
+Argentina,Innovator,250,2006-12-02,,2006,150.0, 2.000,5.100
+Argentina,Innovator,250,2006-12-02,,2006,250.0, 2.400,5.300
+Argentina,Innovator,251,2006-12-15,,2006,  0.0, 4.400,3.900
+Argentina,Innovator,251,2006-12-15,,2006, 80.0, 4.800,4.300
+Argentina,Innovator,251,2006-12-15,,2006,150.0, 5.000,4.300
+Argentina,Innovator,251,2006-12-15,,2006,250.0, 5.800,4.400
+Argentina,Innovator,252,2006-12-31,,2006,  0.0, 7.100,2.700
+Argentina,Innovator,252,2006-12-31,,2006, 80.0, 7.400,3.000
+Argentina,Innovator,252,2006-12-31,,2006,150.0, 8.000,3.200
+Argentina,Innovator,252,2006-12-31,,2006,250.0, 9.200,3.400
+Argentina,Innovator,253,2007-01-21,,2007,  0.0,12.500,1.700
+Argentina,Innovator,253,2007-01-21,,2007, 80.0,13.500,2.100
+Argentina,Innovator,253,2007-01-21,,2007,150.0,13.900,2.400
+Argentina,Innovator,253,2007-01-21,,2007,250.0,15.200,2.600
+Argentina,Innovator,254,2007-02-11,,2007,  0.0,14.800,1.400
+Argentina,Innovator,254,2007-02-11,,2007, 80.0,15.400,1.500
+Argentina,Innovator,254,2007-02-11,,2007,150.0,16.800,1.900
+Argentina,Innovator,254,2007-02-11,,2007,250.0,18.500,2.100
+Argentina,Markies Russet,255,2004-11-28,,2004,  0.0, 3.500,4.800
+Argentina,Markies Russet,255,2004-11-28,,2004, 80.0, 3.800,4.900
+Argentina,Markies Russet,255,2004-11-28,,2004,150.0, 4.200,5.100
+Argentina,Markies Russet,255,2004-11-28,,2004,250.0, 4.400,5.400
+Argentina,Markies Russet,256,2004-12-04,,2004,  0.0, 5.600,3.600
+Argentina,Markies Russet,256,2004-12-04,,2004, 80.0, 6.100,4.000
+Argentina,Markies Russet,256,2004-12-04,,2004,150.0, 7.900,4.200
+Argentina,Markies Russet,256,2004-12-04,,2004,250.0, 8.700,4.100
+Argentina,Markies Russet,257,2004-12-26,,2004,  0.0,10.100,2.700
+Argentina,Markies Russet,257,2004-12-26,,2004, 80.0,11.300,2.800
+Argentina,Markies Russet,257,2004-12-26,,2004,150.0,13.500,3.000
+Argentina,Markies Russet,257,2004-12-26,,2004,250.0,16.500,3.200
+Argentina,Markies Russet,258,2005-01-22,,2005,  0.0,11.100,1.800
+Argentina,Markies Russet,258,2005-01-22,,2005, 80.0,13.600,2.200
+Argentina,Markies Russet,258,2005-01-22,,2005,150.0,16.800,2.400
+Argentina,Markies Russet,258,2005-01-22,,2005,250.0,18.100,2.600
+Argentina,Markies Russet,259,2005-11-16,,2005,  0.0, 1.700,5.000
+Argentina,Markies Russet,259,2005-11-16,,2005, 80.0, 1.800,5.600
+Argentina,Markies Russet,259,2005-11-16,,2005,150.0, 1.900,5.600
+Argentina,Markies Russet,259,2005-11-16,,2005,250.0, 1.900,5.600
+Argentina,Markies Russet,260,2005-12-01,,2005,  0.0, 4.100,4.300
+Argentina,Markies Russet,260,2005-12-01,,2005, 80.0, 4.200,4.400
+Argentina,Markies Russet,260,2005-12-01,,2005,150.0, 4.700,4.500
+Argentina,Markies Russet,260,2005-12-01,,2005,250.0, 5.300,4.400
+Argentina,Markies Russet,261,2005-12-14,,2005,  0.0, 8.000,3.100
+Argentina,Markies Russet,261,2005-12-14,,2005, 80.0, 8.200,3.300
+Argentina,Markies Russet,261,2005-12-14,,2005,150.0, 9.500,3.400
+Argentina,Markies Russet,261,2005-12-14,,2005,250.0,11.600,3.700
+Argentina,Markies Russet,262,2005-12-30,,2005,  0.0,12.900,2.300
+Argentina,Markies Russet,262,2005-12-30,,2005, 80.0,14.200,2.600
+Argentina,Markies Russet,262,2005-12-30,,2005,150.0,16.500,2.800
+Argentina,Markies Russet,262,2005-12-30,,2005,250.0,19.500,3.000
+Argentina,Markies Russet,263,2006-01-13,,2006,  0.0,14.200,1.700
+Argentina,Markies Russet,263,2006-01-13,,2006, 80.0,19.100,2.100
+Argentina,Markies Russet,263,2006-01-13,,2006,150.0,23.300,2.300
+Argentina,Markies Russet,263,2006-01-13,,2006,250.0,23.700,2.500
+Argentina,Umatilla Russet,264,2004-11-28,,2004,  0.0, 2.700,3.700
+Argentina,Umatilla Russet,264,2004-11-28,,2004, 80.0, 3.000,4.100
+Argentina,Umatilla Russet,264,2004-11-28,,2004,150.0, 3.100,4.200
+Argentina,Umatilla Russet,264,2004-11-28,,2004,250.0, 3.400,4.400
+Argentina,Umatilla Russet,265,2004-12-04,,2004,  0.0, 4.300,3.100
+Argentina,Umatilla Russet,265,2004-12-04,,2004, 80.0, 6.000,3.400
+Argentina,Umatilla Russet,265,2004-12-04,,2004,150.0, 7.400,3.600
+Argentina,Umatilla Russet,265,2004-12-04,,2004,250.0, 8.100,3.800
+Argentina,Umatilla Russet,266,2004-12-26,,2004,  0.0,11.500,1.900
+Argentina,Umatilla Russet,266,2004-12-26,,2004, 80.0,14.900,2.500
+Argentina,Umatilla Russet,266,2004-12-26,,2004,150.0,17.600,2.700
+Argentina,Umatilla Russet,266,2004-12-26,,2004,250.0,22.400,3.300
+Argentina,Umatilla Russet,267,2005-01-22,,2005,  0.0,13.500,0.800
+Argentina,Umatilla Russet,267,2005-01-22,,2005, 80.0,17.200,1.200
+Argentina,Umatilla Russet,267,2005-01-22,,2005,150.0,23.200,1.400
+Argentina,Umatilla Russet,267,2005-01-22,,2005,250.0,26.600,1.500
+Argentina,Umatilla Russet,268,2005-11-16,,2005,  0.0, 2.100,5.000
+Argentina,Umatilla Russet,268,2005-11-16,,2005, 80.0, 2.200,5.500
+Argentina,Umatilla Russet,268,2005-11-16,,2005,150.0, 2.300,5.300
+Argentina,Umatilla Russet,268,2005-11-16,,2005,250.0, 2.400,5.400
+Argentina,Umatilla Russet,269,2005-12-01,,2005,  0.0, 3.700,3.500
+Argentina,Umatilla Russet,269,2005-12-01,,2005, 80.0, 4.100,3.600
+Argentina,Umatilla Russet,269,2005-12-01,,2005,150.0, 4.400,3.700
+Argentina,Umatilla Russet,269,2005-12-01,,2005,250.0, 6.500,3.700
+Argentina,Umatilla Russet,270,2005-12-14,,2005,  0.0, 8.300,2.000
+Argentina,Umatilla Russet,270,2005-12-14,,2005, 80.0, 9.800,2.100
+Argentina,Umatilla Russet,270,2005-12-14,,2005,150.0,10.700,2.500
+Argentina,Umatilla Russet,270,2005-12-14,,2005,250.0,11.700,3.000
+Argentina,Umatilla Russet,271,2005-12-30,,2005,  0.0,16.100,1.900
+Argentina,Umatilla Russet,271,2005-12-30,,2005, 80.0,18.000,2.100
+Argentina,Umatilla Russet,271,2005-12-30,,2005,150.0,20.600,2.300
+Argentina,Umatilla Russet,271,2005-12-30,,2005,250.0,21.700,2.800
+Argentina,Umatilla Russet,272,2006-01-13,,2006,  0.0,20.400,1.400
+Argentina,Umatilla Russet,272,2006-01-13,,2006, 80.0,21.600,1.600
+Argentina,Umatilla Russet,272,2006-01-13,,2006,150.0,22.800,1.900
+Argentina,Umatilla Russet,272,2006-01-13,,2006,250.0,26.200,1.900
+Argentina,Umatilla Russet,273,2006-12-02,,2006,  0.0, 1.200,4.600
+Argentina,Umatilla Russet,273,2006-12-02,,2006, 80.0, 1.400,4.800
+Argentina,Umatilla Russet,273,2006-12-02,,2006,150.0, 1.500,4.800
+Argentina,Umatilla Russet,273,2006-12-02,,2006,250.0, 1.800,4.900
+Argentina,Umatilla Russet,274,2006-12-15,,2006,  0.0, 3.700,4.700
+Argentina,Umatilla Russet,274,2006-12-15,,2006, 80.0, 5.000,4.800
+Argentina,Umatilla Russet,274,2006-12-15,,2006,150.0, 6.100,5.200
+Argentina,Umatilla Russet,274,2006-12-15,,2006,250.0, 6.400,5.500
+Argentina,Umatilla Russet,275,2006-12-31,,2006,  0.0, 8.200,3.400
+Argentina,Umatilla Russet,275,2006-12-31,,2006, 80.0,10.000,4.000
+Argentina,Umatilla Russet,275,2006-12-31,,2006,150.0,11.100,4.100
+Argentina,Umatilla Russet,275,2006-12-31,,2006,250.0,11.900,4.400
+Argentina,Umatilla Russet,276,2007-01-21,,2007,  0.0,10.600,2.100
+Argentina,Umatilla Russet,276,2007-01-21,,2007, 80.0,14.800,2.600
+Argentina,Umatilla Russet,276,2007-01-21,,2007,150.0,14.900,2.900
+Argentina,Umatilla Russet,276,2007-01-21,,2007,250.0,16.800,2.900
+Argentina,Umatilla Russet,277,2007-02-11,,2007,  0.0,12.600,1.500
+Argentina,Umatilla Russet,277,2007-02-11,,2007, 80.0,13.300,1.600
+Argentina,Umatilla Russet,277,2007-02-11,,2007,150.0,16.100,1.800
+Argentina,Umatilla Russet,277,2007-02-11,,2007,250.0,17.700,2.000
+Canada,Russet Burbank,280,1997-07-29,Hartland,1997,  0.0, 1.000,3.500
+Canada,Russet Burbank,280,1997-07-29,Hartland,1997, 50.0, 1.500,3.900
+Canada,Russet Burbank,280,1997-07-29,Hartland,1997,100.0, 1.500,4.400
+Canada,Russet Burbank,280,1997-07-29,Hartland,1997,250.0, 1.300,4.800
+Canada,Russet Burbank,281,1997-08-05,Hartland,1997,  0.0, 2.600,2.600
+Canada,Russet Burbank,281,1997-08-05,Hartland,1997, 50.0, 3.200,3.400
+Canada,Russet Burbank,281,1997-08-05,Hartland,1997,100.0, 3.400,3.600
+Canada,Russet Burbank,281,1997-08-05,Hartland,1997,250.0, 3.600,3.300
+Canada,Russet Burbank,282,1997-08-13,Hartland,1997,  0.0, 3.600,1.800
+Canada,Russet Burbank,282,1997-08-13,Hartland,1997, 50.0, 4.400,2.700
+Canada,Russet Burbank,282,1997-08-13,Hartland,1997,100.0, 5.500,2.700
+Canada,Russet Burbank,282,1997-08-13,Hartland,1997,250.0, 5.200,2.800
+Canada,Russet Burbank,283,1997-08-18,Hartland,1997,  0.0, 4.100,1.500
+Canada,Russet Burbank,283,1997-08-18,Hartland,1997, 50.0, 6.400,2.100
+Canada,Russet Burbank,283,1997-08-18,Hartland,1997,100.0, 7.600,2.600
+Canada,Russet Burbank,283,1997-08-18,Hartland,1997,250.0, 6.300,2.900
+Canada,Russet Burbank,284,1997-08-25,Hartland,1997,  0.0, 6.800,1.400
+Canada,Russet Burbank,284,1997-08-25,Hartland,1997, 50.0, 8.500,2.000
+Canada,Russet Burbank,284,1997-08-25,Hartland,1997,100.0, 9.600,2.200
+Canada,Russet Burbank,284,1997-08-25,Hartland,1997,250.0, 9.400,2.700
+Canada,Russet Burbank,285,1997-09-03,Hartland,1997,  0.0, 8.000,1.200
+Canada,Russet Burbank,285,1997-09-03,Hartland,1997, 50.0, 8.800,1.500
+Canada,Russet Burbank,285,1997-09-03,Hartland,1997,100.0, 8.900,1.700
+Canada,Russet Burbank,285,1997-09-03,Hartland,1997,250.0, 9.900,2.400
+Canada,Russet Burbank,286,1997-09-11,Hartland,1997,  0.0, 7.400,1.200
+Canada,Russet Burbank,286,1997-09-11,Hartland,1997, 50.0,11.000,1.400
+Canada,Russet Burbank,286,1997-09-11,Hartland,1997,100.0, 9.700,1.600
+Canada,Russet Burbank,286,1997-09-11,Hartland,1997,250.0,10.300,1.700
+Canada,Shepody,289,1997-07-29,Hartland,1997,  0.0, 0.900,4.000
+Canada,Shepody,289,1997-07-29,Hartland,1997, 50.0, 1.200,4.400
+Canada,Shepody,289,1997-07-29,Hartland,1997,100.0, 1.400,5.000
+Canada,Shepody,289,1997-07-29,Hartland,1997,250.0, 1.300,5.100
+Canada,Shepody,290,1997-08-05,Hartland,1997,  0.0, 3.300,2.800
+Canada,Shepody,290,1997-08-05,Hartland,1997, 50.0, 3.200,3.300
+Canada,Shepody,290,1997-08-05,Hartland,1997,100.0, 3.100,3.800
+Canada,Shepody,290,1997-08-05,Hartland,1997,250.0, 2.700,4.400
+Canada,Shepody,291,1997-08-13,Hartland,1997,  0.0, 3.800,2.400
+Canada,Shepody,291,1997-08-13,Hartland,1997, 50.0, 4.400,2.700
+Canada,Shepody,291,1997-08-13,Hartland,1997,100.0, 4.900,3.400
+Canada,Shepody,291,1997-08-13,Hartland,1997,250.0, 5.400,3.200
+Canada,Shepody,292,1997-08-18,Hartland,1997,  0.0, 3.400,1.800
+Canada,Shepody,292,1997-08-18,Hartland,1997, 50.0, 4.800,2.400
+Canada,Shepody,292,1997-08-18,Hartland,1997,100.0, 7.800,2.800
+Canada,Shepody,292,1997-08-18,Hartland,1997,250.0, 7.000,2.900
+Canada,Shepody,293,1997-08-25,Hartland,1997,  0.0, 5.600,1.900
+Canada,Shepody,293,1997-08-25,Hartland,1997, 50.0, 7.300,2.000
+Canada,Shepody,293,1997-08-25,Hartland,1997,100.0, 6.400,2.300
+Canada,Shepody,293,1997-08-25,Hartland,1997,250.0, 7.900,2.700
+Canada,Shepody,294,1997-09-03,Hartland,1997,  0.0, 6.100,1.300
+Canada,Shepody,294,1997-09-03,Hartland,1997, 50.0, 9.000,1.500
+Canada,Shepody,294,1997-09-03,Hartland,1997,100.0,10.600,1.900
+Canada,Shepody,294,1997-09-03,Hartland,1997,250.0, 8.500,2.300
+Canada,Shepody,295,1997-09-11,Hartland,1997,  0.0, 5.900,1.000
+Canada,Shepody,295,1997-09-11,Hartland,1997, 50.0, 7.900,1.500
+Canada,Shepody,295,1997-09-11,Hartland,1997,100.0, 8.200,1.500
+Canada,Shepody,295,1997-09-11,Hartland,1997,250.0,11.300,2.100
+Canada,Russet Burbank,298,1995-07-29,Jacksonville,1995,  0.0, 1.400,2.900
+Canada,Russet Burbank,298,1995-07-29,Jacksonville,1995, 50.0, 1.600,3.900
+Canada,Russet Burbank,298,1995-07-29,Jacksonville,1995,100.0,    NA,   NA
+Canada,Russet Burbank,298,1995-07-29,Jacksonville,1995,250.0, 1.700,4.800
+Canada,Russet Burbank,299,1995-08-05,Jacksonville,1995,  0.0, 1.700,2.700
+Canada,Russet Burbank,299,1995-08-05,Jacksonville,1995, 50.0, 2.800,3.200
+Canada,Russet Burbank,299,1995-08-05,Jacksonville,1995,100.0,    NA,   NA
+Canada,Russet Burbank,299,1995-08-05,Jacksonville,1995,250.0, 2.200,3.700
+Canada,Russet Burbank,300,1995-08-15,Jacksonville,1995,  0.0, 3.900,2.000
+Canada,Russet Burbank,300,1995-08-15,Jacksonville,1995, 50.0, 4.600,2.900
+Canada,Russet Burbank,300,1995-08-15,Jacksonville,1995,100.0,    NA,   NA
+Canada,Russet Burbank,300,1995-08-15,Jacksonville,1995,250.0, 5.200,3.100
+Canada,Russet Burbank,301,1995-08-22,Jacksonville,1995,  0.0, 5.100,1.800
+Canada,Russet Burbank,301,1995-08-22,Jacksonville,1995, 50.0, 6.100,2.400
+Canada,Russet Burbank,301,1995-08-22,Jacksonville,1995,100.0,    NA,   NA
+Canada,Russet Burbank,301,1995-08-22,Jacksonville,1995,250.0, 5.700,2.900
+Canada,Russet Burbank,302,1995-08-28,Jacksonville,1995,  0.0, 5.100,1.800
+Canada,Russet Burbank,302,1995-08-28,Jacksonville,1995, 50.0, 7.500,2.200
+Canada,Russet Burbank,302,1995-08-28,Jacksonville,1995,100.0,    NA,   NA
+Canada,Russet Burbank,302,1995-08-28,Jacksonville,1995,250.0, 7.200,2.500
+Canada,Russet Burbank,303,1995-09-04,Jacksonville,1995,  0.0, 8.900,1.700
+Canada,Russet Burbank,303,1995-09-04,Jacksonville,1995, 50.0, 8.400,1.900
+Canada,Russet Burbank,303,1995-09-04,Jacksonville,1995,100.0,    NA,   NA
+Canada,Russet Burbank,303,1995-09-04,Jacksonville,1995,250.0, 8.700,2.500
+Canada,Russet Burbank,304,1995-09-17,Jacksonville,1995,  0.0,10.600,1.400
+Canada,Russet Burbank,304,1995-09-17,Jacksonville,1995, 50.0,11.100,1.700
+Canada,Russet Burbank,304,1995-09-17,Jacksonville,1995,100.0,    NA,   NA
+Canada,Russet Burbank,304,1995-09-17,Jacksonville,1995,250.0,10.200,2.000
+Canada,Russet Burbank,305,1995-09-24,Jacksonville,1995,  0.0,10.900,1.300
+Canada,Russet Burbank,305,1995-09-24,Jacksonville,1995, 50.0,13.000,1.700
+Canada,Russet Burbank,305,1995-09-24,Jacksonville,1995,100.0,    NA,   NA
+Canada,Russet Burbank,305,1995-09-24,Jacksonville,1995,250.0,10.200,2.300
+Canada,Shepody,308,1995-07-29,Jacksonville,1995,  0.0, 1.800,3.400
+Canada,Shepody,308,1995-07-29,Jacksonville,1995, 50.0, 1.600,4.900
+Canada,Shepody,308,1995-07-29,Jacksonville,1995,100.0,    NA,   NA
+Canada,Shepody,308,1995-07-29,Jacksonville,1995,250.0, 2.000,5.400
+Canada,Shepody,309,1995-08-05,Jacksonville,1995,  0.0, 2.000,3.400
+Canada,Shepody,309,1995-08-05,Jacksonville,1995, 50.0, 3.100,3.800
+Canada,Shepody,309,1995-08-05,Jacksonville,1995,100.0,    NA,   NA
+Canada,Shepody,309,1995-08-05,Jacksonville,1995,250.0, 2.700,4.300
+Canada,Shepody,310,1995-08-15,Jacksonville,1995,  0.0, 4.700,2.300
+Canada,Shepody,310,1995-08-15,Jacksonville,1995, 50.0, 6.800,2.700
+Canada,Shepody,310,1995-08-15,Jacksonville,1995,100.0,    NA,   NA
+Canada,Shepody,310,1995-08-15,Jacksonville,1995,250.0, 7.600,3.500
+Canada,Shepody,311,1995-08-22,Jacksonville,1995,  0.0, 4.600,1.900
+Canada,Shepody,311,1995-08-22,Jacksonville,1995, 50.0, 5.500,2.600
+Canada,Shepody,311,1995-08-22,Jacksonville,1995,100.0,    NA,   NA
+Canada,Shepody,311,1995-08-22,Jacksonville,1995,250.0, 8.100,3.300
+Canada,Shepody,312,1995-08-28,Jacksonville,1995,  0.0, 7.000,1.800
+Canada,Shepody,312,1995-08-28,Jacksonville,1995, 50.0, 9.000,2.400
+Canada,Shepody,312,1995-08-28,Jacksonville,1995,100.0,    NA,   NA
+Canada,Shepody,312,1995-08-28,Jacksonville,1995,250.0, 8.200,3.100
+Canada,Shepody,313,1995-09-04,Jacksonville,1995,  0.0, 7.300,1.600
+Canada,Shepody,313,1995-09-04,Jacksonville,1995, 50.0,12.300,2.300
+Canada,Shepody,313,1995-09-04,Jacksonville,1995,100.0,    NA,   NA
+Canada,Shepody,313,1995-09-04,Jacksonville,1995,250.0,13.100,2.700
+Canada,Shepody,314,1995-09-17,Jacksonville,1995,  0.0, 9.400,1.300
+Canada,Shepody,314,1995-09-17,Jacksonville,1995, 50.0, 9.000,1.600
+Canada,Shepody,314,1995-09-17,Jacksonville,1995,100.0,    NA,   NA
+Canada,Shepody,314,1995-09-17,Jacksonville,1995,250.0,10.000,2.300
+Canada,Shepody,315,1995-09-24,Jacksonville,1995,  0.0, 8.500,1.100
+Canada,Shepody,315,1995-09-24,Jacksonville,1995, 50.0,11.200,1.400
+Canada,Shepody,315,1995-09-24,Jacksonville,1995,100.0,    NA,   NA
+Canada,Shepody,315,1995-09-24,Jacksonville,1995,250.0,12.500,2.100
+Canada,Russet Burbank,318,1995-07-15,London,1995,  0.0, 2.000,2.700
+Canada,Russet Burbank,318,1995-07-15,London,1995, 50.0, 1.000,5.100
+Canada,Russet Burbank,318,1995-07-15,London,1995,100.0,    NA,   NA
+Canada,Russet Burbank,318,1995-07-15,London,1995,250.0, 2.000,4.200
+Canada,Russet Burbank,319,1995-07-18,London,1995,  0.0, 1.800,3.200
+Canada,Russet Burbank,319,1995-07-18,London,1995, 50.0, 2.700,4.000
+Canada,Russet Burbank,319,1995-07-18,London,1995,100.0,    NA,   NA
+Canada,Russet Burbank,319,1995-07-18,London,1995,250.0, 2.800,3.800
+Canada,Russet Burbank,320,1995-07-27,London,1995,  0.0, 3.600,1.800
+Canada,Russet Burbank,320,1995-07-27,London,1995, 50.0, 3.600,3.600
+Canada,Russet Burbank,320,1995-07-27,London,1995,100.0,    NA,   NA
+Canada,Russet Burbank,320,1995-07-27,London,1995,250.0, 5.300,3.500
+Canada,Russet Burbank,321,1995-08-01,London,1995,  0.0, 3.600,1.400
+Canada,Russet Burbank,321,1995-08-01,London,1995, 50.0, 4.700,2.800
+Canada,Russet Burbank,321,1995-08-01,London,1995,100.0,    NA,   NA
+Canada,Russet Burbank,321,1995-08-01,London,1995,250.0, 6.100,2.700
+Canada,Russet Burbank,322,1995-08-08,London,1995,  0.0, 8.400,1.000
+Canada,Russet Burbank,322,1995-08-08,London,1995, 50.0, 6.600,2.300
+Canada,Russet Burbank,322,1995-08-08,London,1995,100.0,    NA,   NA
+Canada,Russet Burbank,322,1995-08-08,London,1995,250.0, 7.400,2.400
+Canada,Russet Burbank,323,1995-08-09,London,1995,  0.0, 5.800,1.400
+Canada,Russet Burbank,323,1995-08-09,London,1995, 50.0, 8.000,2.000
+Canada,Russet Burbank,323,1995-08-09,London,1995,100.0,    NA,   NA
+Canada,Russet Burbank,323,1995-08-09,London,1995,250.0,11.900,2.100
+Canada,Russet Burbank,324,1995-08-25,London,1995,  0.0, 7.700,0.900
+Canada,Russet Burbank,324,1995-08-25,London,1995, 50.0, 9.800,1.400
+Canada,Russet Burbank,324,1995-08-25,London,1995,100.0,    NA,   NA
+Canada,Russet Burbank,324,1995-08-25,London,1995,250.0, 9.900,2.100
+Canada,Russet Burbank,325,1995-09-01,London,1995,  0.0, 6.300,0.900
+Canada,Russet Burbank,325,1995-09-01,London,1995, 50.0,11.600,1.400
+Canada,Russet Burbank,325,1995-09-01,London,1995,100.0,    NA,   NA
+Canada,Russet Burbank,325,1995-09-01,London,1995,250.0,10.600,1.900
+Canada,Shepody,329,1995-07-18,London,1995,  0.0, 2.000,3.000
+Canada,Shepody,329,1995-07-18,London,1995, 50.0, 2.400,4.100
+Canada,Shepody,329,1995-07-18,London,1995,100.0,    NA,   NA
+Canada,Shepody,329,1995-07-18,London,1995,250.0, 2.900,4.600
+Canada,Shepody,330,1995-07-27,London,1995,  0.0, 3.200,1.900
+Canada,Shepody,330,1995-07-27,London,1995, 50.0, 4.800,3.100
+Canada,Shepody,330,1995-07-27,London,1995,100.0,    NA,   NA
+Canada,Shepody,330,1995-07-27,London,1995,250.0, 3.800,4.100
+Canada,Shepody,331,1995-08-01,London,1995,  0.0, 3.000,1.500
+Canada,Shepody,331,1995-08-01,London,1995, 50.0, 5.700,2.500
+Canada,Shepody,331,1995-08-01,London,1995,100.0,    NA,   NA
+Canada,Shepody,331,1995-08-01,London,1995,250.0, 6.700,3.400
+Canada,Shepody,332,1995-08-08,London,1995,  0.0, 5.600,1.200
+Canada,Shepody,332,1995-08-08,London,1995, 50.0, 8.600,2.100
+Canada,Shepody,332,1995-08-08,London,1995,100.0,    NA,   NA
+Canada,Shepody,332,1995-08-08,London,1995,250.0,10.500,3.000
+Canada,Shepody,333,1995-08-25,London,1995,  0.0,10.500,1.200
+Canada,Shepody,333,1995-08-25,London,1995, 50.0, 9.100,1.300
+Canada,Shepody,333,1995-08-25,London,1995,100.0,    NA,   NA
+Canada,Shepody,333,1995-08-25,London,1995,250.0,11.900,1.900
+Canada,Shepody,334,1995-09-01,London,1995,  0.0, 6.400,0.900
+Canada,Shepody,334,1995-09-01,London,1995, 50.0,12.000,1.500
+Canada,Shepody,334,1995-09-01,London,1995,100.0,    NA,   NA
+Canada,Shepody,334,1995-09-01,London,1995,250.0,15.300,2.100
+Canada,Shepody,335,1995-09-07,London,1995,  0.0, 7.600,0.900
+Canada,Shepody,335,1995-09-07,London,1995, 50.0,15.200,1.200
+Canada,Shepody,335,1995-09-07,London,1995,100.0,    NA,   NA
+Canada,Shepody,335,1995-09-07,London,1995,250.0,12.600,1.800
