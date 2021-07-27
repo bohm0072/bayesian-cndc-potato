@@ -503,7 +503,7 @@ fig1 <- grid.arrange(fig1_a,fig1_b,
                      layout_matrix=fig1.layout)
 
 ggsave(filename="manuscript/images/figure1.pdf",plot=fig1,height=4.5,width=6.0,units="in",scale=1.3,device=cairo_pdf) #height=4.5,width=6,scale=1.3
-# ggsave(filename="manuscript/images/figure1.png",plot=fig1,height=4.5,width=6,units="in",scale=1.3,dpi=1000)
+ggsave(filename="manuscript/images/figure1.png",plot=fig1,height=4.5,width=6,units="in",scale=1.3,dpi=1000)
 
 # figure 2 - distribution of alpha parameters for each parameters simultaneously ----------------
 
@@ -615,7 +615,7 @@ fig2 <- grid.arrange(fig2.sub[[1]],fig2.sub[[2]],fig2.sub[[3]],fig2.sub[[4]],fig
                      f.fig2.lab.axis.y(),f.fig2.lab.axis.x(),
                      layout_matrix=fig2.layout)
 
-ggsave(filename="manuscript/images/figure2.pdf",plot=fig2,height=4,width=6,units="in",scale=1,,device=cairo_pdf)
+ggsave(filename="manuscript/images/figure2.pdf",plot=fig2,height=4,width=6,units="in",scale=1,device=cairo_pdf)
 ggsave(filename="manuscript/images/figure2.png",plot=fig2,height=4,width=6,units="in",scale=1,dpi=1000)
 
 
@@ -741,7 +741,7 @@ fig3 <- grid.arrange(fig3.sub[[1]],fig3.sub[[2]],fig3.sub[[3]],fig3.sub[[4]],fig
                      layout_matrix=fig3.layout)
 
 ggsave(filename="manuscript/images/figure3.pdf",plot=fig3,height=4,width=6,units="in",scale=1.0,device=cairo_pdf)
-# ggsave(filename="manuscript/images/figure3.png",plot=fig3,height=4,width=6,units="in",scale=1.0,dpi=1000)
+ggsave(filename="manuscript/images/figure3.png",plot=fig3,height=4,width=6,units="in",scale=1.0,dpi=1000)
 
 # table 1 - fitted boundary nls curves -----------------
 
@@ -1021,7 +1021,7 @@ fig4 <- grid.arrange(fig4.sub[[1]],fig4.sub[[2]],fig4.sub[[3]],fig4.sub[[4]],fig
                      layout_matrix=fig4.layout)
 
 ggsave(filename="manuscript/images/figure4a.pdf",plot=fig4,height=4,width=6,units="in",scale=1.0,device=cairo_pdf)
-# ggsave(filename="manuscript/images/figure4a.png",plot=fig4,height=4,width=6,units="in",scale=1.0,dpi=1000)
+ggsave(filename="manuscript/images/figure4a.png",plot=fig4,height=4,width=6,units="in",scale=1.0,dpi=1000)
 # ggsave(filename="manuscript/images/figure4a.eps",plot=fig4,height=4,width=6,units="in",scale=1.0)
 
 
@@ -1216,7 +1216,7 @@ fig4.callout <- grid.arrange(fig4.callout.sub[[2]],fig4.callout.sub[[3]],fig4.ca
                              layout_matrix=fig4.callout.layout)
 
 ggsave(filename="manuscript/images/figure4b.pdf",plot=fig4.callout,height=2.2,width=6.0,units="in",scale=1.0,device=cairo_pdf)
-# ggsave(filename="manuscript/images/figure4b.png",plot=fig4.callout,height=2.2,width=6.0,units="in",scale=1.0,dpi=1000)
+ggsave(filename="manuscript/images/figure4b.png",plot=fig4.callout,height=2.2,width=6.0,units="in",scale=1.0,dpi=1000)
 
 # fig4.callout.layout <- rbind(c(2,1,1,1,1,1,1),
 #                              c(2,1,1,1,1,1,1),
@@ -1427,7 +1427,7 @@ fig5 <- grid.arrange(fig5.sub[[1]],fig5.sub[[2]],fig5.sub[[3]],fig5.sub[[4]],fig
                      layout_matrix=fig5.layout)
 
 ggsave(filename="manuscript/images/figure5.pdf",plot=fig5,height=4,width=6,units="in",scale=1.0,device=cairo_pdf)
-# ggsave(filename="manuscript/images/figure5.png",plot=fig5,height=4,width=6,units="in",scale=1.0,dpi=1000)
+ggsave(filename="manuscript/images/figure5.png",plot=fig5,height=4,width=6,units="in",scale=1.0,dpi=1000)
 
 # figure 5 table - tabular values for comparing curves to each other fits ------------
 
