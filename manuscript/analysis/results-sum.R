@@ -56,6 +56,7 @@ write_csv(t1,"manuscript/tables/table1.csv")
 f.appx_t1 <- function(){
   appx_t1 <- data_cndc %>%
     select(c(location,variety,index,date,study,year,rate_n_kgha,W,N)) %>%
+    drop_na() %>%
     mutate(study=case_when(
       location=="Minnesota" & study=="blcmr" ~ "MN-1",
       location=="Minnesota" & study=="vxn" ~ "MN-2",
@@ -67,19 +68,15 @@ f.appx_t1 <- function(){
       T ~ study
     )) %>%
     # mutate(rate_n_kgha=round(rate_n_kgha,0)) %>%
-    mutate(across(.cols=c(rate_n_kgha),.fns=~format(round(., 1), nsmall = 1)))%>%
+    mutate(across(.cols=c(rate_n_kgha),.fns=~format(round(., 0), nsmall = 0)))%>%
     # mutate(across(.cols=c(W,N),.fns=~round(.,3))) %>%
-    mutate(across(.cols=c(W,N),.fns=~format(round(., 3), nsmall = 3)))%>%
+    mutate(across(.cols=c(W,N),.fns=~format(round(., 2), nsmall = 2)))%>%
     rename(
-      location = location,
-      variety = variety,
-      index = index,
-      date = date,
-      study = study,
-      rate_n_kgha = rate_n_kgha,
       biomass_Mgha = W,
       n_pct = N
-    ) 
+    ) %>%
+    mutate(n=row_number()) %>%
+    relocate(n)
 }
 appx_t1 <- f.appx_t1()
 write_csv(appx_t1,"manuscript/tables/tableS1.csv")
