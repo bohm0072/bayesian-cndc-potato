@@ -1226,7 +1226,7 @@ fig4.callout.layout <- rbind(c(NA,NA,3,1,1,1,1,1,NA,2,2,2,2,2,5,NA,NA),
                              c(NA,NA,3,1,1,1,1,1,NA,2,2,2,2,2,5,NA,NA),
                              c(NA,NA,3,1,1,1,1,1,NA,2,2,2,2,2,5,NA,NA),
                              c(NA,NA,3,1,1,1,1,1,NA,2,2,2,2,2,5,NA,NA),
-                             c(NA,NA,NA,4,4,4,4,4,4,4,4,4,4,4,NA,NA,NA))
+                             c(4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4))
 
 fig4.callout <- grid.arrange(fig4.callout.sub[[2]],fig4.callout.sub[[5]],
                             f.fig4.callout.lab.axis.y(),f.fig4.callout.lab.axis.x(), f.fig4.callout.lab.facet("Minnesota x Russet Burbank"),
