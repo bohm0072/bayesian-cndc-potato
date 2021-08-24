@@ -1145,6 +1145,12 @@ f.fig4.callout <- function(plot.data,.location,.variety,.plot){
     g +
       geom_line(data=c,aes(x=W,y=N_cred_est_lo,group=`location:variety`),linetype=2,alpha=1.0,size=0.2) +
       geom_line(data=c,aes(x=W,y=N_cred_est_up,group=`location:variety`),linetype=2,alpha=1.0,size=0.2)
+  }else if(.plot=="estimate+conservative"){
+    g +
+      geom_line(data=c,aes(x=W,y=N_cred_nls_lo,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
+      geom_line(data=c,aes(x=W,y=N_cred_nls_up,group=`location:variety`),linetype=3,alpha=1.0,size=0.2) +
+      geom_line(data=c,aes(x=W,y=N_cred_est_lo,group=`location:variety`),linetype=2,alpha=1.0,size=0.2) +
+      geom_line(data=c,aes(x=W,y=N_cred_est_up,group=`location:variety`),linetype=2,alpha=1.0,size=0.2)
   }else if(.plot=="all"){
     g +
       geom_line(data=r,aes(x=W,y=N_draw,group=.draw),alpha=0.80,color="#ca0020",size=0.20) +
@@ -1160,7 +1166,7 @@ f.fig4.callout <- function(plot.data,.location,.variety,.plot){
 }
 
 fig4.callout.list <- list(
-  .plot=c("all","draws","estimate","conservative")
+  .plot=c("all","draws","estimate","conservative","estimate+conservative")
 )
 
 fig4.callout.sub <- pmap(fig4.callout.list,~f.fig4.callout(plot.data,
@@ -1204,14 +1210,25 @@ f.fig4.callout.lab.axis.x <- function(){
   
 }
 
-fig4.callout.layout <- rbind(c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
-                             c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
-                             c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
-                             c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
-                             c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
-                             c(NA,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,NA))
+# fig4.callout.layout <- rbind(c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
+#                              c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
+#                              c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
+#                              c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
+#                              c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
+#                              c(NA,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,NA))
+# 
+# fig4.callout <- grid.arrange(fig4.callout.sub[[2]],fig4.callout.sub[[3]],fig4.callout.sub[[4]],
+#                             f.fig4.callout.lab.axis.y(),f.fig4.callout.lab.axis.x(), f.fig4.callout.lab.facet("Minnesota x Russet Burbank"),
+#                              layout_matrix=fig4.callout.layout)
 
-fig4.callout <- grid.arrange(fig4.callout.sub[[2]],fig4.callout.sub[[3]],fig4.callout.sub[[4]],
+fig4.callout.layout <- rbind(c(NA,NA,3,1,1,1,1,1,NA,2,2,2,2,2,5,NA,NA),
+                             c(NA,NA,3,1,1,1,1,1,NA,2,2,2,2,2,5,NA,NA),
+                             c(NA,NA,3,1,1,1,1,1,NA,2,2,2,2,2,5,NA,NA),
+                             c(NA,NA,3,1,1,1,1,1,NA,2,2,2,2,2,5,NA,NA),
+                             c(NA,NA,3,1,1,1,1,1,NA,2,2,2,2,2,5,NA,NA),
+                             c(NA,NA,NA,4,4,4,4,4,4,4,4,4,4,4,NA,NA,NA))
+
+fig4.callout <- grid.arrange(fig4.callout.sub[[2]],fig4.callout.sub[[5]],
                             f.fig4.callout.lab.axis.y(),f.fig4.callout.lab.axis.x(), f.fig4.callout.lab.facet("Minnesota x Russet Burbank"),
                              layout_matrix=fig4.callout.layout)
 
