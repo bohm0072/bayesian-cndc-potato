@@ -1446,6 +1446,175 @@ fig5 <- grid.arrange(fig5.sub[[1]],fig5.sub[[2]],fig5.sub[[3]],fig5.sub[[4]],fig
 ggsave(filename="manuscript/images/figure7.pdf",plot=fig5,height=4,width=6,units="in",scale=1.0,device=cairo_pdf)
 ggsave(filename="manuscript/images/figure7.png",plot=fig5,height=4,width=6,units="in",scale=1.0,dpi=1000)
 
+# figure 7b - comparing additional curves #####
+
+f.fig7b <- function(plot.data,.location_ref,.variety_ref,.location_comp,.variety_comp){
+  
+  var1 <- "W"
+  var2 <- "%N - Diff"
+  var3 <- paste(.location_ref,.variety_ref,sep=" - ")
+  var4 <- .variety_comp
+  var5 <- .location_comp
+  
+  r <- left_join(
+    plot.data$r %>%
+      filter(location %in% .location_ref) %>%
+      filter(variety %in% .variety_ref) %>%
+      rename(N_ref=N) %>%
+      rename(location_ref=location,
+             variety_ref=variety,
+             `location:variety_ref`=`location:variety`),
+    plot.data$r %>%
+      filter(location %in% .location_comp) %>%
+      filter(variety %in% .variety_comp) %>%
+      rename(N_comp=N) %>%
+      rename(location_comp=location,
+             variety_comp=variety,
+             `location:variety_comp`=`location:variety`),
+    by=c(".draw","W")
+  ) %>%
+    drop_na()
+  
+  r <- r %>%
+    mutate(N_diff = N_comp - N_ref) %>% 
+    group_by(location_ref, variety_ref, `location:variety_ref`, 
+             location_comp, variety_comp, `location:variety_comp`, 
+             W) %>% 
+    # median_qi(N_diff, .width = 0.9) %>% 
+    summarize(qs = quantile(`N_diff`,c(0.05,0.50,0.95)), prob = c(0.05,0.50,0.95), .groups="drop") %>%
+    pivot_wider(names_from=prob,
+                names_prefix="N_diff_",#"N_location:variety_",
+                values_from=qs) %>%
+    mutate_at(vars(N_diff_0.05,N_diff_0.5,N_diff_0.95),as.numeric) %>%
+    mutate(N_class = N_diff_0.05 < 0 & N_diff_0.95 > 0)
+  
+  r_fix <- r %>%
+    slice(1) %>%
+    mutate_at(vars(W,N_diff_0.05,N_diff_0.5,N_diff_0.95,N_class),~NA)
+  
+  r_plot <- r %>%
+    bind_rows(r_fix %>% mutate(N_class=TRUE)) %>%
+    bind_rows(r_fix %>% mutate(N_class=FALSE))
+  
+  r_range <- r %>% 
+    filter(N_class==TRUE) %>%
+    # group_by(location_ref,variety,`location:variety`) %>%
+    group_by(location_ref, variety_ref, `location:variety_ref`, 
+             location_comp, variety_comp, `location:variety_comp`) %>%
+    summarize(range_min=min(W),range_max=max(W),.groups="drop")
+  
+  if(lengths(r_range[,1])==0){
+    r_range <- r %>%
+      select(c("location_ref", "variety_ref", "location:variety_ref", 
+               "location_comp", "variety_comp", "location:variety_comp")) %>%
+      distinct() %>%
+      mutate(range_min=NA,
+             range_max=NA)
+  }
+  
+  g <- ggplot() +
+    geom_ribbon(data=r_plot,aes(x=W,ymin=N_diff_0.05,ymax=N_diff_0.95),alpha=0.20) + #,fill="#737373"
+    geom_point(data=r_plot,aes(x=W,y=N_diff_0.5,group=`location:variety_comp`,color=N_class),alpha=1.0,size=0.2) + #linetype=1,
+    geom_line(data=r_plot,aes(x=W,y=0,group=`location:variety_comp`),linetype=1,alpha=1.0) +
+    theme_classic() +
+    labs(x=var1,
+         y=var2,
+         title=var3,
+         caption=var4) +
+    theme(text=element_text(size=8),
+          plot.title=element_blank(),
+          axis.title.x=element_blank(),
+          axis.title.y=element_blank(),
+          plot.caption = element_text(hjust=0,size=7), 
+          plot.title.position = "plot", 
+          plot.caption.position =  "plot") +
+    guides(color="none") +
+    scale_color_manual(values=c("#ca0020","#0571b0"))
+  
+  if(var5%in%c("Belgium","Canada")) {
+    g + 
+      scale_y_continuous(limits=c(-0.2,0.5),breaks=c(-0.2,0,0.2,0.4)) + #,n.breaks=5)  +
+      scale_x_continuous(limits=c(0,NA),breaks=c(0,5,10,15,20,25,30)) +
+      geom_text(data=r_range,aes(x=1,y=0.5,label=paste0("[",format(round(range_min,1),nsmall=1),", ",format(round(range_max,1),nsmall=1),"]")),size=2.0,hjust="inward",vjust=1)
+  } else if(var5=="Argentina"){
+    g + 
+      scale_y_continuous(limits=c(-0.1,1.0),breaks=c(0,0.5,1)) + #,n.breaks=5)  +
+      scale_x_continuous(limits=c(0,NA),breaks=c(0,10,20,30)) +
+      geom_text(data=r_range,aes(x=1,y=1.0,label=paste0("[",format(round(range_min,1),nsmall=1),", ",format(round(range_max,1),nsmall=1),"]")),size=2.0,hjust="inward",vjust=1)
+  } else {
+    g
+  }
+  
+}
+
+fig7b.list.1 <- list(
+  location_ref=c("Argentina"),
+  variety_ref=c("Innovator"),
+  location_comp=c("Argentina","Argentina","Argentina","Argentina","Argentina"),
+  variety_comp=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet")
+)
+
+fig7b.sub.1 <- pmap(fig7b.list.1,~f.fig7b(plot.data,
+                                          .location_ref=..1,
+                                          .variety_ref=..2,
+                                          .location_comp=..3,
+                                          .variety_comp=..4))
+
+fig7b.layout.1 <- rbind(c(7,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6),
+                        c(7,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6),
+                        c(7,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6),
+                        c(7,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6),
+                        c(NA,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8))
+
+fig7b.1 <- grid.arrange(fig7b.sub.1[[1]],fig7b.sub.1[[2]],f.fig5.reference("Innovator"),fig7b.sub.1[[4]],fig7b.sub.1[[5]],
+                        f.fig5.lab.facet("Argentina"),
+                        f.fig5.lab.axis.y(),f.fig5.lab.axis.x(),
+                        layout_matrix=fig7b.layout.1)
+
+ggsave(filename="manuscript/images/figure7b_1.pdf",plot=fig7b.1,height=1.6,width=6,units="in",scale=1.0,device=cairo_pdf)
+ggsave(filename="manuscript/images/figure7b_1.png",plot=fig7b.1,height=1.6,width=6,units="in",scale=1.0,dpi=1000)
+
+fig7b.list.2a <- list(
+  location_ref=c("Canada"),
+  variety_ref=c("Russet Burbank"),
+  location_comp=c("Canada","Canada"),
+  variety_comp=c("Russet Burbank","Shepody")
+)
+
+fig7b.sub.2a <- pmap(fig7b.list.2a,~f.fig7b(plot.data,
+                                            .location_ref=..1,
+                                            .variety_ref=..2,
+                                            .location_comp=..3,
+                                            .variety_comp=..4))
+
+fig7b.list.2b <- list(
+  location_ref=c("Belgium"),
+  variety_ref=c("Bintje"),
+  location_comp=c("Belgium","Belgium"),
+  variety_comp=c("Bintje","Charlotte")
+)
+
+fig7b.sub.2b <- pmap(fig7b.list.2b,~f.fig7b(plot.data,
+                                            .location_ref=..1,
+                                            .variety_ref=..2,
+                                            .location_comp=..3,
+                                            .variety_comp=..4))
+
+fig7b.layout.2 <- rbind(c(7,1,1,1,2,2,2,3,NA,9,4,4,4,5,5,5,6),
+                        c(7,1,1,1,2,2,2,3,NA,9,4,4,4,5,5,5,6),
+                        c(7,1,1,1,2,2,2,3,NA,9,4,4,4,5,5,5,6),
+                        c(7,1,1,1,2,2,2,3,NA,9,4,4,4,5,5,5,6),
+                        c(NA,8,8,8,8,8,8,8,NA,NA,10,10,10,10,10,10,10))
+
+fig7b.2 <- grid.arrange(f.fig5.reference("Russet Burbank"),fig7b.sub.2a[[2]],f.fig5.lab.facet("Canada"),
+                        f.fig5.reference("Bintje"),fig7b.sub.2b[[2]],f.fig5.lab.facet("Belgium"),
+                        f.fig5.lab.axis.y(),f.fig5.lab.axis.x(),
+                        f.fig5.lab.axis.y(),f.fig5.lab.axis.x(),
+                        layout_matrix=fig7b.layout.2)
+
+ggsave(filename="manuscript/images/figure7b_2.pdf",plot=fig7b.2,height=1.6,width=6,units="in",scale=1.0,device=cairo_pdf)
+ggsave(filename="manuscript/images/figure7b_2.png",plot=fig7b.2,height=1.6,width=6,units="in",scale=1.0,dpi=1000)
+
 # figure 7 table - tabular values for comparing curves to each other fits ------------
 
 # .location_comp = "Belgium"
