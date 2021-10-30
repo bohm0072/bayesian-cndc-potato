@@ -704,7 +704,7 @@ f.fig3.lab.facet <- function(.location){
 f.fig3.lab.axis.y <- function(){
   
   ggplot() +
-    geom_text(aes(x=0,y=0),label=expression("%N [g N 100 g"^-1*"]"),angle=90,size=3,parse=T) +
+    geom_text(aes(x=0,y=0),label=expression("%N [g N 100 g"^-1*" d.w.]"),angle=90,size=3,parse=T) +
     theme_classic() +
     theme(axis.line = element_blank(),
           axis.text = element_blank(),
@@ -715,7 +715,7 @@ f.fig3.lab.axis.y <- function(){
 f.fig3.lab.axis.x <- function(){
   
   ggplot() +
-    geom_text(aes(x=0,y=0),label=expression("Biomass [Mg ha"^-1*"]"),angle=0,size=3,parse=T) +
+    geom_text(aes(x=0,y=0),label=expression("Biomass [Mg d.w. ha"^-1*"]"),angle=0,size=3,parse=T) +
     theme_classic() +
     theme(axis.line = element_blank(),
           axis.text = element_blank(),
@@ -984,7 +984,7 @@ f.fig4.lab.facet <- function(.location){
 f.fig4.lab.axis.y <- function(){
   
   ggplot() +
-    geom_text(aes(x=0,y=0),label=expression("∆ %N"[c]*" [g N 100 g"^-1*"]"),angle=90,size=3,parse=T) + #expression("%N Difference [g N 100 g"^-1*"]")
+    geom_text(aes(x=0,y=0),label=expression("∆ %N"[c]*" [g N 100 g"^-1*" d.w.]"),angle=90,size=3,parse=T) + #expression("%N Difference [g N 100 g"^-1*" d.w.]")
     theme_classic() +
     theme(axis.line = element_blank(),
           axis.text = element_blank(),
@@ -995,7 +995,7 @@ f.fig4.lab.axis.y <- function(){
 f.fig4.lab.axis.x <- function(){
   
   ggplot() +
-    geom_text(aes(x=0,y=0),label=expression("Biomass [Mg ha"^-1*"]"),angle=0,size=3,parse=T) +
+    geom_text(aes(x=0,y=0),label=expression("Biomass [Mg d.w. ha"^-1*"]"),angle=0,size=3,parse=T) +
     theme_classic() +
     theme(axis.line = element_blank(),
           axis.text = element_blank(),
@@ -1190,7 +1190,7 @@ f.fig4.callout.lab.facet <- function(.location){
 f.fig4.callout.lab.axis.y <- function(){
   
   ggplot() +
-    geom_text(aes(x=0,y=0),label=expression("∆ %N"[c]*" [g N 100 g"^-1*"]"),angle=90,size=3,parse=T) +
+    geom_text(aes(x=0,y=0),label=expression("∆ %N"[c]*" [g N 100 g"^-1*" d.w.]"),angle=90,size=3,parse=T) +
     theme_classic() +
     theme(axis.line = element_blank(),
           axis.text = element_blank(),
@@ -1201,7 +1201,7 @@ f.fig4.callout.lab.axis.y <- function(){
 f.fig4.callout.lab.axis.x <- function(){
   
   ggplot() +
-    geom_text(aes(x=0,y=0),label=expression("Biomass [Mg ha"^-1*"]"),angle=0,size=3,parse=T) +
+    geom_text(aes(x=0,y=0),label=expression("Biomass [Mg d.w. ha"^-1*"]"),angle=0,size=3,parse=T) +
     theme_classic() +
     theme(axis.line = element_blank(),
           axis.text = element_blank(),
@@ -1388,7 +1388,7 @@ f.fig5.lab.facet <- function(.location){
 f.fig5.lab.axis.y <- function(){
   
   ggplot() +
-    geom_text(aes(x=0,y=0),label=expression("∆ %N"[c]*" [g N 100 g"^-1*"]"),angle=90,size=3,parse=T) +
+    geom_text(aes(x=0,y=0),label=expression("∆ %N"[c]*" [g N 100 g"^-1*" d.w.]"),angle=90,size=3,parse=T) +
     theme_classic() +
     theme(axis.line = element_blank(),
           axis.text = element_blank(),
@@ -1399,7 +1399,7 @@ f.fig5.lab.axis.y <- function(){
 f.fig5.lab.axis.x <- function(){
   
   ggplot() +
-    geom_text(aes(x=0,y=0),label=expression("Biomass [Mg ha"^-1*"]"),angle=0,size=3,parse=T) +
+    geom_text(aes(x=0,y=0),label=expression("Biomass [Mg d.w. ha"^-1*"]"),angle=0,size=3,parse=T) +
     theme_classic() +
     theme(axis.line = element_blank(),
           axis.text = element_blank(),
@@ -1840,7 +1840,7 @@ f.fig6.lab.facet <- function(.location){
 f.fig6.lab.axis.y <- function(){
   
   ggplot() +
-    geom_text(aes(x=0,y=0),label=expression("∆%N"[c]*" [g N 100 g"^-1*"]"),angle=90,size=3,parse=T) +
+    geom_text(aes(x=0,y=0),label=expression("∆%N"[c]*" [g N 100 g"^-1*" d.w.]"),angle=90,size=3,parse=T) +
     theme_classic() +
     theme(axis.line = element_blank(),
           axis.text = element_blank(),
@@ -1851,7 +1851,7 @@ f.fig6.lab.axis.y <- function(){
 f.fig6.lab.axis.x <- function(){
   
   ggplot() +
-    geom_text(aes(x=0,y=0),label=expression("Biomass [Mg ha"^-1*"]"),angle=0,size=3,parse=T) +
+    geom_text(aes(x=0,y=0),label=expression("Biomass [Mg d.w. ha"^-1*"]"),angle=0,size=3,parse=T) +
     theme_classic() +
     theme(axis.line = element_blank(),
           axis.text = element_blank(),
@@ -2023,8 +2023,8 @@ f.appx1 <- function(plot.data,.location,.variety){
     geom_text(data=d.sum.index,aes(x=0,y=0,label=Deficit),color=d.colors[[1]],size=3,hjust=0,vjust=0) + # paste0("Deficit: ",Deficit)
     geom_text(data=d.sum.index,aes(x=0,y=6,label=Surplus),color=d.colors[[2]],size=3,hjust=0,vjust=1) + 
     facet_wrap(vars(as.numeric(index)),ncol=8) +
-    labs(x = expression("Biomass [Mg ha"^-1*"]"),
-         y = expression("%N [g N 100 g"^-1*"]"),
+    labs(x = expression("Biomass [Mg d.w. ha"^-1*"]"),
+         y = expression("%N [g N 100 g"^-1*" d.w.]"),
          title = paste(.location,.variety,sep=" - "),
          color = "N Status\nClassification",
          subtitle = paste0("Deficit: ",d.sum.group$Deficit,", ","Surplus: ",d.sum.group$Surplus)) + 
@@ -2160,8 +2160,8 @@ appx1 <- f.appx1.join()
 
 f.appx2 <- function(plot.data,.location,.variety){
   
-  var1 <- expression("Biomass [Mg ha"^-1*"]")
-  var2 <- expression("∆%N"[c]*" [g N 100 g"^-1*"]")
+  var1 <- expression("Biomass [Mg d.w. ha"^-1*"]")
+  var2 <- expression("∆%N"[c]*" [g N 100 g"^-1*" d.w.]")
   var3 <- paste(.location,.variety,sep=" - ")
   var4 <- paste(.location,str_replace(.variety," ","."),sep="_")
   
