@@ -1604,7 +1604,7 @@ fig7b.layout.2 <- rbind(c(7,1,1,1,2,2,2,3,NA,9,4,4,4,5,5,5,6),
                         c(7,1,1,1,2,2,2,3,NA,9,4,4,4,5,5,5,6),
                         c(7,1,1,1,2,2,2,3,NA,9,4,4,4,5,5,5,6),
                         c(7,1,1,1,2,2,2,3,NA,9,4,4,4,5,5,5,6),
-                        c(7,8,8,8,8,8,8,8,NA,NA,10,10,10,10,10,10,10))
+                        c(7,8,8,8,8,8,8,8,NA,9,10,10,10,10,10,10,10))
 
 fig7b.2 <- grid.arrange(f.fig5.reference("Russet Burbank"),fig7b.sub.2a[[2]],f.fig5.lab.facet("Canada"),
                         f.fig5.reference("Bintje"),fig7b.sub.2b[[2]],f.fig5.lab.facet("Belgium"),
