@@ -19,11 +19,3 @@ This repo is intended to develop methods to allow for the comparison of critical
 
 ## Reproducible Environment
 RStudio project now includes `renv` environment control. Note: this is currently incompatible with the `model-fit.R` script due to conflicts with `rstan` from file naming issues... In order to run `model-fit.R`, need to ensure that system packages match `renv.lock` file and disable `renv` with `renv::deactivate()`.
-
-
-## TODO
-
-### MCM
-
-- think about prior description table
-- start on basic methods section (particularly why Stan and brms)
