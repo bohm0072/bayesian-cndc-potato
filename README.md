@@ -4,8 +4,8 @@
 This repoistory contains the data, analysis, and manuscript version history of the Bohman et al. (2022) manuscript in progress: "Quantifying critical N dilution curves across G × E × M effects for potato using a partially-pooled Bayesian hierarchical method".
 
 ### Authors
-* Brian J. Bohman (@bohm0072)
-* Michael J. Culshaw-Maurer (@MCMaurer)
+* Brian J. Bohman ([@bohm0072](https://github.com/bohm0072))
+* Michael J. Culshaw-Maurer ([@MCMaurer](https://github.com/MCMaurer))
 * Feriel Ben Abdallah
 * Claudia Giletto
 * Gilles Bélanger
