@@ -46,7 +46,7 @@ data <- import %>%
   mutate(TMEAN=mean(c(TMAX,TMIN))) %>% #Calc. daily mean Temp
   ungroup() %>%
   rowwise() %>%
-  mutate(GDD=max(min(TMEAN,30)-7,0)) %>% #Max Temp of 30 deg C; Base Temp of 10 deg C
+  mutate(GDD=max(min(TMEAN,30)-7,0)) %>% #Max Temp of 30 deg C; Base Temp of 7 deg C
   ungroup() %>%
   mutate(TDIFF=TMAX-TMIN) %>% #Calc. diurnal temperature difference
   select(date,month,location,TMAX,TMIN,TMEAN,TDIFF,SRAD,LIGHT,GDD,PRECIP)
