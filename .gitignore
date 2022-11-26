@@ -46,3 +46,6 @@ po/*~
 
 # R data files
 *.rds
+
+#MacOS files
+.DS_Store
