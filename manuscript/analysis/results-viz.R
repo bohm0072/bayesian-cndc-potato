@@ -2320,4 +2320,5 @@ ggsave(filename="manuscript/images/figureS2_n.pdf",plot=appx2_sub[[14]],scale=1.
 ggsave(filename="manuscript/images/figureS2_n.png",plot=appx2_sub[[14]],scale=1.5,height=2.5,width=6,limitsize=F,dpi=1000)
 
 
+# figure S3 - log-log curves comparing dilution rate pre- and post-tuber initiation
 # END --------------------
