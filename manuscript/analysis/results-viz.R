@@ -388,6 +388,12 @@ f.plot.data <- function(data,model){
 }
 plot.data <- f.plot.data(data_cndc,model)
 
+plot.data$tab1 <- bind_rows(plot.data$parm.fit.sum,
+                            plot.data$parm.fit.sum2 %>%
+                              mutate(variety=".",
+                                     `location:variety`=".")) %>%
+  arrange(location,variety)
+
 #Free Unsued Memory
 gc()
 
@@ -396,15 +402,7 @@ gc()
 plot.colors.1 <- c("#490809","#931012","#CA1619","#C55962","#E74B5E","#2C652A","#33a02c","#CC6600","#ff7f00","#15527A","#0177A2","#1F78B4","#01B3F4","#62B0E4")
 plot.colors.2 <- c("#CA1619","#33a02c","#ff7f00","#1F78B4")
 
-# figure 3 table - distribution of alpha parameter values for each parameter independently #####
-
-plot.data$tab1 <- bind_rows(plot.data$parm.fit.sum,
-                  plot.data$parm.fit.sum2 %>%
-                    mutate(variety=".",
-                           `location:variety`=".")) %>%
-  arrange(location,variety)
-
-# figure 3 - distribution of alpha parameter values for each parameter independently ------------------
+# figure 2 - distribution of alpha parameter values for each parameter independently ------------------
 
 # parm = "alpha1"
 # .colors1 = plot.colors.1
@@ -413,7 +411,7 @@ plot.data$tab1 <- bind_rows(plot.data$parm.fit.sum,
 # alpha1_0.05 <- 4.75
 # alpha1_0.95 <- 5.25
 
-f.fig1 <- function(plot.data,parm,.colors1,.colors2){
+f.fig2 <- function(plot.data,parm,.colors1,.colors2){
   
   var4 <- paste("location_",parm,sep="")
   var5 <- paste("location:variety_",parm,sep="")
@@ -490,28 +488,28 @@ f.fig1 <- function(plot.data,parm,.colors1,.colors2){
   
 }
 
-fig1_a <- f.fig1(plot.data,"alpha1",plot.colors.1,plot.colors.2)
-# ggsave(filename="manuscript/images/figure1_a.pdf",plot=fig1_a,height=4.5,width=3,units="in",scale=1.3)
-# ggsave(filename="manuscript/images/figure1_a.png",plot=fig1_a,height=4.5,width=3,units="in",scale=1.3,dpi=1000)
-fig1_b <- f.fig1(plot.data,"alpha2",plot.colors.1,plot.colors.2)
-# ggsave(filename="manuscript/images/figure1_b.pdf",plot=fig1_b,height=4.5,width=3,units="in",scale=1.3)
-# ggsave(filename="manuscript/images/figure1_b.png",plot=fig1_b,height=4.5,width=3,units="in",scale=1.3,dpi=1000)
+fig2_a <- f.fig2(plot.data,"alpha1",plot.colors.1,plot.colors.2)
+# ggsave(filename="manuscript/images/figure1_a.pdf",plot=fig2_a,height=4.5,width=3,units="in",scale=1.3)
+# ggsave(filename="manuscript/images/figure1_a.png",plot=fig2_a,height=4.5,width=3,units="in",scale=1.3,dpi=1000)
+fig2_b <- f.fig2(plot.data,"alpha2",plot.colors.1,plot.colors.2)
+# ggsave(filename="manuscript/images/figure1_b.pdf",plot=fig2_b,height=4.5,width=3,units="in",scale=1.3)
+# ggsave(filename="manuscript/images/figure1_b.png",plot=fig2_b,height=4.5,width=3,units="in",scale=1.3,dpi=1000)
 
-fig1.layout <- rbind(c(1,2))
+fig2.layout <- rbind(c(1,2))
 
-fig1 <- grid.arrange(fig1_a,fig1_b,
-                     layout_matrix=fig1.layout)
+fig2 <- grid.arrange(fig2_a,fig2_b,
+                     layout_matrix=fig2.layout)
 
-ggsave(filename="manuscript/images/figure3.pdf",plot=fig1,height=4.5,width=6.0,units="in",scale=1.3,device=cairo_pdf) #height=4.5,width=6,scale=1.3
-ggsave(filename="manuscript/images/figure3.png",plot=fig1,height=4.5,width=6,units="in",scale=1.3,dpi=1000)
+ggsave(filename="manuscript/images/figure2.pdf",plot=fig2,height=4.5,width=6.0,units="in",scale=1.3,device=cairo_pdf) #height=4.5,width=6,scale=1.3
+ggsave(filename="manuscript/images/figure2.png",plot=fig2,height=4.5,width=6,units="in",scale=1.3,dpi=1000)
 
-# figure 4 - distribution of alpha parameters for each parameters simultaneously ----------------
+# figure 3 - distribution of alpha parameters for each parameters simultaneously ----------------
 
 # .location = "Argentina"
 # .variety = "Innovator"
 # .color = "#e41a1c"
 
-f.fig2 <- function(plot.data,.location,.variety,.color){
+f.fig3 <- function(plot.data,.location,.variety,.color){
   
   var3 <- paste("       ",.variety,sep="")
   
@@ -536,7 +534,7 @@ f.fig2 <- function(plot.data,.location,.variety,.color){
           plot.caption.position =  "plot") +
     scale_color_manual(values = .color) +
     scale_x_continuous(limits=c(4.0,5.5),breaks=c(4.0,4.5,5.0,5.5)) +
-    scale_y_continuous(limits=c(0.0,0.8),breaks=c(0.1,0.3,0.5,0.7)) +
+    scale_y_continuous(limits=c(0.0,0.8),breaks=c(0.1,0.3,0.5,0.7),labels=c(" 0.1","0.3","0.5","0.7")) +
     guides(color="none") +
     labs(caption=var3)
   
@@ -546,22 +544,22 @@ f.fig2 <- function(plot.data,.location,.variety,.color){
   
 }
 
-fig2.list <- list(
+fig3.list <- list(
   location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
   variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet"),
   color=plot.colors.1
 )
 
-fig2.sub <- pmap(fig2.list,~f.fig2(plot.data,
+fig3.sub <- pmap(fig3.list,~f.fig3(plot.data,
                                    .location=..1,
                                    .variety=..2,
                                    .color=..3))
 
-# f.fig2(plot.data,fig2.list$location[[14]],fig2.list$variety[[14]],fig2.list$color[[14]])
+# f.fig3(plot.data,fig3.list$location[[14]],fig3.list$variety[[14]],fig3.list$color[[14]])
 
-# fig2.sub[[1]]
+# fig3.sub[[1]]
 
-f.fig2.lab.facet <- function(.location){
+f.fig3.lab.facet <- function(.location){
   
   ggplot() +
     geom_text(aes(x=0,y=0,label=.location),angle=270,size=2.5) +
@@ -574,7 +572,7 @@ f.fig2.lab.facet <- function(.location){
           panel.background = element_rect(fill="#d2d2d2",color="black"))
   
 }
-f.fig2.lab.axis.y <- function(){
+f.fig3.lab.axis.y <- function(){
   
   ggplot() +
     geom_text(aes(x=0,y=0),label=expression(paste("parameter ", italic("b"), sep=" ")),parse=T,angle=90,size=3) +
@@ -585,7 +583,7 @@ f.fig2.lab.axis.y <- function(){
           axis.ticks = element_blank())
   
 }
-f.fig2.lab.axis.x <- function(){
+f.fig3.lab.axis.x <- function(){
   
   ggplot() +
     geom_text(aes(x=0,y=0),label=expression(paste("parameter ", italic("a"), sep=" ")),parse=T,angle=0,size=3) +
@@ -597,7 +595,7 @@ f.fig2.lab.axis.x <- function(){
   
 }
 
-fig2.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
+fig3.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,6,6,6,7,7,7,16,NA,NA,8,8,8,9,9,9,17),
@@ -608,24 +606,24 @@ fig2.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
                      c(NA,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20))
 
-fig2 <- grid.arrange(fig2.sub[[1]],fig2.sub[[2]],fig2.sub[[3]],fig2.sub[[4]],fig2.sub[[5]],
-                     fig2.sub[[6]],fig2.sub[[7]],fig2.sub[[8]],fig2.sub[[9]],
-                     fig2.sub[[10]],fig2.sub[[11]],fig2.sub[[12]],fig2.sub[[13]],fig2.sub[[14]],
-                     f.fig2.lab.facet("Argentina"),f.fig2.lab.facet("Belgium"),f.fig2.lab.facet("Canada"),f.fig2.lab.facet("Minnesota"),
-                     f.fig2.lab.axis.y(),f.fig2.lab.axis.x(),
-                     layout_matrix=fig2.layout)
+fig3 <- grid.arrange(fig3.sub[[1]],fig3.sub[[2]],fig3.sub[[3]],fig3.sub[[4]],fig3.sub[[5]],
+                     fig3.sub[[6]],fig3.sub[[7]],fig3.sub[[8]],fig3.sub[[9]],
+                     fig3.sub[[10]],fig3.sub[[11]],fig3.sub[[12]],fig3.sub[[13]],fig3.sub[[14]],
+                     f.fig3.lab.facet("Argentina"),f.fig3.lab.facet("Belgium"),f.fig3.lab.facet("Canada"),f.fig3.lab.facet("Minnesota"),
+                     f.fig3.lab.axis.y(),f.fig3.lab.axis.x(),
+                     layout_matrix=fig3.layout)
 
-ggsave(filename="manuscript/images/figure4.pdf",plot=fig2,height=4,width=6,units="in",scale=1,device=cairo_pdf)
-ggsave(filename="manuscript/images/figure4.png",plot=fig2,height=4,width=6,units="in",scale=1,dpi=1000)
+ggsave(filename="manuscript/images/figure3.pdf",plot=fig3,height=4,width=6,units="in",scale=1,device=cairo_pdf)
+ggsave(filename="manuscript/images/figure3.png",plot=fig3,height=4,width=6,units="in",scale=1,dpi=1000)
 
 
-# figure 5 - curve fits for each variety x location  ------------------
+# figure 4 - curve fits for each variety x location  ------------------
 
 # .location = "Argentina"
 # .variety = "Innovator"
 # .color = "#e41a1c"
 
-f.fig3 <- function(plot.data,.location,.variety,.color){
+f.fig4 <- function(plot.data,.location,.variety,.color){
   
   # var1 <- "W"
   # var2 <- "%N"
@@ -674,22 +672,23 @@ f.fig3 <- function(plot.data,.location,.variety,.color){
           plot.caption.position =  "plot") +
     guides(color="none") +
     scale_color_manual(values=.color)  +
-    scale_x_continuous(n.breaks=4)
+    scale_x_continuous(n.breaks=4) +
+    scale_y_continuous(breaks=c(0,2,4,6),labels=c(" 0.0","2.0","4.0","6.0"))
    
 }
 
-fig3.list <- list(
+fig4.list <- list(
   location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
   variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet"),
   color=plot.colors.1
 )
 
-fig3.sub <- pmap(fig3.list,~f.fig3(plot.data,
+fig4.sub <- pmap(fig4.list,~f.fig4(plot.data,
                                    .location=..1,
                                    .variety=..2,
                                    .color=..3))
 
-f.fig3.lab.facet <- function(.location){
+f.fig4.lab.facet <- function(.location){
   
   ggplot() +
     geom_text(aes(x=0,y=0,label=.location),angle=270,size=2.5) +
@@ -701,7 +700,7 @@ f.fig3.lab.facet <- function(.location){
           panel.background = element_rect(fill="#d2d2d2",color="black"))
   
 }
-f.fig3.lab.axis.y <- function(){
+f.fig4.lab.axis.y <- function(){
   
   ggplot() +
     geom_text(aes(x=0,y=0),label=expression("%N [g N 100 g"^-1*" d.w.]"),angle=90,size=3,parse=T) +
@@ -712,7 +711,7 @@ f.fig3.lab.axis.y <- function(){
           axis.ticks = element_blank())
   
 }
-f.fig3.lab.axis.x <- function(){
+f.fig4.lab.axis.x <- function(){
   
   ggplot() +
     geom_text(aes(x=0,y=0),label=expression("Biomass [Mg d.w. ha"^-1*"]"),angle=0,size=3,parse=T) +
@@ -724,7 +723,7 @@ f.fig3.lab.axis.x <- function(){
   
 }
 
-fig3.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
+fig4.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,6,6,6,7,7,7,16,NA,NA,8,8,8,9,9,9,17),
@@ -735,22 +734,22 @@ fig3.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
                      c(NA,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20))
 
-fig3 <- grid.arrange(fig3.sub[[1]],fig3.sub[[2]],fig3.sub[[3]],fig3.sub[[4]],fig3.sub[[5]],
-                     fig3.sub[[6]],fig3.sub[[7]],fig3.sub[[8]],fig3.sub[[9]],
-                     fig3.sub[[10]],fig3.sub[[11]],fig3.sub[[12]],fig3.sub[[13]],fig3.sub[[14]],
-                     f.fig3.lab.facet("Argentina"),f.fig3.lab.facet("Belgium"),f.fig3.lab.facet("Canada"),f.fig3.lab.facet("Minnesota"),
-                     f.fig3.lab.axis.y(),f.fig3.lab.axis.x(),
-                     layout_matrix=fig3.layout)
+fig4 <- grid.arrange(fig4.sub[[1]],fig4.sub[[2]],fig4.sub[[3]],fig4.sub[[4]],fig4.sub[[5]],
+                     fig4.sub[[6]],fig4.sub[[7]],fig4.sub[[8]],fig4.sub[[9]],
+                     fig4.sub[[10]],fig4.sub[[11]],fig4.sub[[12]],fig4.sub[[13]],fig4.sub[[14]],
+                     f.fig4.lab.facet("Argentina"),f.fig4.lab.facet("Belgium"),f.fig4.lab.facet("Canada"),f.fig4.lab.facet("Minnesota"),
+                     f.fig4.lab.axis.y(),f.fig4.lab.axis.x(),
+                     layout_matrix=fig4.layout)
 
-ggsave(filename="manuscript/images/figure5.pdf",plot=fig3,height=4,width=6,units="in",scale=1.0,device=cairo_pdf)
-ggsave(filename="manuscript/images/figure5.png",plot=fig3,height=4,width=6,units="in",scale=1.0,dpi=1000)
+ggsave(filename="manuscript/images/figure4.pdf",plot=fig4,height=4,width=6,units="in",scale=1.0,device=cairo_pdf)
+ggsave(filename="manuscript/images/figure4.png",plot=fig4,height=4,width=6,units="in",scale=1.0,dpi=1000)
 
-# table 6 - fitted boundary nls curves -----------------
+# table 5 - fitted boundary nls curves -----------------
 
 # .location = "Minnesota"
 # .variety = "Russet Burbank"
 
-f.tab2 <- function(plot.data,.location,.variety){
+f.tab5 <- function(plot.data,.location,.variety){
   
   t1 <- plot.data$tab1 %>%
     filter(variety!=".") %>%
@@ -849,23 +848,23 @@ f.tab2 <- function(plot.data,.location,.variety){
   
 }
 
-tab2.list <- list(
+tab5.list <- list(
   location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
   variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet")
 )
 
-tab2 <- pmap(tab2.list,~f.tab2(plot.data,
+tab5 <- pmap(tab5.list,~f.tab5(plot.data,
                                .location=..1,
                                .variety=..2)) %>% bind_rows()
 
-write_csv(tab2,"manuscript/tables/table6.csv")
+write_csv(tab5,"manuscript/tables/table5.csv")
 
-# figure 6a - curve fits for each variety x location with uncertainty  ------------------
+# figure 5a - curve fits for each variety x location with uncertainty  ------------------
 
 # .location = "Argentina"
 # .variety = "Innovator"
 
-f.fig4 <- function(plot.data,.location,.variety){
+f.fig5 <- function(plot.data,.location,.variety){
   
   var1 <- "W"
   # var2 <- "%N"
@@ -959,16 +958,16 @@ f.fig4 <- function(plot.data,.location,.variety){
   
 }
 
-fig4.list <- list(
+fig5.list <- list(
   location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
   variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet")
 )
 
-fig4.sub <- pmap(fig4.list,~f.fig4(plot.data,
+fig5.sub <- pmap(fig5.list,~f.fig5(plot.data,
                                    .location=..1,
                                    .variety=..2))
 
-f.fig4.lab.facet <- function(.location){
+f.fig5.lab.facet <- function(.location){
   
   ggplot() +
     geom_text(aes(x=0,y=0,label=.location),angle=270,size=2.5) +
@@ -981,7 +980,7 @@ f.fig4.lab.facet <- function(.location){
           panel.background = element_rect(fill="#d2d2d2",color="black"))
   
 }
-f.fig4.lab.axis.y <- function(){
+f.fig5.lab.axis.y <- function(){
   
   ggplot() +
     geom_text(aes(x=0,y=0),label=expression("∆ %N"[c]*" [g N 100 g"^-1*" d.w.]"),angle=90,size=3,parse=T) + #expression("%N Difference [g N 100 g"^-1*" d.w.]")
@@ -992,7 +991,7 @@ f.fig4.lab.axis.y <- function(){
           axis.ticks = element_blank())
   
 }
-f.fig4.lab.axis.x <- function(){
+f.fig5.lab.axis.x <- function(){
   
   ggplot() +
     geom_text(aes(x=0,y=0),label=expression("Biomass [Mg d.w. ha"^-1*"]"),angle=0,size=3,parse=T) +
@@ -1004,7 +1003,7 @@ f.fig4.lab.axis.x <- function(){
   
 }
 
-fig4.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
+fig5.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,6,6,6,7,7,7,16,NA,NA,8,8,8,9,9,9,17),
@@ -1015,22 +1014,22 @@ fig4.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
                      c(NA,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20))
 
-fig4 <- grid.arrange(fig4.sub[[1]],fig4.sub[[2]],fig4.sub[[3]],fig4.sub[[4]],fig4.sub[[5]],
-                     fig4.sub[[6]],fig4.sub[[7]],fig4.sub[[8]],fig4.sub[[9]],
-                     fig4.sub[[10]],fig4.sub[[11]],fig4.sub[[12]],fig4.sub[[13]],fig4.sub[[14]],
-                     f.fig4.lab.facet("Argentina"),f.fig4.lab.facet("Belgium"),f.fig4.lab.facet("Canada"),f.fig4.lab.facet("Minnesota"),
-                     f.fig4.lab.axis.y(),f.fig4.lab.axis.x(),
-                     layout_matrix=fig4.layout)
+fig5 <- grid.arrange(fig5.sub[[1]],fig5.sub[[2]],fig5.sub[[3]],fig5.sub[[4]],fig5.sub[[5]],
+                     fig5.sub[[6]],fig5.sub[[7]],fig5.sub[[8]],fig5.sub[[9]],
+                     fig5.sub[[10]],fig5.sub[[11]],fig5.sub[[12]],fig5.sub[[13]],fig5.sub[[14]],
+                     f.fig5.lab.facet("Argentina"),f.fig5.lab.facet("Belgium"),f.fig5.lab.facet("Canada"),f.fig5.lab.facet("Minnesota"),
+                     f.fig5.lab.axis.y(),f.fig5.lab.axis.x(),
+                     layout_matrix=fig5.layout)
 
-ggsave(filename="manuscript/images/figure6a.pdf",plot=fig4,height=4,width=6,units="in",scale=1.0,device=cairo_pdf)
-ggsave(filename="manuscript/images/figure6a.png",plot=fig4,height=4,width=6,units="in",scale=1.0,dpi=1000)
+ggsave(filename="manuscript/images/figure5a.pdf",plot=fig5,height=4,width=6,units="in",scale=1.0,device=cairo_pdf)
+ggsave(filename="manuscript/images/figure5a.png",plot=fig5,height=4,width=6,units="in",scale=1.0,dpi=1000)
 
-# figure 6b - curve fits with uncertainty and spaghetti plot for single variety x location  ------------------
+# figure 5b - curve fits with uncertainty and spaghetti plot for single variety x location  ------------------
 
 # .location = "Minnesota"
 # .variety = "Russet Burbank"
 
-f.fig4.callout <- function(plot.data,.location,.variety,.plot){
+f.fig5.callout <- function(plot.data,.location,.variety,.plot){
   
   var1 <- "W"
   # var2 <- "%N"
@@ -1165,16 +1164,16 @@ f.fig4.callout <- function(plot.data,.location,.variety,.plot){
   
 }
 
-fig4.callout.list <- list(
+fig5.callout.list <- list(
   .plot=c("all","draws","estimate","conservative","estimate+conservative")
 )
 
-fig4.callout.sub <- pmap(fig4.callout.list,~f.fig4.callout(plot.data,
+fig5.callout.sub <- pmap(fig5.callout.list,~f.fig5.callout(plot.data,
                                                            .location="Minnesota",
                                                            .variety="Russet Burbank",
                                                            .plot=..1))
 
-f.fig4.callout.lab.facet <- function(.location){
+f.fig5.callout.lab.facet <- function(.location){
   
   ggplot() +
     geom_text(aes(x=0,y=0,label=.location),angle=270,size=2.5) +
@@ -1187,7 +1186,7 @@ f.fig4.callout.lab.facet <- function(.location){
           panel.background = element_rect(fill="#d2d2d2",color="black"))
   
 }
-f.fig4.callout.lab.axis.y <- function(){
+f.fig5.callout.lab.axis.y <- function(){
   
   ggplot() +
     geom_text(aes(x=0,y=0),label=expression("∆ %N"[c]*" [g N 100 g"^-1*" d.w.]"),angle=90,size=3,parse=T) +
@@ -1198,7 +1197,7 @@ f.fig4.callout.lab.axis.y <- function(){
           axis.ticks = element_blank())
   
 }
-f.fig4.callout.lab.axis.x <- function(){
+f.fig5.callout.lab.axis.x <- function(){
   
   ggplot() +
     geom_text(aes(x=0,y=0),label=expression("Biomass [Mg d.w. ha"^-1*"]"),angle=0,size=3,parse=T) +
@@ -1210,32 +1209,32 @@ f.fig4.callout.lab.axis.x <- function(){
   
 }
 
-# fig4.callout.layout <- rbind(c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
+# fig5.callout.layout <- rbind(c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
 #                              c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
 #                              c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
 #                              c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
 #                              c(4,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,6),
 #                              c(NA,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,NA))
 # 
-# fig4.callout <- grid.arrange(fig4.callout.sub[[2]],fig4.callout.sub[[3]],fig4.callout.sub[[4]],
-#                             f.fig4.callout.lab.axis.y(),f.fig4.callout.lab.axis.x(), f.fig4.callout.lab.facet("Minnesota x Russet Burbank"),
-#                              layout_matrix=fig4.callout.layout)
+# fig5.callout <- grid.arrange(fig5.callout.sub[[2]],fig5.callout.sub[[3]],fig5.callout.sub[[4]],
+#                             f.fig5.callout.lab.axis.y(),f.fig5.callout.lab.axis.x(), f.fig5.callout.lab.facet("Minnesota x Russet Burbank"),
+#                              layout_matrix=fig5.callout.layout)
 
-fig4.callout.layout <- rbind(c(NA,NA,3,1,1,1,1,1,NA,2,2,2,2,2,5,NA,NA),
+fig5.callout.layout <- rbind(c(NA,NA,3,1,1,1,1,1,NA,2,2,2,2,2,5,NA,NA),
                              c(NA,NA,3,1,1,1,1,1,NA,2,2,2,2,2,5,NA,NA),
                              c(NA,NA,3,1,1,1,1,1,NA,2,2,2,2,2,5,NA,NA),
                              c(NA,NA,3,1,1,1,1,1,NA,2,2,2,2,2,5,NA,NA),
                              c(NA,NA,3,1,1,1,1,1,NA,2,2,2,2,2,5,NA,NA),
                              c(4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4))
 
-fig4.callout <- grid.arrange(fig4.callout.sub[[2]],fig4.callout.sub[[5]],
-                            f.fig4.callout.lab.axis.y(),f.fig4.callout.lab.axis.x(), f.fig4.callout.lab.facet("Minnesota x Russet Burbank"),
-                             layout_matrix=fig4.callout.layout)
+fig5.callout <- grid.arrange(fig5.callout.sub[[2]],fig5.callout.sub[[5]],
+                            f.fig5.callout.lab.axis.y(),f.fig5.callout.lab.axis.x(), f.fig5.callout.lab.facet("Minnesota x Russet Burbank"),
+                             layout_matrix=fig5.callout.layout)
 
-ggsave(filename="manuscript/images/figure6b.pdf",plot=fig4.callout,height=2.2,width=6.0,units="in",scale=1.0,device=cairo_pdf)
-ggsave(filename="manuscript/images/figure6b.png",plot=fig4.callout,height=2.2,width=6.0,units="in",scale=1.0,dpi=1000)
+ggsave(filename="manuscript/images/figure5b.pdf",plot=fig5.callout,height=2.2,width=6.0,units="in",scale=1.0,device=cairo_pdf)
+ggsave(filename="manuscript/images/figure5b.png",plot=fig5.callout,height=2.2,width=6.0,units="in",scale=1.0,dpi=1000)
 
-# fig4.callout.layout <- rbind(c(2,1,1,1,1,1,1),
+# fig5.callout.layout <- rbind(c(2,1,1,1,1,1,1),
 #                              c(2,1,1,1,1,1,1),
 #                              c(2,1,1,1,1,1,1),
 #                              c(2,1,1,1,1,1,1),
@@ -1243,22 +1242,22 @@ ggsave(filename="manuscript/images/figure6b.png",plot=fig4.callout,height=2.2,wi
 #                              c(2,1,1,1,1,1,1),
 #                              c(NA,3,3,3,3,3,3))
 # 
-# fig4.callout <- grid.arrange(fig4.callout.sub[[1]],
-#                              f.fig4.callout.lab.axis.y(),f.fig4.callout.lab.axis.x(),
-#                              layout_matrix=fig4.callout.layout)
+# fig5.callout <- grid.arrange(fig5.callout.sub[[1]],
+#                              f.fig5.callout.lab.axis.y(),f.fig5.callout.lab.axis.x(),
+#                              layout_matrix=fig5.callout.layout)
 # 
-# ggsave(filename="manuscript/images/figure4_callout.pdf",plot=fig4.callout,height=3.0,width=3.0,units="in",scale=1.0)
-# ggsave(filename="manuscript/images/figure4_callout.png",plot=fig4.callout,height=3.0,width=3.0,units="in",scale=1.0,dpi=1000)
+# ggsave(filename="manuscript/images/figure4_callout.pdf",plot=fig5.callout,height=3.0,width=3.0,units="in",scale=1.0)
+# ggsave(filename="manuscript/images/figure4_callout.png",plot=fig5.callout,height=3.0,width=3.0,units="in",scale=1.0,dpi=1000)
 
 
-# figure 7 - comparing curves to each other fits -----------------
+# figure 6 - comparing curves to each other fits -----------------
 
 # .location_comp = "Belgium"
 # .variety_comp = "Bintje"
 # .location_ref = "Minnesota"
 # .variety_ref = "Russet Burbank"
 
-f.fig5 <- function(plot.data,.location_ref,.variety_ref,.location_comp,.variety_comp){
+f.fig6 <- function(plot.data,.location_ref,.variety_ref,.location_comp,.variety_comp){
   
   var1 <- "W"
   var2 <- "%N - Diff"
@@ -1344,15 +1343,15 @@ f.fig5 <- function(plot.data,.location_ref,.variety_ref,.location_comp,.variety_
     
     if(var5%in%c("Minnesota","Belgium")) {
       g + 
-        scale_y_continuous(limits=c(-0.33,0.33),n.breaks=5) +
+        scale_y_continuous(limits=c(-0.33,0.33),breaks=c(-0.2,0.0,0.2),labels=c("-0.2"," 0.0","0.2")) + #n.breaks=5) +
         geom_text(data=r_range,aes(x=1,y=0.33,label=paste0("[",format(round(range_min,1),nsmall=1),", ",format(round(range_max,1),nsmall=1),"]")),size=2.0,hjust="inward",vjust=1)
     } else if(var5=="Canada"){
       g + 
-        scale_y_continuous(limits=c(-0.5,1.0),n.breaks=5) +
+        scale_y_continuous(limits=c(-0.5,1.0),breaks=c(-0.5,0.0,0.5,1.0),labels=c("-0.5"," 0.0","0.5","1.0")) + #n.breaks=5) +
         geom_text(data=r_range,aes(x=1,y=1.0,label=paste0("[",format(round(range_min,1),nsmall=1),", ",format(round(range_max,1),nsmall=1),"]")),size=2.0,hjust="inward",vjust=1)
     } else if(var5=="Argentina"){
       g + 
-        scale_y_continuous(limits=c(-0.5,3.0),n.breaks=5) +
+        scale_y_continuous(limits=c(-0.5,3.0),breaks=c(0.0,1.0,2.0,3.0),labels=c(" 0.0","1.0","2.0","3.0")) + #n.breaks=5) +
         geom_text(data=r_range,aes(x=1,y=3.0,label=paste0("[",format(round(range_min,1),nsmall=1),", ",format(round(range_max,1),nsmall=1),"]")),size=2.0,hjust="inward",vjust=1)
     } else {
       g
@@ -1360,20 +1359,20 @@ f.fig5 <- function(plot.data,.location_ref,.variety_ref,.location_comp,.variety_
   
 }
 
-fig5.list <- list(
+fig6.list <- list(
   location_ref=c("Minnesota"),
   variety_ref=c("Russet Burbank"),
   location_comp=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
   variety_comp=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet")
 )
 
-fig5.sub <- pmap(fig5.list,~f.fig5(plot.data,
+fig6.sub <- pmap(fig6.list,~f.fig6(plot.data,
                                    .location_ref=..1,
                                    .variety_ref=..2,
                                    .location_comp=..3,
                                    .variety_comp=..4))
 
-f.fig5.lab.facet <- function(.location){
+f.fig6.lab.facet <- function(.location){
   
   ggplot() +
     geom_text(aes(x=0,y=0,label=.location),angle=270,size=2.5) +
@@ -1385,7 +1384,7 @@ f.fig5.lab.facet <- function(.location){
           panel.background = element_rect(fill="#d2d2d2",color="black"))
   
 }
-f.fig5.lab.axis.y <- function(){
+f.fig6.lab.axis.y <- function(){
   
   ggplot() +
     geom_text(aes(x=0,y=0),label=expression("∆ %N"[c]*" [g N 100 g"^-1*" d.w.]"),angle=90,size=3,parse=T) +
@@ -1396,7 +1395,7 @@ f.fig5.lab.axis.y <- function(){
           axis.ticks = element_blank())
   
 }
-f.fig5.lab.axis.x <- function(){
+f.fig6.lab.axis.x <- function(){
   
   ggplot() +
     geom_text(aes(x=0,y=0),label=expression("Biomass [Mg d.w. ha"^-1*"]"),angle=0,size=3,parse=T) +
@@ -1407,7 +1406,7 @@ f.fig5.lab.axis.x <- function(){
           axis.ticks = element_blank())
   
 }
-f.fig5.reference <- function(.variety){
+f.fig6.reference <- function(.variety){
   
   ggplot() +
     geom_text(aes(x=0,y=0),label="Reference",angle=0,size=3,parse=T) +
@@ -1425,7 +1424,7 @@ f.fig5.reference <- function(.variety){
   
 }
 
-fig5.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
+fig6.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,6,6,6,7,7,7,16,NA,NA,8,8,8,9,9,9,17),
@@ -1436,19 +1435,19 @@ fig5.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
                      c(NA,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20))
 
-fig5 <- grid.arrange(fig5.sub[[1]],fig5.sub[[2]],fig5.sub[[3]],fig5.sub[[4]],fig5.sub[[5]],
-                     fig5.sub[[6]],fig5.sub[[7]],fig5.sub[[8]],fig5.sub[[9]],
-                     fig5.sub[[10]],fig5.sub[[11]],fig5.sub[[12]],f.fig5.reference("Russet Burbank"),fig5.sub[[14]],
-                     f.fig5.lab.facet("Argentina"),f.fig5.lab.facet("Belgium"),f.fig5.lab.facet("Canada"),f.fig5.lab.facet("Minnesota"),
-                     f.fig5.lab.axis.y(),f.fig5.lab.axis.x(),
-                     layout_matrix=fig5.layout)
+fig6 <- grid.arrange(fig6.sub[[1]],fig6.sub[[2]],fig6.sub[[3]],fig6.sub[[4]],fig6.sub[[5]],
+                     fig6.sub[[6]],fig6.sub[[7]],fig6.sub[[8]],fig6.sub[[9]],
+                     fig6.sub[[10]],fig6.sub[[11]],fig6.sub[[12]],f.fig6.reference("Russet Burbank"),fig6.sub[[14]],
+                     f.fig6.lab.facet("Argentina"),f.fig6.lab.facet("Belgium"),f.fig6.lab.facet("Canada"),f.fig6.lab.facet("Minnesota"),
+                     f.fig6.lab.axis.y(),f.fig6.lab.axis.x(),
+                     layout_matrix=fig6.layout)
 
-ggsave(filename="manuscript/images/figure7.pdf",plot=fig5,height=4,width=6,units="in",scale=1.0,device=cairo_pdf)
-ggsave(filename="manuscript/images/figure7.png",plot=fig5,height=4,width=6,units="in",scale=1.0,dpi=1000)
+ggsave(filename="manuscript/images/figure6.pdf",plot=fig6,height=4,width=6,units="in",scale=1.0,device=cairo_pdf)
+ggsave(filename="manuscript/images/figure6.png",plot=fig6,height=4,width=6,units="in",scale=1.0,dpi=1000)
 
-# figure 7b - comparing additional curves #####
+# figure 6b - comparing additional curves #####
 
-f.fig7b <- function(plot.data,.location_ref,.variety_ref,.location_comp,.variety_comp){
+f.fig6b <- function(plot.data,.location_ref,.variety_ref,.location_comp,.variety_comp){
   
   var1 <- "W"
   var2 <- "%N - Diff"
@@ -1547,82 +1546,80 @@ f.fig7b <- function(plot.data,.location_ref,.variety_ref,.location_comp,.variety
   
 }
 
-fig7b.list.1 <- list(
+fig6b.list.1 <- list(
   location_ref=c("Argentina"),
   variety_ref=c("Innovator"),
   location_comp=c("Argentina","Argentina","Argentina","Argentina","Argentina"),
   variety_comp=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet")
 )
 
-fig7b.sub.1 <- pmap(fig7b.list.1,~f.fig7b(plot.data,
+fig6b.sub.1 <- pmap(fig6b.list.1,~f.fig6b(plot.data,
                                           .location_ref=..1,
                                           .variety_ref=..2,
                                           .location_comp=..3,
                                           .variety_comp=..4))
 
-fig7b.layout.1 <- rbind(c(7,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6),
-                        c(7,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6),
+fig6b.layout.1 <- rbind(c(7,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6),
                         c(7,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6),
                         c(7,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6),
                         c(7,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8))
 
-fig7b.1 <- grid.arrange(fig7b.sub.1[[1]],fig7b.sub.1[[2]],f.fig5.reference("Innovator"),fig7b.sub.1[[4]],fig7b.sub.1[[5]],
-                        f.fig5.lab.facet("Argentina"),
-                        f.fig5.lab.axis.y(),f.fig5.lab.axis.x(),
-                        layout_matrix=fig7b.layout.1)
+fig6b.1 <- grid.arrange(fig6b.sub.1[[1]],fig6b.sub.1[[2]],f.fig6.reference("Innovator"),fig6b.sub.1[[4]],fig6b.sub.1[[5]],
+                        f.fig6.lab.facet("Argentina"),
+                        f.fig6.lab.axis.y(),f.fig6.lab.axis.x(),
+                        layout_matrix=fig6b.layout.1)
 
-ggsave(filename="manuscript/images/figure7b_1.pdf",plot=fig7b.1,height=1.6,width=6,units="in",scale=1.0,device=cairo_pdf)
-ggsave(filename="manuscript/images/figure7b_1.png",plot=fig7b.1,height=1.6,width=6,units="in",scale=1.0,dpi=1000)
+ggsave(filename="manuscript/images/figure6b_1.pdf",plot=fig6b.1,height=1.6,width=6,units="in",scale=1.0,device=cairo_pdf)
+ggsave(filename="manuscript/images/figure6b_1.png",plot=fig6b.1,height=1.6,width=6,units="in",scale=1.0,dpi=1000)
 
-fig7b.list.2a <- list(
+fig6b.list.2a <- list(
   location_ref=c("Canada"),
   variety_ref=c("Russet Burbank"),
   location_comp=c("Canada","Canada"),
   variety_comp=c("Russet Burbank","Shepody")
 )
 
-fig7b.sub.2a <- pmap(fig7b.list.2a,~f.fig7b(plot.data,
+fig6b.sub.2a <- pmap(fig6b.list.2a,~f.fig6b(plot.data,
                                             .location_ref=..1,
                                             .variety_ref=..2,
                                             .location_comp=..3,
                                             .variety_comp=..4))
 
-fig7b.list.2b <- list(
+fig6b.list.2b <- list(
   location_ref=c("Belgium"),
   variety_ref=c("Bintje"),
   location_comp=c("Belgium","Belgium"),
   variety_comp=c("Bintje","Charlotte")
 )
 
-fig7b.sub.2b <- pmap(fig7b.list.2b,~f.fig7b(plot.data,
+fig6b.sub.2b <- pmap(fig6b.list.2b,~f.fig6b(plot.data,
                                             .location_ref=..1,
                                             .variety_ref=..2,
                                             .location_comp=..3,
                                             .variety_comp=..4))
 
-fig7b.layout.2 <- rbind(c(7,1,1,1,2,2,2,3,NA,9,4,4,4,5,5,5,6),
-                        c(7,1,1,1,2,2,2,3,NA,9,4,4,4,5,5,5,6),
+fig6b.layout.2 <- rbind(c(7,1,1,1,2,2,2,3,NA,9,4,4,4,5,5,5,6),
                         c(7,1,1,1,2,2,2,3,NA,9,4,4,4,5,5,5,6),
                         c(7,1,1,1,2,2,2,3,NA,9,4,4,4,5,5,5,6),
                         c(7,8,8,8,8,8,8,8,NA,9,10,10,10,10,10,10,10))
 
-fig7b.2 <- grid.arrange(f.fig5.reference("Russet Burbank"),fig7b.sub.2a[[2]],f.fig5.lab.facet("Canada"),
-                        f.fig5.reference("Bintje"),fig7b.sub.2b[[2]],f.fig5.lab.facet("Belgium"),
-                        f.fig5.lab.axis.y(),f.fig5.lab.axis.x(),
-                        f.fig5.lab.axis.y(),f.fig5.lab.axis.x(),
-                        layout_matrix=fig7b.layout.2)
+fig6b.2 <- grid.arrange(f.fig6.reference("Russet Burbank"),fig6b.sub.2a[[2]],f.fig6.lab.facet("Canada"),
+                        f.fig6.reference("Bintje"),fig6b.sub.2b[[2]],f.fig6.lab.facet("Belgium"),
+                        f.fig6.lab.axis.y(),f.fig6.lab.axis.x(),
+                        f.fig6.lab.axis.y(),f.fig6.lab.axis.x(),
+                        layout_matrix=fig6b.layout.2)
 
-ggsave(filename="manuscript/images/figure7b_2.pdf",plot=fig7b.2,height=1.6,width=6,units="in",scale=1.0,device=cairo_pdf)
-ggsave(filename="manuscript/images/figure7b_2.png",plot=fig7b.2,height=1.6,width=6,units="in",scale=1.0,dpi=1000)
+ggsave(filename="manuscript/images/figure6b_2.pdf",plot=fig6b.2,height=1.6,width=6,units="in",scale=1.0,device=cairo_pdf)
+ggsave(filename="manuscript/images/figure6b_2.png",plot=fig6b.2,height=1.6,width=6,units="in",scale=1.0,dpi=1000)
 
-# figure 7 table - tabular values for comparing curves to each other fits ------------
+# figure 6 table - tabular values for comparing curves to each other fits ------------
 
 # .location_comp = "Belgium"
 # .variety_comp = "Bintje"
 # .location_ref = "Minnesota"
 # .variety_ref = "Russet Burbank"
 
-f.fig5.tab <- function(plot.data,.location_ref,.variety_ref,.location_comp,.variety_comp){
+f.fig6.tab <- function(plot.data,.location_ref,.variety_ref,.location_comp,.variety_comp){
   
   var1 <- "W"
   var2 <- "%N - Diff"
@@ -1712,27 +1709,27 @@ f.fig5.tab <- function(plot.data,.location_ref,.variety_ref,.location_comp,.vari
   
 }
 
-fig5.tab.list <- list(
+fig6.tab.list <- list(
   location_ref=c("Minnesota"),
   variety_ref=c("Russet Burbank"),
   location_comp=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada","Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
   variety_comp=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody","Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet")
 )
 
-fig5.tab <- pmap(fig5.tab.list,~f.fig5.tab(plot.data,
+fig6.tab <- pmap(fig6.tab.list,~f.fig6.tab(plot.data,
                                            .location_ref=..1,
                                            .variety_ref=..2,
                                            .location_comp=..3,
                                            .variety_comp=..4)) %>% bind_rows()
 
-write_csv(fig5.tab,"manuscript/tables/figure7_table.csv")
+write_csv(fig6.tab,"manuscript/tables/figure6_table.csv")
 
-# figure 8 - comparing these curves to previous curve fits -----------------
+# figure 7 - comparing these curves to previous curve fits -----------------
 
 # .location = "Belgium"
 # .variety = "Bintje"
 
-f.fig6 <- function(plot.data,.location,.variety){
+f.fig7 <- function(plot.data,.location,.variety){
   
   var1 <- "W"
   var2 <- "%N - Diff"
@@ -1811,21 +1808,21 @@ f.fig6 <- function(plot.data,.location,.variety){
           plot.caption.position =  "plot") +
     guides(color="none") +
     scale_color_manual(values=c("#ca0020","#0571b0")) +
-    scale_y_continuous(limits=c(-1.5,1.5),n.breaks=5) +
+    scale_y_continuous(limits=c(-1.5,1.5),breaks=c(-1,0,1),labels=c("-1.0","0.0","1.0")) + #,n.breaks=5) +
     scale_x_continuous(limits=c(0,NA),n.breaks=4)
   
 }
 
-fig6.list <- list(
+fig7.list <- list(
   location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada"), #,"Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
   variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody") #,"Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet"),
 )
 
-fig6.sub <- pmap(fig6.list,~f.fig6(plot.data,
+fig7.sub <- pmap(fig7.list,~f.fig7(plot.data,
                                    .location=..1,
                                    .variety=..2))
 
-f.fig6.lab.facet <- function(.location){
+f.fig7.lab.facet <- function(.location){
   
   ggplot() +
     geom_text(aes(x=0,y=0,label=.location),angle=270,size=2.5) +
@@ -1837,7 +1834,7 @@ f.fig6.lab.facet <- function(.location){
           panel.background = element_rect(fill="#d2d2d2",color="black"))
   
 }
-f.fig6.lab.axis.y <- function(){
+f.fig7.lab.axis.y <- function(){
   
   ggplot() +
     geom_text(aes(x=0,y=0),label=expression("∆%N"[c]*" [g N 100 g"^-1*" d.w.]"),angle=90,size=3,parse=T) +
@@ -1848,7 +1845,7 @@ f.fig6.lab.axis.y <- function(){
           axis.ticks = element_blank())
   
 }
-f.fig6.lab.axis.x <- function(){
+f.fig7.lab.axis.x <- function(){
   
   ggplot() +
     geom_text(aes(x=0,y=0),label=expression("Biomass [Mg d.w. ha"^-1*"]"),angle=0,size=3,parse=T) +
@@ -1860,7 +1857,7 @@ f.fig6.lab.axis.x <- function(){
   
 }
 
-fig6.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
+fig7.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      c(19,6,6,6,7,7,7,16,NA,NA,8,8,8,9,9,9,17),
@@ -1871,22 +1868,22 @@ fig6.layout <- rbind(c(19,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,15),
                      # c(19,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,18),
                      c(NA,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20))
 
-fig6 <- grid.arrange(fig6.sub[[1]],fig6.sub[[2]],fig6.sub[[3]],fig6.sub[[4]],fig6.sub[[5]],
-                     fig6.sub[[6]],fig6.sub[[7]],fig6.sub[[8]],fig6.sub[[9]],
-                     # fig6.sub[[10]],fig6.sub[[11]],fig6.sub[[12]],fig6.sub[[13]],fig6.sub[[14]],
-                     f.fig6.lab.facet("Argentina"),f.fig6.lab.facet("Belgium"),f.fig6.lab.facet("Canada"),#f.fig6.lab.facet("Minnesota"),
-                     f.fig6.lab.axis.y(),f.fig6.lab.axis.x(),
-                     layout_matrix=fig6.layout)
+fig7 <- grid.arrange(fig7.sub[[1]],fig7.sub[[2]],fig7.sub[[3]],fig7.sub[[4]],fig7.sub[[5]],
+                     fig7.sub[[6]],fig7.sub[[7]],fig7.sub[[8]],fig7.sub[[9]],
+                     # fig7.sub[[10]],fig7.sub[[11]],fig7.sub[[12]],fig7.sub[[13]],fig7.sub[[14]],
+                     f.fig7.lab.facet("Argentina"),f.fig7.lab.facet("Belgium"),f.fig7.lab.facet("Canada"),#f.fig7.lab.facet("Minnesota"),
+                     f.fig7.lab.axis.y(),f.fig7.lab.axis.x(),
+                     layout_matrix=fig7.layout)
 
-ggsave(filename="manuscript/images/figure8.pdf",plot=fig6,height=2.8,width=6,units="in",scale=1.0,device=cairo_pdf)
-ggsave(filename="manuscript/images/figure8.png",plot=fig6,height=2.8,width=6,units="in",scale=1.0,dpi=1000)
+ggsave(filename="manuscript/images/figure7.pdf",plot=fig7,height=2.8,width=6,units="in",scale=1.0,device=cairo_pdf)
+ggsave(filename="manuscript/images/figure7.png",plot=fig7,height=2.8,width=6,units="in",scale=1.0,dpi=1000)
 
-# figure 8 table - tabular values for the previous curve fit comparison --------------------
+# figure 7 table - tabular values for the previous curve fit comparison --------------------
 
 # .location = "Canada"
 # .variety = "Shepody"
 
-f.fig6.tab <- function(plot.data,.location,.variety){
+f.fig7.tab <- function(plot.data,.location,.variety){
   
   var1 <- "W"
   var2 <- "%N - Diff"
@@ -1960,16 +1957,16 @@ f.fig6.tab <- function(plot.data,.location,.variety){
   
 }
 
-fig6.tab.list <- list(
+fig7.tab.list <- list(
   location=c("Argentina","Argentina","Argentina","Argentina","Argentina","Belgium","Belgium","Canada","Canada"), #,"Minnesota","Minnesota","Minnesota","Minnesota","Minnesota"),
   variety=c("Bannock Russet","Gem Russet","Innovator","Markies Russet","Umatilla Russet","Bintje","Charlotte","Russet Burbank","Shepody") #,"Clearwater","Dakota Russet","Easton","Russet Burbank","Umatilla Russet"),
 )
 
-fig6.tab <- pmap(fig6.tab.list,~f.fig6.tab(plot.data,
+fig7.tab <- pmap(fig7.tab.list,~f.fig7.tab(plot.data,
                                            .location=..1,
                                            .variety=..2)) %>% bind_rows()
 
-write_csv(fig6.tab,"manuscript/tables/figure8_table.csv")
+write_csv(fig7.tab,"manuscript/tables/figure7_table.csv")
 
 
 # figure S1 - plateau model fit with point data for each date shown for each variety x location ------------------
@@ -2320,5 +2317,4 @@ ggsave(filename="manuscript/images/figureS2_n.pdf",plot=appx2_sub[[14]],scale=1.
 ggsave(filename="manuscript/images/figureS2_n.png",plot=appx2_sub[[14]],scale=1.5,height=2.5,width=6,limitsize=F,dpi=1000)
 
 
-# figure S3 - log-log curves comparing dilution rate pre- and post-tuber initiation
 # END --------------------
