@@ -1532,12 +1532,12 @@ f.fig6b <- function(plot.data,.location_ref,.variety_ref,.location_comp,.variety
   
   if(var5%in%c("Belgium","Canada")) {
     g + 
-      scale_y_continuous(limits=c(-0.2,0.5),breaks=c(-0.2,0,0.2,0.4)) + #,n.breaks=5)  +
+      scale_y_continuous(limits=c(-0.2,0.5),breaks=c(-0.2,0,0.2,0.4),labels=c("-0.2","0.0","0.2","0.4")) + #,n.breaks=5)  +
       scale_x_continuous(limits=c(0,NA),breaks=c(0,5,10,15,20,25,30)) +
       geom_text(data=r_range,aes(x=1,y=0.5,label=paste0("[",format(round(range_min,1),nsmall=1),", ",format(round(range_max,1),nsmall=1),"]")),size=2.0,hjust="inward",vjust=1)
   } else if(var5=="Argentina"){
     g + 
-      scale_y_continuous(limits=c(-0.1,1.0),breaks=c(0,0.5,1)) + #,n.breaks=5)  +
+      scale_y_continuous(limits=c(-0.1,1.0),breaks=c(0,0.5,1),labels=c(" 0.0","0.5","1.0")) + #,n.breaks=5)  +
       scale_x_continuous(limits=c(0,NA),breaks=c(0,10,20,30)) +
       geom_text(data=r_range,aes(x=1,y=1.0,label=paste0("[",format(round(range_min,1),nsmall=1),", ",format(round(range_max,1),nsmall=1),"]")),size=2.0,hjust="inward",vjust=1)
   } else {
